@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Squad</title>
+  <title>Teams</title>
 
   <style>
     body {
@@ -11,9 +11,11 @@
       text-align: center;
     }
 
+    /* 🔥 MENU */
     .menu {
       background: green;
       padding: 15px;
+      text-align: center;
     }
 
     .menu a {
@@ -21,6 +23,12 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
+      padding-bottom: 5px;
+    }
+
+    /* 🔥 ACTIVE UNDERLINE */
+    .menu a.active {
+      border-bottom: 3px solid white;
     }
 
     h1 {
@@ -28,7 +36,7 @@
       margin: 20px 0;
     }
 
-    /* 🔥 BIG SQUAD DESIGN */
+    /* 🔥 BIG TEAMS DESIGN */
     .squad-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -52,15 +60,15 @@
 
   <!-- MENU -->
   <div class="menu">
-    <a href="index.html" data-page="index">Home</a>
-    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
-    <a href="points.html" data-page="points">Points Table</a>
-    <a href="squad.html" data-page="squad">Squad</a>
+    <a href="index.html">Home</a>
+    <a href="fixtures.html">Fixtures</a>
+    <a href="points.html">Points Table</a>
+    <a href="squad.html" class="active">Teams</a>
   </div>
 
-  <h1>🏏 Team Squad</h1>
+  <h1>🏏 Teams</h1>
 
-  <!-- 🔥 BIG SQUAD AREA -->
+  <!-- TEAMS AREA -->
   <div class="squad-container">
 
     <div class="player-card">Player 1</div>
@@ -73,19 +81,6 @@
     <div class="player-card">Player 8</div>
 
   </div>
-
-  <!-- 🔥 SCRIPT (hide current page menu) -->
-  <script>
-    let currentPage = "squad";
-
-    let links = document.querySelectorAll(".menu a");
-
-    links.forEach(link => {
-      if (link.getAttribute("data-page") === currentPage) {
-        link.style.display = "none";
-      }
-    });
-  </script>
 
 </body>
 </html>
