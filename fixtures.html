@@ -17,6 +17,7 @@
     .menu {
       background: green;
       padding: 15px;
+      text-align: center;
     }
 
     .menu a {
@@ -24,6 +25,12 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
+      padding-bottom: 5px;
+    }
+
+    /* 🔥 ACTIVE UNDERLINE */
+    .menu a.active {
+      border-bottom: 3px solid white;
     }
 
     h1 {
@@ -46,31 +53,18 @@
 
   <!-- MENU -->
   <div class="menu">
-    <a href="index.html" data-page="index">Home</a>
-    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
-    <a href="points.html" data-page="points">Points Table</a>
-    <a href="squad.html" data-page="squad">Squad</a>
+    <a href="index.html">Home</a>
+    <a href="fixtures.html" class="active">Fixtures</a>
+    <a href="points.html">Points Table</a>
+    <a href="squad.html">Teams</a>
   </div>
 
   <h1>📅 Fixtures</h1>
 
-  <!-- 🔥 MATCH CARDS -->
+  <!-- MATCH CARDS -->
   <div class="card">🏏 Team A vs Team B - 10 April</div>
   <div class="card">🏏 Team C vs Team D - 11 April</div>
   <div class="card">🏏 Team A vs Team C - 12 April</div>
-
-  <!-- 🔥 SCRIPT (hide current page menu) -->
-  <script>
-    let currentPage = "fixtures";
-
-    let links = document.querySelectorAll(".menu a");
-
-    links.forEach(link => {
-      if (link.getAttribute("data-page") === currentPage) {
-        link.style.display = "none";
-      }
-    });
-  </script>
 
 </body>
 </html>
