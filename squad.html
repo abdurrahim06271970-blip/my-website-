@@ -50,12 +50,12 @@
 
 <body>
 
-  <!-- MENU (same) -->
+  <!-- MENU -->
   <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html">Squad</a>
+    <a href="index.html" data-page="index">Home</a>
+    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
+    <a href="points.html" data-page="points">Points Table</a>
+    <a href="squad.html" data-page="squad">Squad</a>
   </div>
 
   <h1>🏏 Team Squad</h1>
@@ -73,6 +73,19 @@
     <div class="player-card">Player 8</div>
 
   </div>
+
+  <!-- 🔥 SCRIPT (hide current page menu) -->
+  <script>
+    let currentPage = "squad";
+
+    let links = document.querySelectorAll(".menu a");
+
+    links.forEach(link => {
+      if (link.getAttribute("data-page") === currentPage) {
+        link.style.display = "none";
+      }
+    });
+  </script>
 
 </body>
 </html>
