@@ -4,22 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fixtures</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      text-align: center;
+    }
+
+    /* 🔥 MENU */
+    .menu {
+      background: green;
+      padding: 15px;
+    }
+
+    .menu a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      color: green;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: white;
+      margin: 10px auto;
+      padding: 15px;
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
+
 <body>
-<div class="menu">
-  <a href="index.html">Home</a>
-  <a href="fixtures.html">Fixtures</a>
-  <a href="points.html">Points Table</a>
-  <a href="squad.html">Squad</a>
-</div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <a href="index.html" data-page="index">Home</a>
+    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
+    <a href="points.html" data-page="points">Points Table</a>
+    <a href="squad.html" data-page="squad">Squad</a>
+  </div>
+
   <h1>📅 Fixtures</h1>
 
-  <p>🏏 Team A vs Team B - 10 April</p>
-  <p>🏏 Team C vs Team D - 11 April</p>
-  <p>🏏 Team A vs Team C - 12 April</p>
+  <!-- 🔥 MATCH CARDS -->
+  <div class="card">🏏 Team A vs Team B - 10 April</div>
+  <div class="card">🏏 Team C vs Team D - 11 April</div>
+  <div class="card">🏏 Team A vs Team C - 12 April</div>
 
-  <br>
-  <a href="index.html">⬅ Back to Home</a>
+  <!-- 🔥 SCRIPT (hide current page menu) -->
+  <script>
+    let currentPage = "fixtures";
+
+    let links = document.querySelectorAll(".menu a");
+
+    links.forEach(link => {
+      if (link.getAttribute("data-page") === currentPage) {
+        link.style.display = "none";
+      }
+    });
+  </script>
 
 </body>
 </html>
