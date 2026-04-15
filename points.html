@@ -4,17 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Points Table</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      text-align: center;
+    }
+
+    .menu {
+      background: green;
+      padding: 15px;
+    }
+
+    .menu a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      color: green;
+      margin: 20px 0;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 95%;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    th {
+      background: green;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
-<div class="menu">
-  <a href="index.html">Home</a>
-  <a href="fixtures.html">Fixtures</a>
-  <a href="points.html">Points Table</a>
-  <a href="squad.html">Squad</a>
-</div>
+
+  <!-- MENU (dynamic hide system) -->
+  <div class="menu" id="menu">
+
+    <a href="index.html" data-page="index">Home</a>
+    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
+    <a href="points.html" data-page="points">Points Table</a>
+    <a href="squad.html" data-page="squad">Squad</a>
+
+  </div>
+
   <h1>📊 Points Table</h1>
 
-  <table border="1" cellpadding="10">
+  <table>
     <tr>
       <th>Team</th>
       <th>Match</th>
@@ -37,8 +86,18 @@
     </tr>
   </table>
 
-  <br>
-  <a href="index.html">⬅ Back to Home</a>
+  <!-- 🔥 SCRIPT (THIS DOES MAGIC) -->
+  <script>
+    let currentPage = "points";
+
+    let links = document.querySelectorAll(".menu a");
+
+    links.forEach(link => {
+      if (link.getAttribute("data-page") === currentPage) {
+        link.style.display = "none";
+      }
+    });
+  </script>
 
 </body>
 </html>
