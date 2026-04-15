@@ -3,26 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VCL - Vatkhura Cricket League</title>
-  
-  <link rel="icon" href="image-4.jpg">
-  <link rel="apple-touch-icon" href="image-4.jpg">
-  <meta name="theme-color" content="#008000">
+  <title>VCL Home</title>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
+      font-family: Arial;
+      background: #f2f2f2;
       margin: 0;
-      padding: 0;
+      text-align: center;
     }
 
-    h1 {
-      color: green;
-      margin-top: 20px;
-    }
-
+    /* 🔥 MENU */
     .menu {
       background: green;
       padding: 15px;
@@ -35,18 +26,9 @@
       font-weight: bold;
     }
 
-    .logo-container {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      line-height: 0;
-    }
-
-    .logo-container img {
-      width: 100%;
-      height: 350px;
-      object-fit: fill;
-      display: block;
+    h1 {
+      color: green;
+      margin: 20px;
     }
 
     .card {
@@ -55,39 +37,39 @@
       padding: 15px;
       width: 90%;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 
 <body>
-  <div class="menu">
-  <a href="index.html">Home</a>
-  <a href="fixtures.html">Fixtures</a>
-  <a href="points.html">Points Table</a>
-  <a href="squad.html">Squad</a>
-</div>
 
-  <!-- LOGO -->
-  <div class="logo-container">
-    <img src="image-4.jpg" alt="VCL Logo">
+  <!-- 🔥 MENU -->
+  <div class="menu">
+    <a href="index.html" data-page="index">Home</a>
+    <a href="fixtures.html" data-page="fixtures">Fixtures</a>
+    <a href="points.html" data-page="points">Points Table</a>
+    <a href="squad.html" data-page="squad">Squad</a>
   </div>
 
-  <!-- MENU -->
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html">Squad</a>
-  </div>
-
-  <!-- TITLE -->
   <h1>🏏 VCL Cricket League</h1>
 
-  <!-- WELCOME BOX -->
   <div class="card">
-    Welcome to Vatkhura Cricket League Official Website
+    Welcome to VCL Official Website
   </div>
+
+  <!-- 🔥 SCRIPT (THIS DOES MAGIC) -->
+  <script>
+    // current page name
+    let currentPage = "index";
+
+    let links = document.querySelectorAll(".menu a");
+
+    links.forEach(link => {
+      if (link.getAttribute("data-page") === currentPage) {
+        link.style.display = "none"; // 🔥 hide current page menu
+      }
+    });
+  </script>
 
 </body>
 </html>
