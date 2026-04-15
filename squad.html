@@ -1,86 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Teams</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  text-align: center;
+}
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      text-align: center;
-    }
+/* MENU */
+.menu {
+  background: green;
+  padding: 15px;
+  text-align: center;
+}
 
-    /* 🔥 MENU */
-    .menu {
-      background: green;
-      padding: 15px;
-      text-align: center;
-    }
+.menu a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
 
-    .menu a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
+/* ACTIVE */
+.menu a.active {
+  border-bottom: 3px solid white;
+}
 
-    /* 🔥 ACTIVE UNDERLINE */
-    .menu a.active {
-      border-bottom: 3px solid white;
-    }
+h1 {
+  color: green;
+  margin: 20px 0;
+  font-size: 26px;
+}
 
-    h1 {
-      color: green;
-      margin: 20px 0;
-    }
+/* 🔥 FIXED GRID */
+.squad-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
 
-    /* 🔥 BIG TEAMS DESIGN */
-    .squad-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
+/* 🔥 BIGGER CARDS */
+.player-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-size: 18px;   /* 🔥 important fix */
+}
 
-    .player-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-weight: bold;
-      font-size: 16px;
-    }
-  </style>
+/* 🔥 MOBILE FIX */
+@media (max-width: 600px) {
+  .player-card {
+    font-size: 20px;
+    padding: 30px;
+  }
 
-</head>
-
-<body>
-
-  <!-- MENU -->
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html" class="active">Teams</a>
-  </div>
-
-  <h1>🏏 Teams</h1>
-
-  <!-- TEAMS AREA -->
-  <div class="squad-container">
-
-    <div class="player-card">Player 1</div>
-    <div class="player-card">Player 2</div>
-    <div class="player-card">Player 3</div>
-    <div class="player-card">Player 4</div>
-    <div class="player-card">Player 5</div>
-    <div class="player-card">Player 6</div>
-    <div class="player-card">Player 7</div>
-    <div class="player-card">Player 8</div>
-
-  </div>
-
-</body>
-</html>
+  h1 {
+    font-size: 24px;
+  }
+}
+</style>
