@@ -51,11 +51,6 @@
       background: green;
       color: white;
     }
-
-    .top-team {
-      background: #d4edda;
-      font-weight: bold;
-    }
   </style>
 </head>
 
@@ -112,13 +107,13 @@
     let table = document.getElementById("pointsTable");
     let rows = Array.from(table.rows).slice(1);
 
-    // 🔥 Calculate Points (Win × 2)
+    // 🔥 Auto Points (Win × 2)
     rows.forEach(row => {
       let win = parseInt(row.cells[2].innerText);
       row.cells[4].innerText = win * 2;
     });
 
-    // 🔥 Sort by Points, then NRR
+    // 🔥 Sort (Points → NRR)
     rows.sort((a, b) => {
       let pA = parseInt(a.cells[4].innerText);
       let pB = parseInt(b.cells[4].innerText);
@@ -131,16 +126,10 @@
       return nrrB - nrrA;
     });
 
-    // 🔥 Apply ranking + highlight
+    // 🔥 Rank add
     rows.forEach((row, index) => {
-      let teamName = row.cells[0].innerText;
-      row.cells[0].innerText = (index + 1) + ". " + teamName;
-
-      if(index === 0){
-        row.classList.add("top-team");
-        row.cells[0].innerText += " 🏆";
-      }
-
+      let name = row.cells[0].innerText;
+      row.cells[0].innerText = (index + 1) + ". " + name;
       table.appendChild(row);
     });
   </script>
