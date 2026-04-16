@@ -1,154 +1,198 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fixtures</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixtures</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      text-align: center;
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  text-align: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
+}
 
-      /* 🔥 NEW PRO GRADIENT BACKGROUND */
-      background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
-    }
+/* MENU */
+.menu {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  text-align: center;
+}
 
-    .menu {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 15px;
-      text-align: center;
-    }
+.menu a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
 
-    .menu a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
+.menu a.active {
+  border-bottom: 3px solid white;
+}
 
-    .menu a.active {
-      border-bottom: 3px solid white;
-    }
+/* TITLE */
+h1 {
+  color: white;
+  margin: 20px 0;
+}
 
-    h1 {
-      color: white;
-      margin: 20px 0;
-    }
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  margin: 15px auto;
+  padding: 15px;
+  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    /* CARD */
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      margin: 15px auto;
-      padding: 15px;
-      width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      text-align: left;
-      transition: 0.3s;
-    }
+.card:hover {
+  transform: scale(1.02);
+}
 
-    .card:hover {
-      transform: scale(1.02);
-    }
+.card h3 {
+  margin: 0;
+  color: #1e3c72;
+}
 
-    .card h3 {
-      margin: 0;
-      color: #1e3c72;
-    }
+.card p {
+  margin: 5px 0;
+}
 
-    .card p {
-      margin: 5px 0;
-    }
+/* STATUS */
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: white;
+}
 
-    .status {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      color: white;
-    }
+.upcoming { background: orange; }
+.finished { background: gray; }
 
-    .upcoming {
-      background: orange;
-    }
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+}
 
-    .finished {
-      background: gray;
-    }
+.modal-content {
+  background: white;
+  width: 90%;
+  margin: 120px auto;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+}
 
-    .live {
-      background: red;
-      animation: blink 1s infinite;
-    }
+.close {
+  float: right;
+  font-size: 25px;
+  cursor: pointer;
+}
+</style>
 
-    @keyframes blink {
-      50% { opacity: 0.5; }
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html" class="active">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html">Teams</a>
+<div class="menu">
+  <a href="index.html">Home</a>
+  <a href="fixtures.html" class="active">Fixtures</a>
+  <a href="points.html">Points Table</a>
+  <a href="squad.html">Teams</a>
+</div>
+
+<h1>🗓️ Fixtures</h1>
+
+<!-- MATCH LIST -->
+
+<div class="card" onclick="openScorecard('1')">
+  <h3>Team A vs Team B</h3>
+  <p>📅 Date: 10 April</p>
+  <p>📍 Stadium: Kaliganj Ground</p>
+  <span class="status upcoming">Upcoming</span>
+</div>
+
+<div class="card" onclick="openScorecard('2')">
+  <h3>Team C vs Team D</h3>
+  <p>📅 Date: 11 April</p>
+  <p>📍 Stadium: Main Field</p>
+  <span class="status upcoming">Upcoming</span>
+</div>
+
+<div class="card" onclick="openScorecard('3')">
+  <h3>Team X vs Team Y</h3>
+  <p>📅 Date: 1 April</p>
+  <p>🏆 Result: Team X won by 20 runs</p>
+  <span class="status finished">Finished</span>
+</div>
+
+<div class="card" onclick="openScorecard('4')">
+  <h3>Team A vs Team C</h3>
+  <p>📅 Date: 2 April</p>
+  <p>🏆 Result: Team C won by 5 wickets</p>
+  <span class="status finished">Finished</span>
+</div>
+
+<!-- POPUP -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="scorecard"></div>
   </div>
+</div>
 
-  <h1>🗓️ Fixtures</h1>
+<script>
+function openScorecard(id){
 
-  <!-- MATCH LIST -->
+  let data = "";
 
-  <a href="match.html?id=1">
-    <div class="card">
-      <h3>Team A vs Team B</h3>
-      <p>📅 Date: 10 April</p>
-      <p>📍 Stadium: Kaliganj Ground</p>
-      <p>🕒 Time: 4:00 PM</p>
-      <span class="status upcoming">Upcoming</span>
-    </div>
-  </a>
+  if(id === "3"){
+    data = `
+      <h2>🏏 Match Scorecard</h2>
+      <p><b>Team X:</b> 145/7</p>
+      <p><b>Team Y:</b> 125/9</p>
+      <h3>🏆 Result: Team X won by 20 runs</h3>
+    `;
+  }
 
-  <a href="match.html?id=2">
-    <div class="card">
-      <h3>Team C vs Team D</h3>
-      <p>📅 Date: 11 April</p>
-      <p>📍 Stadium: Main Field</p>
-      <p>🕒 Time: 6:00 PM</p>
-      <span class="status upcoming">Upcoming</span>
-    </div>
-  </a>
+  else if(id === "4"){
+    data = `
+      <h2>🏏 Match Scorecard</h2>
+      <p><b>Team A:</b> 160/6</p>
+      <p><b>Team C:</b> 161/5</p>
+      <h3>🏆 Result: Team C won by 5 wickets</h3>
+    `;
+  }
 
-  <a href="match.html?id=3">
-    <div class="card">
-      <h3>Team X vs Team Y</h3>
-      <p>📅 Date: 1 April</p>
-      <p>📍 Stadium: Central Ground</p>
-      <p>🏆 Result: Team X won by 20 runs</p>
-      <span class="status finished">Finished</span>
-    </div>
-  </a>
+  else {
+    data = `
+      <h2>⏳ Match Not Finished</h2>
+      <p>Scorecard will be available after match ends.</p>
+    `;
+  }
 
-  <a href="match.html?id=4">
-    <div class="card">
-      <h3>Team A vs Team C</h3>
-      <p>📅 Date: 2 April</p>
-      <p>📍 Stadium: Main Field</p>
-      <p>🏆 Result: Team C won by 5 wickets</p>
-      <span class="status finished">Finished</span>
-    </div>
-  </a>
+  document.getElementById("scorecard").innerHTML = data;
+  document.getElementById("modal").style.display = "block";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
