@@ -43,6 +43,11 @@ h1 {
   border-radius: 12px;
   text-align: left;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
 }
 
 /* STATUS */
@@ -60,7 +65,8 @@ h1 {
 .modal {
   display: none;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.7);
@@ -70,7 +76,7 @@ h1 {
 .modal-content {
   background: white;
   width: 95%;
-  margin: 40px auto;
+  margin: 25px auto;
   padding: 20px;
   border-radius: 12px;
   text-align: left;
@@ -82,12 +88,29 @@ h1 {
   cursor: pointer;
 }
 
-/* SCORE STYLE */
+/* SECTION */
 .section {
   margin-top: 15px;
   padding: 10px;
-  border-left: 4px solid #1e3c72;
   background: #f5f5f5;
+  border-left: 4px solid #1e3c72;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px;
+  text-align: center;
+}
+
+th {
+  background: #1e3c72;
+  color: white;
 }
 </style>
 
@@ -107,26 +130,20 @@ h1 {
 <!-- FINISHED FIRST -->
 <div class="card" onclick="openScorecard('1')">
   <h3>Team X vs Team Y</h3>
-  <p>🏆 Result: Team X won</p>
+  <p>🏆 Finished Match</p>
   <span class="status finished">Finished</span>
 </div>
 
 <div class="card" onclick="openScorecard('2')">
   <h3>Team A vs Team C</h3>
-  <p>🏆 Result: Team C won</p>
+  <p>🏆 Finished Match</p>
   <span class="status finished">Finished</span>
 </div>
 
 <!-- UPCOMING -->
 <div class="card" onclick="openScorecard('3')">
   <h3>Team A vs Team B</h3>
-  <p>📅 Date: 10 April</p>
-  <span class="status upcoming">Upcoming</span>
-</div>
-
-<div class="card" onclick="openScorecard('4')">
-  <h3>Team C vs Team D</h3>
-  <p>📅 Date: 11 April</p>
+  <p>📅 Upcoming Match</p>
   <span class="status upcoming">Upcoming</span>
 </div>
 
@@ -143,56 +160,99 @@ function openScorecard(id){
 
 let data = "";
 
-/* MATCH 1 FULL SCORECARD */
 if(id === "1"){
 data = `
-<h2>🏏 Scorecard</h2>
+<h2>🏏 Full Scorecard</h2>
 
 <div class="section">
-<h3>Batting (Team X)</h3>
-<p>Player 1 - 45 (30)</p>
-<p>Player 2 - 32 (18)</p>
-<p>Player 3 - 20 (15)</p>
-<p>Total: 145/7</p>
+<h3>🪙 Toss</h3>
+<p>Team X won the toss and elected to bat</p>
 </div>
 
 <div class="section">
-<h3>Bowling (Team Y)</h3>
-<p>Bowler 1 - 2/25 (3 overs)</p>
-<p>Bowler 2 - 1/30 (3 overs)</p>
+<h3>Batting</h3>
+<table>
+<tr><th>Player</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th><th>Dismissal</th></tr>
+<tr><td>Player 1</td><td>45</td><td>30</td><td>4</td><td>2</td><td>150</td><td>c & b Bowler 1</td></tr>
+<tr><td>Player 2</td><td>32</td><td>18</td><td>3</td><td>1</td><td>177</td><td>lbw</td></tr>
+<tr><td>Player 3</td><td>20</td><td>15</td><td>2</td><td>0</td><td>133</td><td>run out</td></tr>
+</table>
 </div>
 
-<h3>🏆 Team X won by 20 runs</h3>
+<div class="section">
+<h3>Bowling</h3>
+<table>
+<tr><th>Bowler</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr>
+<tr><td>Bowler 1</td><td>4</td><td>0</td><td>25</td><td>2</td><td>6.25</td></tr>
+<tr><td>Bowler 2</td><td>4</td><td>1</td><td>30</td><td>1</td><td>7.50</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h3>Extras</h3>
+<p>W: 5 | NB: 2 | B: 3 | LB: 1</p>
+</div>
+
+<div class="section">
+<h3>Fall of Wickets</h3>
+<p>1-20, 2-55, 3-90, 4-120</p>
+</div>
+
+<div class="section">
+<h3>Summary</h3>
+<h2>🏆 Team X won by 20 runs</h2>
+</div>
 `;
 }
 
-/* MATCH 2 */
 else if(id === "2"){
 data = `
-<h2>🏏 Scorecard</h2>
+<h2>🏏 Full Scorecard</h2>
 
 <div class="section">
-<h3>Batting (Team A)</h3>
-<p>Player 1 - 60 (35)</p>
-<p>Player 2 - 40 (25)</p>
-<p>Total: 160/6</p>
+<h3>🪙 Toss</h3>
+<p>Team A won the toss and elected to bat</p>
 </div>
 
 <div class="section">
-<h3>Bowling (Team C)</h3>
-<p>Bowler 1 - 3/20</p>
-<p>Bowler 2 - 1/35</p>
+<h3>Batting</h3>
+<table>
+<tr><th>Player</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th><th>Dismissal</th></tr>
+<tr><td>Player A</td><td>60</td><td>35</td><td>6</td><td>3</td><td>171</td><td>not out</td></tr>
+<tr><td>Player B</td><td>40</td><td>25</td><td>4</td><td>2</td><td>160</td><td>caught</td></tr>
+</table>
 </div>
 
-<h3>🏆 Team C won by 5 wickets</h3>
+<div class="section">
+<h3>Bowling</h3>
+<table>
+<tr><th>Bowler</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr>
+<tr><td>Bowler A</td><td>4</td><td>0</td><td>20</td><td>3</td><td>5.0</td></tr>
+<tr><td>Bowler B</td><td>4</td><td>0</td><td>35</td><td>1</td><td>8.7</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h3>Extras</h3>
+<p>W: 3 | NB: 1 | B: 2 | LB: 0</p>
+</div>
+
+<div class="section">
+<h3>Fall of Wickets</h3>
+<p>1-30, 2-70, 3-110</p>
+</div>
+
+<div class="section">
+<h3>Summary</h3>
+<h2>🏆 Team C won by 5 wickets</h2>
+</div>
 `;
 }
 
-/* UPCOMING */
 else {
 data = `
 <h2>⏳ Upcoming Match</h2>
-<p>Scorecard will be available after match.</p>
+<p>Scorecard will be available after toss.</p>
 `;
 }
 
