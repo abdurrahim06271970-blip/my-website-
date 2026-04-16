@@ -13,7 +13,6 @@
       background: linear-gradient(to bottom right, #e0f7e9, #ffffff);
     }
 
-    /* MENU */
     .menu {
       background: green;
       padding: 15px;
@@ -37,12 +36,6 @@
       margin: 20px 0;
     }
 
-    h2 {
-      color: #333;
-      margin-top: 25px;
-    }
-
-    /* CARD DESIGN */
     .card {
       background: rgba(255, 255, 255, 0.95);
       margin: 15px auto;
@@ -92,6 +85,11 @@
     @keyframes blink {
       50% { opacity: 0.5; }
     }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 
@@ -107,43 +105,47 @@
 
   <h1>🗓️ Fixtures</h1>
 
-  <!-- UPCOMING -->
-  <h2></h2>
+  <!-- MATCH LIST -->
 
-  <div class="card">
-    <h3>Team A vs Team B</h3>
-    <p>📅 Date: 10 April</p>
-    <p>📍 Stadium: Kaliganj Ground</p>
-    <p>🕒 Time: 4:00 PM</p>
-    <span class="status upcoming">Upcoming</span>
-  </div>
+  <a href="match.html?id=1">
+    <div class="card">
+      <h3>Team A vs Team B</h3>
+      <p>📅 Date: 10 April</p>
+      <p>📍 Stadium: Kaliganj Ground</p>
+      <p>🕒 Time: 4:00 PM</p>
+      <span class="status upcoming">Upcoming</span>
+    </div>
+  </a>
 
-  <div class="card">
-    <h3>Team C vs Team D</h3>
-    <p>📅 Date: 11 April</p>
-    <p>📍 Stadium: Main Field</p>
-    <p>🕒 Time: 6:00 PM</p>
-    <span class="status upcoming">Upcoming</span>
-  </div>
+  <a href="match.html?id=2">
+    <div class="card">
+      <h3>Team C vs Team D</h3>
+      <p>📅 Date: 11 April</p>
+      <p>📍 Stadium: Main Field</p>
+      <p>🕒 Time: 6:00 PM</p>
+      <span class="status upcoming">Upcoming</span>
+    </div>
+  </a>
 
-  <!-- FINISHED -->
-  <h2></h2>
+  <a href="match.html?id=3">
+    <div class="card">
+      <h3>Team X vs Team Y</h3>
+      <p>📅 Date: 1 April</p>
+      <p>📍 Stadium: Central Ground</p>
+      <p>🏆 Result: Team X won by 20 runs</p>
+      <span class="status finished">Finished</span>
+    </div>
+  </a>
 
-  <div class="card">
-    <h3>Team X vs Team Y</h3>
-    <p>📅 Date: 1 April</p>
-    <p>📍 Stadium: Central Ground</p>
-    <p>🏆 Result: Team X won by 20 runs</p>
-    <span class="status finished">Finished</span>
-  </div>
-
-  <div class="card">
-    <h3>Team A vs Team C</h3>
-    <p>📅 Date: 2 April</p>
-    <p>📍 Stadium: Main Field</p>
-    <p>🏆 Result: Team C won by 5 wickets</p>
-    <span class="status finished">Finished</span>
-  </div>
+  <a href="match.html?id=4">
+    <div class="card">
+      <h3>Team A vs Team C</h3>
+      <p>📅 Date: 2 April</p>
+      <p>📍 Stadium: Main Field</p>
+      <p>🏆 Result: Team C won by 5 wickets</p>
+      <span class="status finished">Finished</span>
+    </div>
+  </a>
 
 </body>
 </html>
