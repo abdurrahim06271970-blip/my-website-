@@ -1,138 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Points Table</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Points Table</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      background: #f2f2f2;
-      margin: 0;
-      text-align: center;
-    }
+<style>
+body{
+  font-family:Arial;
+  margin:0;
+  background:#f2f2f2;
+  text-align:center;
+}
 
-    .menu {
-      background: green;
-      padding: 15px;
-    }
+/* MENU */
+.menu{
+  background:green;
+  padding:15px;
+}
+.menu a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.menu a.active{
+  border-bottom:3px solid white;
+}
 
-    .menu a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
+/* TABLE */
+table{
+  margin:20px auto;
+  width:95%;
+  border-collapse:collapse;
+  background:white;
+}
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+th{
+  background:green;
+  color:white;
+}
 
-    .menu a.active {
-      border-bottom: 3px solid white;
-    }
+/* TEAM COLORS */
+.team-a{ color:#e74c3c; font-weight:bold; }
+.team-b{ color:#3498db; font-weight:bold; }
+.team-c{ color:#2ecc71; font-weight:bold; }
 
-    h1 {
-      color: green;
-      margin: 20px;
-    }
+.badge{
+  padding:3px 8px;
+  border-radius:10px;
+  color:white;
+  font-size:12px;
+}
 
-    table {
-      margin: 20px auto;
-      border-collapse: collapse;
-      width: 95%;
-      background: white;
-    }
+/* badge colors */
+.a{background:#e74c3c;}
+.b{background:#3498db;}
+.c{background:#2ecc71;}
+</style>
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-    }
-
-    th {
-      background: green;
-      color: white;
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html" class="active">Points Table</a>
-    <a href="squad.html">Teams</a>
-  </div>
+<div class="menu">
+  <a href="index.html">Home</a>
+  <a href="fixtures.html">Fixtures</a>
+  <a href="points.html" class="active">Points Table</a>
+  <a href="squad.html">Teams</a>
+</div>
 
-  <h1>📊 Points Table</h1>
+<h1>📊 Points Table</h1>
 
-  <table id="pointsTable">
-    <tr>
-      <th>Team</th>
-      <th>Match</th>
-      <th>Won</th>
-      <th>Lost</th>
-      <th>Points</th>
-      <th>NRR</th>
-    </tr>
+<table>
+<tr>
+  <th>Team</th>
+  <th>Match</th>
+  <th>Won</th>
+  <th>Lost</th>
+  <th>Points</th>
+  <th>NRR</th>
+</tr>
 
-    <tr>
-      <td>Team A</td>
-      <td>3</td>
-      <td>2</td>
-      <td>1</td>
-      <td></td>
-      <td>0.45</td>
-    </tr>
+<tr>
+  <td class="team-a">1. Team A <span class="badge a">A</span></td>
+  <td>3</td>
+  <td>2</td>
+  <td>1</td>
+  <td>4</td>
+  <td>0.45</td>
+</tr>
 
-    <tr>
-      <td>Team B</td>
-      <td>3</td>
-      <td>2</td>
-      <td>1</td>
-      <td></td>
-      <td>0.20</td>
-    </tr>
+<tr>
+  <td class="team-b">2. Team B <span class="badge b">B</span></td>
+  <td>3</td>
+  <td>2</td>
+  <td>1</td>
+  <td>4</td>
+  <td>0.20</td>
+</tr>
 
-    <tr>
-      <td>Team C</td>
-      <td>3</td>
-      <td>1</td>
-      <td>2</td>
-      <td></td>
-      <td>-0.10</td>
-    </tr>
-  </table>
+<tr>
+  <td class="team-c">3. Team C <span class="badge c">C</span></td>
+  <td>3</td>
+  <td>1</td>
+  <td>2</td>
+  <td>2</td>
+  <td>-0.10</td>
+</tr>
 
-  <script>
-    let table = document.getElementById("pointsTable");
-    let rows = Array.from(table.rows).slice(1);
-
-    // 🔥 Auto Points (Win × 2)
-    rows.forEach(row => {
-      let win = parseInt(row.cells[2].innerText);
-      row.cells[4].innerText = win * 2;
-    });
-
-    // 🔥 Sort (Points → NRR)
-    rows.sort((a, b) => {
-      let pA = parseInt(a.cells[4].innerText);
-      let pB = parseInt(b.cells[4].innerText);
-
-      if (pB !== pA) return pB - pA;
-
-      let nrrA = parseFloat(a.cells[5].innerText);
-      let nrrB = parseFloat(b.cells[5].innerText);
-
-      return nrrB - nrrA;
-    });
-
-    // 🔥 Rank add
-    rows.forEach((row, index) => {
-      let name = row.cells[0].innerText;
-      row.cells[0].innerText = (index + 1) + ". " + name;
-      table.appendChild(row);
-    });
-  </script>
+</table>
 
 </body>
 </html>
