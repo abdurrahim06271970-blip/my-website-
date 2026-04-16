@@ -8,6 +8,7 @@
       font-family: Arial, sans-serif;
       background: #f2f2f2;
       margin: 0;
+      text-align: center;  /* 🔥 THIS WAS MISSING */
     }
 
     .menu {
@@ -30,43 +31,43 @@
 
     h1 {
       color: green;
-      margin: 20px;
-      text-align: center;
+      margin: 20px 0;
     }
 
-    /* 🔥 BIG TEAM BOX */
+    /* 🔥 SAME AS FIXTURES CARD */
     .team-box {
       background: white;
-      margin: 15px 10px;   /* side space */
-      padding: 20px;
-      width: auto;         /* full width */
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin: 10px auto;
+      padding: 15px;
+      width: 90%;   /* 🔥 SAME WIDTH */
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       cursor: pointer;
+      text-align: left;
     }
 
     .team-title {
-      font-size: 22px;   /* bigger */
+      font-size: 18px;  /* same size */
       font-weight: bold;
       color: green;
     }
 
     .players {
       display: none;
-      margin-top: 15px;
+      margin-top: 10px;
       padding-left: 20px;
     }
 
     .players li {
-      margin: 6px 0;
-      font-size: 18px;   /* bigger text */
+      margin: 5px 0;
+      font-size: 16px;
     }
   </style>
+
 </head>
 
 <body>
 
-  <!-- MENU -->
   <div class="menu">
     <a href="index.html">Home</a>
     <a href="fixtures.html">Fixtures</a>
@@ -127,7 +128,6 @@
     </ul>
   </div>
 
-  <!-- SCRIPT -->
   <script>
     function toggleTeam(id) {
       let team = document.getElementById(id);
