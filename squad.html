@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Teams</title>
 
   <style>
@@ -23,11 +21,11 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
+      padding-bottom: 5px;
     }
 
     .menu a.active {
       border-bottom: 3px solid white;
-      padding-bottom: 3px;
     }
 
     h1 {
@@ -35,20 +33,33 @@
       margin: 20px 0;
     }
 
-    .squad-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
-
-    .player-card {
+    /* TEAM BOX */
+    .team-box {
       background: white;
-      padding: 20px;
+      margin: 15px auto;
+      padding: 15px;
+      width: 90%;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .team-title {
+      font-size: 20px;
       font-weight: bold;
-      font-size: 18px;
+      color: green;
+    }
+
+    /* PLAYER LIST (hidden by default) */
+    .players {
+      display: none;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .players li {
+      margin: 5px 0;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -63,17 +74,71 @@
     <a href="squad.html" class="active">Teams</a>
   </div>
 
-  <h1>👥 Teams</h1>
+  <h1>🏏 Teams</h1>
 
-  <!-- SAFE CONTENT -->
-  <div class="squad-container">
-    <div class="player-card">Player 1</div>
-    <div class="player-card">Player 2</div>
-    <div class="player-card">Player 3</div>
-    <div class="player-card">Player 4</div>
-    <div class="player-card">Player 5</div>
-    <div class="player-card">Player 6</div>
+  <!-- TEAM 1 -->
+  <div class="team-box" onclick="toggleTeam('team1')">
+    <div class="team-title">Team 1</div>
+    <ul class="players" id="team1">
+      <li>Player 1</li>
+      <li>Player 2</li>
+      <li>Player 3</li>
+      <li>Player 4</li>
+      <li>Player 5</li>
+      <li>Player 6</li>
+      <li>Player 7</li>
+      <li>Player 8</li>
+      <li>Player 9</li>
+      <li>Player 10</li>
+    </ul>
   </div>
+
+  <!-- TEAM 2 -->
+  <div class="team-box" onclick="toggleTeam('team2')">
+    <div class="team-title">Team 2</div>
+    <ul class="players" id="team2">
+      <li>Player 1</li>
+      <li>Player 2</li>
+      <li>Player 3</li>
+      <li>Player 4</li>
+      <li>Player 5</li>
+      <li>Player 6</li>
+      <li>Player 7</li>
+      <li>Player 8</li>
+      <li>Player 9</li>
+      <li>Player 10</li>
+    </ul>
+  </div>
+
+  <!-- TEAM 3 -->
+  <div class="team-box" onclick="toggleTeam('team3')">
+    <div class="team-title">Team 3</div>
+    <ul class="players" id="team3">
+      <li>Player 1</li>
+      <li>Player 2</li>
+      <li>Player 3</li>
+      <li>Player 4</li>
+      <li>Player 5</li>
+      <li>Player 6</li>
+      <li>Player 7</li>
+      <li>Player 8</li>
+      <li>Player 9</li>
+      <li>Player 10</li>
+    </ul>
+  </div>
+
+  <!-- 🔥 TOGGLE SCRIPT -->
+  <script>
+    function toggleTeam(id) {
+      let team = document.getElementById(id);
+
+      if (team.style.display === "block") {
+        team.style.display = "none";
+      } else {
+        team.style.display = "block";
+      }
+    }
+  </script>
 
 </body>
 </html>
