@@ -8,9 +8,11 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
       margin: 0;
       text-align: center;
+
+      /* 🔥 PRO BACKGROUND */
+      background: linear-gradient(to bottom right, #e0f7e9, #ffffff);
     }
 
     /* MENU */
@@ -39,13 +41,18 @@
 
     /* FIXTURE CARDS */
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.95);
       margin: 15px auto;
       padding: 15px;
       width: 90%;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       text-align: left;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
     }
 
     .card h3 {
@@ -84,7 +91,7 @@
 
   <h1>🗓️ Fixtures</h1>
 
-  <!-- MATCH CARDS -->
+  <!-- CARDS -->
   <div class="card">
     <h3>Team A vs Team B</h3>
     <p>📅 Date: 10 April</p>
