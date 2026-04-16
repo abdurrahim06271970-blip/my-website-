@@ -10,13 +10,13 @@ body{
   font-family: Arial;
   margin:0;
   background:#f2f2f2;
-  text-align:center;
 }
 
 /* MENU */
 .menu{
   background:green;
   padding:15px;
+  text-align:center;
 }
 .menu a{
   color:white;
@@ -30,20 +30,25 @@ body{
 
 /* TITLE */
 h1{
+  text-align:center;
   color:green;
   margin:20px;
 }
 
-/* TEAM CARD */
+/* 🔥 FULL COLOR CARDS */
 .card{
-  background:white;
-  margin:12px auto;
-  width:92%;
-  padding:18px;
-  border-radius:10px;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  margin:15px auto;
+  width:95%;
+  padding:20px;
+  border-radius:12px;
   text-align:left;
+  color:white;
 }
+
+/* TEAM COLORS */
+.t1{ background:#e74c3c; }   /* RED */
+.t2{ background:#3498db; }   /* BLUE */
+.t3{ background:#2ecc71; }   /* GREEN */
 
 /* HEADER */
 .team-header{
@@ -51,20 +56,9 @@ h1{
   justify-content:space-between;
   align-items:center;
   cursor:pointer;
-  font-size:20px;
+  font-size:22px;
   font-weight:bold;
 }
-
-/* BADGE COLORS */
-.badge{
-  padding:3px 10px;
-  border-radius:20px;
-  font-size:12px;
-  color:white;
-}
-.t1{background:#e74c3c;}
-.t2{background:#3498db;}
-.t3{background:#2ecc71;}
 
 /* ARROW */
 .arrow{
@@ -76,22 +70,23 @@ h1{
   max-height:0;
   overflow:hidden;
   transition:max-height 0.4s ease;
-  margin-top:10px;
+  margin-top:12px;
   padding-left:20px;
 }
 
 .card.active .players{
-  max-height:600px;
+  max-height:800px;
 }
 
 .card.active .arrow{
   transform:rotate(180deg);
 }
 
+/* PLAYER */
 .players li{
-  padding:6px 0;
-  border-bottom:1px solid #eee;
-  font-size:16px;
+  padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.3);
+  font-size:18px;
 }
 </style>
 
@@ -109,9 +104,9 @@ h1{
 <h1>🏏 Teams</h1>
 
 <!-- TEAM 1 -->
-<div class="card" onclick="toggle(this)">
+<div class="card t1" onclick="toggle(this)">
   <div class="team-header">
-    Team 1 <span class="badge t1">A</span>
+    Team 1
     <span class="arrow">▼</span>
   </div>
 
@@ -130,9 +125,9 @@ h1{
 </div>
 
 <!-- TEAM 2 -->
-<div class="card" onclick="toggle(this)">
+<div class="card t2" onclick="toggle(this)">
   <div class="team-header">
-    Team 2 <span class="badge t2">B</span>
+    Team 2
     <span class="arrow">▼</span>
   </div>
 
@@ -151,9 +146,9 @@ h1{
 </div>
 
 <!-- TEAM 3 -->
-<div class="card" onclick="toggle(this)">
+<div class="card t3" onclick="toggle(this)">
   <div class="team-header">
-    Team 3 <span class="badge t3">C</span>
+    Team 3
     <span class="arrow">▼</span>
   </div>
 
