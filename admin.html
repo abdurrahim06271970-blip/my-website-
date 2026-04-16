@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 90%;
+      margin: 5px;
+      padding: 8px;
+    }
+
+    button {
+      padding: 10px;
+      background: green;
+      color: white;
+      border: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>⚙️ Admin Panel</h1>
+
+<div class="box">
+  <input id="id" placeholder="Match ID (1,2,3)">
+  <input id="teams" placeholder="Teams (Team A vs Team B)">
+  <input id="date" placeholder="Date">
+  <input id="stadium" placeholder="Stadium">
+  <input id="time" placeholder="Time">
+  <textarea id="score" placeholder="Score"></textarea>
+  <input id="result" placeholder="Result">
+
+  <button onclick="saveData()">Save Match</button>
+</div>
+
+<script>
+function saveData(){
+  let id = document.getElementById("id").value;
+
+  let match = {
+    teams: document.getElementById("teams").value,
+    date: document.getElementById("date").value,
+    stadium: document.getElementById("stadium").value,
+    time: document.getElementById("time").value,
+    score: document.getElementById("score").value,
+    result: document.getElementById("result").value
+  };
+
+  let data = JSON.parse(localStorage.getItem("matches")) || {};
+  data[id] = match;
+
+  localStorage.setItem("matches", JSON.stringify(data));
+
+  alert("Saved!");
+}
+</script>
+
+</body>
+</html>
