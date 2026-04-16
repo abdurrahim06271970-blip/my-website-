@@ -52,7 +52,6 @@
       color: white;
     }
 
-    /* 🔥 TOP TEAM STYLE */
     .top-team {
       background: #d4edda;
       font-weight: bold;
@@ -83,51 +82,66 @@
 
     <tr>
       <td>Team A</td>
+      <td>3</td>
       <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>4</td>
-      <td>+0.50</td>
+      <td>1</td>
+      <td></td>
+      <td>0.45</td>
     </tr>
 
     <tr>
       <td>Team B</td>
+      <td>3</td>
       <td>2</td>
       <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>+0.10</td>
+      <td></td>
+      <td>0.20</td>
     </tr>
 
     <tr>
       <td>Team C</td>
+      <td>3</td>
+      <td>1</td>
       <td>2</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>-0.30</td>
+      <td></td>
+      <td>-0.10</td>
     </tr>
   </table>
 
-  <!-- 🔥 AUTO SORT SCRIPT -->
   <script>
     let table = document.getElementById("pointsTable");
     let rows = Array.from(table.rows).slice(1);
 
-    rows.sort((a, b) => {
-      let pointsA = parseInt(a.cells[4].innerText);
-      let pointsB = parseInt(b.cells[4].innerText);
-      return pointsB - pointsA;
+    // 🔥 Calculate Points (Win × 2)
+    rows.forEach(row => {
+      let win = parseInt(row.cells[2].innerText);
+      row.cells[4].innerText = win * 2;
     });
 
-    rows.forEach((row, index) => {
-      row.cells[0].innerText = (index + 1) + ". " + row.cells[0].innerText;
-      table.appendChild(row);
+    // 🔥 Sort by Points, then NRR
+    rows.sort((a, b) => {
+      let pA = parseInt(a.cells[4].innerText);
+      let pB = parseInt(b.cells[4].innerText);
 
-      // 🔥 highlight top team
+      if (pB !== pA) return pB - pA;
+
+      let nrrA = parseFloat(a.cells[5].innerText);
+      let nrrB = parseFloat(b.cells[5].innerText);
+
+      return nrrB - nrrA;
+    });
+
+    // 🔥 Apply ranking + highlight
+    rows.forEach((row, index) => {
+      let teamName = row.cells[0].innerText;
+      row.cells[0].innerText = (index + 1) + ". " + teamName;
+
       if(index === 0){
         row.classList.add("top-team");
+        row.cells[0].innerText += " 🏆";
       }
+
+      table.appendChild(row);
     });
   </script>
 
