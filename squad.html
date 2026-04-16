@@ -1,147 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teams</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teams</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      text-align: center;
-    }
+<style>
+body{
+  font-family: Arial;
+  margin:0;
+  background:#f2f2f2;
+  text-align:center;
+}
 
-    .menu {
-      background: green;
-      padding: 15px;
-    }
+/* MENU */
+.menu{
+  background:green;
+  padding:15px;
+}
+.menu a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.menu a.active{
+  border-bottom:3px solid white;
+}
 
-    .menu a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+/* TITLE */
+h1{
+  color:green;
+  margin:20px;
+}
 
-    .menu a.active {
-      border-bottom: 3px solid white;
-    }
+/* TEAM CARD (BIG FIXED SIZE) */
+.card{
+  background:white;
+  margin:12px auto;
+  width:92%;
+  padding:18px;
+  border-radius:10px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  text-align:left;
+}
 
-    h1 {
-      color: green;
-      margin: 20px 0;
-    }
+/* HEADER ROW */
+.team-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:bold;
+  color:green;
+}
 
-    /* 🔥 BIG FIXED CARD (like Fixtures) */
-    .team-box {
-      background: white;
-      margin: 12px auto;
-      padding: 18px;
-      width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      text-align: left;
-    }
+/* ARROW */
+.arrow{
+  transition:0.3s;
+}
 
-    .team-title {
-      font-size: 20px;
-      font-weight: bold;
-      color: green;
-    }
+/* PLAYER LIST */
+.players{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+  margin-top:10px;
+  padding-left:20px;
+}
 
-    /* 🔥 BIG PLAYER AREA */
-    .players {
-      display: none;
-      margin-top: 15px;
-      padding: 15px;
-      background: #f9f9f9;
-      border-radius: 8px;
-    }
+/* OPEN STATE */
+.card.active .players{
+  max-height:500px;
+}
 
-    .players li {
-      font-size: 16px;
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-    }
+/* ROTATE ARROW */
+.card.active .arrow{
+  transform:rotate(180deg);
+}
 
-    .players li:last-child {
-      border-bottom: none;
-    }
-  </style>
+.players li{
+  padding:6px 0;
+  border-bottom:1px solid #eee;
+  font-size:16px;
+}
+</style>
+
 </head>
 
 <body>
 
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html" class="active">Teams</a>
+<div class="menu">
+  <a href="index.html">Home</a>
+  <a href="fixtures.html">Fixtures</a>
+  <a href="points.html">Points Table</a>
+  <a href="squad.html" class="active">Teams</a>
+</div>
+
+<h1>🏏 Teams</h1>
+
+<!-- TEAM 1 -->
+<div class="card" onclick="toggle(this)">
+  <div class="team-header">
+    Team 1
+    <span class="arrow">▼</span>
   </div>
 
-  <h1>🏏 Teams</h1>
+  <ul class="players">
+    <li>Player 1</li>
+    <li>Player 2</li>
+    <li>Player 3</li>
+    <li>Player 4</li>
+    <li>Player 5</li>
+    <li>Player 6</li>
+    <li>Player 7</li>
+    <li>Player 8</li>
+    <li>Player 9</li>
+    <li>Player 10</li>
+  </ul>
+</div>
 
-  <!-- TEAM 1 -->
-  <div class="team-box" onclick="toggleTeam('t1')">
-    <div class="team-title">Team 1</div>
-
-    <ul class="players" id="t1">
-      <li>Player 1</li>
-      <li>Player 2</li>
-      <li>Player 3</li>
-      <li>Player 4</li>
-      <li>Player 5</li>
-      <li>Player 6</li>
-      <li>Player 7</li>
-      <li>Player 8</li>
-      <li>Player 9</li>
-      <li>Player 10</li>
-    </ul>
+<!-- TEAM 2 -->
+<div class="card" onclick="toggle(this)">
+  <div class="team-header">
+    Team 2
+    <span class="arrow">▼</span>
   </div>
 
-  <!-- TEAM 2 -->
-  <div class="team-box" onclick="toggleTeam('t2')">
-    <div class="team-title">Team 2</div>
+  <ul class="players">
+    <li>Player 1</li>
+    <li>Player 2</li>
+    <li>Player 3</li>
+    <li>Player 4</li>
+    <li>Player 5</li>
+    <li>Player 6</li>
+    <li>Player 7</li>
+    <li>Player 8</li>
+    <li>Player 9</li>
+    <li>Player 10</li>
+  </ul>
+</div>
 
-    <ul class="players" id="t2">
-      <li>Player 1</li>
-      <li>Player 2</li>
-      <li>Player 3</li>
-      <li>Player 4</li>
-      <li>Player 5</li>
-      <li>Player 6</li>
-      <li>Player 7</li>
-      <li>Player 8</li>
-      <li>Player 9</li>
-      <li>Player 10</li>
-    </ul>
+<!-- TEAM 3 -->
+<div class="card" onclick="toggle(this)">
+  <div class="team-header">
+    Team 3
+    <span class="arrow">▼</span>
   </div>
 
-  <!-- TEAM 3 -->
-  <div class="team-box" onclick="toggleTeam('t3')">
-    <div class="team-title">Team 3</div>
+  <ul class="players">
+    <li>Player 1</li>
+    <li>Player 2</li>
+    <li>Player 3</li>
+    <li>Player 4</li>
+    <li>Player 5</li>
+    <li>Player 6</li>
+    <li>Player 7</li>
+    <li>Player 8</li>
+    <li>Player 9</li>
+    <li>Player 10</li>
+  </ul>
+</div>
 
-    <ul class="players" id="t3">
-      <li>Player 1</li>
-      <li>Player 2</li>
-      <li>Player 3</li>
-      <li>Player 4</li>
-      <li>Player 5</li>
-      <li>Player 6</li>
-      <li>Player 7</li>
-      <li>Player 8</li>
-      <li>Player 9</li>
-      <li>Player 10</li>
-    </ul>
-  </div>
-
-  <script>
-    function toggleTeam(id) {
-      let el = document.getElementById(id);
-      el.style.display = (el.style.display === "block") ? "none" : "block";
-    }
-  </script>
+<script>
+function toggle(card){
+  card.classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
