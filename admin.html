@@ -10,19 +10,25 @@
       font-family: Arial;
       background: #f2f2f2;
       text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      color: green;
+      margin-top: 20px;
     }
 
     .box {
       background: white;
       padding: 20px;
-      margin: 20px auto;
+      margin: 15px auto;
       width: 90%;
       border-radius: 10px;
     }
 
     input, textarea {
-      width: 90%;
-      margin: 5px;
+      width: 95%;
+      margin: 5px 0;
       padding: 8px;
     }
 
@@ -31,7 +37,23 @@
       background: green;
       color: white;
       border: none;
-      margin-top: 10px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .match {
+      background: #fff;
+      margin: 10px auto;
+      padding: 10px;
+      width: 90%;
+      border-radius: 8px;
+      text-align: left;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .btn-danger {
+      background: red;
     }
   </style>
 </head>
@@ -41,22 +63,34 @@
 <h1>⚙️ Admin Panel</h1>
 
 <div class="box">
-  <input id="id" placeholder="Match ID (1,2,3)">
-  <input id="teams" placeholder="Teams (Team A vs Team B)">
+  <input id="id" placeholder="Match ID (1,2,3...)">
+  <input id="teams" placeholder="Teams">
   <input id="date" placeholder="Date">
   <input id="stadium" placeholder="Stadium">
   <input id="time" placeholder="Time">
   <textarea id="score" placeholder="Score"></textarea>
   <input id="result" placeholder="Result">
 
-  <button onclick="saveData()">Save Match</button>
+  <button onclick="saveData()">💾 Save / Update</button>
+  <button onclick="clearForm()">🧹 Clear</button>
 </div>
 
+<h2 style="color:green;">📋 Saved Matches</h2>
+<div id="list"></div>
+
 <script>
+let data = JSON.parse(localStorage.getItem("matches")) || {};
+
+// SAVE / UPDATE
 function saveData(){
   let id = document.getElementById("id").value;
 
-  let match = {
+  if(!id){
+    alert("Match ID must be required!");
+    return;
+  }
+
+  data[id] = {
     teams: document.getElementById("teams").value,
     date: document.getElementById("date").value,
     stadium: document.getElementById("stadium").value,
@@ -65,13 +99,66 @@ function saveData(){
     result: document.getElementById("result").value
   };
 
-  let data = JSON.parse(localStorage.getItem("matches")) || {};
-  data[id] = match;
-
   localStorage.setItem("matches", JSON.stringify(data));
 
   alert("Saved!");
+  clearForm();
+  renderList();
 }
+
+// CLEAR FORM
+function clearForm(){
+  document.getElementById("id").value = "";
+  document.getElementById("teams").value = "";
+  document.getElementById("date").value = "";
+  document.getElementById("stadium").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("score").value = "";
+  document.getElementById("result").value = "";
+}
+
+// DELETE
+function deleteMatch(id){
+  delete data[id];
+  localStorage.setItem("matches", JSON.stringify(data));
+  renderList();
+}
+
+// EDIT
+function editMatch(id){
+  let m = data[id];
+
+  document.getElementById("id").value = id;
+  document.getElementById("teams").value = m.teams;
+  document.getElementById("date").value = m.date;
+  document.getElementById("stadium").value = m.stadium;
+  document.getElementById("time").value = m.time;
+  document.getElementById("score").value = m.score;
+  document.getElementById("result").value = m.result;
+}
+
+// RENDER LIST
+function renderList(){
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+
+  for(let id in data){
+    list.innerHTML += `
+      <div class="match">
+        <b>ID:</b> ${id} <br>
+        <b>${data[id].teams}</b><br>
+        📅 ${data[id].date} | 🕒 ${data[id].time}<br>
+        🏟️ ${data[id].stadium}<br>
+        🏆 ${data[id].result}<br><br>
+
+        <button onclick="editMatch(${id})">✏️ Edit</button>
+        <button class="btn-danger" onclick="deleteMatch(${id})">🗑️ Delete</button>
+      </div>
+    `;
+  }
+}
+
+renderList();
 </script>
 
 </body>
