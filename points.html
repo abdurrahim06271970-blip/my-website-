@@ -7,17 +7,15 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #f2f2f2;
       margin: 0;
       text-align: center;
     }
 
-    /* MENU */
     .menu {
       background: green;
       padding: 15px;
-      text-align: center;
     }
 
     .menu a {
@@ -34,10 +32,9 @@
 
     h1 {
       color: green;
-      margin: 20px 0;
+      margin: 20px;
     }
 
-    /* TABLE */
     table {
       margin: 20px auto;
       border-collapse: collapse;
@@ -48,19 +45,23 @@
     th, td {
       border: 1px solid #ddd;
       padding: 10px;
-      font-size: 16px;
     }
 
     th {
       background: green;
       color: white;
     }
+
+    /* 🔥 TOP TEAM STYLE */
+    .top-team {
+      background: #d4edda;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
   <div class="menu">
     <a href="index.html">Home</a>
     <a href="fixtures.html">Fixtures</a>
@@ -70,7 +71,7 @@
 
   <h1>📊 Points Table</h1>
 
-  <table>
+  <table id="pointsTable">
     <tr>
       <th>Team</th>
       <th>Match</th>
@@ -81,32 +82,54 @@
     </tr>
 
     <tr>
-      <td>1. Team A</td>
+      <td>Team A</td>
       <td>2</td>
-      <td>1</td>
-      <td>1</td>
       <td>2</td>
-      <td>+0.25</td>
+      <td>0</td>
+      <td>4</td>
+      <td>+0.50</td>
     </tr>
 
     <tr>
-      <td>2. Team B</td>
+      <td>Team B</td>
       <td>2</td>
       <td>1</td>
       <td>1</td>
       <td>2</td>
-      <td>-0.10</td>
+      <td>+0.10</td>
     </tr>
 
     <tr>
-      <td>3. Team C</td>
+      <td>Team C</td>
       <td>2</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
       <td>2</td>
-      <td>+0.05</td>
+      <td>0</td>
+      <td>-0.30</td>
     </tr>
   </table>
+
+  <!-- 🔥 AUTO SORT SCRIPT -->
+  <script>
+    let table = document.getElementById("pointsTable");
+    let rows = Array.from(table.rows).slice(1);
+
+    rows.sort((a, b) => {
+      let pointsA = parseInt(a.cells[4].innerText);
+      let pointsB = parseInt(b.cells[4].innerText);
+      return pointsB - pointsA;
+    });
+
+    rows.forEach((row, index) => {
+      row.cells[0].innerText = (index + 1) + ". " + row.cells[0].innerText;
+      table.appendChild(row);
+
+      // 🔥 highlight top team
+      if(index === 0){
+        row.classList.add("top-team");
+      }
+    });
+  </script>
 
 </body>
 </html>
