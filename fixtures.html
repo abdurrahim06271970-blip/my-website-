@@ -13,7 +13,7 @@
       text-align: center;
     }
 
-    /* 🔥 MENU */
+    /* MENU */
     .menu {
       background: green;
       padding: 15px;
@@ -28,7 +28,6 @@
       padding-bottom: 5px;
     }
 
-    /* 🔥 ACTIVE UNDERLINE */
     .menu a.active {
       border-bottom: 3px solid white;
     }
@@ -38,13 +37,37 @@
       margin: 20px 0;
     }
 
+    /* FIXTURE CARDS */
     .card {
       background: white;
-      margin: 10px auto;
+      margin: 15px auto;
       padding: 15px;
       width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .card h3 {
+      margin: 0;
+      color: green;
+    }
+
+    .card p {
+      margin: 5px 0;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      color: white;
+    }
+
+    .upcoming {
+      background: orange;
     }
   </style>
 </head>
@@ -62,9 +85,29 @@
   <h1>🗓️ Fixtures</h1>
 
   <!-- MATCH CARDS -->
-  <div class="card">🏏 Team A vs Team B - 10 April</div>
-  <div class="card">🏏 Team C vs Team D - 11 April</div>
-  <div class="card">🏏 Team A vs Team C - 12 April</div>
+  <div class="card">
+    <h3>Team A vs Team B</h3>
+    <p>📅 Date: 10 April</p>
+    <p>📍 Stadium: Kaliganj Ground</p>
+    <p>🕒 Time: 4:00 PM</p>
+    <span class="status upcoming">Upcoming</span>
+  </div>
+
+  <div class="card">
+    <h3>Team C vs Team D</h3>
+    <p>📅 Date: 11 April</p>
+    <p>📍 Stadium: Main Field</p>
+    <p>🕒 Time: 6:00 PM</p>
+    <span class="status upcoming">Upcoming</span>
+  </div>
+
+  <div class="card">
+    <h3>Team A vs Team C</h3>
+    <p>📅 Date: 12 April</p>
+    <p>📍 Stadium: Central Ground</p>
+    <p>🕒 Time: 5:00 PM</p>
+    <span class="status upcoming">Upcoming</span>
+  </div>
 
 </body>
 </html>
