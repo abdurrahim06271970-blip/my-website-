@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Match Details</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: linear-gradient(to bottom right, #e0f7e9, #ffffff);
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      margin: 20px auto;
+      padding: 20px;
+      width: 90%;
+      border-radius: 12px;
+    }
+
+    h1 { color: green; }
+  </style>
+</head>
+
+<body>
+
+<h1>🏏 Match Details</h1>
+
+<div class="box" id="matchData">
+  Loading...
+</div>
+
+<script>
+  const data = {
+    1: {
+      teams: "Team A vs Team B",
+      score: "Team A: 120/6 (10 ov)\nTeam B: 100/9 (10 ov)",
+      result: "Team A won by 20 runs"
+    },
+    2: {
+      teams: "Team C vs Team D",
+      score: "Team C: 150/5\nTeam D: 151/4",
+      result: "Team D won by 6 wickets"
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  const match = data[id];
+
+  if(match){
+    document.getElementById("matchData").innerHTML = `
+      <h2>${match.teams}</h2>
+      <p><b>Score:</b><br>${match.score}</p>
+      <p><b>Result:</b> ${match.result}</p>
+    `;
+  } else {
+    document.getElementById("matchData").innerHTML = "Match not found";
+  }
+</script>
+
+</body>
+</html>
