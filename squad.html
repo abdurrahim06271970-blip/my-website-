@@ -8,13 +8,12 @@
       font-family: Arial, sans-serif;
       background: #f2f2f2;
       margin: 0;
-      text-align: center;  /* 🔥 THIS WAS MISSING */
+      text-align: center;
     }
 
     .menu {
       background: green;
       padding: 15px;
-      text-align: center;
     }
 
     .menu a {
@@ -22,7 +21,6 @@
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
-      padding-bottom: 5px;
     }
 
     .menu a.active {
@@ -34,12 +32,12 @@
       margin: 20px 0;
     }
 
-    /* 🔥 SAME AS FIXTURES CARD */
+    /* 🔥 BIG FIXED CARD (like Fixtures) */
     .team-box {
       background: white;
-      margin: 10px auto;
-      padding: 15px;
-      width: 90%;   /* 🔥 SAME WIDTH */
+      margin: 12px auto;
+      padding: 18px;
+      width: 90%;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       cursor: pointer;
@@ -47,23 +45,30 @@
     }
 
     .team-title {
-      font-size: 18px;  /* same size */
+      font-size: 20px;
       font-weight: bold;
       color: green;
     }
 
+    /* 🔥 BIG PLAYER AREA */
     .players {
       display: none;
-      margin-top: 10px;
-      padding-left: 20px;
+      margin-top: 15px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
     }
 
     .players li {
-      margin: 5px 0;
       font-size: 16px;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .players li:last-child {
+      border-bottom: none;
     }
   </style>
-
 </head>
 
 <body>
@@ -78,9 +83,10 @@
   <h1>🏏 Teams</h1>
 
   <!-- TEAM 1 -->
-  <div class="team-box" onclick="toggleTeam('team1')">
+  <div class="team-box" onclick="toggleTeam('t1')">
     <div class="team-title">Team 1</div>
-    <ul class="players" id="team1">
+
+    <ul class="players" id="t1">
       <li>Player 1</li>
       <li>Player 2</li>
       <li>Player 3</li>
@@ -95,9 +101,10 @@
   </div>
 
   <!-- TEAM 2 -->
-  <div class="team-box" onclick="toggleTeam('team2')">
+  <div class="team-box" onclick="toggleTeam('t2')">
     <div class="team-title">Team 2</div>
-    <ul class="players" id="team2">
+
+    <ul class="players" id="t2">
       <li>Player 1</li>
       <li>Player 2</li>
       <li>Player 3</li>
@@ -112,9 +119,10 @@
   </div>
 
   <!-- TEAM 3 -->
-  <div class="team-box" onclick="toggleTeam('team3')">
+  <div class="team-box" onclick="toggleTeam('t3')">
     <div class="team-title">Team 3</div>
-    <ul class="players" id="team3">
+
+    <ul class="players" id="t3">
       <li>Player 1</li>
       <li>Player 2</li>
       <li>Player 3</li>
@@ -130,13 +138,8 @@
 
   <script>
     function toggleTeam(id) {
-      let team = document.getElementById(id);
-
-      if (team.style.display === "block") {
-        team.style.display = "none";
-      } else {
-        team.style.display = "block";
-      }
+      let el = document.getElementById(id);
+      el.style.display = (el.style.display === "block") ? "none" : "block";
     }
   </script>
 
