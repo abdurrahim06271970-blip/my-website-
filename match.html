@@ -76,7 +76,8 @@
 <a href="fixtures.html" class="back">⬅ Back to Fixtures</a>
 
 <script>
-  const data = {
+  // 🔥 DEFAULT DATA (backup)
+  const defaultData = {
     1: {
       teams: "Team A vs Team B",
       date: "10 April",
@@ -92,25 +93,16 @@
       time: "6:00 PM",
       score: "Team C: 150/5 (10 ov)\nTeam D: 151/4 (9.3 ov)",
       result: "Team D won by 6 wickets"
-    },
-    3: {
-      teams: "Team X vs Team Y",
-      date: "1 April",
-      stadium: "Central Ground",
-      time: "5:00 PM",
-      score: "Team X: 140/7\nTeam Y: 120/10",
-      result: "Team X won by 20 runs"
-    },
-    4: {
-      teams: "Team A vs Team C",
-      date: "2 April",
-      stadium: "Main Field",
-      time: "4:30 PM",
-      score: "Team A: 130/8\nTeam C: 131/5",
-      result: "Team C won by 5 wickets"
     }
   };
 
+  // 🔥 ADMIN PANEL DATA (localStorage)
+  let savedData = JSON.parse(localStorage.getItem("matches")) || {};
+
+  // 🔥 MERGE (admin data priority)
+  const data = { ...defaultData, ...savedData };
+
+  // 🔥 GET ID
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
