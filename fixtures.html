@@ -54,7 +54,6 @@ h1 {
 }
 
 .finished { background: gray; }
-.upcoming { background: orange; }
 
 /* MODAL */
 .modal {
@@ -74,7 +73,6 @@ h1 {
   margin: 25px auto;
   padding: 20px;
   border-radius: 12px;
-  text-align: left;
 }
 
 .close {
@@ -83,29 +81,16 @@ h1 {
   cursor: pointer;
 }
 
-/* SECTION */
+/* SUMMARY STYLE */
+.summary {
+  text-align: center;
+}
+
 .section {
   margin-top: 15px;
   padding: 10px;
   background: #f5f5f5;
   border-left: 4px solid #1e3c72;
-}
-
-/* TABLE */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 6px;
-  text-align: center;
-}
-
-th {
-  background: #1e3c72;
-  color: white;
 }
 </style>
 
@@ -124,7 +109,7 @@ th {
 
 <!-- MATCH -->
 <div class="card" onclick="openScorecard('1')">
-  <h3>Team X vs Team Y</h3>
+  <h3>Brisbane Stars vs Brisbane Napoleons</h3>
   <p>🏏 Finished Match</p>
   <span class="status finished">Finished</span>
 </div>
@@ -144,69 +129,54 @@ let data = "";
 
 if(id === "1"){
 data = `
-<h2>🏏 Full Match Scorecard (2 Innings)</h2>
+<div class="summary">
 
-<div class="section">
-<h3>🪙 Toss</h3>
-<p>Team X won the toss and chose to bat</p>
+<h2>🏏 BRISBANE CHAMPIONS LEAGUE</h2>
+<h3>MATCH SUMMARY</h3>
+
+<h2>BRISBANE STARS</h2>
+<h3>VS</h3>
+<h2>BRISBANE NAPOLEONS</h2>
+
 </div>
 
-<!-- INNINGS 1 -->
 <div class="section">
-<h2>1st Innings - Team X</h2>
+<h3>BRISBANE STARS</h3>
+<h2>152-10</h2>
+<p>19.5 OVERS</p>
 
-<h3>Batting</h3>
-<table>
-<tr><th>Player</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th><th>Dismissal</th></tr>
-<tr><td>Player 1</td><td>45</td><td>30</td><td>4</td><td>2</td><td>150</td><td>c & b</td></tr>
-<tr><td>Player 2</td><td>32</td><td>18</td><td>3</td><td>1</td><td>177</td><td>lbw</td></tr>
-</table>
+<p><b>AHMED JAWID</b> 82 (46)</p>
+<p><b>RAJBIR VIRK</b> 16 (26)</p>
+<p><b>SUNIL SWOOD</b> 11 (09)</p>
+<p><b>GURBIR SINGH</b> 11 (11)</p>
 
-<h3>Extras</h3>
-<p>W: 5 | NB: 1 | B: 2 | LB: 1</p>
-
-<h3>Fall of Wickets</h3>
-<p>1-20, 2-55, 3-90, 4-120</p>
-
-<h3>Bowling (Team Y)</h3>
-<table>
-<tr><th>Bowler</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr>
-<tr><td>Bowler 1</td><td>4</td><td>0</td><td>25</td><td>2</td><td>6.25</td></tr>
-<tr><td>Bowler 2</td><td>4</td><td>1</td><td>30</td><td>1</td><td>7.50</td></tr>
-</table>
+<h4>Bowling</h4>
+<p>SOHAM S SANE 5-28 (3.5)</p>
+<p>SAXON JEH 3-17 (4.0)</p>
+<p>SCOTT GP PALON 1-24 (3.0)</p>
+<p>HUNAR VARMA 0-22 (4.0)</p>
 </div>
 
-<!-- INNINGS 2 -->
 <div class="section">
-<h2>2nd Innings - Team Y</h2>
+<h3>BRISBANE STARS</h3>
+<h2>81-10</h2>
+<p>15.2 OVERS</p>
 
-<h3>Batting</h3>
-<table>
-<tr><th>Player</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th><th>Dismissal</th></tr>
-<tr><td>Player A</td><td>40</td><td>28</td><td>3</td><td>2</td><td>142</td><td>caught</td></tr>
-<tr><td>Player B</td><td>35</td><td>22</td><td>4</td><td>1</td><td>159</td><td>bowled</td></tr>
-</table>
+<p><b>AJAY EMMANUEL</b> 19 (21)</p>
+<p><b>SCOOT G PALOMBO</b> 16 (15)</p>
+<p><b>MLLAN REJI SCARIA</b> 09 (12)</p>
+<p><b>SOHAM S SANE</b> 08 (13)</p>
 
-<h3>Extras</h3>
-<p>W: 3 | NB: 2 | B: 1 | LB: 0</p>
-
-<h3>Fall of Wickets</h3>
-<p>1-15, 2-50, 3-80, 4-110</p>
-
-<h3>Bowling (Team X)</h3>
-<table>
-<tr><th>Bowler</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Econ</th></tr>
-<tr><td>Bowler A</td><td>4</td><td>0</td><td>20</td><td>3</td><td>5.0</td></tr>
-<tr><td>Bowler B</td><td>4</td><td>0</td><td>35</td><td>1</td><td>8.7</td></tr>
-</table>
+<h4>Bowling</h4>
+<p>JASVEER SINGH 3-13 (4.0)</p>
+<p>EKLAVYA YADAV 2-11 (3.0)</p>
+<p>SYED MONIB 2-26 (4.0)</p>
+<p>GURBIR SINGH 1-7 (1.2)</p>
 </div>
 
-<!-- RESULT -->
-<div class="section">
-<h2>🏆 Result</h2>
-<p><b>Team X won by 20 runs</b></p>
+<div class="section" style="text-align:center">
+<h2>🏆 BRISBANE STARS WON BY 71 RUNS</h2>
 </div>
-
 `;
 }
 
