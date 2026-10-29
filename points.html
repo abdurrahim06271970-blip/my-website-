@@ -123,7 +123,7 @@
       border-bottom-color: var(--accent);
     }
 
-    /* PAGE INTRO */
+    /* PAGE */
     .main {
       padding: 48px 0 70px;
     }
@@ -158,7 +158,7 @@
       margin-top: 19px;
     }
 
-    /* POINTS TABLE CARD */
+    /* TABLE CARD */
     .table-card {
       margin-top: 30px;
       background: var(--white);
@@ -173,40 +173,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1px solid var(--border);
     }
 
     .table-card-title {
       color: var(--navy);
-      font-size: 21px;
+      font-size: 19px;
       font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .season-badge {
       background: #e6fafa;
       border: 1px solid #c8f1f0;
       color: var(--accent-dark);
-      padding: 7px 12px;
+      padding: 6px 10px;
       border-radius: 30px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
       white-space: nowrap;
     }
 
-    /* TABLE SCROLL */
+    /* COMPACT TABLE: NO HORIZONTAL SCROLL */
     .table-scroll {
       width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
     }
 
     table {
       width: 100%;
-      min-width: 650px;
+      min-width: 0;
+      table-layout: fixed;
       border-collapse: collapse;
       text-align: center;
     }
@@ -217,19 +214,21 @@
     }
 
     th {
-      padding: 16px 14px;
-      font-size: 12px;
+      padding: 13px 2px;
+      font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0;
       white-space: nowrap;
     }
 
     td {
-      padding: 16px 14px;
-      font-size: 14px;
+      padding: 14px 2px;
+      font-size: 12px;
       border-bottom: 1px solid var(--border);
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     tbody tr {
@@ -245,23 +244,56 @@
       border-bottom: none;
     }
 
+    /* COLUMN WIDTHS */
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 31%;
+      text-align: left;
+      padding-left: 8px;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 13%;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 11%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 11%;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 17%;
+    }
+
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: 17%;
+    }
+
     .team-cell {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 6px;
+      min-width: 0;
       text-align: left;
-      min-width: 155px;
     }
 
     .rank {
-      width: 34px;
-      height: 34px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: #edf0f5;
       color: var(--navy);
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 900;
       flex-shrink: 0;
     }
@@ -273,8 +305,10 @@
 
     .team-name {
       color: var(--navy);
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 900;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .points-value {
@@ -294,9 +328,9 @@
 
     .table-note {
       border-top: 1px solid var(--border);
-      padding: 18px 22px;
+      padding: 16px 20px;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1.8;
     }
 
@@ -326,7 +360,7 @@
     /* MOBILE */
     @media (max-width: 700px) {
       .container {
-        width: calc(100% - 28px);
+        width: calc(100% - 24px);
       }
 
       .header-inner {
@@ -369,45 +403,59 @@
       }
 
       .main {
-        padding: 35px 0 55px;
+        padding: 35px 0 50px;
       }
 
       .table-card {
-        margin-top: 25px;
-        border-radius: 13px;
+        margin-top: 24px;
+        border-radius: 12px;
       }
 
       .table-card-header {
-        padding: 17px 14px;
+        padding: 16px 10px;
       }
 
       .table-card-title {
-        font-size: 17px;
-        gap: 7px;
+        font-size: 15px;
       }
 
       .season-badge {
-        padding: 6px 9px;
+        padding: 5px 7px;
         font-size: 9px;
       }
 
-      table {
-        min-width: 650px;
-      }
-
       th {
-        padding: 15px 12px;
-        font-size: 11px;
+        padding: 12px 1px;
+        font-size: 9px;
       }
 
       td {
-        padding: 14px 12px;
-        font-size: 13px;
+        padding: 12px 1px;
+        font-size: 11px;
+      }
+
+      th:nth-child(1),
+      td:nth-child(1) {
+        padding-left: 5px;
+      }
+
+      .team-cell {
+        gap: 4px;
+      }
+
+      .rank {
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+      }
+
+      .team-name {
+        font-size: 10px;
       }
 
       .table-note {
-        padding: 16px;
-        font-size: 12px;
+        padding: 13px 12px;
+        font-size: 10px;
       }
 
       .footer-inner {
@@ -419,7 +467,7 @@
 
     @media (max-width: 360px) {
       .container {
-        width: calc(100% - 22px);
+        width: calc(100% - 18px);
       }
 
       .nav {
@@ -428,6 +476,24 @@
 
       .table-card-header {
         flex-wrap: wrap;
+      }
+
+      th {
+        font-size: 8px;
+      }
+
+      td {
+        font-size: 10px;
+      }
+
+      .team-name {
+        font-size: 9px;
+      }
+
+      .rank {
+        width: 18px;
+        height: 18px;
+        font-size: 8px;
       }
     }
   </style>
@@ -465,7 +531,7 @@
     </div>
   </header>
 
-  <!-- POINTS TABLE PAGE -->
+  <!-- POINTS TABLE -->
   <main class="container main">
 
     <div class="eyebrow">VCL 2026 · SESSION 03</div>
@@ -481,10 +547,7 @@
     <section class="table-card">
 
       <div class="table-card-header">
-        <h2 class="table-card-title">
-          🏏 Tournament Standings
-        </h2>
-
+        <h2 class="table-card-title">🏏 Tournament Standings</h2>
         <span class="season-badge">SEASON 2026</span>
       </div>
 
@@ -549,9 +612,8 @@
 
       <div class="table-note">
         <strong>Note:</strong>
-        Team names and statistics are sample data. Update them with
-        the official VCL match results as the tournament progresses.
-        On mobile, swipe the table horizontally to view all columns.
+        Team names and statistics are sample data. Replace them with
+        official VCL match results as the tournament progresses.
       </div>
 
     </section>
