@@ -5,17 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111827">
+
   <title>VCL 2026 | Vatkhura Cricket League</title>
 
   <style>
     :root {
-      --primary: #111827;
-      --secondary: #1d2940;
+      --bg: #f5f7fa;
+      --white: #ffffff;
+      --navy: #111827;
+      --navy-light: #202d43;
       --accent: #26c6c5;
-      --accent-light: #e6fafa;
+      --accent-dark: #139b9a;
       --gold: #f4c95d;
-      --background: #f5f7fa;
-      --surface: #ffffff;
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
@@ -29,30 +30,33 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--background);
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
       line-height: 1.6;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     .container {
-      width: min(100% - 36px, 1050px);
+      width: min(1050px, calc(100% - 36px));
       margin: 0 auto;
     }
 
-    /* Header */
+    /* HEADER */
+
     .header {
-      background: var(--surface);
+      background: var(--white);
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .header-inner {
-      min-height: 84px;
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,11 +71,11 @@
     }
 
     .logo-box {
-      width: 54px;
-      height: 54px;
+      width: 53px;
+      height: 53px;
       border-radius: 13px;
       overflow: hidden;
-      background: var(--primary);
+      background: var(--navy);
       display: grid;
       place-items: center;
     }
@@ -84,20 +88,20 @@
 
     .brand-title {
       font-size: 21px;
-      font-weight: 900;
       line-height: 1.2;
-      color: var(--primary);
+      font-weight: 900;
+      color: var(--navy);
     }
 
     .brand-title span {
-      color: var(--accent);
+      color: var(--accent-dark);
     }
 
     .brand-subtitle {
       color: var(--muted);
       font-size: 9px;
       font-weight: 800;
-      letter-spacing: 1.6px;
+      letter-spacing: 1.5px;
       margin-top: 5px;
     }
 
@@ -108,146 +112,234 @@
     }
 
     .nav a {
-      padding: 29px 0 25px;
-      border-bottom: 3px solid transparent;
       color: #515b6b;
       font-size: 13px;
       font-weight: 700;
       white-space: nowrap;
+      padding: 27px 0 24px;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s;
     }
 
     .nav a:hover,
     .nav a.active {
-      color: var(--primary);
+      color: var(--navy);
       border-bottom-color: var(--accent);
     }
 
-    /* Main heading */
-    .main {
-      padding: 64px 0 80px;
+    /* WELCOME HERO */
+
+    .hero {
+      padding: 65px 0 45px;
     }
 
-    .intro {
-      margin-bottom: 32px;
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: linear-gradient(
+        125deg,
+        var(--navy) 0%,
+        var(--navy-light) 65%,
+        #253d50 100%
+      );
+      color: var(--white);
+      padding: 48px;
     }
 
-    .eyebrow {
-      color: #159e9d;
+    .hero-panel::before {
+      content: "VCL";
+      position: absolute;
+      right: -12px;
+      bottom: -48px;
+      font-size: clamp(150px, 25vw, 270px);
+      font-weight: 950;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.035);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 660px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 2.5px;
-      margin-bottom: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 19px;
     }
 
-    .intro h1 {
-      font-size: clamp(32px, 5vw, 49px);
-      line-height: 1.12;
-      letter-spacing: -1.5px;
-      font-weight: 900;
-      color: var(--primary);
-    }
-
-    .intro h1 span {
-      color: #159e9d;
-    }
-
-    .intro p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 12px;
-      max-width: 480px;
-    }
-
-    .intro-line {
-      width: 54px;
-      height: 4px;
+    .season-label::before {
+      content: "";
+      width: 23px;
+      height: 3px;
       border-radius: 5px;
       background: var(--accent);
-      margin-top: 20px;
     }
 
-    /* Four navigation cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 61px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      font-weight: 950;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 23px;
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .welcome {
+      color: var(--gold);
+      font-size: 16px;
+      font-weight: 800;
+      margin-top: 23px;
+    }
+
+    .hero-description {
+      max-width: 510px;
+      color: #d1d8e2;
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 10px;
+    }
+
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      min-height: 205px;
-      box-shadow: 0 5px 18px rgba(17, 24, 39, 0.035);
-      transition: transform 0.2s, border-color 0.2s,
-                  box-shadow 0.2s;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
     }
 
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
-    }
-
-    .card-top {
-      display: flex;
+    .button {
+      display: inline-flex;
       align-items: center;
-      gap: 13px;
-    }
-
-    .icon-box {
-      width: 45px;
-      height: 45px;
-      flex-shrink: 0;
-      border-radius: 12px;
-      background: var(--accent-light);
-      color: #159e9d;
-      display: grid;
-      place-items: center;
-    }
-
-    .icon-box svg {
-      width: 23px;
-      height: 23px;
-    }
-
-    .card h2 {
-      font-size: 18px;
+      justify-content: center;
+      padding: 12px 19px;
+      border-radius: 8px;
+      font-size: 12px;
       font-weight: 900;
-      color: var(--primary);
+      transition: 0.2s;
     }
 
-    .card p {
+    .button-primary {
+      background: var(--accent);
+      color: var(--navy);
+    }
+
+    .button-primary:hover {
+      background: #54d8d6;
+      transform: translateY(-2px);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* KEY INFORMATION */
+
+    .info-section {
+      padding: 5px 0 55px;
+    }
+
+    .section-label {
+      color: var(--accent-dark);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      margin-bottom: 7px;
+    }
+
+    .section-title {
+      font-size: 27px;
+      line-height: 1.3;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .section-description {
       color: var(--muted);
       font-size: 13px;
-      margin: 17px 0 20px;
-      flex-grow: 1;
+      margin-top: 7px;
     }
 
-    .card-link {
-      padding-top: 13px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #128f90;
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .info-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 21px;
+    }
+
+    .info-number {
+      color: var(--accent-dark);
+      font-size: 29px;
+      font-weight: 950;
+      line-height: 1.2;
+    }
+
+    .info-title {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .info-text {
+      color: var(--muted);
       font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.4px;
+      margin-top: 4px;
     }
 
-    .card-link span:last-child {
-      font-size: 19px;
+    /* ABOUT */
+
+    .about-section {
+      padding: 0 0 60px;
     }
 
-    /* Footer */
-    .footer {
+    .about-panel {
       border-top: 1px solid var(--border);
-      background: var(--surface);
-      padding: 19px 0;
+      padding-top: 28px;
+      max-width: 740px;
+    }
+
+    .about-panel h2 {
+      color: var(--navy);
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .about-panel p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+      margin-top: 10px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      background: var(--navy);
+      color: #c6ced9;
+      padding: 21px 0;
     }
 
     .footer-inner {
@@ -255,16 +347,16 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      color: var(--muted);
       font-size: 11px;
     }
 
     .footer strong {
-      color: var(--primary);
+      color: var(--accent);
     }
 
-    /* Mobile layout */
-    @media (max-width: 650px) {
+    /* MOBILE */
+
+    @media (max-width: 700px) {
       .container {
         width: calc(100% - 28px);
       }
@@ -272,7 +364,7 @@
       .header-inner {
         flex-wrap: wrap;
         gap: 0;
-        padding-top: 13px;
+        padding-top: 12px;
       }
 
       .logo-box {
@@ -286,17 +378,17 @@
 
       .brand-subtitle {
         font-size: 8px;
-        letter-spacing: 1.1px;
+        letter-spacing: 1px;
       }
 
       .nav {
+        order: 2;
         width: 100%;
-        justify-content: space-between;
-        gap: 20px;
+        gap: 24px;
         overflow-x: auto;
         scrollbar-width: none;
         border-top: 1px solid var(--border);
-        margin-top: 13px;
+        margin-top: 12px;
       }
 
       .nav::-webkit-scrollbar {
@@ -304,66 +396,65 @@
       }
 
       .nav a {
+        font-size: 12px;
         padding: 13px 0 10px;
+      }
+
+      .hero {
+        padding: 28px 0 32px;
+      }
+
+      .hero-panel {
+        padding: 29px 22px;
+        border-radius: 16px;
+      }
+
+      .hero h1 {
+        font-size: clamp(34px, 8.5vw, 48px);
+        letter-spacing: -1.1px;
+      }
+
+      .welcome {
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      .hero-description {
         font-size: 12px;
       }
 
-      .main {
-        padding: 38px 0 55px;
-      }
-
-      .intro {
-        margin-bottom: 26px;
-      }
-
-      .intro h1 {
-        font-size: clamp(30px, 7.8vw, 42px);
-        letter-spacing: -1px;
-      }
-
-      .intro p {
-        font-size: 13px;
-      }
-
-      .cards {
-        gap: 12px;
-      }
-
-      .card {
-        padding: 16px 14px;
-        min-height: 210px;
-        border-radius: 13px;
-      }
-
-      .card-top {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .icon-box {
-        width: 40px;
-        height: 40px;
-      }
-
-      .icon-box svg {
-        width: 21px;
-        height: 21px;
-      }
-
-      .card h2 {
-        font-size: 15px;
-      }
-
-      .card p {
+      .button {
+        padding: 11px 13px;
         font-size: 11px;
-        line-height: 1.7;
-        margin: 12px 0 16px;
       }
 
-      .card-link {
-        font-size: 9px;
-        letter-spacing: 0;
+      .section-title {
+        font-size: 23px;
+      }
+
+      .info-grid {
+        gap: 10px;
+      }
+
+      .info-item {
+        padding: 13px 10px;
+        border-radius: 10px;
+      }
+
+      .info-number {
+        font-size: 24px;
+      }
+
+      .info-title {
+        font-size: 11px;
+      }
+
+      .info-text {
+        font-size: 10px;
+      }
+
+      .about-section {
+        padding-bottom: 40px;
       }
 
       .footer-inner {
@@ -378,26 +469,32 @@
         width: calc(100% - 22px);
       }
 
-      .cards {
-        gap: 9px;
+      .nav {
+        gap: 19px;
       }
 
-      .card {
-        padding: 13px 11px;
+      .hero-panel {
+        padding: 25px 17px;
       }
 
-      .card h2 {
-        font-size: 14px;
+      .info-grid {
+        gap: 7px;
       }
 
-      .card-link {
-        font-size: 8px;
+      .info-item {
+        padding: 11px 8px;
+      }
+
+      .info-number {
+        font-size: 21px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- HEADER: NAVIGATION ONLY -->
   <header class="header">
     <div class="container header-inner">
 
@@ -418,7 +515,7 @@
       </a>
 
       <nav class="nav" aria-label="Main navigation">
-        <a class="active" href="index.html">Home</a>
+        <a href="index.html" class="active">Home</a>
         <a href="fixtures.html">Fixtures</a>
         <a href="points.html">Points Table</a>
         <a href="teams.html">Teams</a>
@@ -427,104 +524,100 @@
     </div>
   </header>
 
-  <main class="container main">
+  <main>
 
-    <section class="intro">
-      <div class="eyebrow">EXPLORE VCL</div>
+    <!-- WELCOME -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-panel">
+          <div class="hero-content">
 
-      <h1>Your League.<br><span>One Place.</span></h1>
+            <div class="season-label">SESSION 03 · 2026</div>
 
-      <p>
-        Everything you need to follow the tournament.
-      </p>
+            <h1>
+              VATKHURA<br>
+              CRICKET <span>LEAGUE.</span>
+            </h1>
 
-      <div class="intro-line"></div>
+            <div class="welcome">
+              Welcome to VCL 2026!
+            </div>
+
+            <p class="hero-description">
+              Welcome to the official home of Vatkhura Cricket League.
+              Follow the tournament, support your favourite team and
+              celebrate the spirit of cricket with us.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="fixtures.html">
+                Tournament Schedule →
+              </a>
+
+              <a class="button button-secondary" href="teams.html">
+                Meet The Teams
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="cards" aria-label="VCL sections">
+    <!-- IMPORTANT INFORMATION -->
+    <section class="info-section">
+      <div class="container">
 
-      <!-- Fixtures -->
-      <a class="card" href="fixtures.html">
-        <div class="card-top">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="5" width="18" height="16" rx="2"/>
-              <path d="M16 3v4M8 3v4M3 10h18"/>
-              <path d="m9 15 2 2 4-4"/>
-            </svg>
+        <div class="section-label">THE VCL EXPERIENCE</div>
+        <h2 class="section-title">One League. One Passion.</h2>
+        <p class="section-description">
+          Bringing our cricket community together.
+        </p>
+
+        <div class="info-grid">
+
+          <div class="info-item">
+            <div class="info-number">03</div>
+            <div class="info-title">League Session</div>
+            <div class="info-text">VCL Session 03</div>
           </div>
-          <h2>Fixtures</h2>
-        </div>
-        <p>Check the schedule, match dates and upcoming games.</p>
-        <div class="card-link">
-          <span>VIEW FIXTURES</span><span>→</span>
-        </div>
-      </a>
 
-      <!-- Points Table -->
-      <a class="card" href="points.html">
-        <div class="card-top">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 20V4M4 20h17"/>
-              <rect x="7" y="12" width="3" height="5" rx="1"/>
-              <rect x="12" y="8" width="3" height="9" rx="1"/>
-              <rect x="17" y="4" width="3" height="13" rx="1"/>
-            </svg>
+          <div class="info-item">
+            <div class="info-number">06</div>
+            <div class="info-title">Participating Teams</div>
+            <div class="info-text">One cricket community</div>
           </div>
-          <h2>Points Table</h2>
-        </div>
-        <p>Follow team standings, wins, losses, points and NRR.</p>
-        <div class="card-link">
-          <span>VIEW STANDINGS</span><span>→</span>
-        </div>
-      </a>
 
-      <!-- Teams -->
-      <a class="card" href="teams.html">
-        <div class="card-top">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="8" r="3"/>
-              <path d="M3 20v-2a6 6 0 0 1 12 0v2"/>
-              <path d="M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.5V20"/>
-            </svg>
+          <div class="info-item">
+            <div class="info-number">2026</div>
+            <div class="info-title">Season</div>
+            <div class="info-text">The VCL journey continues</div>
           </div>
-          <h2>Teams</h2>
-        </div>
-        <p>Discover the participating teams and their squads.</p>
-        <div class="card-link">
-          <span>EXPLORE TEAMS</span><span>→</span>
-        </div>
-      </a>
 
-      <!-- Match Centre -->
-      <a class="card" href="match-centre.html">
-        <div class="card-top">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M12 7v5l3 2"/>
-              <path d="M7 3.8 5 2M17 3.8 19 2"/>
-            </svg>
-          </div>
-          <h2>Match Centre</h2>
         </div>
-        <p>Find match updates, results and score summaries.</p>
-        <div class="card-link">
-          <span>MATCH CENTRE</span><span>→</span>
-        </div>
-      </a>
-
+      </div>
     </section>
+
+    <!-- ABOUT VCL -->
+    <section class="about-section">
+      <div class="container">
+        <div class="about-panel">
+
+          <div class="section-label">ABOUT VCL</div>
+
+          <h2>More Than Just Cricket.</h2>
+
+          <p>
+            Vatkhura Cricket League is a platform for local cricket,
+            teamwork, sportsmanship and friendly competition.
+            VCL 2026 brings teams and supporters together through
+            their shared love of the game.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
