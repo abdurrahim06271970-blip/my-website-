@@ -4,433 +4,1033 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Vatkhura Cricket League 2026 — fixtures, points table, teams and match centre.">
   <title>VCL 2026 | Vatkhura Cricket League</title>
 
   <style>
+    :root {
+      --red: #e63946;
+      --red-dark: #c92130;
+      --black: #15171b;
+      --dark-gray: #292d33;
+      --gray: #737780;
+      --light-gray: #f3f4f6;
+      --white: #ffffff;
+      --border: #e6e7eb;
+      --green: #16865c;
+      --radius: 16px;
+      --shadow: 0 8px 26px rgba(20, 24, 32, 0.07);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --bg: #0b1020;
-      --card: #151e35;
-      --cyan: #08d9f5;
-      --text: #f4f7ff;
-      --muted: #a9b5cc;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background:
+        radial-gradient(ellipse at top left, rgba(230, 57, 70, 0.055), transparent 38%),
+        linear-gradient(180deg, #ffffff 0%, #f8f9fb 55%, #ffffff 100%);
+      color: var(--black);
+      line-height: 1.6;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    /* Navigation */
-    .navbar {
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Announcement bar */
+    .announcement {
+      background: var(--black);
+      color: white;
+      padding: 8px 0;
+      font-size: 12px;
+      letter-spacing: 0.7px;
+    }
+
+    .announcement-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .announcement-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.15);
+    }
+
+    .announcement-right {
+      color: #d5d7dc;
+    }
+
+    /* Header */
+    .site-header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      padding: 18px 12px;
-      background: rgba(16, 29, 55, 0.97);
-      border-bottom: 1px solid rgba(8, 217, 245, 0.18);
       backdrop-filter: blur(12px);
     }
 
-    .navbar a {
-      font-size: 15px;
+    .header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo-wrap {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.7px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      letter-spacing: 1.7px;
+      color: var(--gray);
       font-weight: 700;
-      color: #d5def1;
-      padding: 5px 0;
+      margin-top: 5px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav a {
+      color: #454952;
+      font-size: 13px;
+      font-weight: 700;
+      transition: color 0.2s;
       position: relative;
-      white-space: nowrap;
+      padding: 28px 0;
     }
 
-    .navbar a:hover,
-    .navbar a.active {
-      color: white;
+    .nav a:hover,
+    .nav a.active {
+      color: var(--red);
     }
 
-    .navbar a.active::after {
+    .nav a.active::after {
       content: "";
       position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
       height: 3px;
+      background: var(--red);
+      bottom: 17px;
+      left: 0;
+      right: 0;
       border-radius: 5px;
-      background: var(--cyan);
+    }
+
+    .header-button {
+      background: var(--red);
+      color: white;
+      padding: 11px 17px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: 0.2s;
+    }
+
+    .header-button:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
     }
 
     /* Hero */
     .hero {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding: 28px 16px 48px;
-      background:
-        radial-gradient(ellipse at 50% 10%,
-          rgba(42, 82, 152, 0.35), transparent 65%),
-        linear-gradient(145deg, #10182d, #17142e 65%, #11182b);
+      padding: 64px 0 40px;
     }
 
-    .logo-wrap {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto 22px;
-      background: transparent;
-    }
-
-    .logo-wrap img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: transparent;
-
-      /* Helps blend a white image background.
-         Best result comes from a transparent PNG. */
-      mix-blend-mode: multiply;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
     }
 
     .eyebrow {
-      display: inline-block;
-      border: 1px solid rgba(8, 217, 245, 0.45);
-      color: var(--cyan);
-      background: rgba(8, 217, 245, 0.07);
-      border-radius: 30px;
-      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 {
-      font-size: clamp(27px, 7vw, 42px);
       font-weight: 900;
-      line-height: 1.2;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
       margin-bottom: 15px;
     }
 
-    .hero h1 span {
-      background: linear-gradient(90deg, #08d9f5, #7288ff, #c084fc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 4px;
     }
 
-    .hero p {
-      max-width: 450px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 14px;
+    .hero h1 {
+      font-size: clamp(38px, 5.5vw, 68px);
+      line-height: 0.99;
+      letter-spacing: -2.5px;
+      font-weight: 950;
+      text-transform: uppercase;
+      max-width: 700px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+      display: block;
+    }
+
+    .hero-description {
+      color: var(--gray);
+      font-size: 15px;
+      max-width: 520px;
+      margin-top: 20px;
       line-height: 1.8;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 12px;
-      margin-top: 25px;
+      margin-top: 26px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 13px 21px;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border-radius: 9px;
       font-size: 13px;
       font-weight: 800;
-      transition: transform 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
+      transition: 0.2s;
+      cursor: pointer;
     }
 
     .btn-primary {
-      color: #071321;
-      background: linear-gradient(100deg, #08d9f5, #7a9cff);
+      background: var(--red);
+      color: white;
+      box-shadow: 0 7px 18px rgba(230, 57, 70, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
-      border: 1px solid #465675;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--black);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* Hero information panel */
+    .season-panel {
+      background: linear-gradient(145deg, #191b20, #2b2e35);
       color: white;
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    /* Main content */
-    .container {
-      width: min(100% - 32px, 900px);
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 36px 0;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 23px;
-    }
-
-    .section-heading small {
-      color: var(--cyan);
-      text-transform: uppercase;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .section-heading h2 {
-      font-size: 23px;
-      margin-top: 8px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 9px;
-      line-height: 1.7;
-    }
-
-    /* Tournament stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .stat-card {
-      text-align: center;
-      background: linear-gradient(145deg, #18233e, #121a2e);
-      border: 1px solid #273653;
       border-radius: 20px;
-      padding: 25px 6px;
-      transition: transform 0.25s;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(21, 23, 27, 0.14);
     }
 
-    .stat-card:hover {
-      transform: translateY(-4px);
+    .season-panel::before {
+      content: "VCL";
+      position: absolute;
+      right: -8px;
+      bottom: -36px;
+      font-size: 130px;
+      line-height: 1;
+      font-weight: 950;
+      color: rgba(255, 255, 255, 0.035);
+      pointer-events: none;
     }
 
-    .stat-icon {
-      font-size: 27px;
-      margin-bottom: 14px;
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: clamp(22px, 5vw, 30px);
-      margin-bottom: 10px;
-    }
-
-    .stat-card span {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* Only Teams and Match Centre */
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .quick-card {
+    .season-top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      padding: 20px 14px;
-      min-width: 0;
-      min-height: 125px;
-      background: var(--card);
-      border: 1px solid #293651;
-      border-radius: 18px;
-      transition: transform 0.25s, border-color 0.25s;
+      position: relative;
+      z-index: 1;
     }
 
-    .quick-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--cyan);
-    }
-
-    .quick-icon {
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      font-size: 23px;
-      border-radius: 14px;
-      background: linear-gradient(135deg,
-        rgba(30, 136, 229, 0.22),
-        rgba(106, 17, 203, 0.30));
-    }
-
-    .quick-info {
-      min-width: 0;
-    }
-
-    .quick-info h3 {
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .quick-info p {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .arrow {
-      flex-shrink: 0;
-      color: var(--cyan);
-      font-size: 20px;
-      margin-left: auto;
-    }
-
-    /* About */
-    .about-card {
-      padding: 28px 20px;
-      background: linear-gradient(120deg,
-        rgba(30, 60, 114, 0.45),
-        rgba(106, 17, 203, 0.18));
-      border: 1px solid #34456c;
-      border-radius: 20px;
-      text-align: center;
-    }
-
-    .about-card h2 {
-      font-size: 22px;
-      margin-bottom: 13px;
-    }
-
-    .about-card p {
-      color: #c0cbe0;
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 25px;
-      padding: 27px 16px;
-      text-align: center;
-      background: #080d19;
-      border-top: 1px solid #202b41;
-    }
-
-    footer strong {
-      font-size: 16px;
+    .season-tag {
+      background: rgba(230, 57, 70, 0.16);
+      color: #ff7c85;
+      border: 1px solid rgba(230, 57, 70, 0.3);
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 10px;
+      font-weight: 900;
       letter-spacing: 1px;
     }
 
-    footer p {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.8;
+    .season-year {
+      font-size: 12px;
+      color: #c2c5cb;
+      font-weight: 700;
+    }
+
+    .season-panel h2 {
+      font-size: 31px;
+      line-height: 1.15;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-panel > p {
+      color: #c4c6cc;
+      font-size: 13px;
       margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      margin: 23px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-stat strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .season-stat span {
+      color: #bfc2c9;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    /* Section headings */
+    .section {
+      padding: 35px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      color: var(--red);
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+    }
+
+    .section-heading p {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 5px;
+    }
+
+    .text-link {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .text-link:hover {
+      color: var(--red-dark);
+    }
+
+    /* Quick navigation cards */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .quick-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 19px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+
+    .quick-card::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background: var(--red);
+      transition: width 0.22s;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(230, 57, 70, 0.4);
+      box-shadow: 0 14px 30px rgba(20, 24, 32, 0.1);
+    }
+
+    .quick-card:hover::after {
+      width: 100%;
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      background: #fff0f1;
+      color: var(--red);
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .quick-card h3 {
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .quick-card p {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.7;
+      min-height: 40px;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 19px;
+      padding-top: 13px;
+      border-top: 1px solid #f0f0f2;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .arrow {
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    /* Information columns */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .content-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .content-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+    }
+
+    .content-card-header h3 {
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .small-label {
+      color: var(--gray);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .match-row {
+      padding: 17px 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #f0f1f3;
+    }
+
+    .match-row:last-child {
+      border-bottom: 0;
+    }
+
+    .match-info {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .team-badge {
+      width: 37px;
+      height: 37px;
+      border-radius: 10px;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .match-title {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .match-subtitle {
+      font-size: 10px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    .match-status {
+      border-radius: 5px;
+      padding: 5px 8px;
+      background: #f1f2f4;
+      color: #5f636c;
+      font-size: 9px;
+      font-weight: 900;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    .status-upcoming {
+      background: #fff0f1;
+      color: var(--red);
+    }
+
+    .status-finished {
+      background: #eaf7f0;
+      color: var(--green);
+    }
+
+    .about-content {
+      padding: 22px;
+    }
+
+    .about-mark {
+      width: 44px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 5px;
+      margin-bottom: 17px;
+    }
+
+    .about-content h3 {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .about-content p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.9;
+    }
+
+    .about-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .about-point {
+      background: #f8f8fa;
+      padding: 12px;
+      border-radius: 9px;
+      border: 1px solid #efeff2;
+    }
+
+    .about-point strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .about-point span {
+      color: var(--gray);
+      font-size: 10px;
+    }
+
+    /* Bottom CTA */
+    .cta {
+      padding: 28px;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #e63946, #c92130);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      margin: 25px 0 45px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::after {
+      content: "2026";
+      position: absolute;
+      right: 100px;
+      top: -33px;
+      font-size: 100px;
+      font-weight: 950;
+      color: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .cta h2 {
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.25;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.82);
+      margin-top: 7px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta .btn {
+      background: white;
+      color: var(--red);
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #15171b;
+      color: white;
+      padding: 35px 0 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand {
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .footer-brand span {
+      color: var(--red);
+    }
+
+    .footer-description {
+      color: #aeb1b8;
+      font-size: 11px;
+      margin-top: 4px;
     }
 
     .footer-links {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 15px;
+      gap: 19px;
     }
 
     .footer-links a {
-      color: #c3d2ec;
+      color: #d5d7dc;
       font-size: 11px;
+      font-weight: 700;
     }
 
-    @media (min-width: 700px) {
-      .hero {
-        padding: 35px 25px 60px;
-      }
-
-      .logo-wrap {
-        max-width: 500px;
-      }
-
-      .stats-grid {
-        gap: 18px;
-      }
-
-      .quick-grid {
-        gap: 22px;
-      }
-
-      .quick-card {
-        padding: 25px;
-        min-height: 145px;
-      }
+    .footer-links a:hover {
+      color: #ff7c85;
     }
 
-    @media (max-width: 380px) {
-      .navbar {
-        gap: 17px;
-        padding: 16px 8px;
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      color: #999da6;
+      font-size: 10px;
+    }
+
+    .footer-bottom strong {
+      color: white;
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .nav {
+        gap: 16px;
       }
 
-      .navbar a {
+      .nav a {
         font-size: 12px;
       }
 
-      .stats-grid {
-        gap: 7px;
+      .header-button {
+        display: none;
       }
 
-      .stat-card {
-        padding: 18px 3px;
-        border-radius: 15px;
+      .hero-grid {
+        grid-template-columns: 1fr 0.85fr;
+        gap: 20px;
       }
 
-      .stat-card span {
+      .quick-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .container {
+        width: 92%;
+      }
+
+      .announcement {
+        font-size: 10px;
+      }
+
+      .announcement-right {
         font-size: 9px;
       }
 
-      .quick-grid {
+      .header-inner {
+        min-height: auto;
+        padding-top: 13px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .logo-wrap {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand {
         gap: 9px;
       }
 
-      .quick-card {
-        padding: 13px 8px;
-        gap: 7px;
-        min-height: 120px;
-      }
-
-      .quick-icon {
-        width: 35px;
-        height: 35px;
+      .brand-name {
         font-size: 17px;
       }
 
-      .quick-info h3 {
+      .brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+      }
+
+      .nav {
+        order: 2;
+        width: 100%;
+        gap: 0;
+        justify-content: space-between;
+        overflow-x: auto;
+        border-top: 1px solid var(--border);
+        scrollbar-width: none;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a {
+        font-size: 11px;
+        padding: 13px 0;
+        white-space: nowrap;
+      }
+
+      .nav a.active::after {
+        bottom: 5px;
+      }
+
+      .hero {
+        padding: 40px 0 20px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .hero h1 {
+        font-size: clamp(37px, 11vw, 55px);
+        letter-spacing: -1.8px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .hero-actions {
+        gap: 9px;
+      }
+
+      .btn {
+        padding: 12px 14px;
         font-size: 12px;
       }
 
-      .quick-info p {
+      .season-panel {
+        padding: 23px;
+        border-radius: 15px;
+      }
+
+      .season-panel h2 {
+        font-size: 27px;
+      }
+
+      .section {
+        padding: 25px 0;
+      }
+
+      .section-heading {
+        align-items: start;
+      }
+
+      .section-heading h2 {
+        font-size: 25px;
+      }
+
+      .section-heading p {
+        font-size: 11px;
+      }
+
+      .quick-grid {
+        gap: 11px;
+      }
+
+      .quick-card {
+        padding: 16px 14px;
+        border-radius: 13px;
+      }
+
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 13px;
+      }
+
+      .card-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .quick-card h3 {
+        font-size: 14px;
+      }
+
+      .quick-card p {
+        font-size: 11px;
+        min-height: 55px;
+      }
+
+      .card-bottom {
+        margin-top: 13px;
         font-size: 10px;
+      }
+
+      .match-row {
+        padding: 14px;
+        gap: 8px;
+      }
+
+      .content-card-header {
+        padding: 15px;
+      }
+
+      .match-title {
+        font-size: 11px;
+      }
+
+      .match-status {
+        font-size: 8px;
+        padding: 4px 6px;
+      }
+
+      .about-content {
+        padding: 18px;
+      }
+
+      .about-content h3 {
+        font-size: 20px;
+      }
+
+      .cta {
+        padding: 23px 19px;
+        flex-direction: column;
+        align-items: start;
+        margin: 20px 0 35px;
+      }
+
+      .cta::after {
+        right: -10px;
+        font-size: 75px;
+      }
+
+      .footer-top {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .footer-links {
+        gap: 15px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
@@ -438,146 +1038,345 @@
 
 <body>
 
-  <nav class="navbar">
-    <a href="index.html" class="active">Home</a>
-    <a href="fixtures.html">Fixtures</a>
-    <a href="points.html">Points Table</a>
-    <a href="squad.html">Teams</a>
-  </nav>
-
-  <header class="hero">
-
-    <div class="logo-wrap">
-      <img
-        src="file_00000000fafc7208bb91a6123810609b.png"
-        alt="VCL Vatkhura Cricket League Logo"
-        onerror="this.style.display='none';"
-      >
+  <!-- Announcement bar -->
+  <div class="announcement">
+    <div class="container announcement-inner">
+      <div class="announcement-label">
+        <span class="live-dot"></span>
+        <span>VATKHURA CRICKET LEAGUE</span>
+      </div>
+      <div class="announcement-right">OFFICIAL WEBSITE · SESSION 03</div>
     </div>
+  </div>
 
-    <div class="eyebrow">WELCOME TO THE LEAGUE</div>
-
-    <h1>
-      VATKHURA<br>
-      <span>CRICKET LEAGUE</span>
-    </h1>
-
-    <p>
-      Passion. Competition. Glory.<br>
-      Welcome to the official home of VCL 2026.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="fixtures.html" class="btn btn-primary">
-        VIEW FIXTURES &rarr;
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="VCL Home">
+        <div class="logo-wrap">
+          <img
+            class="logo"
+            src="file_00000000fafc7208bb91a6123810609b.png"
+            alt="VCL Logo"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=&quot;color:#e63946;font-size:23px;font-weight:950&quot;>VCL</strong>';"
+          >
+        </div>
+        <div>
+          <div class="brand-name">VCL <span>2026</span></div>
+          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+        </div>
       </a>
 
-      <a href="points.html" class="btn btn-secondary">
-        POINTS TABLE
-      </a>
-    </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="fixtures.html">Fixtures</a>
+        <a href="points.html">Points Table</a>
+        <a href="teams.html">Teams</a>
+      </nav>
 
+      <a class="header-button" href="match-centre.html">MATCH CENTRE ↗</a>
+    </div>
   </header>
 
-  <main class="container">
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">The Game Starts Here</div>
+          <h1>
+            Vatkhura
+            Cricket
+            <span>League.</span>
+          </h1>
+          <p class="hero-description">
+            Welcome to VCL 2026 — your home for tournament fixtures,
+            team updates, points standings and match information.
+            One league. Six teams. One champion.
+          </p>
 
-    <section class="section">
-
-      <div class="section-heading">
-        <small>THE TOURNAMENT</small>
-        <h2>VCL at a Glance</h2>
-        <p>Everything you need to know about our cricket league.</p>
-      </div>
-
-      <div class="stats-grid">
-
-        <div class="stat-card">
-          <div class="stat-icon">🏆</div>
-          <strong>2026</strong>
-          <span>Season</span>
+          <div class="hero-actions">
+            <a href="fixtures.html" class="btn btn-primary">
+              Explore Fixtures <span>→</span>
+            </a>
+            <a href="teams.html" class="btn btn-secondary">
+              Meet The Teams
+            </a>
+          </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon">🛡️</div>
-          <strong>06</strong>
-          <span>Teams</span>
-        </div>
+        <div class="season-panel">
+          <div class="season-top">
+            <span class="season-tag">SESSION 03</span>
+            <span class="season-year">SEASON · 2026</span>
+          </div>
 
-        <div class="stat-card">
-          <div class="stat-icon">🏏</div>
-          <strong>09</strong>
-          <span>League Matches</span>
-        </div>
+          <h2>The Battle<br>For The Crown.</h2>
+          <p>
+            Every match matters. Every run counts.
+            Follow the journey of VCL 2026.
+          </p>
 
+          <div class="panel-divider"></div>
+
+          <div class="season-stats">
+            <div class="season-stat">
+              <strong>06</strong>
+              <span>Teams</span>
+            </div>
+            <div class="season-stat">
+              <strong>09</strong>
+              <span>League Matches</span>
+            </div>
+            <div class="season-stat">
+              <strong>01</strong>
+              <span>Champion</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Main sections -->
     <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Explore VCL</div>
+            <h2>Your League. One Place.</h2>
+            <p>Everything you need to follow the tournament.</p>
+          </div>
+        </div>
 
-      <div class="section-heading">
-        <small>EXPLORE VCL</small>
-        <h2>Your Match Centre</h2>
-        <p>Follow the tournament from one place.</p>
-      </div>
+        <div class="quick-grid">
+          <!-- Fixtures -->
+          <a class="quick-card" href="fixtures.html">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                <path d="M16 3v4M8 3v4M3 10h18"></path>
+                <path d="m9 15 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3>Fixtures</h3>
+            <p>Check the schedule, match dates and upcoming games.</p>
+            <div class="card-bottom">
+              <span>VIEW SCHEDULE</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
 
-      <div class="quick-grid">
+          <!-- Points Table -->
+          <a class="quick-card" href="points.html">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M4 19V5M4 19h17"></path>
+                <rect x="7" y="12" width="3" height="4" rx="1"></rect>
+                <rect x="12" y="8" width="3" height="8" rx="1"></rect>
+                <rect x="17" y="4" width="3" height="12" rx="1"></rect>
+              </svg>
+            </div>
+            <h3>Points Table</h3>
+            <p>Follow team standings, wins, losses, points and NRR.</p>
+            <div class="card-bottom">
+              <span>VIEW STANDINGS</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
 
-        <a href="squad.html" class="quick-card">
-          <div class="quick-icon">👥</div>
-
-          <div class="quick-info">
+          <!-- Teams -->
+          <a class="quick-card" href="teams.html">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <circle cx="9" cy="8" r="3"></circle>
+                <path d="M3 20v-2a6 6 0 0 1 12 0v2"></path>
+                <path d="M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.5V20"></path>
+              </svg>
+            </div>
             <h3>Teams</h3>
-            <p>Explore teams and their squads.</p>
-          </div>
+            <p>Discover the participating teams and their squads.</p>
+            <div class="card-bottom">
+              <span>EXPLORE TEAMS</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
 
-          <span class="arrow">&rarr;</span>
-        </a>
-
-        <a href="match.html" class="quick-card">
-          <div class="quick-icon">🏏</div>
-
-          <div class="quick-info">
+          <!-- Match Centre -->
+          <a class="quick-card" href="match-centre.html">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+                <path d="M7 3.8 5 2M17 3.8 19 2"></path>
+              </svg>
+            </div>
             <h3>Match Centre</h3>
-            <p>Match details and summaries.</p>
+            <p>Find match updates, results and score summaries.</p>
+            <div class="card-bottom">
+              <span>OPEN MATCH CENTRE</span>
+              <span class="arrow">→</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fixtures preview and about -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Tournament Updates</div>
+            <h2>Follow The Action.</h2>
+            <p>Quick access to match information and league details.</p>
+          </div>
+          <a href="fixtures.html" class="text-link">ALL FIXTURES ↗</a>
+        </div>
+
+        <div class="content-grid">
+          <!-- Fixture preview -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3>Match Schedule</h3>
+              <span class="small-label">VCL 2026</span>
+            </div>
+
+            <div class="match-row">
+              <div class="match-info">
+                <div class="team-badge">T1</div>
+                <div>
+                  <div class="match-title">Team 1 vs Team 2</div>
+                  <div class="match-subtitle">Match 01 · Schedule to be announced</div>
+                </div>
+              </div>
+              <span class="match-status status-upcoming">Upcoming</span>
+            </div>
+
+            <div class="match-row">
+              <div class="match-info">
+                <div class="team-badge">T3</div>
+                <div>
+                  <div class="match-title">Team 3 vs Team 4</div>
+                  <div class="match-subtitle">Match 02 · Schedule to be announced</div>
+                </div>
+              </div>
+              <span class="match-status status-upcoming">Upcoming</span>
+            </div>
+
+            <div class="match-row">
+              <div class="match-info">
+                <div class="team-badge">T5</div>
+                <div>
+                  <div class="match-title">Team 5 vs Team 6</div>
+                  <div class="match-subtitle">Match 03 · Schedule to be announced</div>
+                </div>
+              </div>
+              <span class="match-status status-upcoming">Upcoming</span>
+            </div>
+
+            <div class="match-row">
+              <div class="match-info">
+                <div class="team-badge">VCL</div>
+                <div>
+                  <div class="match-title">More Matches</div>
+                  <div class="match-subtitle">See the complete tournament schedule</div>
+                </div>
+              </div>
+              <a href="fixtures.html" class="text-link">VIEW →</a>
+            </div>
           </div>
 
-          <span class="arrow">&rarr;</span>
+          <!-- About -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3>About The League</h3>
+              <span class="small-label">OUR STORY</span>
+            </div>
+
+            <div class="about-content">
+              <div class="about-mark"></div>
+              <h3>More Than A Game.</h3>
+              <p>
+                Vatkhura Cricket League brings teams and cricket fans
+                together for a competitive tournament built around
+                teamwork, sportsmanship and the love of cricket.
+              </p>
+
+              <div class="about-points">
+                <div class="about-point">
+                  <strong>06</strong>
+                  <span>Participating Teams</span>
+                </div>
+                <div class="about-point">
+                  <strong>VCL</strong>
+                  <span>One Cricket Community</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px;">
+                <a href="teams.html" class="btn btn-secondary">
+                  Discover The Teams →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="container">
+      <div class="cta">
+        <div>
+          <h2>Ready For VCL 2026?</h2>
+          <p>Stay connected with the fixtures, standings and match updates.</p>
+        </div>
+        <a href="fixtures.html" class="btn">
+          Explore The League <span>→</span>
         </a>
-
       </div>
     </section>
-
-    <section class="section">
-      <div class="about-card">
-        <h2>More Than Just Cricket</h2>
-
-        <p>
-          Vatkhura Cricket League brings teams together through
-          competition, teamwork and sportsmanship. Follow the
-          journey of VCL 2026 and stay connected with the league.
-        </p>
-      </div>
-    </section>
-
   </main>
 
-  <footer>
-    <strong>VCL <span style="color:#08d9f5;">2026</span></strong>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">VATKHURA <span>CRICKET LEAGUE</span></div>
+          <div class="footer-description">
+            VCL 2026 · Session 03 · Cricket brings us together.
+          </div>
+        </div>
 
-    <p>
-      VATKHURA CRICKET LEAGUE<br>
-      Passion for Cricket. Pride in Every Match.
-    </p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="fixtures.html">Fixtures</a>
+          <a href="points.html">Points Table</a>
+          <a href="teams.html">Teams</a>
+          <a href="match-centre.html">Match Centre</a>
+        </div>
+      </div>
 
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="fixtures.html">Fixtures</a>
-      <a href="points.html">Points Table</a>
-      <a href="squad.html">Teams</a>
+      <div class="footer-bottom">
+        <span>© <span id="currentYear">2026</span> VCL. All rights reserved.</span>
+        <span>Made for the love of <strong>CRICKET.</strong></span>
+      </div>
     </div>
-
-    <p>&copy; 2026 Vatkhura Cricket League. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Automatically update the footer year.
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
