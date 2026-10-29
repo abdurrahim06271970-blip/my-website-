@@ -1,143 +1,410 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Points Table</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Points Table | VCL 2026</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  text-align: center;
+  <style>
+    :root {
+      --navy: #111827;
+      --navy-light: #202d43;
+      --turquoise: #26c6c5;
+      --turquoise-dark: #139b9a;
+      --gold: #f4c95d;
+      --background: #f5f7fa;
+      --white: #ffffff;
+      --text: #182131;
+      --muted: #737d8d;
+      --border: #e3e8ef;
+    }
 
-  /* SAME PRO GRADIENT */
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
-  min-height: 100vh;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* MENU */
-.menu {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  text-align: center;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-.menu a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-  padding-bottom: 5px;
-}
+    /* HEADER */
+    .header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-bottom: 3px solid var(--turquoise);
+    }
 
-.menu a.active {
-  border-bottom: 3px solid white;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-/* TITLE */
-h1 {
-  color: white;
-  margin: 20px 0;
-}
+    .logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
 
-/* TABLE */
-table {
-  margin: 20px auto;
-  width: 95%;
-  border-collapse: collapse;
-  background: rgba(255,255,255,0.95);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
+    .brand h2 {
+      font-size: 18px;
+      margin: 0 0 4px;
+      letter-spacing: 1px;
+    }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-}
+    .brand p {
+      margin: 0;
+      color: var(--turquoise);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
 
-th {
-  background: rgba(0,0,0,0.6);
-  color: white;
-}
+    /* NAVIGATION */
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
 
-/* ROW COLORS (modern soft version) */
-.team-a {
-  background: rgba(231, 76, 60, 0.9);
-  color: white;
-}
+    .menu a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
 
-.team-b {
-  background: rgba(52, 152, 219, 0.9);
-  color: white;
-}
+    .menu a:hover,
+    .menu a.active {
+      color: var(--turquoise);
+      border-bottom-color: var(--turquoise);
+    }
 
-.team-c {
-  background: rgba(46, 204, 113, 0.9);
-  color: white;
-}
+    /* PAGE TITLE */
+    .page-heading {
+      background: linear-gradient(120deg, var(--navy), var(--navy-light));
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
 
-/* text fix */
-.team-a td,
-.team-b td,
-.team-c td {
-  color: white;
-}
-</style>
+    .page-heading .eyebrow {
+      color: var(--turquoise);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin: 0 0 10px;
+    }
 
+    .page-heading h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .page-heading p {
+      margin: 10px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    /* TABLE AREA */
+    .container {
+      width: 94%;
+      max-width: 1050px;
+      margin: 30px auto;
+    }
+
+    .table-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(17, 24, 39, 0.06);
+    }
+
+    .table-top {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .table-top h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .season-tag {
+      background: #e7fafa;
+      color: var(--turquoise-dark);
+      border: 1px solid #c4eeee;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      background: var(--navy-light);
+      color: white;
+      padding: 15px 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 16px 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #f0fbfb;
+    }
+
+    .team-cell {
+      text-align: left;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .position {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 27px;
+      height: 27px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: #edf1f5;
+      color: var(--navy);
+      font-size: 12px;
+    }
+
+    .first-place .position {
+      background: var(--gold);
+    }
+
+    .points {
+      color: var(--turquoise-dark);
+      font-weight: bold;
+    }
+
+    .nrr {
+      font-weight: bold;
+    }
+
+    .positive {
+      color: #14835d;
+    }
+
+    .negative {
+      color: #c24141;
+    }
+
+    .table-note {
+      padding: 15px 20px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 45px;
+      padding: 22px 15px;
+      text-align: center;
+      background: var(--navy);
+      color: #aeb8c8;
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: var(--turquoise);
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .header {
+        justify-content: center;
+        text-align: center;
+        padding: 16px 12px;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .menu {
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .menu a {
+        font-size: 12px;
+      }
+
+      .page-heading {
+        padding: 28px 15px;
+      }
+
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .container {
+        width: 96%;
+        margin: 20px auto;
+      }
+
+      .table-top {
+        padding: 15px;
+      }
+
+      td {
+        padding: 13px 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="menu">
-  <a href="index.html">Home</a>
-  <a href="fixtures.html">Fixtures</a>
-  <a href="points.html" class="active">Points Table</a>
-  <a href="squad.html">Teams</a>
-</div>
+  <header class="header">
+    <div class="brand">
+      <img
+        class="logo"
+        src="file_00000000fafc7208bb91a6123810609b.png"
+        alt="VCL Logo"
+        onerror="this.style.display='none'"
+      >
+      <div>
+        <h2>VCL 2026</h2>
+        <p>VATKHURA CRICKET LEAGUE</p>
+      </div>
+    </div>
 
-<h1>📊 Points Table</h1>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="fixtures.html">Fixtures</a>
+      <a href="points.html" class="active">Points Table</a>
+      <a href="squad.html">Teams</a>
+    </nav>
+  </header>
 
-<table>
-<tr>
-  <th>Team</th>
-  <th>Match</th>
-  <th>Won</th>
-  <th>Lost</th>
-  <th>Points</th>
-  <th>NRR</th>
-</tr>
+  <section class="page-heading">
+    <p class="eyebrow">VCL 2026 • SESSION 03</p>
+    <h1>Points Table</h1>
+    <p>Track team standings throughout the tournament.</p>
+  </section>
 
-<tr class="team-a">
-  <td>1. Team A</td>
-  <td>3</td>
-  <td>2</td>
-  <td>1</td>
-  <td>4</td>
-  <td>0.45</td>
-</tr>
+  <main class="container">
+    <div class="table-card">
 
-<tr class="team-b">
-  <td>2. Team B</td>
-  <td>3</td>
-  <td>2</td>
-  <td>1</td>
-  <td>4</td>
-  <td>0.20</td>
-</tr>
+      <div class="table-top">
+        <h2>🏏 Tournament Standings</h2>
+        <span class="season-tag">SEASON 2026</span>
+      </div>
 
-<tr class="team-c">
-  <td>3. Team C</td>
-  <td>3</td>
-  <td>1</td>
-  <td>2</td>
-  <td>2</td>
-  <td>-0.10</td>
-</tr>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Match</th>
+              <th>Won</th>
+              <th>Lost</th>
+              <th>Points</th>
+              <th>NRR</th>
+            </tr>
+          </thead>
 
-</table>
+          <tbody>
+            <tr class="first-place">
+              <td class="team-cell">
+                <span class="position">1</span>Team A
+              </td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td class="points">4</td>
+              <td class="nrr positive">+0.45</td>
+            </tr>
+
+            <tr>
+              <td class="team-cell">
+                <span class="position">2</span>Team B
+              </td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td class="points">4</td>
+              <td class="nrr positive">+0.20</td>
+            </tr>
+
+            <tr>
+              <td class="team-cell">
+                <span class="position">3</span>Team C
+              </td>
+              <td>3</td>
+              <td>1</td>
+              <td>2</td>
+              <td class="points">2</td>
+              <td class="nrr negative">-0.10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-note">
+        Note: Team names and statistics are sample data. Update them with the
+        official VCL match results as the tournament progresses.
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <strong>VCL 2026</strong> — Vatkhura Cricket League
+    <br><br>
+    Passion • Teamwork • Cricket
+  </footer>
 
 </body>
 </html>
