@@ -4,301 +4,374 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Match Details | VCL 2026</title>
+  <meta name="theme-color" content="#111827">
+  <title>Teams | VCL 2026</title>
 
   <style>
     :root {
+      --bg: #f5f7fa;
+      --white: #ffffff;
       --navy: #111827;
       --navy-light: #202d43;
-      --turquoise: #26c6c5;
-      --turquoise-dark: #139b9a;
-      --gold: #f4c95d;
-      --background: #f5f7fa;
-      --white: #ffffff;
+      --accent: #26c6c5;
+      --accent-dark: #139b9a;
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--background);
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      line-height: 1.6;
     }
 
-    /* HEADER */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1050px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    /* HEADER - SAME AS FIXTURES */
     .header {
-      background: var(--navy);
-      color: white;
-      padding: 14px 5%;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      flex-wrap: wrap;
-      border-bottom: 3px solid var(--turquoise);
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 53px;
+      height: 53px;
+      border-radius: 13px;
+      overflow: hidden;
+      background: var(--navy);
+      display: grid;
+      place-items: center;
     }
 
     .logo {
-      width: 48px;
-      height: 48px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      border-radius: 8px;
     }
 
-    .brand h2 {
-      margin: 0 0 4px;
-      font-size: 18px;
-      letter-spacing: 1px;
+    .brand-title {
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--navy);
     }
 
-    .brand p {
-      margin: 0;
-      color: var(--turquoise);
-      font-size: 11px;
-      letter-spacing: 2px;
+    .brand-title span {
+      color: var(--accent-dark);
     }
 
-    /* NAVIGATION */
-    .menu {
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+    }
+
+    .nav {
       display: flex;
       align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
+      gap: 24px;
     }
 
-    .menu a {
-      color: #e5e7eb;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 10px 0;
-      border-bottom: 2px solid transparent;
+    .nav a {
+      color: #515b6b;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 27px 0 24px;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s;
     }
 
-    .menu a:hover {
-      color: var(--turquoise);
-      border-bottom-color: var(--turquoise);
+    .nav a:hover,
+    .nav a.active {
+      color: var(--navy);
+      border-bottom-color: var(--accent);
     }
 
-    /* PAGE TITLE */
-    .page-heading {
-      background: linear-gradient(120deg, var(--navy), var(--navy-light));
-      color: white;
-      padding: 35px 20px;
-      text-align: center;
+    /* PAGE */
+    .main {
+      padding: 48px 0 70px;
     }
 
-    .page-heading .eyebrow {
-      color: var(--turquoise);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      margin: 0 0 10px;
-    }
-
-    .page-heading h1 {
-      margin: 0;
-      font-size: 30px;
-    }
-
-    .page-heading p {
-      color: #cbd5e1;
-      font-size: 14px;
-      margin: 10px 0 0;
-    }
-
-    /* MATCH CONTENT */
-    .container {
-      width: 92%;
-      max-width: 760px;
-      margin: 30px auto;
-    }
-
-    .match-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 5px 18px rgba(17, 24, 39, 0.06);
-    }
-
-    .match-card-header {
-      padding: 18px 20px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .match-label {
-      display: inline-block;
-      background: #e7fafa;
-      color: var(--turquoise-dark);
-      border: 1px solid #c4eeee;
-      padding: 6px 12px;
-      border-radius: 20px;
+    .eyebrow {
+      color: var(--accent-dark);
       font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 9px;
     }
 
-    .match-card-header h2 {
-      margin: 14px 0 0;
-      font-size: 22px;
+    .page-title {
+      color: var(--navy);
+      font-size: clamp(30px, 5vw, 43px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
     }
 
-    .score-area {
-      padding: 25px 20px;
+    .page-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
     }
 
-    .score-row {
+    .title-line {
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 5px;
+      margin-top: 19px;
+    }
+
+    /* TEAM SUMMARY */
+    .team-summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-      padding: 18px;
-      margin-bottom: 12px;
-      background: var(--background);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      margin-bottom: 18px;
     }
 
-    .score-row:last-child {
-      margin-bottom: 0;
+    .team-summary h2 {
+      font-size: 19px;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .team-count {
+      color: var(--accent-dark);
+      background: #e6fafa;
+      border: 1px solid #c8f1f0;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    /* TEAMS GRID */
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .team-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .team-icon {
+      width: 49px;
+      height: 49px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: var(--accent);
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .team-info {
+      min-width: 0;
     }
 
     .team-name {
       font-size: 15px;
-      font-weight: bold;
-    }
-
-    .score {
-      font-size: 21px;
-      font-weight: bold;
+      font-weight: 900;
       color: var(--navy);
-      text-align: right;
+      line-height: 1.4;
     }
 
-    .overs {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: normal;
-      margin-top: 5px;
-    }
-
-    .result-box {
-      background: var(--navy);
-      color: white;
-      padding: 22px 18px;
-      text-align: center;
-      border-top: 3px solid var(--turquoise);
-    }
-
-    .result-box p {
-      color: var(--turquoise);
+    .team-label {
       font-size: 11px;
-      letter-spacing: 2px;
-      font-weight: bold;
-      margin: 0 0 10px;
-    }
-
-    .result-box h3 {
-      margin: 0;
-      font-size: 19px;
-      line-height: 1.5;
-    }
-
-    .not-found {
-      padding: 35px 20px;
-      text-align: center;
       color: var(--muted);
+      margin-top: 4px;
     }
 
-    .back-button {
+    .team-badge {
       display: inline-block;
-      margin-top: 22px;
-      padding: 12px 20px;
-      border-radius: 7px;
-      background: var(--turquoise);
-      color: var(--navy);
-      font-weight: bold;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background: #e6fafa;
+      color: var(--accent-dark);
+      border: 1px solid #c8f1f0;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 15px 17px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: var(--accent-dark);
       font-size: 13px;
-      text-decoration: none;
+      font-weight: 800;
     }
 
-    .back-button:hover {
-      background: var(--gold);
+    .back-link:hover {
+      color: var(--navy);
     }
 
-    footer {
-      margin-top: 45px;
-      padding: 22px 15px;
-      text-align: center;
+    /* FOOTER - SAME AS FIXTURES */
+    .footer {
       background: var(--navy);
-      color: #aeb8c8;
-      font-size: 12px;
+      color: #c6ced9;
+      padding: 21px 0;
     }
 
-    footer strong {
-      color: var(--turquoise);
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
     }
 
-    @media (max-width: 600px) {
-      .header {
-        justify-content: center;
-        text-align: center;
-        padding: 16px 12px;
-      }
+    .footer strong {
+      color: var(--accent);
+    }
 
-      .brand {
-        justify-content: center;
-      }
-
-      .menu {
-        justify-content: center;
-        gap: 15px;
-      }
-
-      .menu a {
-        font-size: 12px;
-      }
-
-      .page-heading {
-        padding: 28px 15px;
-      }
-
-      .page-heading h1 {
-        font-size: 25px;
-      }
-
+    /* MOBILE */
+    @media (max-width: 700px) {
       .container {
-        width: 94%;
-        margin: 20px auto;
+        width: calc(100% - 28px);
       }
 
-      .score-row {
-        padding: 14px 12px;
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 0;
+        padding-top: 12px;
       }
 
-      .team-name {
-        font-size: 13px;
+      .logo-box {
+        width: 46px;
+        height: 46px;
       }
 
-      .score {
-        font-size: 18px;
+      .brand-title {
+        font-size: 19px;
+      }
+
+      .brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .nav {
+        order: 2;
+        width: 100%;
+        gap: 24px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-top: 1px solid var(--border);
+        margin-top: 12px;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a {
+        font-size: 12px;
+        padding: 13px 0 10px;
+      }
+
+      .main {
+        padding: 35px 0 50px;
+      }
+
+      .teams-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .team-card {
+        padding: 16px;
+      }
+
+      .team-icon {
+        width: 43px;
+        height: 43px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        width: calc(100% - 22px);
+      }
+
+      .nav {
+        gap: 19px;
       }
     }
   </style>
@@ -306,127 +379,125 @@
 
 <body>
 
+  <!-- SAME HEADER AS FIXTURES -->
   <header class="header">
-    <div class="brand">
-      <img
-        class="logo"
-        src="file_00000000fafc7208bb91a6123810609b.png"
-        alt="VCL Logo"
-        onerror="this.style.display='none'"
-      >
-      <div>
-        <h2>VCL 2026</h2>
-        <p>VATKHURA CRICKET LEAGUE</p>
-      </div>
-    </div>
+    <div class="container header-inner">
 
-    <nav class="menu">
-      <a href="index.html">Home</a>
-      <a href="fixtures.html">Fixtures</a>
-      <a href="points.html">Points Table</a>
-      <a href="squad.html">Teams</a>
-    </nav>
+      <a class="brand" href="index.html">
+        <div class="logo-box">
+          <img
+            class="logo"
+            src="file_00000000fafc7208bb91a6123810609b.png"
+            alt="VCL Logo"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#26c6c5;font-size:19px&quot;>VCL</b>';"
+          >
+        </div>
+
+        <div>
+          <div class="brand-title">VCL <span>2026</span></div>
+          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="fixtures.html">Fixtures</a>
+        <a href="points.html">Points Table</a>
+        <a href="teams.html" class="active">Teams</a>
+      </nav>
+
+    </div>
   </header>
 
-  <section class="page-heading">
-    <p class="eyebrow">VCL 2026 • SESSION 03</p>
-    <h1>Match Details</h1>
-    <p>Match scorecard and final result</p>
-  </section>
+  <main class="container main">
 
-  <main class="container">
-    <div class="match-card" id="matchData">
-      <div class="not-found">Loading match details...</div>
+    <div class="eyebrow">VCL 2026 · SESSION 03</div>
+    <h1 class="page-title">Participating Teams</h1>
+
+    <p class="page-description">
+      Meet the teams competing in Vatkhura Cricket League.
+    </p>
+
+    <div class="title-line"></div>
+
+    <div class="team-summary">
+      <h2>🏏 Tournament Teams</h2>
+      <span class="team-count">6 TEAMS</span>
     </div>
 
-    <div style="text-align:center;">
-      <a class="back-button" href="fixtures.html">
-        ← Back to Fixtures
-      </a>
+    <section class="teams-grid">
+
+      <article class="team-card">
+        <div class="team-icon">01</div>
+        <div class="team-info">
+          <div class="team-name">Siam</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 01</span>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon">02</div>
+        <div class="team-info">
+          <div class="team-name">Ridoy</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 02</span>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon">03</div>
+        <div class="team-info">
+          <div class="team-name">Jihad</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 03</span>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon">04</div>
+        <div class="team-info">
+          <div class="team-name">Pushpa</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 04</span>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon">05</div>
+        <div class="team-info">
+          <div class="team-name">Manik</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 05</span>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-icon">06</div>
+        <div class="team-info">
+          <div class="team-name">Joy</div>
+          <div class="team-label">VCL 2026 Participant</div>
+          <span class="team-badge">TEAM 06</span>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="note">
+      Note: These are sample team labels based on the current team list.
+      You can replace them with the official team names whenever they are finalized.
     </div>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+
   </main>
 
-  <footer>
-    <strong>VCL 2026</strong> — Vatkhura Cricket League
-    <br><br>
-    Passion • Teamwork • Cricket
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span>Made for the love of cricket.</span>
+    </div>
   </footer>
-
-  <script>
-    const data = {
-      1: {
-        teams: "Team A vs Team B",
-        scores: [
-          {
-            team: "Team A",
-            score: "120/6",
-            overs: "10 overs"
-          },
-          {
-            team: "Team B",
-            score: "100/9",
-            overs: "10 overs"
-          }
-        ],
-        result: "Team A won by 20 runs"
-      },
-
-      2: {
-        teams: "Team C vs Team D",
-        scores: [
-          {
-            team: "Team C",
-            score: "150/5",
-            overs: "Overs not specified"
-          },
-          {
-            team: "Team D",
-            score: "151/4",
-            overs: "Overs not specified"
-          }
-        ],
-        result: "Team D won by 6 wickets"
-      }
-    };
-
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    const match = data[id];
-    const matchData = document.getElementById("matchData");
-
-    if (match) {
-      matchData.innerHTML = `
-        <div class="match-card-header">
-          <span class="match-label">MATCH ${id}</span>
-          <h2>${match.teams}</h2>
-        </div>
-
-        <div class="score-area">
-          ${match.scores.map(item => `
-            <div class="score-row">
-              <div class="team-name">${item.team}</div>
-              <div class="score">
-                ${item.score}
-                <span class="overs">${item.overs}</span>
-              </div>
-            </div>
-          `).join("")}
-        </div>
-
-        <div class="result-box">
-          <p>FINAL RESULT</p>
-          <h3>${match.result}</h3>
-        </div>
-      `;
-    } else {
-      matchData.innerHTML = `
-        <div class="not-found">
-          <h2>Match Not Found</h2>
-          <p>Please check the match ID or return to the fixtures page.</p>
-        </div>
-      `;
-    }
-  </script>
 
 </body>
 </html>
