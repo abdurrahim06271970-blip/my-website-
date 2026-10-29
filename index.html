@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#10182d">
+  <meta name="theme-color" content="#0b1020">
   <title>VCL 2026 | Vatkhura Cricket League</title>
 
   <style>
@@ -16,8 +17,6 @@
     :root {
       --bg: #0b1020;
       --card: #151e35;
-      --blue: #1e88e5;
-      --purple: #6a11cb;
       --cyan: #08d9f5;
       --text: #f4f7ff;
       --muted: #a9b5cc;
@@ -58,7 +57,6 @@
       padding: 5px 0;
       position: relative;
       white-space: nowrap;
-      transition: color 0.25s;
     }
 
     .navbar a:hover,
@@ -82,32 +80,18 @@
       position: relative;
       overflow: hidden;
       text-align: center;
-      padding: 42px 18px 55px;
+      padding: 28px 16px 48px;
       background:
         radial-gradient(ellipse at 50% 10%,
-          rgba(42, 82, 152, 0.45), transparent 65%),
+          rgba(42, 82, 152, 0.35), transparent 65%),
         linear-gradient(145deg, #10182d, #17142e 65%, #11182b);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 270px;
-      height: 270px;
-      border-radius: 50%;
-      background: rgba(106, 17, 203, 0.14);
-      filter: blur(75px);
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
     .logo-wrap {
-      position: relative;
-      max-width: 330px;
-      margin: 0 auto 25px;
-      animation: appear 0.8s ease both;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 22px;
+      background: transparent;
     }
 
     .logo-wrap img {
@@ -115,7 +99,11 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-      border-radius: 12px;
+      background: transparent;
+
+      /* Helps blend a white image background.
+         Best result comes from a transparent PNG. */
+      mix-blend-mode: multiply;
     }
 
     .eyebrow {
@@ -132,11 +120,9 @@
     }
 
     .hero h1 {
-      position: relative;
-      font-size: clamp(28px, 7vw, 44px);
+      font-size: clamp(27px, 7vw, 42px);
       font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -1px;
+      line-height: 1.2;
       margin-bottom: 15px;
     }
 
@@ -160,7 +146,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-top: 27px;
+      margin-top: 25px;
     }
 
     .btn {
@@ -169,7 +155,7 @@
       border-radius: 8px;
       font-size: 13px;
       font-weight: 800;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s;
     }
 
     .btn:hover {
@@ -179,7 +165,6 @@
     .btn-primary {
       color: #071321;
       background: linear-gradient(100deg, #08d9f5, #7a9cff);
-      box-shadow: 0 6px 22px rgba(8, 217, 245, 0.16);
     }
 
     .btn-secondary {
@@ -223,7 +208,7 @@
       line-height: 1.7;
     }
 
-    /* Stats */
+    /* Tournament stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -234,26 +219,24 @@
       text-align: center;
       background: linear-gradient(145deg, #18233e, #121a2e);
       border: 1px solid #273653;
-      border-radius: 12px;
-      padding: 23px 6px;
-      transition: transform 0.25s, border-color 0.25s;
+      border-radius: 20px;
+      padding: 25px 6px;
+      transition: transform 0.25s;
     }
 
     .stat-card:hover {
       transform: translateY(-4px);
-      border-color: #08aeca;
     }
 
     .stat-icon {
-      font-size: 23px;
-      margin-bottom: 12px;
+      font-size: 27px;
+      margin-bottom: 14px;
     }
 
     .stat-card strong {
       display: block;
       font-size: clamp(22px, 5vw, 30px);
-      color: white;
-      margin-bottom: 7px;
+      margin-bottom: 10px;
     }
 
     .stat-card span {
@@ -264,22 +247,23 @@
       text-transform: uppercase;
     }
 
-    /* Quick links */
+    /* Only Teams and Match Centre */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
 
     .quick-card {
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 18px 14px;
+      gap: 12px;
+      padding: 20px 14px;
       min-width: 0;
+      min-height: 125px;
       background: var(--card);
       border: 1px solid #293651;
-      border-radius: 12px;
+      border-radius: 18px;
       transition: transform 0.25s, border-color 0.25s;
     }
 
@@ -292,13 +276,13 @@
       flex-shrink: 0;
       display: grid;
       place-items: center;
-      width: 43px;
-      height: 43px;
-      font-size: 21px;
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      font-size: 23px;
+      border-radius: 14px;
       background: linear-gradient(135deg,
         rgba(30, 136, 229, 0.22),
-        rgba(106, 17, 203, 0.22));
+        rgba(106, 17, 203, 0.30));
     }
 
     .quick-info {
@@ -306,35 +290,36 @@
     }
 
     .quick-info h3 {
-      font-size: 13px;
-      margin-bottom: 6px;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
     .quick-info p {
       color: var(--muted);
-      font-size: 10px;
-      line-height: 1.6;
+      font-size: 11px;
+      line-height: 1.7;
     }
 
     .arrow {
+      flex-shrink: 0;
       color: var(--cyan);
-      font-size: 18px;
+      font-size: 20px;
       margin-left: auto;
     }
 
     /* About */
     .about-card {
-      padding: 24px 20px;
+      padding: 28px 20px;
       background: linear-gradient(120deg,
         rgba(30, 60, 114, 0.45),
         rgba(106, 17, 203, 0.18));
       border: 1px solid #34456c;
-      border-radius: 14px;
+      border-radius: 20px;
       text-align: center;
     }
 
     .about-card h2 {
-      font-size: 21px;
+      font-size: 22px;
       margin-bottom: 13px;
     }
 
@@ -378,24 +363,13 @@
       font-size: 11px;
     }
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @media (min-width: 700px) {
       .hero {
-        padding: 55px 25px 65px;
+        padding: 35px 25px 60px;
       }
 
       .logo-wrap {
-        max-width: 350px;
+        max-width: 500px;
       }
 
       .stats-grid {
@@ -403,21 +377,12 @@
       }
 
       .quick-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
       }
 
       .quick-card {
-        display: block;
-        padding: 22px 15px;
-      }
-
-      .quick-icon {
-        margin-bottom: 15px;
-      }
-
-      .arrow {
-        display: block;
-        margin-top: 12px;
+        padding: 25px;
+        min-height: 145px;
       }
     }
 
@@ -437,6 +402,7 @@
 
       .stat-card {
         padding: 18px 3px;
+        border-radius: 15px;
       }
 
       .stat-card span {
@@ -448,14 +414,23 @@
       }
 
       .quick-card {
-        padding: 14px 9px;
-        gap: 8px;
+        padding: 13px 8px;
+        gap: 7px;
+        min-height: 120px;
       }
 
       .quick-icon {
-        width: 34px;
-        height: 34px;
+        width: 35px;
+        height: 35px;
         font-size: 17px;
+      }
+
+      .quick-info h3 {
+        font-size: 12px;
+      }
+
+      .quick-info p {
+        font-size: 10px;
       }
     }
   </style>
@@ -471,18 +446,21 @@
   </nav>
 
   <header class="hero">
+
     <div class="logo-wrap">
-      <!-- Replace this filename if your logo has a different name -->
       <img
         src="file_00000000fafc7208bb91a6123810609b.png"
-        alt="Vatkhura Cricket League Logo"
+        alt="VCL Vatkhura Cricket League Logo"
         onerror="this.style.display='none';"
       >
     </div>
 
     <div class="eyebrow">WELCOME TO THE LEAGUE</div>
 
-    <h1>VATKHURA<br><span>CRICKET LEAGUE</span></h1>
+    <h1>
+      VATKHURA<br>
+      <span>CRICKET LEAGUE</span>
+    </h1>
 
     <p>
       Passion. Competition. Glory.<br>
@@ -493,15 +471,18 @@
       <a href="fixtures.html" class="btn btn-primary">
         VIEW FIXTURES &rarr;
       </a>
+
       <a href="points.html" class="btn btn-secondary">
         POINTS TABLE
       </a>
     </div>
+
   </header>
 
   <main class="container">
 
     <section class="section">
+
       <div class="section-heading">
         <small>THE TOURNAMENT</small>
         <h2>VCL at a Glance</h2>
@@ -509,6 +490,7 @@
       </div>
 
       <div class="stats-grid">
+
         <div class="stat-card">
           <div class="stat-icon">🏆</div>
           <strong>2026</strong>
@@ -526,10 +508,12 @@
           <strong>09</strong>
           <span>League Matches</span>
         </div>
+
       </div>
     </section>
 
     <section class="section">
+
       <div class="section-heading">
         <small>EXPLORE VCL</small>
         <h2>Your Match Centre</h2>
@@ -537,47 +521,36 @@
       </div>
 
       <div class="quick-grid">
-        <a href="fixtures.html" class="quick-card">
-          <div class="quick-icon">📅</div>
-          <div class="quick-info">
-            <h3>Fixtures</h3>
-            <p>Match schedule and upcoming games.</p>
-          </div>
-          <span class="arrow">&rarr;</span>
-        </a>
-
-        <a href="points.html" class="quick-card">
-          <div class="quick-icon">📊</div>
-          <div class="quick-info">
-            <h3>Points Table</h3>
-            <p>Standings and team performance.</p>
-          </div>
-          <span class="arrow">&rarr;</span>
-        </a>
 
         <a href="squad.html" class="quick-card">
           <div class="quick-icon">👥</div>
+
           <div class="quick-info">
             <h3>Teams</h3>
             <p>Explore teams and their squads.</p>
           </div>
+
           <span class="arrow">&rarr;</span>
         </a>
 
         <a href="match.html" class="quick-card">
           <div class="quick-icon">🏏</div>
+
           <div class="quick-info">
             <h3>Match Centre</h3>
             <p>Match details and summaries.</p>
           </div>
+
           <span class="arrow">&rarr;</span>
         </a>
+
       </div>
     </section>
 
     <section class="section">
       <div class="about-card">
         <h2>More Than Just Cricket</h2>
+
         <p>
           Vatkhura Cricket League brings teams together through
           competition, teamwork and sportsmanship. Follow the
@@ -590,7 +563,9 @@
 
   <footer>
     <strong>VCL <span style="color:#08d9f5;">2026</span></strong>
-    <p>VATKHURA CRICKET LEAGUE<br>
+
+    <p>
+      VATKHURA CRICKET LEAGUE<br>
       Passion for Cricket. Pride in Every Match.
     </p>
 
@@ -604,4 +579,5 @@
     <p>&copy; 2026 Vatkhura Cricket League. All rights reserved.</p>
   </footer>
 
-      </body>
+</body>
+</html>
