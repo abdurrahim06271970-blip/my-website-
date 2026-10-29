@@ -1,210 +1,456 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fixtures</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Fixtures | VCL 2026</title>
 
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  text-align: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb);
-}
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --white: #ffffff;
+      --navy: #111827;
+      --navy-light: #202d43;
+      --accent: #26c6c5;
+      --accent-dark: #139b9a;
+      --text: #182131;
+      --muted: #737d8d;
+      --border: #e3e8ef;
+    }
 
-.menu {
-  background: rgba(0,0,0,0.4);
-  padding: 15px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.menu a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-.menu a.active {
-  border-bottom: 3px solid white;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-h1 { color: white; }
+    .container {
+      width: min(1050px, calc(100% - 36px));
+      margin: auto;
+    }
 
-.card {
-  background: rgba(255,255,255,0.95);
-  margin: 15px auto;
-  padding: 15px;
-  width: 90%;
-  border-radius: 12px;
-  text-align: left;
-  cursor: pointer;
-}
+    /* HEADER */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
 
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: white;
-  font-size: 12px;
-}
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.finished { background: gray; }
-.upcoming { background: orange; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
 
-.modal {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  overflow-y: auto;
-}
+    .logo-box {
+      width: 53px;
+      height: 53px;
+      border-radius: 13px;
+      overflow: hidden;
+      background: var(--navy);
+      display: grid;
+      place-items: center;
+    }
 
-.modal-content {
-  background: white;
-  width: 95%;
-  margin: 25px auto;
-  padding: 20px;
-  border-radius: 12px;
-}
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-.close {
-  float: right;
-  font-size: 25px;
-  cursor: pointer;
-}
+    .brand-title {
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--navy);
+    }
 
-.section {
-  margin-top: 15px;
-  padding: 10px;
-  background: #f5f5f5;
-  border-left: 4px solid #1e3c72;
-}
-</style>
+    .brand-title span {
+      color: var(--accent-dark);
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav a {
+      color: #515b6b;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 27px 0 24px;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--navy);
+      border-bottom-color: var(--accent);
+    }
+
+    /* PAGE */
+    .main {
+      padding: 48px 0 70px;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 9px;
+    }
+
+    .page-title {
+      color: var(--navy);
+      font-size: clamp(30px, 5vw, 43px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+
+    .page-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .title-line {
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 5px;
+      margin-top: 19px;
+    }
+
+    /* FIXTURES */
+    .fixtures-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .fixture {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 19px 21px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .fixture:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .fixture-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .fixture-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border-radius: 11px;
+      background: var(--navy);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .teams {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .match-date {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .status {
+      color: var(--accent-dark);
+      background: #e6fafa;
+      border: 1px solid #c8f1f0;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      color: var(--navy);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy);
+      color: #c6ced9;
+      padding: 21px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
+    }
+
+    .footer strong {
+      color: var(--accent);
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 0;
+        padding-top: 12px;
+      }
+
+      .logo-box {
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand-title {
+        font-size: 19px;
+      }
+
+      .brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .nav {
+        order: 2;
+        width: 100%;
+        gap: 24px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-top: 1px solid var(--border);
+        margin-top: 12px;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a {
+        font-size: 12px;
+        padding: 13px 0 10px;
+      }
+
+      .main {
+        padding: 35px 0 50px;
+      }
+
+      .fixture {
+        padding: 15px 12px;
+        gap: 8px;
+      }
+
+      .fixture-left {
+        gap: 10px;
+      }
+
+      .fixture-number {
+        width: 36px;
+        height: 36px;
+        font-size: 11px;
+      }
+
+      .teams {
+        font-size: 12px;
+      }
+
+      .match-date {
+        font-size: 10px;
+      }
+
+      .status {
+        padding: 5px 7px;
+        font-size: 9px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        width: calc(100% - 22px);
+      }
+
+      .nav {
+        gap: 19px;
+      }
+
+      .fixture {
+        flex-wrap: wrap;
+      }
+
+      .status {
+        margin-left: 46px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="menu">
-  <a href="index.html">Home</a>
-  <a href="fixtures.html" class="active">Fixtures</a>
-  <a href="points.html">Points Table</a>
-  <a href="squad.html">Teams</a>
-</div>
+  <!-- SAME HEADER AS HOME -->
+  <header class="header">
+    <div class="container header-inner">
 
-<h1>🗓️ Fixtures</h1>
+      <a class="brand" href="index.html">
+        <div class="logo-box">
+          <img
+            class="logo"
+            src="file_00000000fafc7208bb91a6123810609b.png"
+            alt="VCL Logo"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#26c6c5;font-size:19px&quot;>VCL</b>';"
+          >
+        </div>
 
-<!-- 🔥 FINISHED MATCHES -->
-<div class="card" onclick="openScorecard(1)">
-<h3>Stars vs Napoleons</h3>
-<span class="status finished">Finished</span>
-</div>
+        <div>
+          <div class="brand-title">VCL <span>2026</span></div>
+          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+        </div>
+      </a>
 
-<div class="card" onclick="openScorecard(2)">
-<h3>Team A vs Team B</h3>
-<span class="status finished">Finished</span>
-</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="fixtures.html" class="active">Fixtures</a>
+        <a href="points.html">Points Table</a>
+        <a href="teams.html">Teams</a>
+      </nav>
 
-<div class="card" onclick="openScorecard(3)">
-<h3>Team C vs Team D</h3>
-<span class="status finished">Finished</span>
-</div>
+    </div>
+  </header>
 
-<div class="card" onclick="openScorecard(4)">
-<h3>Team E vs Team F</h3>
-<span class="status finished">Finished</span>
-</div>
+  <main class="container main">
 
-<!-- 🔥 UPCOMING MATCHES -->
-<div class="card" onclick="openScorecard(5)">
-<h3>Team A vs Team C</h3>
-<span class="status upcoming">Upcoming</span>
-</div>
+    <div class="eyebrow">VCL 2026 · SESSION 03</div>
+    <h1 class="page-title">Match Fixtures</h1>
 
-<div class="card" onclick="openScorecard(6)">
-<h3>Team B vs Team D</h3>
-<span class="status upcoming">Upcoming</span>
-</div>
+    <p class="page-description">
+      Check the schedule and upcoming tournament matches.
+    </p>
 
-<div class="card" onclick="openScorecard(7)">
-<h3>Team E vs Team A</h3>
-<span class="status upcoming">Upcoming</span>
-</div>
+    <div class="title-line"></div>
 
-<div class="card" onclick="openScorecard(8)">
-<h3>Team F vs Team B</h3>
-<span class="status upcoming">Upcoming</span>
-</div>
+    <section class="fixtures-list">
 
-<div class="card" onclick="openScorecard(9)">
-<h3>Team C vs Team E</h3>
-<span class="status upcoming">Upcoming</span>
-</div>
+      <article class="fixture">
+        <div class="fixture-left">
+          <div class="fixture-number">01</div>
+          <div>
+            <div class="teams">Team A vs Team B</div>
+            <div class="match-date">10 April</div>
+          </div>
+        </div>
+        <span class="status">SCHEDULED</span>
+      </article>
 
-<!-- MODAL -->
-<div id="modal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">&times;</span>
-<div id="scorecard"></div>
-</div>
-</div>
+      <article class="fixture">
+        <div class="fixture-left">
+          <div class="fixture-number">02</div>
+          <div>
+            <div class="teams">Team C vs Team D</div>
+            <div class="match-date">11 April</div>
+          </div>
+        </div>
+        <span class="status">SCHEDULED</span>
+      </article>
 
-<script>
+      <article class="fixture">
+        <div class="fixture-left">
+          <div class="fixture-number">03</div>
+          <div>
+            <div class="teams">Team A vs Team C</div>
+            <div class="match-date">12 April</div>
+          </div>
+        </div>
+        <span class="status">SCHEDULED</span>
+      </article>
 
-const matches = {
-1: {
-league: "BCL",
-team1: "Stars",
-team2: "Napoleons",
-innings1:{team:"Stars",score:"150-10",overs:"20",batting:["Player 1 50 (30)"],bowling:["Bowler 1 3-20"]},
-innings2:{team:"Napoleons",score:"120-10",overs:"18",batting:["Player X 40 (25)"],bowling:["Bowler A 4-15"]},
-result:"Stars won by 30 runs"
-},
+    </section>
 
-2:{league:"VCL",team1:"A",team2:"B",innings1:{team:"A",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"B",score:"-",overs:"-",batting:[],bowling:[]},result:"Not started"},
-3:{league:"VCL",team1:"C",team2:"D",innings1:{team:"C",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"D",score:"-",overs:"-",batting:[],bowling:[]},result:"Not started"},
-4:{league:"VCL",team1:"E",team2:"F",innings1:{team:"E",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"F",score:"-",overs:"-",batting:[],bowling:[]},result:"Not started"},
-5:{league:"VCL",team1:"A",team2:"C",innings1:{team:"A",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"C",score:"-",overs:"-",batting:[],bowling:[]},result:"Upcoming"},
-6:{league:"VCL",team1:"B",team2:"D",innings1:{team:"B",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"D",score:"-",overs:"-",batting:[],bowling:[]},result:"Upcoming"},
-7:{league:"VCL",team1:"E",team2:"A",innings1:{team:"E",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"A",score:"-",overs:"-",batting:[],bowling:[]},result:"Upcoming"},
-8:{league:"VCL",team1:"F",team2:"B",innings1:{team:"F",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"B",score:"-",overs:"-",batting:[],bowling:[]},result:"Upcoming"},
-9:{league:"VCL",team1:"C",team2:"E",innings1:{team:"C",score:"-",overs:"-",batting:[],bowling:[]},innings2:{team:"E",score:"-",overs:"-",batting:[],bowling:[]},result:"Upcoming"}
-};
+    <a class="back-link" href="index.html">← Back to Home</a>
 
-function openScorecard(id){
-const m = matches[id];
+  </main>
 
-let html = `
-<h2>${m.league}</h2>
-<h3>${m.team1} VS ${m.team2}</h3>
-`;
-
-function inn(i){
-if(i.batting.length==0) return `<div class="section"><p>Match not started</p></div>`;
-return `<div class="section">
-<h3>${i.team}</h3>
-<h2>${i.score}</h2>
-<p>${i.overs} Overs</p>
-${i.batting.map(x=>`<p><b>${x}</b></p>`).join("")}
-<h4>Bowling</h4>
-${i.bowling.map(x=>`<p>${x}</p>`).join("")}
-</div>`;
-}
-
-html += inn(m.innings1);
-html += inn(m.innings2);
-
-html += `<div class="section"><h2>${m.result}</h2></div>`;
-
-document.getElementById("scorecard").innerHTML = html;
-document.getElementById("modal").style.display="block";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-</script>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span>Made for the love of cricket.</span>
+    </div>
+  </footer>
 
 </body>
 </html>
