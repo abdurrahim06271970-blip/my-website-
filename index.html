@@ -3,9 +3,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111827">
-
   <title>VCL 2026 | Vatkhura Cricket League</title>
 
   <style>
@@ -16,7 +15,6 @@
       --navy-light: #202d43;
       --accent: #26c6c5;
       --accent-dark: #139b9a;
-      --gold: #f4c95d;
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
@@ -42,17 +40,13 @@
 
     .container {
       width: min(1050px, calc(100% - 36px));
-      margin: 0 auto;
+      margin: auto;
     }
 
     /* HEADER */
-
     .header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
 
     .header-inner {
@@ -88,8 +82,8 @@
 
     .brand-title {
       font-size: 21px;
-      line-height: 1.2;
       font-weight: 900;
+      line-height: 1.2;
       color: var(--navy);
     }
 
@@ -105,6 +99,7 @@
       margin-top: 5px;
     }
 
+    /* NAVIGATION */
     .nav {
       display: flex;
       align-items: center;
@@ -127,102 +122,77 @@
       border-bottom-color: var(--accent);
     }
 
-    /* WELCOME HERO */
+    /* HOME HERO */
+    .main {
+      padding: 48px 0 70px;
+    }
 
     .hero {
-      padding: 65px 0 45px;
-    }
-
-    .hero-panel {
       position: relative;
       overflow: hidden;
-      border-radius: 20px;
       background: linear-gradient(
-        125deg,
-        var(--navy) 0%,
-        var(--navy-light) 65%,
-        #253d50 100%
+        120deg,
+        var(--navy),
+        var(--navy-light)
       );
       color: var(--white);
-      padding: 48px;
+      border-radius: 16px;
+      padding: 44px 36px;
     }
 
-    .hero-panel::before {
-      content: "VCL";
+    .hero::after {
+      content: "";
       position: absolute;
-      right: -12px;
-      bottom: -48px;
-      font-size: clamp(150px, 25vw, 270px);
-      font-weight: 950;
-      line-height: 1;
-      color: rgba(255, 255, 255, 0.035);
+      width: 220px;
+      height: 220px;
+      right: -65px;
+      top: -75px;
+      border: 35px solid rgba(38, 198, 197, 0.10);
+      border-radius: 50%;
       pointer-events: none;
     }
 
-    .hero-content {
-      max-width: 660px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .season-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
+    .eyebrow {
       color: var(--accent);
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 2px;
-      margin-bottom: 19px;
-    }
-
-    .season-label::before {
-      content: "";
-      width: 23px;
-      height: 3px;
-      border-radius: 5px;
-      background: var(--accent);
+      margin-bottom: 12px;
     }
 
     .hero h1 {
-      font-size: clamp(36px, 6vw, 61px);
-      line-height: 1.08;
-      letter-spacing: -1.8px;
-      font-weight: 950;
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      max-width: 650px;
     }
 
     .hero h1 span {
       color: var(--accent);
     }
 
-    .welcome {
-      color: var(--gold);
-      font-size: 16px;
-      font-weight: 800;
-      margin-top: 23px;
-    }
-
     .hero-description {
-      max-width: 510px;
-      color: #d1d8e2;
+      color: #c6ced9;
       font-size: 14px;
-      line-height: 1.9;
-      margin-top: 10px;
+      max-width: 540px;
+      margin-top: 16px;
+      line-height: 1.8;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 25px;
+      flex-wrap: wrap;
+      margin-top: 26px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 19px;
-      border-radius: 8px;
+      padding: 11px 17px;
+      border-radius: 7px;
       font-size: 12px;
       font-weight: 900;
       transition: 0.2s;
@@ -231,111 +201,114 @@
     .button-primary {
       background: var(--accent);
       color: var(--navy);
+      border: 1px solid var(--accent);
     }
 
     .button-primary:hover {
-      background: #54d8d6;
-      transform: translateY(-2px);
+      background: #65dddd;
     }
 
-    .button-secondary {
-      border: 1px solid rgba(255,255,255,0.35);
+    .button-outline {
+      background: transparent;
       color: var(--white);
+      border: 1px solid #657083;
     }
 
-    .button-secondary:hover {
+    .button-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    /* KEY INFORMATION */
-
-    .info-section {
-      padding: 5px 0 55px;
+    /* TOURNAMENT INFORMATION */
+    .section {
+      margin-top: 38px;
     }
 
-    .section-label {
-      color: var(--accent-dark);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 2.2px;
-      margin-bottom: 7px;
-    }
-
-    .section-title {
-      font-size: 27px;
-      line-height: 1.3;
-      font-weight: 900;
+    .section-heading {
       color: var(--navy);
+      font-size: 22px;
+      font-weight: 900;
     }
 
     .section-description {
       color: var(--muted);
       font-size: 13px;
-      margin-top: 7px;
+      margin-top: 6px;
+    }
+
+    .title-line {
+      width: 48px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 5px;
+      margin-top: 14px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 15px;
+      gap: 14px;
       margin-top: 22px;
     }
 
-    .info-item {
+    .info-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 13px;
-      padding: 21px;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
     }
 
-    .info-number {
-      color: var(--accent-dark);
-      font-size: 29px;
-      font-weight: 950;
-      line-height: 1.2;
-    }
-
-    .info-title {
-      color: var(--navy);
-      font-size: 13px;
-      font-weight: 800;
-      margin-top: 8px;
-    }
-
-    .info-text {
+    .info-label {
       color: var(--muted);
       font-size: 11px;
-      margin-top: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* ABOUT */
-
-    .about-section {
-      padding: 0 0 60px;
-    }
-
-    .about-panel {
-      border-top: 1px solid var(--border);
-      padding-top: 28px;
-      max-width: 740px;
-    }
-
-    .about-panel h2 {
+    .info-value {
       color: var(--navy);
       font-size: 23px;
       font-weight: 900;
+      margin-top: 6px;
     }
 
-    .about-panel p {
+    .info-detail {
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    /* ABOUT */
+    .about {
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .about h2 {
+      color: var(--navy);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .about p {
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.9;
       margin-top: 10px;
+      line-height: 1.9;
+    }
+
+    .about-highlight {
+      color: var(--accent-dark);
+      font-weight: 800;
     }
 
     /* FOOTER */
-
     .footer {
       background: var(--navy);
       color: #c6ced9;
@@ -355,7 +328,6 @@
     }
 
     /* MOBILE */
-
     @media (max-width: 700px) {
       .container {
         width: calc(100% - 28px);
@@ -400,61 +372,59 @@
         padding: 13px 0 10px;
       }
 
+      .main {
+        padding: 30px 0 50px;
+      }
+
       .hero {
-        padding: 28px 0 32px;
-      }
-
-      .hero-panel {
-        padding: 29px 22px;
-        border-radius: 16px;
-      }
-
-      .hero h1 {
-        font-size: clamp(34px, 8.5vw, 48px);
-        letter-spacing: -1.1px;
-      }
-
-      .welcome {
-        font-size: 14px;
-        margin-top: 20px;
+        padding: 30px 20px;
+        border-radius: 13px;
       }
 
       .hero-description {
-        font-size: 12px;
+        font-size: 13px;
+      }
+
+      .hero-buttons {
+        gap: 9px;
       }
 
       .button {
-        padding: 11px 13px;
+        padding: 10px 12px;
         font-size: 11px;
       }
 
-      .section-title {
-        font-size: 23px;
+      .section {
+        margin-top: 30px;
+      }
+
+      .section-heading {
+        font-size: 20px;
       }
 
       .info-grid {
         gap: 10px;
       }
 
-      .info-item {
+      .info-card {
         padding: 13px 10px;
-        border-radius: 10px;
       }
 
-      .info-number {
-        font-size: 24px;
+      .info-label {
+        font-size: 9px;
+        letter-spacing: 0.5px;
       }
 
-      .info-title {
-        font-size: 11px;
+      .info-value {
+        font-size: 19px;
       }
 
-      .info-text {
+      .info-detail {
         font-size: 10px;
       }
 
-      .about-section {
-        padding-bottom: 40px;
+      .about {
+        padding: 18px;
       }
 
       .footer-inner {
@@ -473,20 +443,16 @@
         gap: 19px;
       }
 
-      .hero-panel {
-        padding: 25px 17px;
+      .hero {
+        padding: 25px 16px;
       }
 
       .info-grid {
-        gap: 7px;
+        grid-template-columns: 1fr;
       }
 
-      .info-item {
-        padding: 11px 8px;
-      }
-
-      .info-number {
-        font-size: 21px;
+      .info-card {
+        padding: 16px;
       }
     }
   </style>
@@ -494,7 +460,7 @@
 
 <body>
 
-  <!-- HEADER: NAVIGATION ONLY -->
+  <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
 
@@ -518,111 +484,95 @@
         <a href="index.html" class="active">Home</a>
         <a href="fixtures.html">Fixtures</a>
         <a href="points.html">Points Table</a>
-        <a href="teams.html">Teams</a>
+        <a href="squad.html">Teams</a>
       </nav>
 
     </div>
   </header>
 
-  <main>
+  <!-- HOME PAGE -->
+  <main class="container main">
 
-    <!-- WELCOME -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-panel">
-          <div class="hero-content">
+      <div class="eyebrow">WELCOME TO VCL 2026</div>
 
-            <div class="season-label">SESSION 03 · 2026</div>
+      <h1>
+        VATKHURA<br>
+        CRICKET <span>LEAGUE.</span>
+      </h1>
 
-            <h1>
-              VATKHURA<br>
-              CRICKET <span>LEAGUE.</span>
-            </h1>
+      <p class="hero-description">
+        Welcome to Vatkhura Cricket League Session 03.
+        Follow the tournament, check match fixtures, explore team
+        information and keep track of the points table—all in one place.
+      </p>
 
-            <div class="welcome">
-              Welcome to VCL 2026!
-            </div>
+      <div class="hero-buttons">
+        <a href="fixtures.html" class="button button-primary">
+          Tournament Schedule →
+        </a>
 
-            <p class="hero-description">
-              Welcome to the official home of Vatkhura Cricket League.
-              Follow the tournament, support your favourite team and
-              celebrate the spirit of cricket with us.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="fixtures.html">
-                Tournament Schedule →
-              </a>
-
-              <a class="button button-secondary" href="teams.html">
-                Meet The Teams
-              </a>
-            </div>
-
-          </div>
-        </div>
+        <a href="squad.html" class="button button-outline">
+          Meet The Teams
+        </a>
       </div>
     </section>
 
-    <!-- IMPORTANT INFORMATION -->
-    <section class="info-section">
-      <div class="container">
+    <!-- KEY INFORMATION -->
+    <section class="section">
+      <div class="eyebrow">TOURNAMENT OVERVIEW</div>
+      <h2 class="section-heading">The League at a Glance</h2>
 
-        <div class="section-label">THE VCL EXPERIENCE</div>
-        <h2 class="section-title">One League. One Passion.</h2>
-        <p class="section-description">
-          Bringing our cricket community together.
-        </p>
+      <p class="section-description">
+        Everything you need to know about VCL 2026.
+      </p>
 
-        <div class="info-grid">
+      <div class="title-line"></div>
 
-          <div class="info-item">
-            <div class="info-number">03</div>
-            <div class="info-title">League Session</div>
-            <div class="info-text">VCL Session 03</div>
-          </div>
+      <div class="info-grid">
 
-          <div class="info-item">
-            <div class="info-number">06</div>
-            <div class="info-title">Participating Teams</div>
-            <div class="info-text">One cricket community</div>
-          </div>
+        <article class="info-card">
+          <div class="info-label">Tournament</div>
+          <div class="info-value">Session 03</div>
+          <div class="info-detail">VCL 2026</div>
+        </article>
 
-          <div class="info-item">
-            <div class="info-number">2026</div>
-            <div class="info-title">Season</div>
-            <div class="info-text">The VCL journey continues</div>
-          </div>
+        <article class="info-card">
+          <div class="info-label">Participating Teams</div>
+          <div class="info-value">06 Teams</div>
+          <div class="info-detail">Cricket Competition</div>
+        </article>
 
-        </div>
+        <article class="info-card">
+          <div class="info-label">Season</div>
+          <div class="info-value">2026</div>
+          <div class="info-detail">Vatkhura Cricket League</div>
+        </article>
+
       </div>
     </section>
 
-    <!-- ABOUT VCL -->
-    <section class="about-section">
-      <div class="container">
-        <div class="about-panel">
+    <!-- ABOUT -->
+    <section class="about">
+      <h2>About VCL</h2>
 
-          <div class="section-label">ABOUT VCL</div>
-
-          <h2>More Than Just Cricket.</h2>
-
-          <p>
-            Vatkhura Cricket League is a platform for local cricket,
-            teamwork, sportsmanship and friendly competition.
-            VCL 2026 brings teams and supporters together through
-            their shared love of the game.
-          </p>
-
-        </div>
-      </div>
+      <p>
+        <span class="about-highlight">Vatkhura Cricket League</span>
+        brings cricket lovers together through competition,
+        teamwork and sportsmanship. This website is the home of
+        VCL 2026, where you can follow the tournament schedule,
+        view team information and check the points table.
+      </p>
     </section>
 
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span>
+        <strong>VCL 2026</strong> · Vatkhura Cricket League
+      </span>
       <span>Made for the love of cricket.</span>
     </div>
   </footer>
