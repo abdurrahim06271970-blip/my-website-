@@ -18,6 +18,7 @@
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
+      --gold: #f4c95d;
     }
 
     * {
@@ -43,7 +44,7 @@
       margin: auto;
     }
 
-    /* HEADER - SAME AS FIXTURES */
+    /* HEADER */
     .header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -99,6 +100,7 @@
       margin-top: 5px;
     }
 
+    /* NAVIGATION */
     .nav {
       display: flex;
       align-items: center;
@@ -121,7 +123,7 @@
       border-bottom-color: var(--accent);
     }
 
-    /* PAGE - SAME AS FIXTURES */
+    /* PAGE INTRO */
     .main {
       padding: 48px 0 70px;
     }
@@ -156,107 +158,123 @@
       margin-top: 19px;
     }
 
-    /* POINTS TABLE */
+    /* POINTS TABLE CARD */
     .table-card {
       margin-top: 30px;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.045);
     }
 
-    .table-heading {
-      padding: 19px 21px;
+    .table-card-header {
+      padding: 20px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      flex-wrap: wrap;
       border-bottom: 1px solid var(--border);
     }
 
-    .table-heading h2 {
+    .table-card-title {
       color: var(--navy);
-      font-size: 19px;
+      font-size: 21px;
       font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .season-tag {
-      color: var(--accent-dark);
+    .season-badge {
       background: #e6fafa;
       border: 1px solid #c8f1f0;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 10px;
+      color: var(--accent-dark);
+      padding: 7px 12px;
+      border-radius: 30px;
+      font-size: 11px;
       font-weight: 900;
       white-space: nowrap;
     }
 
+    /* TABLE SCROLL */
     .table-scroll {
       width: 100%;
       overflow-x: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #cbd2dc #f5f7fa;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .points-table {
+    table {
       width: 100%;
+      min-width: 650px;
       border-collapse: collapse;
       text-align: center;
     }
 
-    .points-table th {
+    thead {
       background: var(--navy-light);
       color: var(--white);
-      padding: 15px 12px;
-      font-size: 11px;
+    }
+
+    th {
+      padding: 16px 14px;
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       white-space: nowrap;
     }
 
-    .points-table td {
-      padding: 16px 12px;
+    td {
+      padding: 16px 14px;
+      font-size: 14px;
       border-bottom: 1px solid var(--border);
-      font-size: 13px;
       white-space: nowrap;
     }
 
-    .points-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .points-table tbody tr {
+    tbody tr {
+      background: var(--white);
       transition: background 0.2s;
     }
 
-    .points-table tbody tr:hover {
-      background: #f0fbfb;
+    tbody tr:hover {
+      background: #f3fbfb;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
     }
 
     .team-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-align: left;
-      font-weight: 800;
-      color: var(--navy);
+      min-width: 155px;
     }
 
     .rank {
-      display: inline-grid;
-      place-items: center;
-      width: 30px;
-      height: 30px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
+      display: grid;
+      place-items: center;
       background: #edf0f5;
       color: var(--navy);
       font-size: 12px;
       font-weight: 900;
-      margin-right: 8px;
+      flex-shrink: 0;
     }
 
-    .first-place .rank {
-      background: #f4c95d;
+    .rank.first {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .team-name {
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 900;
     }
 
     .points-value {
@@ -265,38 +283,28 @@
     }
 
     .nrr-positive {
-      color: #16845d;
+      color: #16835e;
       font-weight: 800;
     }
 
     .nrr-negative {
-      color: #c24141;
+      color: #c44b4b;
       font-weight: 800;
     }
 
     .table-note {
-      padding: 16px 20px;
-      color: var(--muted);
-      font-size: 11px;
       border-top: 1px solid var(--border);
-      line-height: 1.7;
+      padding: 18px 22px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      color: var(--accent-dark);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .back-link:hover {
+    .table-note strong {
       color: var(--navy);
     }
 
-    /* FOOTER - SAME AS FIXTURES */
+    /* FOOTER */
     .footer {
       background: var(--navy);
       color: #c6ced9;
@@ -315,7 +323,7 @@
       color: var(--accent);
     }
 
-    /* MOBILE - SAME AS FIXTURES */
+    /* MOBILE */
     @media (max-width: 700px) {
       .container {
         width: calc(100% - 28px);
@@ -361,31 +369,45 @@
       }
 
       .main {
-        padding: 35px 0 50px;
+        padding: 35px 0 55px;
       }
 
-      .table-heading {
-        padding: 15px 13px;
+      .table-card {
+        margin-top: 25px;
+        border-radius: 13px;
       }
 
-      .table-heading h2 {
-        font-size: 16px;
+      .table-card-header {
+        padding: 17px 14px;
       }
 
-      .points-table {
-        min-width: 600px;
+      .table-card-title {
+        font-size: 17px;
+        gap: 7px;
       }
 
-      .points-table th {
-        padding: 13px 10px;
+      .season-badge {
+        padding: 6px 9px;
+        font-size: 9px;
       }
 
-      .points-table td {
-        padding: 14px 10px;
+      table {
+        min-width: 650px;
+      }
+
+      th {
+        padding: 15px 12px;
+        font-size: 11px;
+      }
+
+      td {
+        padding: 14px 12px;
+        font-size: 13px;
       }
 
       .table-note {
-        padding: 14px;
+        padding: 16px;
+        font-size: 12px;
       }
 
       .footer-inner {
@@ -403,13 +425,17 @@
       .nav {
         gap: 19px;
       }
+
+      .table-card-header {
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- SAME HEADER AS FIXTURES -->
+  <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
 
@@ -433,15 +459,17 @@
         <a href="index.html">Home</a>
         <a href="fixtures.html">Fixtures</a>
         <a href="points.html" class="active">Points Table</a>
-        <a href="teams.html">Teams</a>
+        <a href="squad.html">Teams</a>
       </nav>
 
     </div>
   </header>
 
+  <!-- POINTS TABLE PAGE -->
   <main class="container main">
 
     <div class="eyebrow">VCL 2026 · SESSION 03</div>
+
     <h1 class="page-title">Points Table</h1>
 
     <p class="page-description">
@@ -452,13 +480,16 @@
 
     <section class="table-card">
 
-      <div class="table-heading">
-        <h2>🏏 Tournament Standings</h2>
-        <span class="season-tag">SEASON 2026</span>
+      <div class="table-card-header">
+        <h2 class="table-card-title">
+          🏏 Tournament Standings
+        </h2>
+
+        <span class="season-badge">SEASON 2026</span>
       </div>
 
       <div class="table-scroll">
-        <table class="points-table">
+        <table>
           <thead>
             <tr>
               <th>Team</th>
@@ -471,9 +502,12 @@
           </thead>
 
           <tbody>
-            <tr class="first-place">
-              <td class="team-cell">
-                <span class="rank">1</span>Team A
+            <tr>
+              <td>
+                <div class="team-cell">
+                  <span class="rank first">1</span>
+                  <span class="team-name">Team A</span>
+                </div>
               </td>
               <td>3</td>
               <td>2</td>
@@ -483,8 +517,11 @@
             </tr>
 
             <tr>
-              <td class="team-cell">
-                <span class="rank">2</span>Team B
+              <td>
+                <div class="team-cell">
+                  <span class="rank">2</span>
+                  <span class="team-name">Team B</span>
+                </div>
               </td>
               <td>3</td>
               <td>2</td>
@@ -494,8 +531,11 @@
             </tr>
 
             <tr>
-              <td class="team-cell">
-                <span class="rank">3</span>Team C
+              <td>
+                <div class="team-cell">
+                  <span class="rank">3</span>
+                  <span class="team-name">Team C</span>
+                </div>
               </td>
               <td>3</td>
               <td>1</td>
@@ -508,19 +548,22 @@
       </div>
 
       <div class="table-note">
-        Note: Team names and statistics are sample data. Update them with
-        official VCL match results as the tournament progresses.
+        <strong>Note:</strong>
+        Team names and statistics are sample data. Update them with
+        the official VCL match results as the tournament progresses.
+        On mobile, swipe the table horizontally to view all columns.
       </div>
 
     </section>
 
-    <a class="back-link" href="index.html">← Back to Home</a>
-
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span>
+        <strong>VCL 2026</strong> · Vatkhura Cricket League
+      </span>
       <span>Made for the love of cricket.</span>
     </div>
   </footer>
