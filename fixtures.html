@@ -1,10 +1,9 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fixtures | VCL 2026</title>
 
   <style>
@@ -18,6 +17,7 @@
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
+      --gold: #f4c95d;
     }
 
     * {
@@ -30,332 +30,262 @@
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(1050px, calc(100% - 36px));
-      margin: auto;
-    }
-
-    /* HEADER */
-    .header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 16px 0;
     }
 
     .header-inner {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
+      max-width: 1100px;
+      margin: auto;
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .logo-box {
-      width: 53px;
-      height: 53px;
-      border-radius: 13px;
-      overflow: hidden;
-      background: var(--navy);
-      display: grid;
-      place-items: center;
+      padding-bottom: 14px;
     }
 
     .logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .brand-title {
-      font-size: 21px;
-      font-weight: 900;
-      line-height: 1.2;
-      color: var(--navy);
-    }
-
-    .brand-title span {
-      color: var(--accent-dark);
-    }
-
-    .brand-subtitle {
-      color: var(--muted);
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-top: 5px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav a {
-      color: #515b6b;
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
-      padding: 27px 0 24px;
-      border-bottom: 3px solid transparent;
-      transition: 0.2s;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: var(--navy);
-      border-bottom-color: var(--accent);
-    }
-
-    /* PAGE */
-    .main {
-      padding: 48px 0 70px;
-    }
-
-    .eyebrow {
-      color: var(--accent-dark);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 9px;
-    }
-
-    .page-title {
-      color: var(--navy);
-      font-size: clamp(30px, 5vw, 43px);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.2;
-    }
-
-    .page-description {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-    }
-
-    .title-line {
       width: 48px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 5px;
-      margin-top: 19px;
-    }
-
-    /* FIXTURES */
-    .fixtures-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .fixture {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 19px 21px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .fixture:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .fixture-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .fixture-number {
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 11px;
-      background: var(--navy);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 900;
+      height: 48px;
+      object-fit: contain;
       flex-shrink: 0;
     }
 
-    .teams {
-      font-size: 15px;
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #c4ccd8;
+      letter-spacing: 1.2px;
+    }
+
+    nav {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      max-width: 1100px;
+      margin: auto;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: #cbd3df;
+      text-decoration: none;
+      padding: 13px 15px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--white);
+      border-bottom-color: var(--accent);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 28px auto 40px;
+      padding: 0 15px;
+      min-height: 55vh;
+    }
+
+    .page-heading {
+      margin-bottom: 22px;
+    }
+
+    .page-heading h1 {
+      font-size: 28px;
       font-weight: 800;
       color: var(--navy);
     }
 
-    .match-date {
-      font-size: 12px;
+    .page-heading p {
       color: var(--muted);
-      margin-top: 4px;
+      font-size: 14px;
+      margin-top: 5px;
     }
 
-    .status {
+    .section-label {
       color: var(--accent-dark);
-      background: #e6fafa;
-      border: 1px solid #c8f1f0;
-      padding: 6px 10px;
-      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .fixtures-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .fixture-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 18px;
+      box-shadow: 0 3px 12px rgba(17, 24, 39, 0.035);
+    }
+
+    .fixture-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .match-number {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .match-status {
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      color: #8a6810;
+      background: #fff6d9;
+      border: 1px solid #f4e4a9;
+      padding: 5px 9px;
+      border-radius: 20px;
       white-space: nowrap;
     }
 
-    .back-link {
-      display: inline-flex;
+    .teams-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 8px;
-      margin-top: 28px;
-      color: var(--accent-dark);
-      font-size: 13px;
+      gap: 10px;
+    }
+
+    .team {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .team-name {
+      font-size: 17px;
       font-weight: 800;
-    }
-
-    .back-link:hover {
       color: var(--navy);
+      overflow-wrap: anywhere;
     }
 
-    /* FOOTER */
-    .footer {
-      background: var(--navy);
-      color: #c6ced9;
-      padding: 21px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+    .team-caption {
       font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
     }
 
-    .footer strong {
-      color: var(--accent);
+    .versus {
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 900;
+      background: #e8fbfa;
+      border-radius: 8px;
+      padding: 7px 9px;
     }
 
-    /* MOBILE */
-    @media (max-width: 700px) {
-      .container {
-        width: calc(100% - 28px);
-      }
+    .fixture-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 18px;
+      margin-top: 17px;
+      padding-top: 13px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
 
+    .detail-item strong {
+      color: var(--text);
+    }
+
+    footer {
+      background: var(--navy);
+      color: #c4ccd8;
+      text-align: center;
+      padding: 22px 12px;
+      font-size: 12px;
+      margin-top: 35px;
+    }
+
+    footer .footer-title {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 480px) {
       .header-inner {
-        flex-wrap: wrap;
-        gap: 0;
-        padding-top: 12px;
+        gap: 9px;
       }
 
-      .logo-box {
-        width: 46px;
-        height: 46px;
+      .logo {
+        width: 42px;
+        height: 42px;
       }
 
       .brand-title {
-        font-size: 19px;
+        font-size: 16px;
       }
 
       .brand-subtitle {
-        font-size: 8px;
-        letter-spacing: 1px;
-      }
-
-      .nav {
-        order: 2;
-        width: 100%;
-        gap: 24px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        border-top: 1px solid var(--border);
-        margin-top: 12px;
-      }
-
-      .nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav a {
-        font-size: 12px;
-        padding: 13px 0 10px;
-      }
-
-      .main {
-        padding: 35px 0 50px;
-      }
-
-      .fixture {
-        padding: 15px 12px;
-        gap: 8px;
-      }
-
-      .fixture-left {
-        gap: 10px;
-      }
-
-      .fixture-number {
-        width: 36px;
-        height: 36px;
-        font-size: 11px;
-      }
-
-      .teams {
-        font-size: 12px;
-      }
-
-      .match-date {
-        font-size: 10px;
-      }
-
-      .status {
-        padding: 5px 7px;
         font-size: 9px;
+        letter-spacing: 0.8px;
       }
 
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .container {
-        width: calc(100% - 22px);
+      nav {
+        justify-content: flex-start;
+        gap: 0;
       }
 
-      .nav {
-        gap: 19px;
+      nav a {
+        padding: 12px 11px;
+        font-size: 12px;
       }
 
-      .fixture {
-        flex-wrap: wrap;
+      main {
+        margin-top: 22px;
+        padding: 0 11px;
       }
 
-      .status {
-        margin-left: 46px;
+      .page-heading h1 {
+        font-size: 25px;
+      }
+
+      .fixture-card {
+        padding: 14px 11px;
+      }
+
+      .team-name {
+        font-size: 14px;
+      }
+
+      .versus {
+        font-size: 10px;
+        padding: 6px 7px;
+      }
+
+      .fixture-details {
+        gap: 7px 12px;
+        font-size: 11px;
       }
     }
   </style>
@@ -363,93 +293,121 @@
 
 <body>
 
-  <!-- SAME HEADER AS HOME -->
-  <header class="header">
-    <div class="container header-inner">
+  <header>
+    <div class="header-inner">
+      <img
+        src="file_00000000fafc7208bb91a6123810609b.png"
+        alt="VCL Logo"
+        class="logo"
+      >
 
-      <a class="brand" href="index.html">
-        <div class="logo-box">
-          <img
-            class="logo"
-            src="file_00000000fafc7208bb91a6123810609b.png"
-            alt="VCL Logo"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#26c6c5;font-size:19px&quot;>VCL</b>';"
-          >
-        </div>
-
-        <div>
-          <div class="brand-title">VCL <span>2026</span></div>
-          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="fixtures.html" class="active">Fixtures</a>
-        <a href="points.html">Points Table</a>
-        <a href="teams.html">Teams</a>
-      </nav>
-
+      <div>
+        <div class="brand-title">VCL 2026</div>
+        <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+      </div>
     </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="fixtures.html" class="active">Fixtures</a>
+      <a href="points.html">Points Table</a>
+      <a href="squad.html">Teams</a>
+    </nav>
   </header>
 
-  <main class="container main">
+  <main>
+    <div class="page-heading">
+      <div class="section-label">VCL 2026</div>
+      <h1>Match Fixtures</h1>
+      <p>Check the upcoming matches of Vatkhura Cricket League.</p>
+    </div>
 
-    <div class="eyebrow">VCL 2026 · SESSION 03</div>
-    <h1 class="page-title">Match Fixtures</h1>
+    <div class="fixtures-list">
 
-    <p class="page-description">
-      Check the schedule and upcoming tournament matches.
-    </p>
+      <article class="fixture-card">
+        <div class="fixture-top">
+          <span class="match-number">MATCH 01</span>
+          <span class="match-status">SCHEDULED</span>
+        </div>
 
-    <div class="title-line"></div>
+        <div class="teams-row">
+          <div class="team">
+            <div class="team-name">Team A</div>
+            <div class="team-caption">Home Team</div>
+          </div>
 
-    <section class="fixtures-list">
+          <div class="versus">VS</div>
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">01</div>
-          <div>
-            <div class="teams">Team A vs Team B</div>
-            <div class="match-date">10 April</div>
+          <div class="team">
+            <div class="team-name">Team B</div>
+            <div class="team-caption">Away Team</div>
           </div>
         </div>
-        <span class="status">SCHEDULED</span>
+
+        <div class="fixture-details">
+          <div class="detail-item">📅 <strong>10 April</strong></div>
+          <div class="detail-item">🏏 <strong>VCL 2026</strong></div>
+        </div>
       </article>
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">02</div>
-          <div>
-            <div class="teams">Team C vs Team D</div>
-            <div class="match-date">11 April</div>
+      <article class="fixture-card">
+        <div class="fixture-top">
+          <span class="match-number">MATCH 02</span>
+          <span class="match-status">SCHEDULED</span>
+        </div>
+
+        <div class="teams-row">
+          <div class="team">
+            <div class="team-name">Team C</div>
+            <div class="team-caption">Home Team</div>
+          </div>
+
+          <div class="versus">VS</div>
+
+          <div class="team">
+            <div class="team-name">Team D</div>
+            <div class="team-caption">Away Team</div>
           </div>
         </div>
-        <span class="status">SCHEDULED</span>
+
+        <div class="fixture-details">
+          <div class="detail-item">📅 <strong>11 April</strong></div>
+          <div class="detail-item">🏏 <strong>VCL 2026</strong></div>
+        </div>
       </article>
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">03</div>
-          <div>
-            <div class="teams">Team A vs Team C</div>
-            <div class="match-date">12 April</div>
+      <article class="fixture-card">
+        <div class="fixture-top">
+          <span class="match-number">MATCH 03</span>
+          <span class="match-status">SCHEDULED</span>
+        </div>
+
+        <div class="teams-row">
+          <div class="team">
+            <div class="team-name">Team A</div>
+            <div class="team-caption">Home Team</div>
+          </div>
+
+          <div class="versus">VS</div>
+
+          <div class="team">
+            <div class="team-name">Team C</div>
+            <div class="team-caption">Away Team</div>
           </div>
         </div>
-        <span class="status">SCHEDULED</span>
+
+        <div class="fixture-details">
+          <div class="detail-item">📅 <strong>12 April</strong></div>
+          <div class="detail-item">🏏 <strong>VCL 2026</strong></div>
+        </div>
       </article>
 
-    </section>
-
-    <a class="back-link" href="index.html">← Back to Home</a>
-
+    </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
-      <span>Made for the love of cricket.</span>
-    </div>
+  <footer>
+    <div class="footer-title">VCL 2026 · Vatkhura Cricket League</div>
+    <div>Made for the love of cricket.</div>
   </footer>
 
 </body>
