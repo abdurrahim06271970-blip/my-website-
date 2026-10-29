@@ -13,13 +13,11 @@
       --bg: #f5f7fa;
       --white: #ffffff;
       --navy: #111827;
-      --navy-light: #202d43;
       --accent: #26c6c5;
       --accent-dark: #139b9a;
       --text: #182131;
       --muted: #737d8d;
       --border: #e3e8ef;
-      --gold: #f4c95d;
     }
 
     * {
@@ -28,25 +26,26 @@
       box-sizing: border-box;
     }
 
-    html {
-      background: #f5f7fa !important;
+    html,
+    body {
+      background-color: #f5f7fa !important;
       color-scheme: light;
       min-height: 100%;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fa !important;
-      background-color: #f5f7fa !important;
       color: #182131;
       line-height: 1.5;
       min-height: 100vh;
     }
 
+    /* WHITE HEADER */
     header {
-      background: #111827;
-      color: #ffffff;
+      background: #ffffff !important;
+      color: #182131;
       padding: 14px 16px 0;
+      border-bottom: 1px solid #e3e8ef;
     }
 
     .header-inner {
@@ -69,26 +68,29 @@
       font-size: 19px;
       font-weight: 800;
       letter-spacing: 0.5px;
+      color: #111827;
     }
 
     .brand-subtitle {
       font-size: 11px;
-      color: #c4ccd8;
+      color: #737d8d;
       letter-spacing: 1.2px;
     }
 
+    /* WHITE NAVIGATION */
     nav {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid #e3e8ef;
       display: flex;
       justify-content: center;
       gap: 8px;
       max-width: 1100px;
       margin: auto;
       overflow-x: auto;
+      background: #ffffff !important;
     }
 
     nav a {
-      color: #cbd3df;
+      color: #737d8d;
       text-decoration: none;
       padding: 13px 15px;
       font-size: 13px;
@@ -99,7 +101,7 @@
 
     nav a:hover,
     nav a.active {
-      color: #ffffff;
+      color: #111827;
       border-bottom-color: #26c6c5;
     }
 
@@ -142,7 +144,7 @@
     }
 
     .fixture-card {
-      background: #ffffff;
+      background: #ffffff !important;
       color: #182131;
       border: 1px solid #e3e8ef;
       border-radius: 13px;
@@ -228,6 +230,7 @@
       color: #182131;
     }
 
+    /* FOOTER */
     footer {
       background: #111827;
       color: #c4ccd8;
@@ -250,8 +253,8 @@
       }
 
       .logo {
-        width: 42px;
-        height: 42px;
+        width: 48px;
+        height: 48px;
       }
 
       .brand-title {
@@ -336,6 +339,7 @@
 
     <div class="fixtures-list">
 
+      <!-- MATCH 01 -->
       <article class="fixture-card">
         <div class="fixture-top">
           <span class="match-number">MATCH 01</span>
@@ -362,6 +366,7 @@
         </div>
       </article>
 
+      <!-- MATCH 02 -->
       <article class="fixture-card">
         <div class="fixture-top">
           <span class="match-number">MATCH 02</span>
@@ -388,6 +393,7 @@
         </div>
       </article>
 
+      <!-- MATCH 03 -->
       <article class="fixture-card">
         <div class="fixture-top">
           <span class="match-number">MATCH 03</span>
