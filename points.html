@@ -212,7 +212,7 @@
     }
 
     tbody tr:hover td {
-      filter: brightness(0.95);
+      filter: brightness(0.93);
     }
 
     .rank {
@@ -222,9 +222,9 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.95);
       color: #18213b;
-      border: 1px solid rgba(23,32,51,0.1);
+      border: 1px solid rgba(23,32,51,0.12);
       font-size: 11px;
       font-weight: 900;
     }
@@ -252,69 +252,69 @@
       font-weight: 800;
     }
 
-    /* FULL ROW COLORS - HR KINGS VATKURA */
+    /* HR KINGS VATKURA - DARKER GOLD */
 
     tbody tr.hrkings td {
-      background: linear-gradient(90deg, #ffe28a, #fff4cf);
+      background: linear-gradient(90deg, #f5ce52, #ffe69a);
     }
 
     tbody tr.hrkings {
-      outline: 1px solid #e2b52f;
+      outline: 1px solid #bd8b00;
       outline-offset: -1px;
     }
 
-    /* VATKURA KINGS */
+    /* VATKURA KINGS - DARKER RED */
 
     tbody tr.kings td {
-      background: linear-gradient(90deg, #ffb8b8, #ffe3e3);
+      background: linear-gradient(90deg, #f08080, #ffc0c0);
     }
 
     tbody tr.kings {
-      outline: 1px solid #dc4545;
+      outline: 1px solid #c62828;
       outline-offset: -1px;
     }
 
-    /* VATKURA TIGERS */
+    /* VATKURA TIGERS - DARKER ORANGE */
 
     tbody tr.tigers td {
-      background: linear-gradient(90deg, #ffc88c, #ffead2);
+      background: linear-gradient(90deg, #f5a64a, #ffd09a);
     }
 
     tbody tr.tigers {
-      outline: 1px solid #ed861e;
+      outline: 1px solid #d46b00;
       outline-offset: -1px;
     }
 
-    /* VATKURA STARS */
+    /* VATKURA STARS - DARKER GREEN */
 
     tbody tr.stars td {
-      background: linear-gradient(90deg, #a8e9ba, #ddf8e4);
+      background: linear-gradient(90deg, #76d995, #b9f0c9);
     }
 
     tbody tr.stars {
-      outline: 1px solid #239447;
+      outline: 1px solid #16803a;
       outline-offset: -1px;
     }
 
-    /* VATKURA FIRE EIGHT */
+    /* VATKURA FIRE EIGHT - DARKER RED */
 
     tbody tr.fire td {
-      background: linear-gradient(90deg, #f5a6a6, #ffdddd);
+      background: linear-gradient(90deg, #ed8585, #ffc0c0);
     }
 
     tbody tr.fire {
-      outline: 1px solid #b91c1c;
+      outline: 1px solid #a91515;
       outline-offset: -1px;
     }
 
-    /* VATKURA STRIKERS */
+    /* VATKURA STRIKERS - DARKER BLUE */
 
     tbody tr.strikers td {
-      background: linear-gradient(90deg, #a9d4ff, #deefff);
+      background: linear-gradient(90deg, #80baff, #bfddff);
     }
 
     tbody tr.strikers {
-      outline: 1px solid #2474d2;
+      outline: 1px solid #155bb5;
       outline-offset: -1px;
     }
 
@@ -347,14 +347,14 @@
       flex-shrink: 0;
     }
 
-    .legend-gold { background: #e2b52f; }
-    .legend-red { background: #dc4545; }
-    .legend-orange { background: #ed861e; }
-    .legend-green { background: #239447; }
-    .legend-fire { background: #b91c1c; }
-    .legend-blue { background: #2474d2; }
+    .legend-gold { background: #bd8b00; }
+    .legend-red { background: #c62828; }
+    .legend-orange { background: #d46b00; }
+    .legend-green { background: #16803a; }
+    .legend-fire { background: #a91515; }
+    .legend-blue { background: #155bb5; }
 
-    /* ENGLISH RULES BELOW THE POINTS TABLE */
+    /* QUALIFICATION RULES */
 
     .rules-box {
       background: linear-gradient(135deg, #f0f5ff, #f6efff);
@@ -398,7 +398,7 @@
       font-weight: 700;
     }
 
-    /* TABLET - SAME HEADER RESPONSIVE RULES AS HOME */
+    /* TABLET */
 
     @media (max-width: 700px) {
       .brand-row {
@@ -443,7 +443,7 @@
       }
     }
 
-    /* MOBILE - SAME HEADER RESPONSIVE RULES AS HOME */
+    /* MOBILE */
 
     @media (max-width: 400px) {
       .brand-logo {
@@ -566,8 +566,6 @@
 
 <body>
 
-  <!-- SAME HEADER AS HOME PAGE -->
-
   <header class="header">
     <div class="brand-row">
       <a href="index.html" class="brand">
@@ -592,8 +590,6 @@
       <a href="stats.html">Stats</a>
     </nav>
   </header>
-
-  <!-- POINTS TABLE - NO EXTRA TITLE OR STANDINGS BOX -->
 
   <main>
     <div class="container">
@@ -687,8 +683,6 @@
           </tbody>
         </table>
 
-        <!-- TEAM COLOR LEGEND -->
-
         <div class="legend">
           <div class="legend-item">
             <span class="legend-dot legend-gold"></span>
@@ -722,8 +716,6 @@
         </div>
       </section>
 
-      <!-- RULES BELOW THE TABLE -->
-
       <div class="rules-box">
         <strong>QUALIFICATION:</strong>
         Top 4 teams advance to the Semifinals.
@@ -734,8 +726,6 @@
 
     </div>
   </main>
-
-  <!-- FOOTER - SAME AS HOME PAGE -->
 
   <footer class="footer">
     <p>
