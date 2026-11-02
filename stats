@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101026">
+  <title>STATS | VCL 2026</title>
+
+  <style>
+    :root {
+      --bg: #090b16;
+      --navy: #101026;
+      --accent: #43e7e3;
+      --purple: #8b7bff;
+      --text: #f5f6ff;
+      --muted: #a9b1ca;
+      --border: rgba(255,255,255,.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(106,17,203,.20), transparent 35%),
+        radial-gradient(ellipse at 90% 35%, rgba(30,60,114,.24), transparent 40%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .header {
+      background: rgba(10,12,28,.90);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 49px;
+      height: 49px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1e3c72, #6a11cb);
+      display: grid;
+      place-items: center;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .brand-title span {
+      color: var(--accent);
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: 1px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 28px 0 25px;
+      color: #b8bfd3;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--accent);
+    }
+
+    .nav a.active::after {
+      content: "";
+      position: absolute;
+      bottom: 16px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+    }
+
+    .main {
+      padding: 38px 0 60px;
+    }
+
+    .page-heading {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(106,17,203,.40), transparent 35%),
+        linear-gradient(120deg, #11172e, #1a2044 60%, #281747);
+      box-shadow: 0 20px 55px rgba(0,0,0,.20);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-top: 8px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #43e7e3, #b79bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .page-description {
+      margin-top: 10px;
+      max-width: 560px;
+      color: #c1c9df;
+      font-size: 13px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 215px;
+      padding: 23px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(25,31,59,.96), rgba(15,17,37,.96));
+      box-shadow: 0 12px 35px rgba(0,0,0,.15);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(67,231,227,.40);
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      top: -65px;
+      right: -35px;
+      border-radius: 50%;
+      background: rgba(106,17,203,.18);
+      filter: blur(15px);
+      pointer-events: none;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .stat-title {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .stat-icon {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: rgba(67,231,227,.10);
+      border: 1px solid rgba(67,231,227,.18);
+      font-size: 20px;
+    }
+
+    .stat-caption {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .stat-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 95px;
+      margin-top: 14px;
+      padding: 18px 10px;
+      border-top: 1px solid var(--border);
+      color: #aab4ce;
+      font-size: 12px;
+    }
+
+    .stat-empty strong {
+      display: block;
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .note {
+      color: #9da8c3;
+      font-size: 11px;
+      margin-top: 20px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .footer {
+      background: rgba(9,11,22,.75);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer strong {
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        flex-wrap: wrap;
+        padding-top: 12px;
+        gap: 0;
+      }
+
+      .logo-box {
+        width: 44px;
+        height: 44px;
+      }
+
+      .brand-title {
+        font-size: 18px;
+      }
+
+      .nav {
+        order: 2;
+        width: 100%;
+        gap: 22px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-top: 1px solid var(--border);
+        margin-top: 12px;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a {
+        padding: 13px 0 12px;
+        font-size: 11px;
+      }
+
+      .nav a.active::after {
+        bottom: 5px;
+      }
+
+      .main {
+        padding-top: 25px;
+      }
+
+      .page-heading {
+        padding: 25px 20px;
+      }
+
+      .stats-grid {
+        gap: 12px;
+      }
+
+      .stat-card {
+        padding: 17px;
+      }
+
+      .stat-title {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-card {
+        min-height: 190px;
+      }
+
+      .footer-inner {
+        padding: 16px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+
+      <a class="brand" href="index.html">
+        <div class="logo-box">
+          <img
+            class="logo"
+            src="file_00000000fafc7208bb91a6123810609b.png"
+            alt="VCL Logo"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#43e7e3;font-size:18px&quot;>VCL</b>';"
+          >
+        </div>
+
+        <div>
+          <div class="brand-title">VCL <span>2026</span></div>
+          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="fixtures.html">Fixtures</a>
+        <a href="points.html">Points Table</a>
+        <a href="squad.html">Teams</a>
+        <a href="stats.html" class="active">STATS</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="container main">
+
+    <section class="page-heading">
+      <div class="eyebrow">VCL 2026 · PLAYER PERFORMANCE</div>
+      <h1>TOURNAMENT <span>STATS.</span></h1>
+      <p class="page-description">
+        Track the top performers of Vatkhura Cricket League 2026.
+        Runs, wickets, batting and bowling records in one place.
+      </p>
+    </section>
+
+    <section class="stats-grid">
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div>
+            <h2 class="stat-title">MOST RUNS</h2>
+            <p class="stat-caption">Top run scorer</p>
+          </div>
+          <div class="stat-icon">🏏</div>
+        </div>
+        <div class="stat-empty">
+          <div>
+            <strong>Stats Coming Soon</strong>
+            Match score data has not been added yet.
+          </div>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div>
+            <h2 class="stat-title">MOST WICKETS</h2>
+            <p class="stat-caption">Leading wicket taker</p>
+          </div>
+          <div class="stat-icon">🎯</div>
+        </div>
+        <div class="stat-empty">
+          <div>
+            <strong>Stats Coming Soon</strong>
+            Bowling records will appear here.
+          </div>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div>
+            <h2 class="stat-title">HIGHEST SCORE</h2>
+            <p class="stat-caption">Highest individual score</p>
+          </div>
+          <div class="stat-icon">🔥</div>
+        </div>
+        <div class="stat-empty">
+          <div>
+            <strong>Stats Coming Soon</strong>
+            Individual batting records will appear here.
+          </div>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div>
+            <h2 class="stat-title">BEST BOWLING</h2>
+            <p class="stat-caption">Best bowling figures</p>
+          </div>
+          <div class="stat-icon">⚡</div>
+        </div>
+        <div class="stat-empty">
+          <div>
+            <strong>Stats Coming Soon</strong>
+            Bowling figures will appear here.
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <p class="note">
+      Note: Player statistics will be updated using actual match results.
+      No player rankings are displayed until the score data is available.
+    </p>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span>PLAYER PERFORMANCE CENTRE</span>
+    </div>
+  </footer>
+
+</body>
+</html>
