@@ -2,503 +2,700 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101026">
-  <title>STATS | VCL 2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
 
-  <style>
-    :root {
-      --bg: #090b16;
-      --navy: #101026;
-      --accent: #43e7e3;
-      --purple: #8b7bff;
-      --text: #f5f6ff;
-      --muted: #a9b1ca;
-      --border: rgba(255,255,255,.10);
-    }
+<title>VCL 2026 | Player Stats</title>
+<meta name="description" content="Top 3 run scorers and wicket takers of Vatkura Cricket League 2026.">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --blue: #1e3c72;
+  --blue-light: #2a5298;
+  --purple: #6a11cb;
+  --cyan: #168fcb;
+  --text: #18213b;
+  --muted: #69738b;
+  --border: #e8eaf2;
+  --white: #ffffff;
+  --light-bg: #f7f8fc;
+}
 
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(ellipse at 10% 0%, rgba(106,17,203,.20), transparent 35%),
-        radial-gradient(ellipse at 90% 35%, rgba(30,60,114,.24), transparent 40%),
-        var(--bg);
-      line-height: 1.6;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+html { scroll-behavior: smooth; }
 
-    .container {
-      width: min(1100px, calc(100% - 36px));
-      margin: auto;
-    }
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
 
-    .header {
-      background: rgba(10,12,28,.90);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    .header-inner {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+/* HEADER */
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      flex-shrink: 0;
-    }
+.header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 15px rgba(30,60,114,0.035);
+}
 
-    .logo-box {
-      width: 49px;
-      height: 49px;
-      overflow: hidden;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #1e3c72, #6a11cb);
-      display: grid;
-      place-items: center;
-    }
+.brand-row {
+  max-width: 1250px;
+  min-height: 92px;
+  padding: 15px 25px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-    .brand-title {
-      font-size: 20px;
-      font-weight: 900;
-      line-height: 1.2;
-    }
+.brand-logo {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
 
-    .brand-title span {
-      color: var(--accent);
-    }
+.brand-text h2 {
+  color: var(--blue);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
 
-    .brand-subtitle {
-      color: var(--muted);
-      font-size: 8px;
-      letter-spacing: 1px;
-      font-weight: 800;
-      margin-top: 5px;
-    }
+.brand-text p {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2.2px;
+  margin-top: 5px;
+}
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
+/* NAVIGATION */
 
-    .nav a {
-      position: relative;
-      padding: 28px 0 25px;
-      color: #b8bfd3;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
+.nav-menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: #ffffff;
+  border-top: 1px solid #f0f1f6;
+}
 
-    .nav a:hover,
-    .nav a.active {
-      color: var(--accent);
-    }
+.nav-menu a {
+  position: relative;
+  min-width: 0;
+  min-height: 57px;
+  padding: 15px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  color: #65708a;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 800;
+  transition: all 0.25s ease;
+}
 
-    .nav a.active::after {
-      content: "";
-      position: absolute;
-      bottom: 16px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      border-radius: 5px;
-      background: linear-gradient(90deg, var(--accent), var(--purple));
-    }
+.nav-menu a:hover {
+  color: var(--purple);
+  background: #faf9ff;
+}
 
-    .main {
-      padding: 38px 0 60px;
-    }
+.nav-menu a.active {
+  color: var(--blue);
+  background: linear-gradient(180deg, #ffffff, #f6f7ff);
+}
 
-    .page-heading {
-      position: relative;
-      overflow: hidden;
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 90% 0%, rgba(106,17,203,.40), transparent 35%),
-        linear-gradient(120deg, #11172e, #1a2044 60%, #281747);
-      box-shadow: 0 20px 55px rgba(0,0,0,.20);
-    }
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 3px;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(90deg, var(--blue-light), var(--purple));
+}
 
-    .eyebrow {
-      color: var(--accent);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
+/* MAIN */
 
-    h1 {
-      font-size: clamp(34px, 6vw, 48px);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin-top: 8px;
-    }
+main {
+  flex: 1;
+  width: 100%;
+  padding: 35px 18px 55px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(106,17,203,0.045), transparent 48%),
+    #f7f8fc;
+}
 
-    h1 span {
-      background: linear-gradient(90deg, #43e7e3, #b79bff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+.stats-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
 
-    .page-description {
-      margin-top: 10px;
-      max-width: 560px;
-      color: #c1c9df;
-      font-size: 13px;
-    }
+.page-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
+.page-heading h1 {
+  color: var(--blue);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 1000;
+  letter-spacing: -0.7px;
+}
 
-    .stat-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 215px;
-      padding: 23px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(25,31,59,.96), rgba(15,17,37,.96));
-      box-shadow: 0 12px 35px rgba(0,0,0,.15);
-      transition: transform .2s, border-color .2s;
-    }
+.page-heading h1 span {
+  background: linear-gradient(100deg, var(--blue), var(--blue-light), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .stat-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(67,231,227,.40);
-    }
+.page-heading p {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
 
-    .stat-card::after {
-      content: "";
-      position: absolute;
-      width: 125px;
-      height: 125px;
-      top: -65px;
-      right: -35px;
-      border-radius: 50%;
-      background: rgba(106,17,203,.18);
-      filter: blur(15px);
-      pointer-events: none;
-    }
+.heading-line {
+  width: 75px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--blue-light), var(--purple));
+}
 
-    .stat-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
+/* STATS OPTIONS */
 
-    .stat-title {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: .5px;
-    }
+.stats-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
 
-    .stat-icon {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: rgba(67,231,227,.10);
-      border: 1px solid rgba(67,231,227,.18);
-      font-size: 20px;
-    }
+.stats-tab {
+  min-height: 125px;
+  padding: 22px 20px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .stat-caption {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 3px;
-    }
+.stats-tab:hover {
+  transform: translateY(-3px);
+}
 
-    .stat-empty {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 95px;
-      margin-top: 14px;
-      padding: 18px 10px;
-      border-top: 1px solid var(--border);
-      color: #aab4ce;
-      font-size: 12px;
-    }
+.stats-tab.runs {
+  background: linear-gradient(115deg, #173b75, #2868b5);
+}
 
-    .stat-empty strong {
-      display: block;
-      color: var(--accent);
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
+.stats-tab.wickets {
+  background: linear-gradient(115deg, #551a8b, #873dd0);
+}
 
-    .note {
-      color: #9da8c3;
-      font-size: 11px;
-      margin-top: 20px;
-      padding: 13px 15px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(255,255,255,.025);
-    }
+.stats-tab[aria-selected="true"] {
+  box-shadow: 0 8px 22px rgba(30,60,114,0.20);
+  border-color: rgba(255,255,255,0.9);
+}
 
-    .footer {
-      background: rgba(9,11,22,.75);
-      border-top: 1px solid var(--border);
-    }
+.tab-icon {
+  display: block;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
 
-    .footer-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 11px;
-    }
+.tab-title {
+  display: block;
+  font-size: clamp(17px, 2.6vw, 22px);
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
 
-    .footer strong {
-      color: var(--accent);
-    }
+.tab-subtitle {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
-    @media (max-width: 760px) {
-      .header-inner {
-        flex-wrap: wrap;
-        padding-top: 12px;
-        gap: 0;
-      }
+/* LEADERBOARD */
 
-      .logo-box {
-        width: 44px;
-        height: 44px;
-      }
+.stats-panel {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px rgba(25,43,77,0.06);
+}
 
-      .brand-title {
-        font-size: 18px;
-      }
+.panel-heading {
+  padding: 21px 22px;
+  color: #ffffff;
+  background: linear-gradient(115deg, #173b75, #2868b5);
+}
 
-      .nav {
-        order: 2;
-        width: 100%;
-        gap: 22px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        border-top: 1px solid var(--border);
-        margin-top: 12px;
-      }
+.panel-heading.wickets-heading {
+  background: linear-gradient(115deg, #551a8b, #873dd0);
+}
 
-      .nav::-webkit-scrollbar {
-        display: none;
-      }
+.panel-heading h2 {
+  font-size: 20px;
+  font-weight: 900;
+}
 
-      .nav a {
-        padding: 13px 0 12px;
-        font-size: 11px;
-      }
+.panel-heading p {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.82);
+}
 
-      .nav a.active::after {
-        bottom: 5px;
-      }
+.player-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #edf0f6;
+  transition: background 0.2s ease;
+}
 
-      .main {
-        padding-top: 25px;
-      }
+.player-row:last-child {
+  border-bottom: none;
+}
 
-      .page-heading {
-        padding: 25px 20px;
-      }
+.player-row:hover {
+  background: #f8faff;
+}
 
-      .stats-grid {
-        gap: 12px;
-      }
+.player-rank {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #edf2ff;
+  color: #28559b;
+  font-size: 16px;
+  font-weight: 900;
+}
 
-      .stat-card {
-        padding: 17px;
-      }
+.player-row:nth-child(3) .player-rank {
+  background: #fff2ce;
+  color: #986400;
+}
 
-      .stat-title {
-        font-size: 13px;
-      }
-    }
+.player-row:nth-child(4) .player-rank {
+  background: #e9edf4;
+  color: #536078;
+}
 
-    @media (max-width: 480px) {
-      .container {
-        width: calc(100% - 28px);
-      }
+.player-info {
+  min-width: 0;
+}
 
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
+.player-name {
+  font-size: 15px;
+  font-weight: 900;
+  color: #18213b;
+  overflow-wrap: anywhere;
+}
 
-      .stat-card {
-        min-height: 190px;
-      }
+.player-team {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
 
-      .footer-inner {
-        padding: 16px 0;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-      }
-    }
-  </style>
+.player-stat {
+  min-width: 75px;
+  text-align: right;
+}
+
+.stat-value {
+  display: block;
+  color: var(--blue);
+  font-size: 23px;
+  font-weight: 1000;
+}
+
+.wickets-panel .stat-value {
+  color: var(--purple);
+}
+
+.stat-label {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.empty-state {
+  padding: 35px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-state .empty-icon {
+  display: block;
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.empty-state h3 {
+  color: var(--blue);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* FOOTER */
+
+.footer {
+  width: 100%;
+  padding: 24px 16px;
+  text-align: center;
+  background: #fafbfe;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  color: #8991a5;
+  font-size: 11px;
+  line-height: 1.9;
+  letter-spacing: 0.4px;
+}
+
+.footer strong {
+  color: var(--blue);
+}
+
+.footer a {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .brand-row {
+    min-height: 80px;
+    padding: 12px;
+  }
+
+  .brand-logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .brand-text h2 {
+    font-size: 21px;
+  }
+
+  .nav-menu a {
+    min-height: 52px;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 28px 13px 42px;
+  }
+
+  .stats-tabs {
+    gap: 11px;
+  }
+
+  .stats-tab {
+    min-height: 115px;
+    padding: 17px 14px;
+  }
+
+  .panel-heading {
+    padding: 18px;
+  }
+
+  .player-row {
+    padding: 15px 16px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h2 {
+    font-size: 18px;
+  }
+
+  .brand-text p {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .nav-menu a {
+    min-height: 49px;
+    padding: 12px 1px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .nav-menu a.active::after {
+    left: 12%;
+    right: 12%;
+  }
+
+  main {
+    padding: 24px 10px 35px;
+  }
+
+  .page-heading {
+    margin-bottom: 23px;
+  }
+
+  .page-heading p {
+    font-size: 12px;
+  }
+
+  .stats-tabs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stats-tab {
+    min-height: 100px;
+    padding: 16px;
+  }
+
+  .tab-icon {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+  }
+
+  .tab-title {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+  }
+
+  .tab-subtitle {
+    margin-left: 40px;
+  }
+
+  .player-row {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    padding: 14px 12px;
+    gap: 9px;
+  }
+
+  .player-rank {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .player-name {
+    font-size: 13px;
+  }
+
+  .player-stat {
+    min-width: 55px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="container header-inner">
+<header class="header">
+  <div class="brand-row">
+    <a href="index.html" class="brand">
+      <img
+        src="file_00000000fafc7208bb91a6123810609b.png"
+        alt="VCL Logo"
+        class="brand-logo"
+      >
+      <div class="brand-text">
+        <h2>VCL 2026</h2>
+        <p>VATKURA CRICKET LEAGUE</p>
+      </div>
+    </a>
+  </div>
 
-      <a class="brand" href="index.html">
-        <div class="logo-box">
-          <img
-            class="logo"
-            src="file_00000000fafc7208bb91a6123810609b.png"
-            alt="VCL Logo"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#43e7e3;font-size:18px&quot;>VCL</b>';"
-          >
-        </div>
+  <nav class="nav-menu" aria-label="Main Navigation">
+    <a href="index.html">Home</a>
+    <a href="fixtures.html">Fixtures</a>
+    <a href="points.html">Points Table</a>
+    <a href="squad.html">Teams</a>
+    <a href="stats.html" class="active">Stats</a>
+  </nav>
+</header>
 
-        <div>
-          <div class="brand-title">VCL <span>2026</span></div>
-          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="fixtures.html">Fixtures</a>
-        <a href="points.html">Points Table</a>
-        <a href="squad.html">Teams</a>
-        <a href="stats.html" class="active">STATS</a>
-      </nav>
-
-    </div>
-  </header>
-
-  <main class="container main">
+<main>
+  <div class="stats-container">
 
     <section class="page-heading">
-      <div class="eyebrow">VCL 2026 · PLAYER PERFORMANCE</div>
-      <h1>TOURNAMENT <span>STATS.</span></h1>
-      <p class="page-description">
-        Track the top performers of Vatkhura Cricket League 2026.
-        Runs, wickets, batting and bowling records in one place.
-      </p>
+      <h1><span>PLAYER STATS</span></h1>
+      <p>Top Performers · Vatkura Cricket League 2026</p>
+      <div class="heading-line"></div>
     </section>
 
-    <section class="stats-grid">
+    <section class="stats-tabs" role="tablist" aria-label="Player statistics">
+      <button
+        class="stats-tab runs"
+        id="runsTab"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="runsPanel"
+      >
+        <span class="tab-icon">🏏</span>
+        <span class="tab-title">MOST RUNS</span>
+        <span class="tab-subtitle">TOP 3 BATTERS</span>
+      </button>
 
-      <article class="stat-card">
-        <div class="stat-top">
-          <div>
-            <h2 class="stat-title">MOST RUNS</h2>
-            <p class="stat-caption">Top run scorer</p>
-          </div>
-          <div class="stat-icon">🏏</div>
-        </div>
-        <div class="stat-empty">
-          <div>
-            <strong>Stats Coming Soon</strong>
-            Match score data has not been added yet.
-          </div>
-        </div>
-      </article>
-
-      <article class="stat-card">
-        <div class="stat-top">
-          <div>
-            <h2 class="stat-title">MOST WICKETS</h2>
-            <p class="stat-caption">Leading wicket taker</p>
-          </div>
-          <div class="stat-icon">🎯</div>
-        </div>
-        <div class="stat-empty">
-          <div>
-            <strong>Stats Coming Soon</strong>
-            Bowling records will appear here.
-          </div>
-        </div>
-      </article>
-
-      <article class="stat-card">
-        <div class="stat-top">
-          <div>
-            <h2 class="stat-title">HIGHEST SCORE</h2>
-            <p class="stat-caption">Highest individual score</p>
-          </div>
-          <div class="stat-icon">🔥</div>
-        </div>
-        <div class="stat-empty">
-          <div>
-            <strong>Stats Coming Soon</strong>
-            Individual batting records will appear here.
-          </div>
-        </div>
-      </article>
-
-      <article class="stat-card">
-        <div class="stat-top">
-          <div>
-            <h2 class="stat-title">BEST BOWLING</h2>
-            <p class="stat-caption">Best bowling figures</p>
-          </div>
-          <div class="stat-icon">⚡</div>
-        </div>
-        <div class="stat-empty">
-          <div>
-            <strong>Stats Coming Soon</strong>
-            Bowling figures will appear here.
-          </div>
-        </div>
-      </article>
-
+      <button
+        class="stats-tab wickets"
+        id="wicketsTab"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="wicketsPanel"
+      >
+        <span class="tab-icon">🎯</span>
+        <span class="tab-title">MOST WICKETS</span>
+        <span class="tab-subtitle">TOP 3 BOWLERS</span>
+      </button>
     </section>
 
-    <p class="note">
-      Note: Player statistics will be updated using actual match results.
-      No player rankings are displayed until the score data is available.
-    </p>
+    <!-- MOST RUNS PANEL -->
+    <section class="stats-panel" id="runsPanel" role="tabpanel" aria-labelledby="runsTab">
+      <div class="panel-heading">
+        <h2>🏏 TOP 3 RUN SCORERS</h2>
+        <p>Leading batters of the tournament</p>
+      </div>
 
-  </main>
+      <div id="runsList">
+        <div class="empty-state">
+          <span class="empty-icon">🏏</span>
+          <h3>Stats Coming Soon</h3>
+          <p>Top 3 run scorers will appear here after matches begin.</p>
+        </div>
+      </div>
+    </section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
-      <span>PLAYER PERFORMANCE CENTRE</span>
-    </div>
-  </footer>
+    <!-- MOST WICKETS PANEL -->
+    <section class="stats-panel wickets-panel" id="wicketsPanel" role="tabpanel" aria-labelledby="wicketsTab" hidden>
+      <div class="panel-heading wickets-heading">
+        <h2>🎯 TOP 3 WICKET TAKERS</h2>
+        <p>Leading bowlers of the tournament</p>
+      </div>
+
+      <div id="wicketsList">
+        <div class="empty-state">
+          <span class="empty-icon">🎯</span>
+          <h3>Stats Coming Soon</h3>
+          <p>Top 3 wicket takers will appear here after matches begin.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>
+    © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
+    <br>
+    All Rights Reserved · VCL Session 03
+    <br>
+    <a href="https://abdurrahim06271970-blip.github.io/my-website/">
+      Official Website
+    </a>
+  </p>
+</footer>
+
+<script>
+const runsTab = document.getElementById("runsTab");
+const wicketsTab = document.getElementById("wicketsTab");
+const runsPanel = document.getElementById("runsPanel");
+const wicketsPanel = document.getElementById("wicketsPanel");
+
+runsTab.addEventListener("click", () => {
+  runsTab.setAttribute("aria-selected", "true");
+  wicketsTab.setAttribute("aria-selected", "false");
+
+  runsPanel.hidden = false;
+  wicketsPanel.hidden = true;
+});
+
+wicketsTab.addEventListener("click", () => {
+  wicketsTab.setAttribute("aria-selected", "true");
+  runsTab.setAttribute("aria-selected", "false");
+
+  wicketsPanel.hidden = false;
+  runsPanel.hidden = true;
+});
+</script>
 
 </body>
 </html>
