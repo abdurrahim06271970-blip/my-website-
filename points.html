@@ -14,7 +14,6 @@
       --blue: #1e3c72;
       --blue-light: #2a5298;
       --purple: #6a11cb;
-      --cyan: #168fcb;
       --text: #18213b;
       --muted: #69738b;
       --border: #e8eaf2;
@@ -46,7 +45,7 @@
       text-decoration: none;
     }
 
-    /* SHARED HEADER - SAME AS HOME PAGE */
+    /* HEADER - SAME AS HOME PAGE */
 
     .header {
       width: 100%;
@@ -93,7 +92,7 @@
       margin-top: 5px;
     }
 
-    /* FULL-WIDTH NAVIGATION - SAME AS HOME PAGE */
+    /* NAVIGATION - SAME AS HOME PAGE */
 
     .nav-menu {
       width: 100%;
@@ -145,7 +144,7 @@
     main {
       flex: 1;
       width: 100%;
-      padding: 45px 16px 60px;
+      padding: 22px 16px 45px;
       background:
         radial-gradient(
           ellipse at 50% 5%,
@@ -161,63 +160,16 @@
       margin: 0 auto;
     }
 
-    .page-heading {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .page-heading h1 {
-      color: var(--blue);
-      font-size: clamp(26px, 4vw, 38px);
-      font-weight: 900;
-      margin-bottom: 9px;
-    }
-
-    .page-heading p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    /* TABLE CARD */
+    /* POINTS TABLE CARD */
 
     .table-card {
       width: 100%;
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 5px 22px rgba(25, 43, 77, 0.06);
     }
-
-    .table-top {
-      min-height: 70px;
-      padding: 17px 18px;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e9f2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .table-top h2 {
-      font-size: 19px;
-      color: var(--blue);
-      font-weight: 900;
-    }
-
-    .team-count {
-      font-size: 11px;
-      font-weight: 800;
-      color: #64748b;
-      background: #f1f5f9;
-      padding: 7px 12px;
-      border-radius: 22px;
-      white-space: nowrap;
-    }
-
-    /* TABLE */
 
     table {
       width: 100%;
@@ -229,7 +181,7 @@
     thead th {
       background: #182b4d;
       color: #ffffff;
-      padding: 15px 8px;
+      padding: 16px 8px;
       font-size: 12px;
       font-weight: 800;
       white-space: nowrap;
@@ -241,7 +193,7 @@
     }
 
     tbody td {
-      padding: 16px 8px;
+      padding: 17px 8px;
       font-size: 13px;
       font-weight: 700;
       color: #18213b;
@@ -270,7 +222,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.92);
       color: #18213b;
       border: 1px solid rgba(23,32,51,0.1);
       font-size: 11px;
@@ -366,7 +318,7 @@
       outline-offset: -1px;
     }
 
-    /* COLOR LEGEND */
+    /* TEAM COLOR LEGEND */
 
     .legend {
       display: flex;
@@ -402,7 +354,7 @@
     .legend-fire { background: #b91c1c; }
     .legend-blue { background: #2474d2; }
 
-    /* RULES BELOW THE TABLE */
+    /* ENGLISH RULES BELOW THE POINTS TABLE */
 
     .rules-box {
       background: linear-gradient(135deg, #f0f5ff, #f6efff);
@@ -420,7 +372,7 @@
       color: #5424a8;
     }
 
-    /* FOOTER - SAME STYLE AS HOME PAGE */
+    /* FOOTER - SAME AS HOME PAGE */
 
     .footer {
       width: 100%;
@@ -469,7 +421,7 @@
       }
 
       main {
-        padding: 40px 12px 50px;
+        padding: 18px 12px 40px;
       }
 
       .team-cell {
@@ -477,12 +429,12 @@
       }
 
       thead th {
-        padding: 13px 6px;
+        padding: 14px 6px;
         font-size: 10px;
       }
 
       tbody td {
-        padding: 14px 5px;
+        padding: 15px 5px;
         font-size: 11px;
       }
 
@@ -525,37 +477,11 @@
       }
 
       main {
-        padding: 30px 7px 40px;
-      }
-
-      .page-heading {
-        margin-bottom: 21px;
-      }
-
-      .page-heading h1 {
-        font-size: 26px;
-      }
-
-      .page-heading p {
-        font-size: 12px;
+        padding: 12px 7px 32px;
       }
 
       .table-card {
         border-radius: 14px;
-      }
-
-      .table-top {
-        min-height: 58px;
-        padding: 14px 10px;
-      }
-
-      .table-top h2 {
-        font-size: 15px;
-      }
-
-      .team-count {
-        font-size: 9px;
-        padding: 6px 9px;
       }
 
       thead th {
@@ -667,23 +593,12 @@
     </nav>
   </header>
 
-  <!-- POINTS TABLE CONTENT -->
+  <!-- POINTS TABLE - NO EXTRA TITLE OR STANDINGS BOX -->
 
   <main>
     <div class="container">
 
-      <section class="page-heading">
-        <h1>POINTS TABLE</h1>
-        <p>VCL 2026 · Session 03 · Tournament Standings</p>
-      </section>
-
       <section class="table-card">
-
-        <div class="table-top">
-          <h2>Tournament Standings</h2>
-          <span class="team-count">6 TEAMS</span>
-        </div>
-
         <table>
           <thead>
             <tr>
@@ -805,7 +720,6 @@
             Strikers
           </div>
         </div>
-
       </section>
 
       <!-- RULES BELOW THE TABLE -->
@@ -821,7 +735,7 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER - SAME AS HOME PAGE -->
 
   <footer class="footer">
     <p>
