@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,7 @@
       min-height: 100vh;
     }
 
+    /* Header */
     .page-header {
       background: #ffffff;
       padding: 18px 16px 14px;
@@ -55,6 +56,7 @@
       font-weight: 700;
     }
 
+    /* Navigation */
     .navbar {
       display: flex;
       width: 100%;
@@ -92,6 +94,7 @@
       border-bottom-color: #6a11cb;
     }
 
+    /* Main Content */
     .container {
       width: 100%;
       max-width: 1100px;
@@ -113,10 +116,11 @@
 
     .page-heading p {
       color: #64748b;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.6;
     }
 
+    /* Qualification Information */
     .qualification-box {
       background: linear-gradient(135deg, #eef2ff, #f5edff);
       border: 1px solid #ded7ff;
@@ -124,8 +128,8 @@
       padding: 13px 15px;
       border-radius: 10px;
       margin-bottom: 20px;
-      font-size: 13px;
-      line-height: 1.7;
+      font-size: 12px;
+      line-height: 1.8;
       color: #34415e;
     }
 
@@ -133,6 +137,7 @@
       color: #5424a8;
     }
 
+    /* Table Card */
     .table-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -166,6 +171,7 @@
       white-space: nowrap;
     }
 
+    /* Points Table */
     table {
       width: 100%;
       border-collapse: separate;
@@ -207,9 +213,10 @@
     }
 
     tbody tr:hover td {
-      filter: brightness(0.96);
+      filter: brightness(0.94);
     }
 
+    /* Position */
     .rank {
       display: inline-flex;
       width: 25px;
@@ -224,6 +231,7 @@
       font-weight: 900;
     }
 
+    /* Team Name */
     .team-cell {
       text-align: left;
       min-width: 175px;
@@ -237,81 +245,6 @@
       color: #172033;
     }
 
-    .team-label {
-      display: block;
-      font-size: 9px;
-      font-weight: 800;
-      margin-top: 4px;
-      opacity: 0.75;
-      letter-spacing: 0.5px;
-    }
-
-    /* HR KINGS VATKURA - Gold */
-    tbody tr.hrkings td {
-      background: linear-gradient(90deg, #ffe28a, #fff4cf);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.hrkings {
-      outline: 1px solid #e2b52f;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA KINGS - Red */
-    tbody tr.kings td {
-      background: linear-gradient(90deg, #ffb8b8, #ffe3e3);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.kings {
-      outline: 1px solid #dc4545;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA TIGERS - Orange */
-    tbody tr.tigers td {
-      background: linear-gradient(90deg, #ffc88c, #ffead2);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.tigers {
-      outline: 1px solid #ed861e;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA STARS - Green */
-    tbody tr.stars td {
-      background: linear-gradient(90deg, #a8e9ba, #ddf8e4);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.stars {
-      outline: 1px solid #239447;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA FIRE EIGHT - Dark Red */
-    tbody tr.fire td {
-      background: linear-gradient(90deg, #f5a6a6, #ffdddd);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.fire {
-      outline: 1px solid #b91c1c;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA STRIKERS - Blue */
-    tbody tr.strikers td {
-      background: linear-gradient(90deg, #a9d4ff, #deefff);
-      border-bottom-color: #ffffff;
-    }
-
-    tbody tr.strikers {
-      outline: 1px solid #2474d2;
-      outline-offset: -1px;
-    }
-
     .points {
       font-size: 14px;
       font-weight: 900;
@@ -322,6 +255,69 @@
       font-weight: 800;
     }
 
+    /* Full Row Colors */
+
+    /* HR KINGS VATKURA - Gold */
+    tbody tr.hrkings td {
+      background: linear-gradient(90deg, #ffe28a, #fff4cf);
+    }
+
+    tbody tr.hrkings {
+      outline: 1px solid #e2b52f;
+      outline-offset: -1px;
+    }
+
+    /* VATKURA KINGS - Red */
+    tbody tr.kings td {
+      background: linear-gradient(90deg, #ffb8b8, #ffe3e3);
+    }
+
+    tbody tr.kings {
+      outline: 1px solid #dc4545;
+      outline-offset: -1px;
+    }
+
+    /* VATKURA TIGERS - Orange */
+    tbody tr.tigers td {
+      background: linear-gradient(90deg, #ffc88c, #ffead2);
+    }
+
+    tbody tr.tigers {
+      outline: 1px solid #ed861e;
+      outline-offset: -1px;
+    }
+
+    /* VATKURA STARS - Green */
+    tbody tr.stars td {
+      background: linear-gradient(90deg, #a8e9ba, #ddf8e4);
+    }
+
+    tbody tr.stars {
+      outline: 1px solid #239447;
+      outline-offset: -1px;
+    }
+
+    /* VATKURA FIRE EIGHT - Dark Red */
+    tbody tr.fire td {
+      background: linear-gradient(90deg, #f5a6a6, #ffdddd);
+    }
+
+    tbody tr.fire {
+      outline: 1px solid #b91c1c;
+      outline-offset: -1px;
+    }
+
+    /* VATKURA STRIKERS - Blue */
+    tbody tr.strikers td {
+      background: linear-gradient(90deg, #a9d4ff, #deefff);
+    }
+
+    tbody tr.strikers {
+      outline: 1px solid #2474d2;
+      outline-offset: -1px;
+    }
+
+    /* Color Legend */
     .legend {
       display: flex;
       flex-wrap: wrap;
@@ -355,6 +351,7 @@
     .legend-fire { background: #b91c1c; }
     .legend-blue { background: #2474d2; }
 
+    /* Footer */
     .footer {
       text-align: center;
       padding: 22px 12px;
@@ -373,6 +370,7 @@
       font-weight: 700;
     }
 
+    /* Tablet and Desktop */
     @media (min-width: 700px) {
       .container {
         padding-top: 32px;
@@ -401,6 +399,7 @@
       }
     }
 
+    /* Mobile */
     @media (max-width: 480px) {
       .page-header {
         padding-top: 14px;
@@ -463,10 +462,6 @@
         line-height: 1.4;
       }
 
-      .team-label {
-        font-size: 8px;
-      }
-
       .rank {
         width: 21px;
         height: 21px;
@@ -506,6 +501,7 @@
 
 <body>
 
+  <!-- Header -->
   <header class="page-header">
     <img
       class="logo"
@@ -518,6 +514,7 @@
     <div class="site-subtitle">VATKURA CRICKET LEAGUE</div>
   </header>
 
+  <!-- Navigation -->
   <nav class="navbar">
     <a href="index.html">Home</a>
     <a href="fixtures.html">Fixtures</a>
@@ -526,6 +523,7 @@
     <a href="stats.html">Stats</a>
   </nav>
 
+  <!-- Main Content -->
   <main class="container">
 
     <section class="page-heading">
@@ -533,18 +531,20 @@
       <p>VCL 2026 · Session 03 · Tournament Standings</p>
     </section>
 
+    <!-- Qualification Rules -->
     <div class="qualification-box">
-      🏆 <strong>সেমিফাইনাল নিয়ম:</strong>
-      প্রতিটি দল অন্য সব দলের সাথে একটি করে ম্যাচ খেলবে।
-      পয়েন্ট টেবিলের শীর্ষ ৪ দল সেমিফাইনালে খেলার যোগ্যতা অর্জন করবে।
+      <strong>QUALIFICATION:</strong>
+      Top 4 teams advance to the Semifinals.
       <br>
-      <strong>পয়েন্ট নিয়ম:</strong> জয় = ২ পয়েন্ট | হার = ০ পয়েন্ট
+      <strong>POINTS:</strong>
+      Win = 2 | Loss = 0
     </div>
 
+    <!-- Points Table -->
     <section class="table-card">
 
       <div class="table-top">
-        <h2>🏏 Tournament Standings</h2>
+        <h2>Tournament Standings</h2>
         <span>6 TEAMS</span>
       </div>
 
@@ -562,11 +562,11 @@
         </thead>
 
         <tbody>
+
           <tr class="hrkings">
             <td><span class="rank">1</span></td>
             <td class="team-cell">
               <span class="team-name">HR KINGS VATKURA</span>
-              <span class="team-label">HR KINGS</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -579,7 +579,6 @@
             <td><span class="rank">2</span></td>
             <td class="team-cell">
               <span class="team-name">VATKURA KINGS</span>
-              <span class="team-label">KINGS</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -592,7 +591,6 @@
             <td><span class="rank">3</span></td>
             <td class="team-cell">
               <span class="team-name">VATKURA TIGERS</span>
-              <span class="team-label">TIGERS</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -605,7 +603,6 @@
             <td><span class="rank">4</span></td>
             <td class="team-cell">
               <span class="team-name">VATKURA STARS</span>
-              <span class="team-label">STARS</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -618,7 +615,6 @@
             <td><span class="rank">5</span></td>
             <td class="team-cell">
               <span class="team-name">VATKURA FIRE EIGHT</span>
-              <span class="team-label">FIRE EIGHT</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -631,7 +627,6 @@
             <td><span class="rank">6</span></td>
             <td class="team-cell">
               <span class="team-name">VATKURA STRIKERS</span>
-              <span class="team-label">STRIKERS</span>
             </td>
             <td>0</td>
             <td>0</td>
@@ -639,30 +634,37 @@
             <td class="points">0</td>
             <td class="nrr">—</td>
           </tr>
+
         </tbody>
       </table>
 
+      <!-- Team Color Legend -->
       <div class="legend">
         <div class="legend-item">
           <span class="legend-dot legend-gold"></span>
           HR Kings
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-red"></span>
           Vatkura Kings
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-orange"></span>
           Tigers
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-green"></span>
           Stars
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-fire"></span>
           Fire Eight
         </div>
+
         <div class="legend-item">
           <span class="legend-dot legend-blue"></span>
           Strikers
@@ -671,13 +673,17 @@
 
     </section>
 
-    <div class="footer">
-      <strong>VCL 2026</strong> · Vatkura Cricket League<br>
+    <!-- Footer -->
+    <footer class="footer">
+      <strong>VCL 2026</strong> · Vatkura Cricket League
+      <br>
       Official Website:
-      <a href="https://abdurrahim06271970-blip.github.io/my-website/" target="_blank">
-        VCL Official Site
-      </a>
-    </div>
+      <a
+        href="https://abdurrahim06271970-blip.github.io/my-website/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >VCL Official Site</a>
+    </footer>
 
   </main>
 
