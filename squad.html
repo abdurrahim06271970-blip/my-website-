@@ -46,7 +46,7 @@ a {
   text-decoration: none;
 }
 
-/* HEADER — SAME AS INDEX.HTML */
+/* HEADER */
 
 .header {
   width: 100%;
@@ -93,7 +93,7 @@ a {
   margin-top: 5px;
 }
 
-/* NAVIGATION — SAME AS INDEX.HTML */
+/* NAVIGATION */
 
 .nav-menu {
   width: 100%;
@@ -206,25 +206,103 @@ main {
 /* TEAM CARD */
 
 .team-card {
+  --team-dark: #18213b;
+  --team-border: #64748b;
+  --team-bg-start: #f1f5f9;
+  --team-bg-end: #ffffff;
+
   background: #ffffff;
-  border: 1px solid var(--border);
+  border: 1px solid var(--team-border);
   border-radius: 17px;
   overflow: hidden;
   box-shadow: 0 5px 20px rgba(30, 60, 114, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
   animation: fadeUp 0.55s ease both;
 }
 
 .team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(30, 60, 114, 0.11);
+  box-shadow: 0 12px 28px rgba(30, 60, 114, 0.12);
 }
 
-.team-header {
-  position: relative;
-  padding: 22px 20px 20px;
+.team-card.open {
+  box-shadow: 0 10px 28px rgba(30, 60, 114, 0.12);
+}
+
+.team-card.kings {
+  --team-dark: #b91c1c;
+  --team-border: #dc4545;
+  --team-bg-start: #ffb8b8;
+  --team-bg-end: #ffe3e3;
+}
+
+.team-card.tigers {
+  --team-dark: #b9650b;
+  --team-border: #ed861e;
+  --team-bg-start: #ffc88c;
+  --team-bg-end: #ffead2;
+}
+
+.team-card.fire {
+  --team-dark: #991b1b;
+  --team-border: #b91c1c;
+  --team-bg-start: #f5a6a6;
+  --team-bg-end: #ffdddd;
+}
+
+.team-card.strikers {
+  --team-dark: #185cb0;
+  --team-border: #2474d2;
+  --team-bg-start: #a9d4ff;
+  --team-bg-end: #deefff;
+}
+
+.team-card.hr-kings {
+  --team-dark: #8a6500;
+  --team-border: #e2b52f;
+  --team-bg-start: #ffe28a;
+  --team-bg-end: #fff4cf;
+}
+
+.team-card.stars {
+  --team-dark: #167538;
+  --team-border: #239447;
+  --team-bg-start: #a8e9ba;
+  --team-bg-end: #ddf8e4;
+}
+
+/* CLICKABLE TEAM HEADING */
+
+.team-toggle {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   color: #ffffff;
-  background: linear-gradient(115deg, var(--blue), var(--blue-light), var(--purple));
+  padding: 22px 20px 20px;
+  background: linear-gradient(
+    110deg,
+    var(--team-dark),
+    var(--team-border)
+  );
+  transition: filter 0.2s ease;
+}
+
+.team-toggle:hover {
+  filter: brightness(1.06);
+}
+
+.team-toggle:focus-visible {
+  outline: 3px solid var(--team-border);
+  outline-offset: -4px;
+}
+
+.team-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .team-number {
@@ -240,7 +318,7 @@ main {
   letter-spacing: 1px;
 }
 
-.team-header h2 {
+.team-toggle h2 {
   font-size: clamp(18px, 2.5vw, 23px);
   line-height: 1.3;
   font-weight: 1000;
@@ -250,13 +328,42 @@ main {
 
 .team-subtitle {
   margin-top: 7px;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.84);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.6px;
 }
 
-/* PLAYER COUNT */
+.toggle-icon {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.17);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.team-card.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* SQUAD CONTENT */
+
+.squad-content {
+  display: none;
+  background: #ffffff;
+}
+
+.team-card.open .squad-content {
+  display: block;
+  animation: expandIn 0.25s ease;
+}
 
 .squad-label {
   display: flex;
@@ -264,19 +371,24 @@ main {
   align-items: center;
   gap: 10px;
   padding: 14px 20px;
-  background: #f8f9fd;
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    90deg,
+    var(--team-bg-start),
+    var(--team-bg-end)
+  );
+  border-bottom: 1px solid var(--team-border);
 }
 
 .squad-label strong {
-  color: var(--blue);
+  color: var(--team-dark);
   font-size: 13px;
   font-weight: 900;
 }
 
 .player-count {
-  color: var(--purple);
-  background: #f0e9ff;
+  color: var(--team-dark);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--team-border);
   padding: 5px 9px;
   border-radius: 20px;
   font-size: 11px;
@@ -289,6 +401,7 @@ main {
 .player-list {
   list-style: none;
   padding: 10px 16px 17px;
+  background: #ffffff;
 }
 
 .player-list li {
@@ -298,7 +411,7 @@ main {
   min-height: 43px;
   padding: 9px 7px;
   border-bottom: 1px solid #f0f1f6;
-  color: #303b55;
+  color: var(--team-dark);
   font-size: 14px;
   font-weight: 800;
   overflow-wrap: anywhere;
@@ -316,8 +429,13 @@ main {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: #eef2ff;
-  color: var(--blue-light);
+  background: linear-gradient(
+    120deg,
+    var(--team-bg-start),
+    var(--team-bg-end)
+  );
+  border: 1px solid var(--team-border);
+  color: var(--team-dark);
   font-size: 11px;
   font-weight: 900;
 }
@@ -325,6 +443,7 @@ main {
 .player-name {
   flex: 1;
   min-width: 0;
+  color: var(--team-dark);
 }
 
 .captain {
@@ -348,35 +467,10 @@ main {
   color: #137348;
   font-size: 10px;
   font-weight: 900;
+  vertical-align: middle;
 }
 
-/* DIFFERENT TEAM COLORS */
-
-.team-card.kings .team-header {
-  background: linear-gradient(115deg, #173b75, #2868b5);
-}
-
-.team-card.tigers .team-header {
-  background: linear-gradient(115deg, #14532d, #218653);
-}
-
-.team-card.fire .team-header {
-  background: linear-gradient(115deg, #a52b13, #ef6c28);
-}
-
-.team-card.strikers .team-header {
-  background: linear-gradient(115deg, #551a8b, #873dd0);
-}
-
-.team-card.hr-kings .team-header {
-  background: linear-gradient(115deg, #172033, #36476b);
-}
-
-.team-card.stars .team-header {
-  background: linear-gradient(115deg, #a56b00, #e0a523);
-}
-
-/* FOOTER — SAME AS INDEX.HTML */
+/* FOOTER */
 
 .footer {
   width: 100%;
@@ -397,12 +491,28 @@ main {
   color: var(--blue);
 }
 
-/* ANIMATION */
+.footer a {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+/* ANIMATIONS */
 
 @keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
   }
   to {
     opacity: 1;
@@ -440,7 +550,7 @@ main {
     gap: 16px;
   }
 
-  .team-header {
+  .team-toggle {
     padding: 18px 15px;
   }
 
@@ -512,11 +622,11 @@ main {
     gap: 17px;
   }
 
-  .team-header {
+  .team-toggle {
     padding: 20px 18px;
   }
 
-  .team-header h2 {
+  .team-toggle h2 {
     font-size: 22px;
   }
 
@@ -580,156 +690,198 @@ main {
       <div class="heading-line"></div>
     </section>
 
-    <section class="team-grid">
+    <section class="team-grid" aria-label="VCL team squads">
 
       <!-- TEAM 1: VATKURA KINGS -->
       <article class="team-card kings">
-        <div class="team-header">
-          <span class="team-number">TEAM 01</span>
-          <h2>VATKURA KINGS</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-kings">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 01</span>
+              <h2>VATKURA KINGS</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-kings" hidden>
+          <div class="squad-label">
+            <strong>VATKURA KINGS SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">ALMAN <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">JOHIRUL</span></li>
+            <li><span class="player-number">03</span><span class="player-name">SOHAN</span></li>
+            <li><span class="player-number">04</span><span class="player-name">RAHAT</span></li>
+            <li><span class="player-number">05</span><span class="player-name">SHADHIN</span></li>
+            <li><span class="player-number">06</span><span class="player-name">SHOHAN</span></li>
+            <li><span class="player-number">07</span><span class="player-name">ESAN</span></li>
+            <li><span class="player-number">08</span><span class="player-name">MERAJ</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">ALMAN <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">JOHIRUL</span></li>
-          <li><span class="player-number">03</span><span class="player-name">SOHAN</span></li>
-          <li><span class="player-number">04</span><span class="player-name">RAHAT</span></li>
-          <li><span class="player-number">05</span><span class="player-name">SHADHIN</span></li>
-          <li><span class="player-number">06</span><span class="player-name">SHOHAN</span></li>
-          <li><span class="player-number">07</span><span class="player-name">ESAN</span></li>
-          <li><span class="player-number">08</span><span class="player-name">MERAJ</span></li>
-        </ol>
       </article>
 
       <!-- TEAM 2: VATKURA TIGERS -->
       <article class="team-card tigers">
-        <div class="team-header">
-          <span class="team-number">TEAM 02</span>
-          <h2>VATKURA TIGERS</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-tigers">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 02</span>
+              <h2>VATKURA TIGERS</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-tigers" hidden>
+          <div class="squad-label">
+            <strong>VATKURA TIGERS SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">HARUN <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">SHUVO</span></li>
+            <li><span class="player-number">03</span><span class="player-name">ABIR</span></li>
+            <li><span class="player-number">04</span><span class="player-name">SUNNY</span></li>
+            <li><span class="player-number">05</span><span class="player-name">SAZZID</span></li>
+            <li><span class="player-number">06</span><span class="player-name">SIAM</span></li>
+            <li><span class="player-number">07</span><span class="player-name">SIFAT</span></li>
+            <li><span class="player-number">08</span><span class="player-name">NAZMUL</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">HARUN <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">SHUVO</span></li>
-          <li><span class="player-number">03</span><span class="player-name">ABIR</span></li>
-          <li><span class="player-number">04</span><span class="player-name">SUNNY</span></li>
-          <li><span class="player-number">05</span><span class="player-name">SAZZID</span></li>
-          <li><span class="player-number">06</span><span class="player-name">SIAM</span></li>
-          <li><span class="player-number">07</span><span class="player-name">SIFAT</span></li>
-          <li><span class="player-number">08</span><span class="player-name">NAZMUL</span></li>
-        </ol>
       </article>
 
       <!-- TEAM 3: VATKURA FIRE EIGHT -->
       <article class="team-card fire">
-        <div class="team-header">
-          <span class="team-number">TEAM 03</span>
-          <h2>VATKURA FIRE EIGHT</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-fire">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 03</span>
+              <h2>VATKURA FIRE EIGHT</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-fire" hidden>
+          <div class="squad-label">
+            <strong>VATKURA FIRE EIGHT SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">YOUSUF <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">SHUVO <span class="wicketkeeper">(B)</span></span></li>
+            <li><span class="player-number">03</span><span class="player-name">ANIK</span></li>
+            <li><span class="player-number">04</span><span class="player-name">HASAN</span></li>
+            <li><span class="player-number">05</span><span class="player-name">MAJEDUL</span></li>
+            <li><span class="player-number">06</span><span class="player-name">RABBI</span></li>
+            <li><span class="player-number">07</span><span class="player-name">EFTI</span></li>
+            <li><span class="player-number">08</span><span class="player-name">NUHASH</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">YOUSUF <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">SHUVO <span class="wicketkeeper">(B)</span></span></li>
-          <li><span class="player-number">03</span><span class="player-name">ANIK</span></li>
-          <li><span class="player-number">04</span><span class="player-name">HASAN</span></li>
-          <li><span class="player-number">05</span><span class="player-name">MAJEDUL</span></li>
-          <li><span class="player-number">06</span><span class="player-name">RABBI</span></li>
-          <li><span class="player-number">07</span><span class="player-name">EFTI</span></li>
-          <li><span class="player-number">08</span><span class="player-name">NUHASH</span></li>
-        </ol>
       </article>
 
       <!-- TEAM 4: VATKURA STRIKERS -->
       <article class="team-card strikers">
-        <div class="team-header">
-          <span class="team-number">TEAM 04</span>
-          <h2>VATKURA STRIKERS</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-strikers">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 04</span>
+              <h2>VATKURA STRIKERS</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-strikers" hidden>
+          <div class="squad-label">
+            <strong>VATKURA STRIKERS SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">SHAPON <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">ASHIK</span></li>
+            <li><span class="player-number">03</span><span class="player-name">TASBIH</span></li>
+            <li><span class="player-number">04</span><span class="player-name">AHSAN</span></li>
+            <li><span class="player-number">05</span><span class="player-name">NABIL</span></li>
+            <li><span class="player-number">06</span><span class="player-name">NAEEM</span></li>
+            <li><span class="player-number">07</span><span class="player-name">LEON</span></li>
+            <li><span class="player-number">08</span><span class="player-name">YAMIN</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">SHAPON <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">ASHIK</span></li>
-          <li><span class="player-number">03</span><span class="player-name">TASBIH</span></li>
-          <li><span class="player-number">04</span><span class="player-name">AHSAN</span></li>
-          <li><span class="player-number">05</span><span class="player-name">NABIL</span></li>
-          <li><span class="player-number">06</span><span class="player-name">NAEEM</span></li>
-          <li><span class="player-number">07</span><span class="player-name">LEON</span></li>
-          <li><span class="player-number">08</span><span class="player-name">YAMIN</span></li>
-        </ol>
       </article>
 
       <!-- TEAM 5: HR KINGS VATKURA -->
       <article class="team-card hr-kings">
-        <div class="team-header">
-          <span class="team-number">TEAM 05</span>
-          <h2>HR KINGS VATKURA</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-hrkings">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 05</span>
+              <h2>HR KINGS VATKURA</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-hrkings" hidden>
+          <div class="squad-label">
+            <strong>HR KINGS VATKURA SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">RIDOY <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">HRIDOY - 2</span></li>
+            <li><span class="player-number">03</span><span class="player-name">SIAM</span></li>
+            <li><span class="player-number">04</span><span class="player-name">OMI</span></li>
+            <li><span class="player-number">05</span><span class="player-name">AL-AMIN</span></li>
+            <li><span class="player-number">06</span><span class="player-name">MARUF</span></li>
+            <li><span class="player-number">07</span><span class="player-name">RUMAN</span></li>
+            <li><span class="player-number">08</span><span class="player-name">RAJU</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">RIDOY <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">HRIDOY - 2</span></li>
-          <li><span class="player-number">03</span><span class="player-name">SIAM</span></li>
-          <li><span class="player-number">04</span><span class="player-name">OMI</span></li>
-          <li><span class="player-number">05</span><span class="player-name">AL-AMIN</span></li>
-          <li><span class="player-number">06</span><span class="player-name">MARUF</span></li>
-          <li><span class="player-number">07</span><span class="player-name">RUMAN</span></li>
-          <li><span class="player-number">08</span><span class="player-name">RAJU</span></li>
-        </ol>
       </article>
 
       <!-- TEAM 6: VATKURA STARS -->
       <article class="team-card stars">
-        <div class="team-header">
-          <span class="team-number">TEAM 06</span>
-          <h2>VATKURA STARS</h2>
-          <p class="team-subtitle">OFFICIAL SQUAD</p>
-        </div>
+        <button class="team-toggle" type="button"
+          aria-expanded="false" aria-controls="squad-stars">
+          <span class="team-topline">
+            <span>
+              <span class="team-number">TEAM 06</span>
+              <h2>VATKURA STARS</h2>
+              <p class="team-subtitle">TAP TO VIEW SQUAD</p>
+            </span>
+            <span class="toggle-icon" aria-hidden="true">⌄</span>
+          </span>
+        </button>
 
-        <div class="squad-label">
-          <strong>TEAM SQUAD</strong>
-          <span class="player-count">8 PLAYERS</span>
+        <div class="squad-content" id="squad-stars" hidden>
+          <div class="squad-label">
+            <strong>VATKURA STARS SQUAD</strong>
+            <span class="player-count">8 PLAYERS</span>
+          </div>
+          <ol class="player-list">
+            <li><span class="player-number">01</span><span class="player-name">SIAM <span class="captain">(C)</span></span></li>
+            <li><span class="player-number">02</span><span class="player-name">RAHAT</span></li>
+            <li><span class="player-number">03</span><span class="player-name">MUNNA</span></li>
+            <li><span class="player-number">04</span><span class="player-name">JOY</span></li>
+            <li><span class="player-number">05</span><span class="player-name">RATUL</span></li>
+            <li><span class="player-number">06</span><span class="player-name">JIHAD</span></li>
+            <li><span class="player-number">07</span><span class="player-name">ALIF</span></li>
+            <li><span class="player-number">08</span><span class="player-name">BISHAL</span></li>
+          </ol>
         </div>
-
-        <ol class="player-list">
-          <li><span class="player-number">01</span><span class="player-name">SIAM <span class="captain">(C)</span></span></li>
-          <li><span class="player-number">02</span><span class="player-name">RAHAT</span></li>
-          <li><span class="player-number">03</span><span class="player-name">MUNNA</span></li>
-          <li><span class="player-number">04</span><span class="player-name">JOY</span></li>
-          <li><span class="player-number">05</span><span class="player-name">RATUL</span></li>
-          <li><span class="player-number">06</span><span class="player-name">JIHAD</span></li>
-          <li><span class="player-number">07</span><span class="player-name">ALIF</span></li>
-          <li><span class="player-number">08</span><span class="player-name">BISHAL</span></li>
-        </ol>
       </article>
 
     </section>
@@ -741,8 +893,42 @@ main {
     © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
     <br>
     All Rights Reserved · VCL Session 03
+    <br>
+    <a href="https://abdurrahim06271970-blip.github.io/my-website/">
+      Official Website
+    </a>
   </p>
 </footer>
+
+<script>
+/* Accordion: only one team can be open at a time */
+const teamCards = document.querySelectorAll(".team-card");
+
+teamCards.forEach((card) => {
+  const toggle = card.querySelector(".team-toggle");
+  const content = card.querySelector(".squad-content");
+
+  toggle.addEventListener("click", () => {
+    const shouldOpen = !card.classList.contains("open");
+
+    teamCards.forEach((otherCard) => {
+      otherCard.classList.remove("open");
+
+      const otherToggle = otherCard.querySelector(".team-toggle");
+      const otherContent = otherCard.querySelector(".squad-content");
+
+      otherToggle.setAttribute("aria-expanded", "false");
+      otherContent.hidden = true;
+    });
+
+    if (shouldOpen) {
+      card.classList.add("open");
+      toggle.setAttribute("aria-expanded", "true");
+      content.hidden = false;
+    }
+  });
+});
+</script>
 
 </body>
 </html>
