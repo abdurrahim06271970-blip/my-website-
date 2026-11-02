@@ -249,7 +249,7 @@
     }
 
     td {
-      padding: 15px 3px;
+      padding: 10px 3px;
       font-size: 12px;
       color: #525e76;
       border-bottom: 1px solid #edf0f6;
@@ -277,7 +277,8 @@
     td:nth-child(1) {
       width: 34%;
       text-align: left;
-      padding-left: 12px;
+      padding-left: 8px;
+      padding-right: 5px;
     }
 
     th:nth-child(2),
@@ -295,13 +296,17 @@
     th:nth-child(6),
     td:nth-child(6) { width: 17%; }
 
-    /* TEAM NAME */
+    /* TEAM NAME BOX */
 
     .team-cell {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       min-width: 0;
+      width: 100%;
+      padding: 8px 6px;
+      border-radius: 8px;
+      border: 1px solid transparent;
     }
 
     .rank {
@@ -317,7 +322,6 @@
       font-weight: 900;
     }
 
-    /* Larger team names */
     .team-name {
       display: inline-block;
       font-size: 13px;
@@ -328,7 +332,12 @@
       text-align: left;
     }
 
-    /* TEAM COLORS BASED ON THE LOGOS */
+    /* VATKURA KINGS — RED & GOLD */
+
+    .kings td:first-child .team-cell {
+      background: linear-gradient(135deg, #fff0ed, #ffe0c2);
+      border-color: #e74435;
+    }
 
     .kings .rank {
       color: #fff;
@@ -336,7 +345,14 @@
     }
 
     .kings .team-name {
-      color: #c72b22;
+      color: #b91c1c;
+    }
+
+    /* VATKURA TIGERS — ORANGE */
+
+    .tigers td:first-child .team-cell {
+      background: linear-gradient(135deg, #fff3df, #ffdf9f);
+      border-color: #f08b24;
     }
 
     .tigers .rank {
@@ -345,7 +361,14 @@
     }
 
     .tigers .team-name {
-      color: #dc5b18;
+      color: #b84b0b;
+    }
+
+    /* VATKURA FIRE EIGHT — RED */
+
+    .fire td:first-child .team-cell {
+      background: linear-gradient(135deg, #fff0f0, #ffd5dc);
+      border-color: #e52d46;
     }
 
     .fire .rank {
@@ -354,7 +377,14 @@
     }
 
     .fire .team-name {
-      color: #d92535;
+      color: #b91c35;
+    }
+
+    /* VATKURA STRIKERS — BLUE */
+
+    .strikers td:first-child .team-cell {
+      background: linear-gradient(135deg, #eaf5ff, #cceaff);
+      border-color: #2588e8;
     }
 
     .strikers .rank {
@@ -363,7 +393,14 @@
     }
 
     .strikers .team-name {
-      color: #1265ce;
+      color: #0755b7;
+    }
+
+    /* HR KINGS VATKURA — GOLD */
+
+    .hrkings td:first-child .team-cell {
+      background: linear-gradient(135deg, #fff9df, #ffe6a0);
+      border-color: #d5a21b;
     }
 
     .hrkings .rank {
@@ -372,7 +409,14 @@
     }
 
     .hrkings .team-name {
-      color: #b17b08;
+      color: #936000;
+    }
+
+    /* VATKURA STARS — GREEN */
+
+    .stars td:first-child .team-cell {
+      background: linear-gradient(135deg, #eaffeb, #c9f7c7);
+      border-color: #2caf4a;
     }
 
     .stars .rank {
@@ -381,7 +425,7 @@
     }
 
     .stars .team-name {
-      color: #168a3b;
+      color: #08752c;
     }
 
     .points-value {
@@ -480,17 +524,19 @@
       }
 
       td {
-        padding: 13px 1px;
+        padding: 8px 1px;
         font-size: 10px;
       }
 
       th:nth-child(1),
       td:nth-child(1) {
-        padding-left: 5px;
+        padding-left: 4px;
       }
 
       .team-cell {
         gap: 4px;
+        padding: 7px 4px;
+        border-radius: 6px;
       }
 
       .rank {
@@ -559,6 +605,11 @@
         font-size: 9px;
       }
 
+      .team-cell {
+        gap: 3px;
+        padding: 6px 3px;
+      }
+
       .team-name {
         font-size: 10px;
       }
@@ -567,10 +618,6 @@
         width: 18px;
         height: 18px;
         font-size: 8px;
-      }
-
-      .team-cell {
-        gap: 3px;
       }
     }
   </style>
@@ -639,70 +686,88 @@
             </thead>
 
             <tbody>
-              <tr class="kings">
+              <tr class="hrkings">
                 <td>
                   <div class="team-cell">
                     <span class="rank">1</span>
+                    <span class="team-name">HR KINGS VATKURA</span>
+                  </div>
+                </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
+              </tr>
+
+              <tr class="kings">
+                <td>
+                  <div class="team-cell">
+                    <span class="rank">2</span>
                     <span class="team-name">VATKURA KINGS</span>
                   </div>
                 </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
               </tr>
 
               <tr class="tigers">
                 <td>
                   <div class="team-cell">
-                    <span class="rank">2</span>
+                    <span class="rank">3</span>
                     <span class="team-name">VATKURA TIGERS</span>
                   </div>
                 </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
-              </tr>
-
-              <tr class="fire">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">3</span>
-                    <span class="team-name">VATKURA FIRE EIGHT</span>
-                  </div>
-                </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
-              </tr>
-
-              <tr class="strikers">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">4</span>
-                    <span class="team-name">VATKURA STRIKERS</span>
-                  </div>
-                </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
-              </tr>
-
-              <tr class="hrkings">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">5</span>
-                    <span class="team-name">HR KINGS VATKURA</span>
-                  </div>
-                </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
               </tr>
 
               <tr class="stars">
                 <td>
                   <div class="team-cell">
-                    <span class="rank">6</span>
+                    <span class="rank">4</span>
                     <span class="team-name">VATKURA STARS</span>
                   </div>
                 </td>
-                <td>0</td><td>0</td><td>0</td>
-                <td class="points-value">0</td><td>—</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
+              </tr>
+
+              <tr class="fire">
+                <td>
+                  <div class="team-cell">
+                    <span class="rank">5</span>
+                    <span class="team-name">VATKURA FIRE EIGHT</span>
+                  </div>
+                </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
+              </tr>
+
+              <tr class="strikers">
+                <td>
+                  <div class="team-cell">
+                    <span class="rank">6</span>
+                    <span class="team-name">VATKURA STRIKERS</span>
+                  </div>
+                </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="points-value">0</td>
+                <td>—</td>
               </tr>
             </tbody>
           </table>
@@ -716,8 +781,8 @@
           The top four teams qualify for the semifinals.
           <br>
           <strong>Note:</strong>
-          All statistics are currently set to zero. Team positions are
-          provisional and should be updated according to official results.
+          All statistics are currently set to zero. The displayed positions
+          are placeholders until official match results are entered.
         </div>
 
       </section>
