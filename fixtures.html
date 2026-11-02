@@ -45,7 +45,7 @@ a {
   text-decoration: none;
 }
 
-/* HEADER — SAME AS HOMEPAGE */
+/* HEADER — MATCHES INDEX.HTML */
 
 .header {
   width: 100%;
@@ -92,6 +92,8 @@ a {
   margin-top: 5px;
 }
 
+/* FULL-WIDTH NAVIGATION — MATCHES INDEX.HTML */
+
 .nav-menu {
   width: 100%;
   display: grid;
@@ -137,7 +139,7 @@ a {
   background: linear-gradient(90deg, var(--blue-light), var(--purple));
 }
 
-/* FIXTURES CONTENT */
+/* FIXTURES MAIN CONTENT */
 
 main {
   flex: 1;
@@ -146,7 +148,7 @@ main {
   background:
     radial-gradient(
       ellipse at 50% 0%,
-      rgba(106, 17, 203, 0.035),
+      rgba(106, 17, 203, 0.045),
       transparent 48%
     ),
     #ffffff;
@@ -175,7 +177,7 @@ main {
   font-size: 14px;
 }
 
-/* DATE GROUPS */
+/* DATE HEADINGS */
 
 .date-group {
   margin-bottom: 32px;
@@ -202,57 +204,21 @@ main {
   background: linear-gradient(90deg, var(--blue-light), var(--purple));
 }
 
-/* SAME DATE = SAME COLOR */
+/* MATCH CARDS */
 
 .match-card {
-  border: 1px solid var(--border);
-  border-left: 5px solid var(--blue-light);
+  border: 1px solid rgba(24, 33, 59, 0.12);
+  border-left: 6px solid var(--blue-light);
   border-radius: 13px;
   padding: 20px 22px;
   margin-bottom: 12px;
-  box-shadow: 0 3px 12px rgba(30, 60, 114, 0.035);
+  box-shadow: 0 3px 12px rgba(30, 60, 114, 0.045);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .match-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(30, 60, 114, 0.08);
-}
-
-/* November 6 */
-.date-06 {
-  background: #f1f6ff;
-  border-left-color: #2a5298;
-}
-
-/* November 13 */
-.date-13 {
-  background: #f3f0ff;
-  border-left-color: #6a11cb;
-}
-
-/* November 20 */
-.date-20 {
-  background: #eefaf6;
-  border-left-color: #16966b;
-}
-
-/* November 27 */
-.date-27 {
-  background: #fff7eb;
-  border-left-color: #df8a16;
-}
-
-/* December 4 */
-.date-04 {
-  background: #f1f7ff;
-  border-left-color: #168fcb;
-}
-
-/* December 11 */
-.date-11 {
-  background: #fff0f6;
-  border-left-color: #cf3c85;
+  box-shadow: 0 7px 18px rgba(30, 60, 114, 0.09);
 }
 
 .match-top {
@@ -267,8 +233,8 @@ main {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 7px;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(30,60,114,0.1);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(30, 60, 114, 0.12);
   color: var(--blue);
   font-size: 12px;
   font-weight: 900;
@@ -279,7 +245,7 @@ main {
   display: inline-block;
   padding: 6px 10px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   color: #53627b;
   font-size: 10px;
   font-weight: 900;
@@ -317,8 +283,8 @@ main {
   font-weight: 900;
   padding: 8px 3px;
   border-radius: 8px;
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(106,17,203,0.12);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(106, 17, 203, 0.13);
 }
 
 .match-bottom {
@@ -328,8 +294,8 @@ main {
   gap: 9px 20px;
   margin-top: 18px;
   padding-top: 13px;
-  border-top: 1px solid rgba(30,60,114,0.10);
-  color: #59677d;
+  border-top: 1px solid rgba(24, 33, 59, 0.14);
+  color: #46546e;
   font-size: 14px;
   font-weight: 700;
 }
@@ -346,38 +312,128 @@ main {
   font-weight: 900;
 }
 
-/* PLAYOFFS */
+/* NOVEMBER 06 — BLUE */
 
-.playoff .match-card {
-  background: #fff9ed;
-  border-left-color: #d49a22;
+.date-06 {
+  background: #d9e7ff;
+  border-left-color: #2456a6;
 }
 
-.playoff .match-number {
-  color: #895c00;
-}
-
-.playoff .status {
-  color: #895c00;
-}
-
-.final-card {
-  background: linear-gradient(110deg, #f4efff, #fff7fc);
-  border: 1px solid #d9c8ff;
-  border-left: 5px solid var(--purple);
-}
-
-.final-card .match-number {
+.date-06 .match-number {
+  background: #2456a6;
   color: #ffffff;
-  background: linear-gradient(100deg, var(--blue-light), var(--purple));
+  border-color: #2456a6;
+}
+
+.date-06 .status {
+  color: #194781;
+}
+
+/* NOVEMBER 13 — PURPLE */
+
+.date-13 {
+  background: #e5d7ff;
+  border-left-color: #7138c8;
+}
+
+.date-13 .match-number {
+  background: #7138c8;
+  color: #ffffff;
+  border-color: #7138c8;
+}
+
+.date-13 .status {
+  color: #5725a1;
+}
+
+/* NOVEMBER 20 — GREEN */
+
+.date-20 {
+  background: #d1f0df;
+  border-left-color: #168052;
+}
+
+.date-20 .match-number {
+  background: #168052;
+  color: #ffffff;
+  border-color: #168052;
+}
+
+.date-20 .status {
+  color: #126440;
+}
+
+/* NOVEMBER 27 — ORANGE */
+
+.date-27 {
+  background: #ffe3bd;
+  border-left-color: #c56a08;
+}
+
+.date-27 .match-number {
+  background: #c56a08;
+  color: #ffffff;
+  border-color: #c56a08;
+}
+
+.date-27 .status {
+  color: #874600;
+}
+
+/* SEMI FINALS — ROYAL GOLD */
+
+.playoff .date-04 {
+  background: linear-gradient(115deg, #ffedb3, #ffdda0);
+  border: 2px solid #d29a16;
+  border-left: 7px solid #a86f00;
+  box-shadow: 0 4px 15px rgba(180, 123, 0, 0.09);
+}
+
+.playoff .date-04 .match-number {
+  background: linear-gradient(100deg, #a86f00, #e3a817);
+  color: #ffffff;
   border: none;
 }
 
-.final-card .status {
-  color: var(--purple);
+.playoff .date-04 .status {
+  background: #fff5d6;
+  color: #875800;
+  border: 1px solid #e8c76c;
 }
 
-/* FOOTER — SAME AS HOMEPAGE */
+.playoff .date-04 .vs {
+  color: #9b6500;
+  border-color: #e4c66e;
+}
+
+/* FINAL — PREMIUM RED AND GOLD */
+
+.date-11.final-card {
+  background: linear-gradient(120deg, #ffdfe4, #ffd7bd);
+  border: 2px solid #d84752;
+  border-left: 7px solid #b91f35;
+  box-shadow: 0 5px 18px rgba(185, 31, 53, 0.14);
+}
+
+.date-11.final-card .match-number {
+  background: linear-gradient(100deg, #a9132a, #e04450);
+  color: #ffffff;
+  border: none;
+}
+
+.date-11.final-card .status {
+  background: #fff0d1;
+  color: #8a5700;
+  border: 1px solid #e5bf62;
+}
+
+.date-11.final-card .vs {
+  background: #fff7e9;
+  color: #b91f35;
+  border-color: #efb6a9;
+}
+
+/* FOOTER — MATCHES INDEX.HTML */
 
 .footer {
   width: 100%;
@@ -491,7 +547,7 @@ main {
   }
 
   .date-heading h2 {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .match-card {
