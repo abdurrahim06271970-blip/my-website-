@@ -46,7 +46,7 @@ a {
   text-decoration: none;
 }
 
-/* HEADER */
+/* HEADER — SAME AS INDEX.HTML */
 
 .header {
   width: 100%;
@@ -93,7 +93,7 @@ a {
   margin-top: 5px;
 }
 
-/* NAVIGATION */
+/* NAVIGATION — SAME AS INDEX.HTML */
 
 .nav-menu {
   width: 100%;
@@ -145,7 +145,7 @@ a {
 main {
   flex: 1;
   width: 100%;
-  padding: 42px 20px 65px;
+  padding: 32px 20px 65px;
   background:
     radial-gradient(
       ellipse at 50% 0%,
@@ -159,40 +159,6 @@ main {
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-}
-
-.page-heading {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.page-heading h1 {
-  color: var(--blue);
-  font-size: clamp(30px, 5vw, 43px);
-  font-weight: 1000;
-  letter-spacing: -1px;
-}
-
-.page-heading h1 span {
-  background: linear-gradient(100deg, var(--blue), var(--blue-light), var(--purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-heading p {
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.heading-line {
-  width: 80px;
-  height: 4px;
-  margin: 20px auto 0;
-  border-radius: 10px;
-  background: linear-gradient(90deg, var(--blue-light), var(--purple));
 }
 
 /* TEAM GRID */
@@ -216,7 +182,7 @@ main {
   border-radius: 17px;
   overflow: hidden;
   box-shadow: 0 5px 20px rgba(30, 60, 114, 0.06);
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease;
   animation: fadeUp 0.55s ease both;
 }
 
@@ -227,6 +193,8 @@ main {
 .team-card.open {
   box-shadow: 0 10px 28px rgba(30, 60, 114, 0.12);
 }
+
+/* TEAM COLORS — MATCHING POINTS TABLE */
 
 .team-card.kings {
   --team-dark: #b91c1c;
@@ -470,7 +438,7 @@ main {
   vertical-align: middle;
 }
 
-/* FOOTER */
+/* FOOTER — SAME AS INDEX.HTML */
 
 .footer {
   width: 100%;
@@ -543,7 +511,7 @@ main {
   }
 
   main {
-    padding: 32px 15px 50px;
+    padding: 18px 15px 50px;
   }
 
   .team-grid {
@@ -602,19 +570,7 @@ main {
   }
 
   main {
-    padding: 28px 12px 40px;
-  }
-
-  .page-heading {
-    margin-bottom: 25px;
-  }
-
-  .page-heading h1 {
-    letter-spacing: -0.5px;
-  }
-
-  .page-heading p {
-    font-size: 12px;
+    padding: 12px 12px 40px;
   }
 
   .team-grid {
@@ -684,11 +640,7 @@ main {
 <main>
   <div class="squad-container">
 
-    <section class="page-heading">
-      <h1><span>VCL 2026 TEAMS</span></h1>
-      <p>Official Team Squads · Vatkura Cricket League · Session 03</p>
-      <div class="heading-line"></div>
-    </section>
+    <!-- TEAM GRID — HEADING REMOVED -->
 
     <section class="team-grid" aria-label="VCL team squads">
 
@@ -902,6 +854,7 @@ main {
 
 <script>
 /* Accordion: only one team can be open at a time */
+
 const teamCards = document.querySelectorAll(".team-card");
 
 teamCards.forEach((card) => {
