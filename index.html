@@ -4,17 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
   <title>VCL 2026 | Vatkura Cricket League</title>
+  <meta name="description" content="Official website of Vatkura Cricket League 2026, Session 03.">
 
   <style>
     :root {
-      --bg: #080914;
-      --blue: #2a5298;
+      --blue: #1e3c72;
+      --blue-light: #2a5298;
       --purple: #6a11cb;
-      --cyan: #55d9ff;
-      --white: #f5f7ff;
-      --muted: #a9b0ca;
-      --border: rgba(255,255,255,.10);
+      --cyan: #168fcb;
+      --text: #18213b;
+      --muted: #69738b;
+      --border: #e8eaf2;
+      --white: #ffffff;
+      --light-bg: #f7f8fc;
     }
 
     * {
@@ -23,14 +28,15 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--white);
-      background:
-        radial-gradient(ellipse at 50% 35%, rgba(106,17,203,.17), transparent 42%),
-        radial-gradient(ellipse at 15% 10%, rgba(30,60,114,.25), transparent 38%),
-        var(--bg);
+      color: var(--text);
+      background: #ffffff;
       display: flex;
       flex-direction: column;
     }
@@ -40,90 +46,109 @@
       text-decoration: none;
     }
 
-    /* HEADER BRAND */
+    /* HEADER */
 
     .header {
       width: 100%;
-      background: rgba(8,9,20,.94);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
     }
 
     .brand-row {
-      min-height: 78px;
+      max-width: 1250px;
+      min-height: 92px;
+      padding: 15px 25px;
+      margin: auto;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 12px 18px;
+      justify-content: center;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
     }
 
     .brand-logo {
-      width: 48px;
-      height: 48px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
-      mix-blend-mode: multiply;
     }
 
     .brand-text h2 {
-      font-size: 20px;
+      color: var(--blue);
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: 1.5px;
     }
 
     .brand-text p {
-      font-size: 10px;
       color: var(--muted);
-      letter-spacing: 2px;
-      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 2.2px;
+      margin-top: 5px;
     }
 
-    /* FULL-WIDTH NAVIGATION */
+    /* FULL WIDTH NAVIGATION */
 
     .nav-menu {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      border-top: 1px solid var(--border);
-      background: rgba(16,19,41,.78);
+      background: #ffffff;
+      border-top: 1px solid #f0f1f6;
     }
 
     .nav-menu a {
+      position: relative;
       min-width: 0;
-      min-height: 53px;
-      padding: 14px 4px;
+      min-height: 57px;
+      padding: 15px 3px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
       white-space: nowrap;
-      font-size: clamp(10px, 1.6vw, 13px);
+      color: #65708a;
+      font-size: clamp(10px, 1.7vw, 14px);
       font-weight: 700;
-      color: #b9c1db;
-      border-bottom: 2px solid transparent;
-      transition: .25s ease;
+      transition: all 0.25s ease;
     }
 
     .nav-menu a:hover {
-      color: #fff;
-      background: rgba(106,17,203,.10);
+      color: var(--purple);
+      background: #faf9ff;
     }
 
     .nav-menu a.active {
-      color: #fff;
-      border-bottom-color: var(--cyan);
+      color: var(--blue);
       background: linear-gradient(
         180deg,
-        rgba(42,82,152,.10),
-        rgba(106,17,203,.12)
+        #ffffff,
+        #f6f7ff
       );
     }
 
-    /* MAIN HERO */
+    .nav-menu a.active::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 0;
+      height: 3px;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(
+        90deg,
+        var(--blue-light),
+        var(--purple)
+      );
+    }
+
+    /* HERO */
 
     main {
       flex: 1;
@@ -131,105 +156,124 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 65px 20px 75px;
+      padding: 65px 20px 80px;
+      background:
+        radial-gradient(
+          ellipse at 50% 25%,
+          rgba(106, 17, 203, 0.045),
+          transparent 48%
+        ),
+        #ffffff;
     }
 
     .hero {
       width: 100%;
-      max-width: 950px;
+      max-width: 1000px;
+      margin: auto;
       text-align: center;
-      animation: fadeUp .8s ease both;
+      animation: fadeUp 0.8s ease both;
     }
 
     .hero-logo-wrap {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 27px;
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 30px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       background: linear-gradient(
         145deg,
-        rgba(42,82,152,.20),
-        rgba(106,17,203,.18)
+        #f1f6ff,
+        #f7f0ff
       );
-      border: 1px solid rgba(125,137,255,.24);
+      border: 1px solid #e9e5fa;
       box-shadow:
-        0 0 45px rgba(106,17,203,.17),
-        inset 0 0 25px rgba(42,82,152,.10);
+        0 12px 40px rgba(30, 60, 114, 0.08),
+        0 0 0 10px rgba(106, 17, 203, 0.018);
     }
 
     .hero-logo {
-      width: 118px;
-      height: 118px;
+      width: 175px;
+      height: 175px;
       object-fit: contain;
-      mix-blend-mode: multiply;
     }
 
     .welcome-label {
-      display: inline-block;
-      margin-bottom: 21px;
-      padding: 9px 17px;
-      border: 1px solid rgba(85,217,255,.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 10px 19px;
+      color: var(--blue-light);
+      background: #f0f5ff;
+      border: 1px solid #e0e9ff;
       border-radius: 30px;
-      background: rgba(85,217,255,.06);
-      color: var(--cyan);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
+    }
+
+    .welcome-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--purple);
     }
 
     .hero h1 {
-      font-size: clamp(35px, 7vw, 76px);
-      line-height: 1.08;
+      color: var(--blue);
+      font-size: clamp(36px, 7vw, 78px);
       font-weight: 1000;
+      line-height: 1.08;
       letter-spacing: -2px;
-      text-transform: uppercase;
+      margin-bottom: 19px;
+    }
+
+    .hero h1 span {
       background: linear-gradient(
         100deg,
-        #ffffff 10%,
-        #9edfff 43%,
-        #a78bfa 76%,
-        #ffffff 100%
+        var(--blue),
+        var(--blue-light),
+        var(--purple)
       );
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 17px;
     }
 
     .hero h2 {
-      font-size: clamp(15px, 2.7vw, 23px);
-      font-weight: 800;
-      color: #dce2ff;
+      display: inline-block;
+      color: var(--purple);
+      font-size: clamp(15px, 2.5vw, 22px);
+      font-weight: 900;
       letter-spacing: 5px;
       margin-bottom: 27px;
     }
 
     .hero-description {
-      max-width: 610px;
+      max-width: 630px;
       margin: 0 auto;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.9;
+      line-height: 2;
     }
 
     .hero-description strong {
-      color: #fff;
+      color: var(--blue);
       font-weight: 800;
     }
 
     .hero-line {
       width: 95px;
-      height: 3px;
-      margin: 33px auto 0;
+      height: 4px;
+      margin: 32px auto 0;
       border-radius: 10px;
       background: linear-gradient(
         90deg,
-        var(--blue),
-        var(--purple),
-        var(--cyan)
+        var(--blue-light),
+        var(--purple)
       );
     }
 
@@ -237,22 +281,24 @@
 
     .footer {
       width: 100%;
-      border-top: 1px solid var(--border);
-      padding: 22px 16px;
+      padding: 24px 16px;
       text-align: center;
-      background: rgba(8,9,20,.65);
+      background: #fafbfe;
+      border-top: 1px solid var(--border);
     }
 
     .footer p {
-      color: #777f9f;
+      color: #8991a5;
       font-size: 11px;
-      line-height: 1.8;
-      letter-spacing: .5px;
+      line-height: 1.9;
+      letter-spacing: 0.4px;
     }
 
     .footer strong {
-      color: #a9b8ff;
+      color: var(--blue);
     }
+
+    /* ANIMATION */
 
     @keyframes fadeUp {
       from {
@@ -265,53 +311,94 @@
       }
     }
 
-    /* MOBILE RESPONSIVE */
+    /* TABLET */
 
-    @media (max-width: 480px) {
+    @media (max-width: 700px) {
       .brand-row {
-        min-height: 68px;
-        padding: 10px;
+        min-height: 80px;
+        padding: 12px;
       }
 
       .brand-logo {
-        width: 42px;
-        height: 42px;
+        width: 55px;
+        height: 55px;
       }
 
       .brand-text h2 {
-        font-size: 17px;
-      }
-
-      .brand-text p {
-        font-size: 9px;
-        letter-spacing: 1.3px;
+        font-size: 21px;
       }
 
       .nav-menu a {
-        min-height: 48px;
-        padding: 12px 1px;
-        font-size: 10px;
+        min-height: 52px;
+        font-size: 11px;
       }
 
       main {
-        padding: 55px 16px 65px;
+        padding: 55px 18px 65px;
       }
 
       .hero-logo-wrap {
-        width: 125px;
-        height: 125px;
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-logo {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 400px) {
+      .brand-logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .brand-text h2 {
+        font-size: 18px;
+      }
+
+      .brand-text p {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .nav-menu a {
+        min-height: 49px;
+        padding: 12px 1px;
+        font-size: 9px;
+      }
+
+      .nav-menu a.active::after {
+        left: 12%;
+        right: 12%;
+      }
+
+      main {
+        padding: 45px 15px 55px;
+      }
+
+      .hero-logo-wrap {
+        width: 155px;
+        height: 155px;
         margin-bottom: 25px;
       }
 
       .hero-logo {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
       }
 
       .welcome-label {
         font-size: 9px;
+        padding: 9px 14px;
         letter-spacing: 2px;
-        padding: 8px 13px;
       }
 
       .hero h1 {
@@ -320,16 +407,12 @@
 
       .hero h2 {
         letter-spacing: 3px;
-        margin-bottom: 22px;
+        margin-bottom: 20px;
       }
 
       .hero-description {
         font-size: 13px;
         line-height: 1.9;
-      }
-
-      .footer p {
-        font-size: 10px;
       }
     }
 
@@ -337,7 +420,8 @@
       *,
       *::before,
       *::after {
-        animation-duration: .01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -366,7 +450,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="fixtures.html">Fixtures</a>
       <a href="points.html">Points Table</a>
-      <a href="squad.html">Squad</a>
+      <a href="squad.html">Teams</a>
       <a href="stats.html">Stats</a>
     </nav>
 
@@ -384,10 +468,13 @@
       </div>
 
       <div class="welcome-label">
+        <span class="welcome-dot"></span>
         WELCOME TO VCL
       </div>
 
-      <h1>VATKURA CRICKET<br>LEAGUE</h1>
+      <h1>
+        <span>VATKURA CRICKET<br>LEAGUE</span>
+      </h1>
 
       <h2>SESSION 03 · 2026</h2>
 
