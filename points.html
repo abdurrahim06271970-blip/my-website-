@@ -1,22 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
-  <title>Points Table | VCL 2026</title>
+  <title>VCL 2026 | Points Table</title>
 
   <style>
-    :root {
-      --blue: #1e3c72;
-      --blue-light: #2a5298;
-      --purple: #6a11cb;
-      --text: #18213b;
-      --muted: #69738b;
-      --border: #e8eaf2;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -24,600 +15,490 @@
     }
 
     body {
-      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #fff;
-      display: flex;
-      flex-direction: column;
+      background: #f5f7fc;
+      color: #172033;
+      min-height: 100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* HEADER */
-
-    .header {
-      width: 100%;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
-    }
-
-    .brand-row {
-      min-height: 92px;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .brand-logo {
-      width: 65px;
-      height: 65px;
-      object-fit: contain;
-      border-radius: 13px;
-    }
-
-    .brand-text h2 {
-      color: var(--blue);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .brand-text p {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2.2px;
-      margin-top: 5px;
-    }
-
-    /* NAVIGATION */
-
-    .nav-menu {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      background: #fff;
-      border-top: 1px solid #f0f1f6;
-    }
-
-    .nav-menu a {
-      position: relative;
-      min-width: 0;
-      min-height: 57px;
-      padding: 15px 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .page-header {
+      background: #ffffff;
+      padding: 18px 16px 14px;
       text-align: center;
-      white-space: nowrap;
-      color: #65708a;
-      font-size: clamp(12px, 2vw, 16px);
-      font-weight: 800;
-      transition: 0.25s;
+      border-bottom: 1px solid #e5e9f2;
     }
 
-    .nav-menu a:hover {
-      color: var(--purple);
-      background: #faf9ff;
+    .logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 7px;
     }
 
-    .nav-menu a.active {
-      color: var(--blue);
-      background: linear-gradient(180deg, #fff, #f6f7ff);
+    .site-title {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #1e3c72;
     }
 
-    .nav-menu a.active::after {
-      content: "";
-      position: absolute;
-      left: 12%;
-      right: 12%;
-      bottom: 0;
-      height: 3px;
-      border-radius: 5px 5px 0 0;
-      background: linear-gradient(90deg, var(--blue-light), var(--purple));
+    .site-title span {
+      color: #6a11cb;
     }
 
-    /* MAIN */
-
-    .main {
-      flex: 1;
-      width: 100%;
-      padding: 48px 20px 70px;
-      background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          rgba(106, 17, 203, 0.035),
-          transparent 48%
-        ),
-        #fff;
-    }
-
-    .content {
-      width: 100%;
-      max-width: 1050px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      color: var(--purple);
+    .site-subtitle {
       font-size: 11px;
+      color: #64748b;
+      margin-top: 5px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .navbar {
+      display: flex;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 2px solid #e5e9f2;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .navbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .navbar a {
+      flex: 1;
+      min-width: 72px;
+      text-align: center;
+      text-decoration: none;
+      color: #536078;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 15px 5px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: 0.2s;
+    }
+
+    .navbar a:hover {
+      color: #1e3c72;
+      background: #f7f8ff;
+    }
+
+    .navbar a.active {
+      color: #4f35bd;
+      border-bottom-color: #6a11cb;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 25px 16px 35px;
+    }
+
+    .page-heading {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .page-heading h1 {
+      color: #1e3c72;
+      font-size: 26px;
       font-weight: 900;
-      letter-spacing: 2.5px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .page-title {
-      color: var(--blue);
-      font-size: clamp(32px, 5vw, 46px);
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -1.2px;
+    .page-heading p {
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
-    .page-description {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .title-line {
-      width: 58px;
-      height: 4px;
-      margin-top: 20px;
+    .qualification-box {
+      background: linear-gradient(135deg, #eef2ff, #f5edff);
+      border: 1px solid #ded7ff;
+      border-left: 4px solid #6a11cb;
+      padding: 13px 15px;
       border-radius: 10px;
-      background: linear-gradient(90deg, var(--blue-light), var(--purple));
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #34415e;
     }
 
-    /* TABLE CARD */
+    .qualification-box strong {
+      color: #5424a8;
+    }
 
     .table-card {
-      margin-top: 30px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 15px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 8px 28px rgba(30, 60, 114, 0.055);
+      box-shadow: 0 5px 20px rgba(25, 43, 77, 0.06);
     }
 
-    .table-card-header {
-      padding: 20px 22px;
+    .table-top {
+      padding: 17px 16px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e9f2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(110deg, #fff, #faf9ff);
+      gap: 10px;
     }
 
-    .table-card-title {
-      color: var(--blue);
-      font-size: 18px;
+    .table-top h2 {
+      font-size: 17px;
+      color: #1e3c72;
       font-weight: 900;
     }
 
-    .season-badge {
-      flex-shrink: 0;
-      padding: 7px 12px;
-      border-radius: 30px;
-      background: #f2edff;
-      border: 1px solid #e6dcff;
-      color: var(--purple);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
-
-    /* TABLE */
-
-    .table-scroll {
-      width: 100%;
-      overflow: hidden;
+    .table-top span {
+      font-size: 11px;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 6px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
     }
 
     table {
       width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       text-align: center;
     }
 
-    thead {
-      background: #f4f6fc;
-    }
-
-    th {
-      padding: 15px 3px;
-      color: var(--blue);
+    thead th {
+      background: #182b4d;
+      color: #ffffff;
+      padding: 14px 8px;
       font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
+      font-weight: 800;
       white-space: nowrap;
-      border-bottom: 1px solid var(--border);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    td {
-      padding: 10px 3px;
+    thead th:last-child {
+      border-right: none;
+    }
+
+    tbody td {
+      padding: 13px 8px;
       font-size: 12px;
-      color: #525e76;
-      border-bottom: 1px solid #edf0f6;
+      font-weight: 700;
+      color: #172033;
+      border-bottom: 2px solid #ffffff;
+      border-right: 1px solid rgba(255, 255, 255, 0.65);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      transition: filter 0.2s;
     }
 
-    tbody tr {
-      background: #fff;
-      transition: background 0.2s;
-    }
-
-    tbody tr:hover {
-      background: #fafaff;
+    tbody td:last-child {
+      border-right: none;
     }
 
     tbody tr:last-child td {
       border-bottom: none;
     }
 
-    /* COLUMN WIDTHS */
-
-    th:nth-child(1),
-    td:nth-child(1) {
-      width: 34%;
-      text-align: left;
-      padding-left: 8px;
-      padding-right: 5px;
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) { width: 12%; }
-
-    th:nth-child(3),
-    td:nth-child(3) { width: 10%; }
-
-    th:nth-child(4),
-    td:nth-child(4) { width: 10%; }
-
-    th:nth-child(5),
-    td:nth-child(5) { width: 17%; }
-
-    th:nth-child(6),
-    td:nth-child(6) { width: 17%; }
-
-    /* TEAM NAME BOX */
-
-    .team-cell {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      min-width: 0;
-      width: 100%;
-      padding: 8px 6px;
-      border-radius: 8px;
-      border: 1px solid transparent;
+    tbody tr:hover td {
+      filter: brightness(0.96);
     }
 
     .rank {
+      display: inline-flex;
       width: 25px;
       height: 25px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
-      background: #eef1f8;
-      color: var(--blue);
-      font-size: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #172033;
+      border: 1px solid rgba(23, 32, 51, 0.12);
+      font-size: 11px;
       font-weight: 900;
+    }
+
+    .team-cell {
+      text-align: left;
+      min-width: 175px;
     }
 
     .team-name {
       display: inline-block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 900;
-      line-height: 1.35;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      text-align: left;
+      letter-spacing: 0.2px;
+      color: #172033;
     }
 
-    /* VATKURA KINGS — RED & GOLD */
-
-    .kings td:first-child .team-cell {
-      background: linear-gradient(135deg, #fff0ed, #ffe0c2);
-      border-color: #e74435;
+    .team-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      margin-top: 4px;
+      opacity: 0.75;
+      letter-spacing: 0.5px;
     }
 
-    .kings .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #a81717, #f0a51b);
+    /* HR KINGS VATKURA - Gold */
+    tbody tr.hrkings td {
+      background: linear-gradient(90deg, #ffe28a, #fff4cf);
+      border-bottom-color: #ffffff;
     }
 
-    .kings .team-name {
-      color: #b91c1c;
+    tbody tr.hrkings {
+      outline: 1px solid #e2b52f;
+      outline-offset: -1px;
     }
 
-    /* VATKURA TIGERS — ORANGE */
-
-    .tigers td:first-child .team-cell {
-      background: linear-gradient(135deg, #fff3df, #ffdf9f);
-      border-color: #f08b24;
+    /* VATKURA KINGS - Red */
+    tbody tr.kings td {
+      background: linear-gradient(90deg, #ffb8b8, #ffe3e3);
+      border-bottom-color: #ffffff;
     }
 
-    .tigers .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #d94a13, #ffad26);
+    tbody tr.kings {
+      outline: 1px solid #dc4545;
+      outline-offset: -1px;
     }
 
-    .tigers .team-name {
-      color: #b84b0b;
+    /* VATKURA TIGERS - Orange */
+    tbody tr.tigers td {
+      background: linear-gradient(90deg, #ffc88c, #ffead2);
+      border-bottom-color: #ffffff;
     }
 
-    /* VATKURA FIRE EIGHT — RED */
-
-    .fire td:first-child .team-cell {
-      background: linear-gradient(135deg, #fff0f0, #ffd5dc);
-      border-color: #e52d46;
+    tbody tr.tigers {
+      outline: 1px solid #ed861e;
+      outline-offset: -1px;
     }
 
-    .fire .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #c7192d, #ff4c38);
+    /* VATKURA STARS - Green */
+    tbody tr.stars td {
+      background: linear-gradient(90deg, #a8e9ba, #ddf8e4);
+      border-bottom-color: #ffffff;
     }
 
-    .fire .team-name {
-      color: #b91c35;
+    tbody tr.stars {
+      outline: 1px solid #239447;
+      outline-offset: -1px;
     }
 
-    /* VATKURA STRIKERS — BLUE */
-
-    .strikers td:first-child .team-cell {
-      background: linear-gradient(135deg, #eaf5ff, #cceaff);
-      border-color: #2588e8;
+    /* VATKURA FIRE EIGHT - Dark Red */
+    tbody tr.fire td {
+      background: linear-gradient(90deg, #f5a6a6, #ffdddd);
+      border-bottom-color: #ffffff;
     }
 
-    .strikers .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #0757bd, #20c5ff);
+    tbody tr.fire {
+      outline: 1px solid #b91c1c;
+      outline-offset: -1px;
     }
 
-    .strikers .team-name {
-      color: #0755b7;
+    /* VATKURA STRIKERS - Blue */
+    tbody tr.strikers td {
+      background: linear-gradient(90deg, #a9d4ff, #deefff);
+      border-bottom-color: #ffffff;
     }
 
-    /* HR KINGS VATKURA — GOLD */
-
-    .hrkings td:first-child .team-cell {
-      background: linear-gradient(135deg, #fff9df, #ffe6a0);
-      border-color: #d5a21b;
+    tbody tr.strikers {
+      outline: 1px solid #2474d2;
+      outline-offset: -1px;
     }
 
-    .hrkings .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #a96908, #f3c629);
-    }
-
-    .hrkings .team-name {
-      color: #936000;
-    }
-
-    /* VATKURA STARS — GREEN */
-
-    .stars td:first-child .team-cell {
-      background: linear-gradient(135deg, #eaffeb, #c9f7c7);
-      border-color: #2caf4a;
-    }
-
-    .stars .rank {
-      color: #fff;
-      background: linear-gradient(135deg, #087b37, #44d62c);
-    }
-
-    .stars .team-name {
-      color: #08752c;
-    }
-
-    .points-value {
-      color: var(--purple);
+    .points {
+      font-size: 14px;
       font-weight: 900;
     }
 
-    /* NOTE */
-
-    .table-note {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
-      background: #fcfcff;
-      color: var(--muted);
+    .nrr {
       font-size: 11px;
-      line-height: 1.9;
+      font-weight: 800;
     }
 
-    .table-note strong {
-      color: var(--blue);
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px 14px;
+      padding: 16px 12px;
+      background: #ffffff;
+      border-top: 1px solid #e5e9f2;
     }
 
-    /* FOOTER */
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .legend-gold { background: #e2b52f; }
+    .legend-red { background: #dc4545; }
+    .legend-orange { background: #ed861e; }
+    .legend-green { background: #239447; }
+    .legend-fire { background: #b91c1c; }
+    .legend-blue { background: #2474d2; }
 
     .footer {
-      width: 100%;
-      padding: 24px 16px;
-      background: #fafbfe;
-      border-top: 1px solid var(--border);
       text-align: center;
-    }
-
-    .footer p {
-      color: #8991a5;
+      padding: 22px 12px;
+      color: #7b879b;
       font-size: 11px;
-      line-height: 1.9;
-      letter-spacing: 0.4px;
+      line-height: 1.8;
     }
 
     .footer strong {
-      color: var(--blue);
+      color: #1e3c72;
     }
 
-    /* MOBILE */
+    .footer a {
+      color: #5b35c5;
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-    @media (max-width: 700px) {
-      .brand-row {
-        min-height: 80px;
-        padding: 12px;
+    @media (min-width: 700px) {
+      .container {
+        padding-top: 32px;
       }
 
-      .brand-logo {
-        width: 55px;
-        height: 55px;
+      .page-heading h1 {
+        font-size: 30px;
       }
 
-      .brand-text h2 {
-        font-size: 21px;
+      thead th {
+        font-size: 12px;
+        padding: 16px 10px;
       }
 
-      .brand-text p {
-        font-size: 9px;
-        letter-spacing: 1.6px;
-      }
-
-      .nav-menu a {
-        min-height: 52px;
+      tbody td {
+        padding: 15px 10px;
         font-size: 13px;
       }
 
-      .main {
-        padding: 35px 12px 50px;
+      .team-name {
+        font-size: 14px;
       }
 
-      .table-card {
-        margin-top: 24px;
-        border-radius: 12px;
+      .team-cell {
+        min-width: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-header {
+        padding-top: 14px;
       }
 
-      .table-card-header {
-        padding: 16px 12px;
+      .logo {
+        width: 65px;
+        height: 65px;
       }
 
-      .table-card-title {
+      .site-title {
+        font-size: 22px;
+      }
+
+      .navbar a {
+        min-width: 67px;
+        font-size: 11px;
+        padding: 13px 3px;
+      }
+
+      .container {
+        padding: 20px 8px 28px;
+      }
+
+      .page-heading h1 {
+        font-size: 23px;
+      }
+
+      .table-top {
+        padding: 14px 10px;
+      }
+
+      .table-top h2 {
         font-size: 15px;
       }
 
-      .season-badge {
-        padding: 6px 8px;
+      .table-top span {
+        font-size: 9px;
+        padding: 5px 7px;
+      }
+
+      thead th {
+        padding: 11px 5px;
         font-size: 9px;
       }
 
-      th {
-        padding: 13px 1px;
-        font-size: 9px;
-      }
-
-      td {
-        padding: 8px 1px;
+      tbody td {
+        padding: 11px 4px;
         font-size: 10px;
-      }
-
-      th:nth-child(1),
-      td:nth-child(1) {
-        padding-left: 4px;
       }
 
       .team-cell {
-        gap: 4px;
-        padding: 7px 4px;
-        border-radius: 6px;
-      }
-
-      .rank {
-        width: 20px;
-        height: 20px;
-        font-size: 9px;
+        min-width: 128px;
+        max-width: 150px;
       }
 
       .team-name {
-        font-size: 11px;
+        font-size: 10px;
+        white-space: normal;
+        line-height: 1.4;
       }
 
-      .table-note {
-        padding: 13px 12px;
-        font-size: 10px;
+      .team-label {
+        font-size: 8px;
+      }
+
+      .rank {
+        width: 21px;
+        height: 21px;
+        font-size: 9px;
+      }
+
+      .points {
+        font-size: 12px;
+      }
+
+      .nrr {
+        font-size: 9px;
       }
     }
 
-    @media (max-width: 400px) {
-      .brand-logo {
-        width: 48px;
-        height: 48px;
+    @media (max-width: 360px) {
+      .team-cell {
+        min-width: 112px;
       }
 
-      .brand-text h2 {
-        font-size: 18px;
-      }
-
-      .brand-text p {
+      thead th {
         font-size: 8px;
-        letter-spacing: 1.3px;
+        padding: 10px 3px;
       }
 
-      .brand {
-        gap: 10px;
-      }
-
-      .nav-menu a {
-        min-height: 49px;
-        padding: 12px 1px;
-        font-size: 11px;
-      }
-
-      .main {
-        padding: 30px 8px 45px;
-      }
-
-      .page-title {
-        font-size: 34px;
-      }
-
-      .table-card-title {
-        font-size: 13px;
-      }
-
-      .season-badge {
-        padding: 5px 6px;
-        font-size: 8px;
-      }
-
-      th {
-        font-size: 8px;
-      }
-
-      td {
+      tbody td {
+        padding: 10px 3px;
         font-size: 9px;
       }
 
-      .team-cell {
-        gap: 3px;
-        padding: 6px 3px;
-      }
-
       .team-name {
-        font-size: 10px;
-      }
-
-      .rank {
-        width: 18px;
-        height: 18px;
-        font-size: 8px;
+        font-size: 9px;
       }
     }
   </style>
@@ -625,178 +506,180 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="brand-row">
-      <a href="index.html" class="brand">
-        <img
-          class="brand-logo"
-          src="file_00000000fafc7208bb91a6123810609b.png"
-          alt="VCL Logo"
-        >
+  <header class="page-header">
+    <img
+      class="logo"
+      src="file_00000000fafc7208bb91a6123810609b.png"
+      alt="VCL Logo"
+      onerror="this.style.display='none'"
+    >
 
-        <div class="brand-text">
-          <h2>VCL 2026</h2>
-          <p>VATKURA CRICKET LEAGUE</p>
+    <div class="site-title">VCL <span>2026</span></div>
+    <div class="site-subtitle">VATKURA CRICKET LEAGUE</div>
+  </header>
+
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="fixtures.html">Fixtures</a>
+    <a href="points.html" class="active">Points Table</a>
+    <a href="squad.html">Teams</a>
+    <a href="stats.html">Stats</a>
+  </nav>
+
+  <main class="container">
+
+    <section class="page-heading">
+      <h1>POINTS TABLE</h1>
+      <p>VCL 2026 · Session 03 · Tournament Standings</p>
+    </section>
+
+    <div class="qualification-box">
+      🏆 <strong>সেমিফাইনাল নিয়ম:</strong>
+      প্রতিটি দল অন্য সব দলের সাথে একটি করে ম্যাচ খেলবে।
+      পয়েন্ট টেবিলের শীর্ষ ৪ দল সেমিফাইনালে খেলার যোগ্যতা অর্জন করবে।
+      <br>
+      <strong>পয়েন্ট নিয়ম:</strong> জয় = ২ পয়েন্ট | হার = ০ পয়েন্ট
+    </div>
+
+    <section class="table-card">
+
+      <div class="table-top">
+        <h2>🏏 Tournament Standings</h2>
+        <span>6 TEAMS</span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>POS</th>
+            <th style="text-align:left;">TEAM</th>
+            <th>M</th>
+            <th>W</th>
+            <th>L</th>
+            <th>PTS</th>
+            <th>NRR</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="hrkings">
+            <td><span class="rank">1</span></td>
+            <td class="team-cell">
+              <span class="team-name">HR KINGS VATKURA</span>
+              <span class="team-label">HR KINGS</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+
+          <tr class="kings">
+            <td><span class="rank">2</span></td>
+            <td class="team-cell">
+              <span class="team-name">VATKURA KINGS</span>
+              <span class="team-label">KINGS</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+
+          <tr class="tigers">
+            <td><span class="rank">3</span></td>
+            <td class="team-cell">
+              <span class="team-name">VATKURA TIGERS</span>
+              <span class="team-label">TIGERS</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+
+          <tr class="stars">
+            <td><span class="rank">4</span></td>
+            <td class="team-cell">
+              <span class="team-name">VATKURA STARS</span>
+              <span class="team-label">STARS</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+
+          <tr class="fire">
+            <td><span class="rank">5</span></td>
+            <td class="team-cell">
+              <span class="team-name">VATKURA FIRE EIGHT</span>
+              <span class="team-label">FIRE EIGHT</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+
+          <tr class="strikers">
+            <td><span class="rank">6</span></td>
+            <td class="team-cell">
+              <span class="team-name">VATKURA STRIKERS</span>
+              <span class="team-label">STRIKERS</span>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td class="points">0</td>
+            <td class="nrr">—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-dot legend-gold"></span>
+          HR Kings
         </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-red"></span>
+          Vatkura Kings
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-orange"></span>
+          Tigers
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-green"></span>
+          Stars
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-fire"></span>
+          Fire Eight
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot legend-blue"></span>
+          Strikers
+        </div>
+      </div>
+
+    </section>
+
+    <div class="footer">
+      <strong>VCL 2026</strong> · Vatkura Cricket League<br>
+      Official Website:
+      <a href="https://abdurrahim06271970-blip.github.io/my-website/" target="_blank">
+        VCL Official Site
       </a>
     </div>
 
-    <nav class="nav-menu" aria-label="Main Navigation">
-      <a href="index.html">Home</a>
-      <a href="fixtures.html">Fixtures</a>
-      <a href="points.html" class="active">Points Table</a>
-      <a href="squad.html">Teams</a>
-      <a href="stats.html">Stats</a>
-    </nav>
-  </header>
-
-  <!-- POINTS TABLE -->
-  <main class="main">
-    <div class="content">
-
-      <div class="eyebrow">VCL 2026 · SESSION 03</div>
-
-      <h1 class="page-title">Points Table</h1>
-
-      <p class="page-description">
-        Follow the standings and performance of all six teams in VCL 2026.
-      </p>
-
-      <div class="title-line"></div>
-
-      <section class="table-card">
-
-        <div class="table-card-header">
-          <h2 class="table-card-title">Tournament Standings</h2>
-          <span class="season-badge">SEASON 2026</span>
-        </div>
-
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Match</th>
-                <th>Won</th>
-                <th>Lost</th>
-                <th>Points</th>
-                <th>NRR</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr class="hrkings">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">1</span>
-                    <span class="team-name">HR KINGS VATKURA</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr class="kings">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">2</span>
-                    <span class="team-name">VATKURA KINGS</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr class="tigers">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">3</span>
-                    <span class="team-name">VATKURA TIGERS</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr class="stars">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">4</span>
-                    <span class="team-name">VATKURA STARS</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr class="fire">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">5</span>
-                    <span class="team-name">VATKURA FIRE EIGHT</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr class="strikers">
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">6</span>
-                    <span class="team-name">VATKURA STRIKERS</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-note">
-          <strong>Points System:</strong>
-          Win = 2 points · Loss = 0 points.
-          <br>
-          <strong>Qualification:</strong>
-          The top four teams qualify for the semifinals.
-          <br>
-          <strong>Note:</strong>
-          All statistics are currently set to zero. The displayed positions
-          are placeholders until official match results are entered.
-        </div>
-
-      </section>
-    </div>
   </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>
-      © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
-      <br>
-      All Rights Reserved · VCL Session 03
-    </p>
-  </footer>
 
 </body>
 </html>
