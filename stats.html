@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#ffffff">
 
 <title>VCL 2026 | Player Stats</title>
-<meta name="description" content="Top 3 run scorers and wicket takers of Vatkura Cricket League 2026.">
+<meta name="description" content="Top run scorers and wicket takers of Vatkura Cricket League 2026.">
 
 <style>
 :root {
@@ -28,7 +28,9 @@
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   min-height: 100vh;
@@ -44,7 +46,11 @@ a {
   text-decoration: none;
 }
 
-/* HEADER */
+button {
+  font-family: inherit;
+}
+
+/* HEADER — SAME AS INDEX.HTML */
 
 .header {
   width: 100%;
@@ -52,7 +58,7 @@ a {
   border-bottom: 1px solid var(--border);
   position: relative;
   z-index: 10;
-  box-shadow: 0 3px 15px rgba(30,60,114,0.035);
+  box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
 }
 
 .brand-row {
@@ -91,7 +97,7 @@ a {
   margin-top: 5px;
 }
 
-/* NAVIGATION */
+/* NAVIGATION — SAME AS INDEX.HTML */
 
 .nav-menu {
   width: 100%;
@@ -145,7 +151,11 @@ main {
   width: 100%;
   padding: 35px 18px 55px;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(106,17,203,0.045), transparent 48%),
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(106, 17, 203, 0.045),
+      transparent 48%
+    ),
     #f7f8fc;
 }
 
@@ -154,6 +164,8 @@ main {
   width: 100%;
   margin: 0 auto;
 }
+
+/* PAGE HEADING */
 
 .page-heading {
   text-align: center;
@@ -168,7 +180,12 @@ main {
 }
 
 .page-heading h1 span {
-  background: linear-gradient(100deg, var(--blue), var(--blue-light), var(--purple));
+  background: linear-gradient(
+    100deg,
+    var(--blue),
+    var(--blue-light),
+    var(--purple)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -189,7 +206,7 @@ main {
   background: linear-gradient(90deg, var(--blue-light), var(--purple));
 }
 
-/* STATS OPTIONS */
+/* TWO STATS OPTIONS */
 
 .stats-tabs {
   display: grid;
@@ -206,12 +223,16 @@ main {
   color: #ffffff;
   text-align: left;
   cursor: pointer;
-  font-family: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stats-tab:hover {
   transform: translateY(-3px);
+}
+
+.stats-tab:focus-visible {
+  outline: 3px solid #8ca8ff;
+  outline-offset: 3px;
 }
 
 .stats-tab.runs {
@@ -223,8 +244,8 @@ main {
 }
 
 .stats-tab[aria-selected="true"] {
-  box-shadow: 0 8px 22px rgba(30,60,114,0.20);
-  border-color: rgba(255,255,255,0.9);
+  box-shadow: 0 8px 22px rgba(30, 60, 114, 0.20);
+  border-color: rgba(255, 255, 255, 0.95);
 }
 
 .tab-icon {
@@ -243,20 +264,24 @@ main {
 .tab-subtitle {
   display: block;
   margin-top: 6px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
-/* LEADERBOARD */
+/* LEADERBOARD PANELS */
 
 .stats-panel {
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 17px;
   overflow: hidden;
-  box-shadow: 0 5px 22px rgba(25,43,77,0.06);
+  box-shadow: 0 5px 22px rgba(25, 43, 77, 0.06);
+}
+
+.stats-panel[hidden] {
+  display: none !important;
 }
 
 .panel-heading {
@@ -277,8 +302,10 @@ main {
 .panel-heading p {
   margin-top: 6px;
   font-size: 12px;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255, 255, 255, 0.82);
 }
+
+/* PLAYER ROWS */
 
 .player-row {
   display: grid;
@@ -311,12 +338,12 @@ main {
   font-weight: 900;
 }
 
-.player-row:nth-child(3) .player-rank {
+.player-row.rank-two .player-rank {
   background: #fff2ce;
   color: #986400;
 }
 
-.player-row:nth-child(4) .player-rank {
+.player-row.rank-three .player-rank {
   background: #e9edf4;
   color: #536078;
 }
@@ -364,13 +391,15 @@ main {
   letter-spacing: 0.8px;
 }
 
+/* EMPTY STATE */
+
 .empty-state {
   padding: 35px 20px;
   text-align: center;
   color: var(--muted);
 }
 
-.empty-state .empty-icon {
+.empty-icon {
   display: block;
   font-size: 35px;
   margin-bottom: 12px;
@@ -387,7 +416,7 @@ main {
   line-height: 1.8;
 }
 
-/* FOOTER */
+/* FOOTER — SAME AS INDEX.HTML */
 
 .footer {
   width: 100%;
@@ -413,7 +442,7 @@ main {
   font-weight: 700;
 }
 
-/* RESPONSIVE */
+/* TABLET */
 
 @media (max-width: 700px) {
   .brand-row {
@@ -457,6 +486,8 @@ main {
     gap: 10px;
   }
 }
+
+/* MOBILE */
 
 @media (max-width: 400px) {
   .brand-logo {
@@ -502,29 +533,35 @@ main {
   }
 
   .stats-tabs {
-    grid-template-columns: 1fr;
     gap: 10px;
   }
 
   .stats-tab {
-    min-height: 100px;
-    padding: 16px;
+    min-height: 105px;
+    padding: 14px 10px;
+    text-align: center;
   }
 
   .tab-icon {
-    display: inline-block;
-    margin: 0 10px 0 0;
-    vertical-align: middle;
+    font-size: 22px;
+    margin-bottom: 7px;
   }
 
   .tab-title {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .tab-subtitle {
-    margin-left: 40px;
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+
+  .panel-heading {
+    padding: 16px 14px;
+  }
+
+  .panel-heading h2 {
+    font-size: 17px;
   }
 
   .player-row {
@@ -544,12 +581,20 @@ main {
     font-size: 13px;
   }
 
+  .player-team {
+    font-size: 10px;
+  }
+
   .player-stat {
     min-width: 55px;
   }
 
   .stat-value {
     font-size: 20px;
+  }
+
+  .stat-label {
+    font-size: 9px;
   }
 }
 
@@ -595,11 +640,14 @@ main {
 
     <section class="page-heading">
       <h1><span>PLAYER STATS</span></h1>
-      <p>Top Performers · Vatkura Cricket League 2026</p>
+      <p>Top Performers · Vatkura Cricket League · Session 03</p>
       <div class="heading-line"></div>
     </section>
 
+    <!-- TWO OPTIONS -->
+
     <section class="stats-tabs" role="tablist" aria-label="Player statistics">
+
       <button
         class="stats-tab runs"
         id="runsTab"
@@ -625,10 +673,17 @@ main {
         <span class="tab-title">MOST WICKETS</span>
         <span class="tab-subtitle">TOP 3 BOWLERS</span>
       </button>
+
     </section>
 
-    <!-- MOST RUNS PANEL -->
-    <section class="stats-panel" id="runsPanel" role="tabpanel" aria-labelledby="runsTab">
+    <!-- MOST RUNS -->
+
+    <section
+      class="stats-panel"
+      id="runsPanel"
+      role="tabpanel"
+      aria-labelledby="runsTab"
+    >
       <div class="panel-heading">
         <h2>🏏 TOP 3 RUN SCORERS</h2>
         <p>Leading batters of the tournament</p>
@@ -643,8 +698,15 @@ main {
       </div>
     </section>
 
-    <!-- MOST WICKETS PANEL -->
-    <section class="stats-panel wickets-panel" id="wicketsPanel" role="tabpanel" aria-labelledby="wicketsTab" hidden>
+    <!-- MOST WICKETS -->
+
+    <section
+      class="stats-panel wickets-panel"
+      id="wicketsPanel"
+      role="tabpanel"
+      aria-labelledby="wicketsTab"
+      hidden
+    >
       <div class="panel-heading wickets-heading">
         <h2>🎯 TOP 3 WICKET TAKERS</h2>
         <p>Leading bowlers of the tournament</p>
@@ -680,21 +742,29 @@ const wicketsTab = document.getElementById("wicketsTab");
 const runsPanel = document.getElementById("runsPanel");
 const wicketsPanel = document.getElementById("wicketsPanel");
 
-runsTab.addEventListener("click", () => {
-  runsTab.setAttribute("aria-selected", "true");
-  wicketsTab.setAttribute("aria-selected", "false");
+function showStats(type) {
+  const showRuns = type === "runs";
 
-  runsPanel.hidden = false;
-  wicketsPanel.hidden = true;
+  runsPanel.hidden = !showRuns;
+  wicketsPanel.hidden = showRuns;
+
+  runsTab.setAttribute("aria-selected", String(showRuns));
+  wicketsTab.setAttribute("aria-selected", String(!showRuns));
+}
+
+runsTab.addEventListener("click", function () {
+  showStats("runs");
 });
 
-wicketsTab.addEventListener("click", () => {
-  wicketsTab.setAttribute("aria-selected", "true");
-  runsTab.setAttribute("aria-selected", "false");
-
-  wicketsPanel.hidden = false;
-  runsPanel.hidden = true;
+wicketsTab.addEventListener("click", function () {
+  showStats("wickets");
 });
+
+/*
+  পরে পরিসংখ্যান যোগ করতে নিচের উদাহরণের মতো
+  player data ব্যবহার করে তালিকা তৈরি করা যাবে।
+  এখন কোনো কাল্পনিক রান বা উইকেট দেখানো হচ্ছে না।
+*/
 </script>
 
 </body>
