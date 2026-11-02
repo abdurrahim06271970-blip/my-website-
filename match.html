@@ -3,21 +3,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
-  <title>Fixtures | VCL 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>VCL 2026 | Match Fixtures</title>
+  <meta name="description" content="Official match fixtures for Vatkura Cricket League 2026, Session 03.">
 
   <style>
     :root {
-      --bg: #f5f7fa;
+      --blue: #1e3c72;
+      --blue-light: #2a5298;
+      --purple: #6a11cb;
+      --cyan: #168fcb;
+      --text: #18213b;
+      --muted: #69738b;
+      --border: #e8eaf2;
       --white: #ffffff;
-      --navy: #111827;
-      --navy-light: #202d43;
-      --accent: #26c6c5;
-      --accent-dark: #139b9a;
-      --text: #182131;
-      --muted: #737d8d;
-      --border: #e3e8ef;
+      --light-bg: #f7f8fc;
     }
 
     * {
@@ -26,117 +28,157 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    .container {
-      width: min(1050px, calc(100% - 36px));
-      margin: auto;
-    }
+    /* HEADER - SAME AS HOME PAGE */
 
-    /* HEADER */
     .header {
-      background: var(--white);
+      width: 100%;
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
     }
 
-    .header-inner {
-      min-height: 82px;
+    .brand-row {
+      max-width: 1250px;
+      min-height: 92px;
+      padding: 15px 25px;
+      margin: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      justify-content: center;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      gap: 15px;
     }
 
-    .logo-box {
-      width: 53px;
-      height: 53px;
-      border-radius: 13px;
-      overflow: hidden;
-      background: var(--navy);
-      display: grid;
-      place-items: center;
-    }
-
-    .logo {
-      width: 100%;
-      height: 100%;
+    .brand-logo {
+      width: 65px;
+      height: 65px;
       object-fit: contain;
     }
 
-    .brand-title {
-      font-size: 21px;
+    .brand-text h2 {
+      color: var(--blue);
+      font-size: 24px;
       font-weight: 900;
-      line-height: 1.2;
-      color: var(--navy);
-    }
-
-    .brand-title span {
-      color: var(--accent-dark);
-    }
-
-    .brand-subtitle {
-      color: var(--muted);
-      font-size: 9px;
-      font-weight: 800;
       letter-spacing: 1.5px;
+    }
+
+    .brand-text h2 span {
+      color: var(--purple);
+    }
+
+    .brand-text p {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2.2px;
       margin-top: 5px;
     }
 
-    /* NAVIGATION */
-    .nav {
+    /* FULL-WIDTH NAVIGATION */
+
+    .nav-menu {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      background: #ffffff;
+      border-top: 1px solid #f0f1f6;
+    }
+
+    .nav-menu a {
+      position: relative;
+      min-width: 0;
+      min-height: 57px;
+      padding: 15px 3px;
       display: flex;
       align-items: center;
-      gap: 24px;
-    }
-
-    .nav a {
-      color: #515b6b;
-      font-size: 13px;
-      font-weight: 700;
+      justify-content: center;
+      text-align: center;
       white-space: nowrap;
-      padding: 27px 0 24px;
-      border-bottom: 3px solid transparent;
-      transition: 0.2s;
+      color: #65708a;
+      font-size: clamp(12px, 2vw, 16px);
+      font-weight: 800;
+      transition: all 0.25s ease;
     }
 
-    .nav a:hover,
-    .nav a.active {
-      color: var(--navy);
-      border-bottom-color: var(--accent);
+    .nav-menu a:hover {
+      color: var(--purple);
+      background: #faf9ff;
     }
 
-    /* PAGE INTRO */
-    .main {
-      padding: 48px 0 70px;
+    .nav-menu a.active {
+      color: var(--blue);
+      background: linear-gradient(180deg, #ffffff, #f6f7ff);
+    }
+
+    .nav-menu a.active::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 0;
+      height: 3px;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(90deg, var(--blue-light), var(--purple));
+    }
+
+    /* MAIN CONTENT */
+
+    main {
+      flex: 1;
+      width: 100%;
+      padding: 35px 16px 60px;
+      background:
+        radial-gradient(
+          ellipse at 50% 5%,
+          rgba(106, 17, 203, 0.04),
+          transparent 48%
+        ),
+        #f7f8fc;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .page-intro {
+      margin-bottom: 28px;
     }
 
     .eyebrow {
-      color: var(--accent-dark);
+      color: var(--purple);
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 2px;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .page-title {
-      color: var(--navy);
+      color: var(--blue);
       font-size: clamp(30px, 5vw, 43px);
       font-weight: 900;
       letter-spacing: -1px;
@@ -147,46 +189,82 @@
       color: var(--muted);
       font-size: 13px;
       margin-top: 10px;
+      line-height: 1.8;
     }
 
     .title-line {
-      width: 48px;
+      width: 55px;
       height: 4px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--blue-light), var(--purple));
       border-radius: 5px;
-      margin-top: 19px;
+      margin-top: 18px;
     }
 
-    /* FIXTURES */
+    /* MATCH CATEGORY */
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 30px 0 14px;
+      color: var(--blue);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .section-heading::before {
+      content: "";
+      width: 5px;
+      height: 23px;
+      flex-shrink: 0;
+      border-radius: 5px;
+      background: linear-gradient(180deg, var(--blue-light), var(--purple));
+    }
+
+    .section-count {
+      margin-left: auto;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #eef1fa;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* FIXTURE CARDS */
+
     .fixtures-list {
       display: grid;
-      gap: 14px;
-      margin-top: 30px;
+      gap: 12px;
     }
 
     .fixture {
-      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 19px 21px;
+      padding: 16px 17px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
-      transition: border-color 0.2s, transform 0.2s;
+      gap: 14px;
+      box-shadow: 0 4px 14px rgba(30, 60, 114, 0.035);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
     .fixture:hover {
-      border-color: var(--accent);
+      border-color: #c7c9f2;
       transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(30, 60, 114, 0.07);
     }
 
     .fixture-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
       min-width: 0;
+      flex: 1;
     }
 
     .fixture-number {
@@ -194,108 +272,145 @@
       place-items: center;
       width: 43px;
       height: 43px;
-      border-radius: 11px;
-      background: var(--navy);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 900;
+      border-radius: 12px;
       flex-shrink: 0;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 4px 10px rgba(106, 17, 203, 0.12);
+    }
+
+    .match-content {
+      min-width: 0;
     }
 
     .teams {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--navy);
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .vs {
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 900;
+      padding: 0 3px;
     }
 
     .match-date {
-      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 12px;
+      margin-top: 5px;
       color: var(--muted);
-      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .date-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .date-icon {
+      color: var(--purple);
+      font-weight: 900;
     }
 
     .status {
-      color: var(--accent-dark);
-      background: #e6fafa;
-      border: 1px solid #c8f1f0;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 10px;
+      color: var(--blue);
+      background: #f0f4ff;
+      border: 1px solid #dce5ff;
+      padding: 6px 9px;
+      border-radius: 7px;
+      font-size: 9px;
       font-weight: 900;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    /* FOOTER */
-    .footer {
-      background: var(--navy);
-      color: #c6ced9;
-      padding: 21px 0;
+    /* PLAYOFF MATCHES */
+
+    .playoff .fixture-number {
+      background: linear-gradient(135deg, #a66a00, #e3b341);
+      color: #ffffff;
     }
 
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+    .playoff .status {
+      color: #8b5b00;
+      background: #fff7df;
+      border-color: #f4df9c;
+    }
+
+    .final-match {
+      border-color: #d8c4ff;
+      background: linear-gradient(110deg, #ffffff, #f7f1ff);
+    }
+
+    .final-match .fixture-number {
+      background: linear-gradient(135deg, #6a11cb, #a855f7);
+    }
+
+    .final-match .status {
+      color: #6a11cb;
+      background: #f2e9ff;
+      border-color: #dfc9ff;
+    }
+
+    /* FOOTER - SAME AS HOME PAGE */
+
+    .footer {
+      width: 100%;
+      padding: 24px 16px;
+      text-align: center;
+      background: #fafbfe;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer p {
+      color: #8991a5;
       font-size: 11px;
+      line-height: 1.9;
+      letter-spacing: 0.4px;
     }
 
     .footer strong {
-      color: var(--accent);
+      color: var(--blue);
     }
 
-    /* MOBILE */
+    /* TABLET */
+
     @media (max-width: 700px) {
-      .container {
-        width: calc(100% - 28px);
+      .brand-row {
+        min-height: 80px;
+        padding: 12px;
       }
 
-      .header-inner {
-        flex-wrap: wrap;
-        gap: 0;
-        padding-top: 12px;
+      .brand-logo {
+        width: 55px;
+        height: 55px;
       }
 
-      .logo-box {
-        width: 46px;
-        height: 46px;
+      .brand-text h2 {
+        font-size: 21px;
       }
 
-      .brand-title {
-        font-size: 19px;
+      .nav-menu a {
+        min-height: 52px;
+        font-size: 13px;
       }
 
-      .brand-subtitle {
-        font-size: 8px;
-        letter-spacing: 1px;
-      }
-
-      .nav {
-        order: 2;
-        width: 100%;
-        gap: 24px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        border-top: 1px solid var(--border);
-        margin-top: 12px;
-      }
-
-      .nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav a {
-        font-size: 12px;
-        padding: 13px 0 10px;
-      }
-
-      .main {
-        padding: 35px 0 55px;
+      main {
+        padding: 28px 12px 45px;
       }
 
       .fixture {
-        padding: 15px 12px;
+        padding: 14px 12px;
         gap: 8px;
       }
 
@@ -306,6 +421,7 @@
       .fixture-number {
         width: 36px;
         height: 36px;
+        border-radius: 10px;
         font-size: 11px;
       }
 
@@ -319,31 +435,125 @@
 
       .status {
         padding: 5px 7px;
-        font-size: 9px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        font-size: 8px;
       }
     }
 
-    @media (max-width: 360px) {
-      .container {
-        width: calc(100% - 22px);
+    /* MOBILE */
+
+    @media (max-width: 400px) {
+      .brand-logo {
+        width: 48px;
+        height: 48px;
       }
 
-      .nav {
-        gap: 19px;
+      .brand-text h2 {
+        font-size: 18px;
+      }
+
+      .brand-text p {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .nav-menu a {
+        min-height: 49px;
+        padding: 12px 1px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .nav-menu a.active::after {
+        left: 12%;
+        right: 12%;
+      }
+
+      main {
+        padding: 24px 8px 35px;
+      }
+
+      .page-title {
+        font-size: 30px;
+      }
+
+      .page-description {
+        font-size: 12px;
+      }
+
+      .section-heading {
+        font-size: 15px;
+        margin-top: 25px;
       }
 
       .fixture {
-        flex-wrap: wrap;
+        padding: 12px 9px;
+        gap: 6px;
+        border-radius: 12px;
+      }
+
+      .fixture-left {
+        gap: 8px;
+      }
+
+      .fixture-number {
+        width: 31px;
+        height: 31px;
+        font-size: 10px;
+        border-radius: 8px;
+      }
+
+      .teams {
+        font-size: 10px;
+        line-height: 1.6;
+      }
+
+      .vs {
+        font-size: 9px;
+        padding: 0 1px;
+      }
+
+      .match-date {
+        font-size: 9px;
+        gap: 4px 8px;
       }
 
       .status {
-        margin-left: 46px;
+        font-size: 7px;
+        padding: 4px 5px;
+      }
+
+      .section-count {
+        font-size: 9px;
+        padding: 4px 7px;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .status {
+        white-space: normal;
+        text-align: center;
+        max-width: 65px;
+      }
+
+      .fixture-left {
+        gap: 6px;
+      }
+
+      .teams {
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -351,96 +561,343 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER - SAME AS HOME PAGE -->
+
   <header class="header">
-    <div class="container header-inner">
+    <div class="brand-row">
+      <a href="index.html" class="brand">
+        <img
+          src="file_00000000fafc7208bb91a6123810609b.png"
+          alt="VCL Logo"
+          class="brand-logo"
+        >
 
-      <a class="brand" href="index.html">
-        <div class="logo-box">
-          <img
-            class="logo"
-            src="file_00000000fafc7208bb91a6123810609b.png"
-            alt="VCL Logo"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#26c6c5;font-size:19px&quot;>VCL</b>';"
-          >
-        </div>
-
-        <div>
-          <div class="brand-title">VCL <span>2026</span></div>
-          <div class="brand-subtitle">VATKHURA CRICKET LEAGUE</div>
+        <div class="brand-text">
+          <h2>VCL <span>2026</span></h2>
+          <p>VATKURA CRICKET LEAGUE</p>
         </div>
       </a>
-
-      <nav class="nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="fixtures.html" class="active">Fixtures</a>
-        <a href="points.html">Points Table</a>
-        <a href="squad.html">Teams</a>
-      </nav>
-
     </div>
+
+    <nav class="nav-menu" aria-label="Main Navigation">
+      <a href="index.html">Home</a>
+      <a href="fixtures.html" class="active">Fixtures</a>
+      <a href="points.html">Points Table</a>
+      <a href="squad.html">Teams</a>
+      <a href="stats.html">Stats</a>
+    </nav>
   </header>
 
-  <!-- FIXTURES PAGE -->
-  <main class="container main">
+  <!-- FIXTURES CONTENT -->
 
-    <div class="eyebrow">VCL 2026 · SESSION 03</div>
+  <main>
+    <div class="container">
 
-    <h1 class="page-title">Match Fixtures</h1>
+      <section class="page-intro">
+        <div class="eyebrow">VCL 2026 · SESSION 03</div>
+        <h1 class="page-title">Match Fixtures</h1>
+        <p class="page-description">
+          Official schedule of the VCL 2026 tournament.
+        </p>
+        <div class="title-line"></div>
+      </section>
 
-    <p class="page-description">
-      Check the schedule and upcoming tournament matches.
-    </p>
+      <!-- LEAGUE STAGE -->
 
-    <div class="title-line"></div>
+      <h2 class="section-heading">
+        League Stage
+        <span class="section-count">15 MATCHES</span>
+      </h2>
 
-    <section class="fixtures-list">
+      <section class="fixtures-list">
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">01</div>
-          <div>
-            <div class="teams">Team A vs Team B</div>
-            <div class="match-date">10 April</div>
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">01</div>
+            <div class="match-content">
+              <div class="teams">VATKURA KINGS <span class="vs">VS</span> HR KINGS VATKURA</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 10:00 AM</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <span class="status">SCHEDULED</span>
-      </article>
+          <span class="status">SCHEDULED</span>
+        </article>
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">02</div>
-          <div>
-            <div class="teams">Team C vs Team D</div>
-            <div class="match-date">11 April</div>
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">02</div>
+            <div class="match-content">
+              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA STARS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <span class="status">SCHEDULED</span>
-      </article>
+          <span class="status">SCHEDULED</span>
+        </article>
 
-      <article class="fixture">
-        <div class="fixture-left">
-          <div class="fixture-number">03</div>
-          <div>
-            <div class="teams">Team A vs Team C</div>
-            <div class="match-date">12 April</div>
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">03</div>
+            <div class="match-content">
+              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> VATKURA STRIKERS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <span class="status">SCHEDULED</span>
-      </article>
+          <span class="status">SCHEDULED</span>
+        </article>
 
-    </section>
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">04</div>
+            <div class="match-content">
+              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA STRIKERS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
 
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">05</div>
+            <div class="match-content">
+              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> VATKURA STARS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">06</div>
+            <div class="match-content">
+              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA FIRE EIGHT</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">07</div>
+            <div class="match-content">
+              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> HR KINGS VATKURA</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">08</div>
+            <div class="match-content">
+              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA FIRE EIGHT</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">09</div>
+            <div class="match-content">
+              <div class="teams">VATKURA STRIKERS <span class="vs">VS</span> HR KINGS VATKURA</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">10</div>
+            <div class="match-content">
+              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA STRIKERS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">11</div>
+            <div class="match-content">
+              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA STARS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">12</div>
+            <div class="match-content">
+              <div class="teams">HR KINGS VATKURA <span class="vs">VS</span> VATKURA STARS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">13</div>
+            <div class="match-content">
+              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA TIGERS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">14</div>
+            <div class="match-content">
+              <div class="teams">VATKURA STRIKERS <span class="vs">VS</span> VATKURA STARS</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+        <article class="fixture">
+          <div class="fixture-left">
+            <div class="fixture-number">15</div>
+            <div class="match-content">
+              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> HR KINGS VATKURA</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SCHEDULED</span>
+        </article>
+
+      </section>
+
+      <!-- SEMI FINALS -->
+
+      <h2 class="section-heading">
+        Semi Finals
+        <span class="section-count">2 MATCHES</span>
+      </h2>
+
+      <section class="fixtures-list">
+
+        <article class="fixture playoff">
+          <div class="fixture-left">
+            <div class="fixture-number">16</div>
+            <div class="match-content">
+              <div class="teams">PT1 <span class="vs">VS</span> PT3</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 04 Dec 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 10:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SEMI FINAL 1</span>
+        </article>
+
+        <article class="fixture playoff">
+          <div class="fixture-left">
+            <div class="fixture-number">17</div>
+            <div class="match-content">
+              <div class="teams">PT2 <span class="vs">VS</span> PT4</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 04 Dec 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:00 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">SEMI FINAL 2</span>
+        </article>
+
+      </section>
+
+      <!-- FINAL -->
+
+      <h2 class="section-heading">
+        Final
+        <span class="section-count">1 MATCH</span>
+      </h2>
+
+      <section class="fixtures-list">
+
+        <article class="fixture final-match">
+          <div class="fixture-left">
+            <div class="fixture-number">18</div>
+            <div class="match-content">
+              <div class="teams">SF1W <span class="vs">VS</span> SF2W</div>
+              <div class="match-date">
+                <span class="date-item"><span class="date-icon">📅</span> 11 Dec 2026</span>
+                <span class="date-item"><span class="date-icon">🕒</span> 03:00 PM</span>
+              </div>
+            </div>
+          </div>
+          <span class="status">FINAL</span>
+        </article>
+
+      </section>
+
+    </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER - SAME AS HOME PAGE -->
+
   <footer class="footer">
-    <div class="container footer-inner">
-      <span>
-        <strong>VCL 2026</strong> · Vatkhura Cricket League
-      </span>
-      <span>Made for the love of cricket.</span>
-    </div>
+    <p>
+      © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
+      <br>
+      All Rights Reserved · VCL Session 03
+    </p>
   </footer>
 
 </body>
