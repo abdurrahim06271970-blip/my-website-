@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
-
   <title>Points Table | VCL 2026</title>
-  <meta name="description" content="Official VCL 2026 tournament points table and team standings.">
 
   <style>
     :root {
@@ -17,18 +15,12 @@
       --text: #18213b;
       --muted: #69738b;
       --border: #e8eaf2;
-      --green: #16835e;
-      --red: #c44b4b;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -55,7 +47,6 @@
     }
 
     .brand-row {
-      width: 100%;
       min-height: 92px;
       padding: 15px 20px;
       display: flex;
@@ -73,6 +64,7 @@
       width: 65px;
       height: 65px;
       object-fit: contain;
+      border-radius: 13px;
     }
 
     .brand-text h2 {
@@ -89,7 +81,7 @@
       margin-top: 5px;
     }
 
-    /* FULL-WIDTH NAVIGATION */
+    /* NAVIGATION */
 
     .nav-menu {
       width: 100%;
@@ -112,7 +104,7 @@
       color: #65708a;
       font-size: clamp(12px, 2vw, 16px);
       font-weight: 800;
-      transition: all 0.25s ease;
+      transition: 0.25s;
     }
 
     .nav-menu a:hover {
@@ -136,7 +128,7 @@
       background: linear-gradient(90deg, var(--blue-light), var(--purple));
     }
 
-    /* MAIN PAGE */
+    /* MAIN */
 
     .main {
       flex: 1;
@@ -258,7 +250,7 @@
 
     td {
       padding: 15px 3px;
-      font-size: 13px;
+      font-size: 12px;
       color: #525e76;
       border-bottom: 1px solid #edf0f6;
       white-space: nowrap;
@@ -268,11 +260,11 @@
 
     tbody tr {
       background: #fff;
-      transition: background 0.2s ease;
+      transition: background 0.2s;
     }
 
     tbody tr:hover {
-      background: #f8f7ff;
+      background: #fafaff;
     }
 
     tbody tr:last-child td {
@@ -289,36 +281,26 @@
     }
 
     th:nth-child(2),
-    td:nth-child(2) {
-      width: 12%;
-    }
+    td:nth-child(2) { width: 12%; }
 
     th:nth-child(3),
-    td:nth-child(3) {
-      width: 10%;
-    }
+    td:nth-child(3) { width: 10%; }
 
     th:nth-child(4),
-    td:nth-child(4) {
-      width: 10%;
-    }
+    td:nth-child(4) { width: 10%; }
 
     th:nth-child(5),
-    td:nth-child(5) {
-      width: 17%;
-    }
+    td:nth-child(5) { width: 17%; }
 
     th:nth-child(6),
-    td:nth-child(6) {
-      width: 17%;
-    }
+    td:nth-child(6) { width: 17%; }
 
-    /* TEAM NAME AND RANK */
+    /* TEAM NAME */
 
     .team-cell {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       min-width: 0;
     }
 
@@ -335,9 +317,10 @@
       font-weight: 900;
     }
 
+    /* Larger team names */
     .team-name {
-      color: var(--blue);
-      font-size: 11px;
+      display: inline-block;
+      font-size: 13px;
       font-weight: 900;
       line-height: 1.35;
       white-space: normal;
@@ -345,20 +328,68 @@
       text-align: left;
     }
 
+    /* TEAM COLORS BASED ON THE LOGOS */
+
+    .kings .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #a81717, #f0a51b);
+    }
+
+    .kings .team-name {
+      color: #c72b22;
+    }
+
+    .tigers .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #d94a13, #ffad26);
+    }
+
+    .tigers .team-name {
+      color: #dc5b18;
+    }
+
+    .fire .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #c7192d, #ff4c38);
+    }
+
+    .fire .team-name {
+      color: #d92535;
+    }
+
+    .strikers .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #0757bd, #20c5ff);
+    }
+
+    .strikers .team-name {
+      color: #1265ce;
+    }
+
+    .hrkings .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #a96908, #f3c629);
+    }
+
+    .hrkings .team-name {
+      color: #b17b08;
+    }
+
+    .stars .rank {
+      color: #fff;
+      background: linear-gradient(135deg, #087b37, #44d62c);
+    }
+
+    .stars .team-name {
+      color: #168a3b;
+    }
+
     .points-value {
       color: var(--purple);
       font-weight: 900;
     }
 
-    .nrr-positive {
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .nrr-negative {
-      color: var(--red);
-      font-weight: 800;
-    }
+    /* NOTE */
 
     .table-note {
       padding: 16px 20px;
@@ -366,7 +397,7 @@
       background: #fcfcff;
       color: var(--muted);
       font-size: 11px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .table-note strong {
@@ -394,7 +425,7 @@
       color: var(--blue);
     }
 
-    /* TABLET */
+    /* MOBILE */
 
     @media (max-width: 700px) {
       .brand-row {
@@ -450,7 +481,7 @@
 
       td {
         padding: 13px 1px;
-        font-size: 11px;
+        font-size: 10px;
       }
 
       th:nth-child(1),
@@ -469,7 +500,7 @@
       }
 
       .team-name {
-        font-size: 10px;
+        font-size: 11px;
       }
 
       .table-note {
@@ -477,8 +508,6 @@
         font-size: 10px;
       }
     }
-
-    /* SMALL MOBILE */
 
     @media (max-width: 400px) {
       .brand-logo {
@@ -503,19 +532,14 @@
         min-height: 49px;
         padding: 12px 1px;
         font-size: 11px;
-        font-weight: 800;
       }
 
       .main {
-        padding: 30px 9px 45px;
+        padding: 30px 8px 45px;
       }
 
       .page-title {
         font-size: 34px;
-      }
-
-      .table-card-header {
-        gap: 6px;
       }
 
       .table-card-title {
@@ -532,11 +556,11 @@
       }
 
       td {
-        font-size: 10px;
+        font-size: 9px;
       }
 
       .team-name {
-        font-size: 9px;
+        font-size: 10px;
       }
 
       .rank {
@@ -549,15 +573,6 @@
         gap: 3px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-      }
-    }
   </style>
 </head>
 
@@ -565,7 +580,6 @@
 
   <!-- HEADER -->
   <header class="header">
-
     <div class="brand-row">
       <a href="index.html" class="brand">
         <img
@@ -588,7 +602,6 @@
       <a href="squad.html">Teams</a>
       <a href="stats.html">Stats</a>
     </nav>
-
   </header>
 
   <!-- POINTS TABLE -->
@@ -626,88 +639,70 @@
             </thead>
 
             <tbody>
-              <tr>
+              <tr class="kings">
                 <td>
                   <div class="team-cell">
                     <span class="rank">1</span>
-                    <span class="team-name">HR KINGS VATKURA</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">2</span>
                     <span class="team-name">VATKURA KINGS</span>
                   </div>
                 </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
               </tr>
 
-              <tr>
+              <tr class="tigers">
                 <td>
                   <div class="team-cell">
-                    <span class="rank">3</span>
+                    <span class="rank">2</span>
                     <span class="team-name">VATKURA TIGERS</span>
                   </div>
                 </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
               </tr>
 
-              <tr>
+              <tr class="fire">
                 <td>
                   <div class="team-cell">
-                    <span class="rank">4</span>
-                    <span class="team-name">VATKURA STARS</span>
-                  </div>
-                </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="team-cell">
-                    <span class="rank">5</span>
+                    <span class="rank">3</span>
                     <span class="team-name">VATKURA FIRE EIGHT</span>
                   </div>
                 </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
               </tr>
 
-              <tr>
+              <tr class="strikers">
                 <td>
                   <div class="team-cell">
-                    <span class="rank">6</span>
+                    <span class="rank">4</span>
                     <span class="team-name">VATKURA STRIKERS</span>
                   </div>
                 </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td class="points-value">0</td>
-                <td>—</td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
+              </tr>
+
+              <tr class="hrkings">
+                <td>
+                  <div class="team-cell">
+                    <span class="rank">5</span>
+                    <span class="team-name">HR KINGS VATKURA</span>
+                  </div>
+                </td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
+              </tr>
+
+              <tr class="stars">
+                <td>
+                  <div class="team-cell">
+                    <span class="rank">6</span>
+                    <span class="team-name">VATKURA STARS</span>
+                  </div>
+                </td>
+                <td>0</td><td>0</td><td>0</td>
+                <td class="points-value">0</td><td>—</td>
               </tr>
             </tbody>
           </table>
@@ -721,12 +716,11 @@
           The top four teams qualify for the semifinals.
           <br>
           <strong>Note:</strong>
-          All statistics are currently set to zero because official match
-          results have not yet been entered. The displayed order is provisional.
+          All statistics are currently set to zero. Team positions are
+          provisional and should be updated according to official results.
         </div>
 
       </section>
-
     </div>
   </main>
 
