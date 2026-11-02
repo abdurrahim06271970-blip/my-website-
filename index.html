@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
+  <meta name="theme-color" content="#101026">
   <title>VCL 2026 | Vatkhura Cricket League</title>
 
   <style>
     :root {
-      --bg: #f5f7fa;
-      --white: #ffffff;
-      --navy: #111827;
-      --navy-light: #202d43;
-      --accent: #26c6c5;
-      --accent-dark: #139b9a;
-      --text: #182131;
-      --muted: #737d8d;
-      --border: #e3e8ef;
+      --bg: #090b16;
+      --navy: #101026;
+      --purple: #6a11cb;
+      --blue: #1e3c72;
+      --blue-light: #2a5298;
+      --accent: #43e7e3;
+      --text: #f5f6ff;
+      --muted: #a9b1ca;
+      --border: rgba(255,255,255,.10);
     }
 
     * {
@@ -26,10 +26,18 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(ellipse at 10% 5%, rgba(106,17,203,.22), transparent 35%),
+        radial-gradient(ellipse at 90% 40%, rgba(30,60,114,.23), transparent 40%),
+        var(--bg);
       line-height: 1.6;
     }
 
@@ -39,14 +47,18 @@
     }
 
     .container {
-      width: min(1050px, calc(100% - 36px));
+      width: min(1100px, calc(100% - 36px));
       margin: auto;
     }
 
     /* HEADER */
+
     .header {
-      background: var(--white);
+      position: relative;
+      z-index: 5;
+      background: rgba(10,12,28,.88);
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
     }
 
     .header-inner {
@@ -54,7 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
     .brand {
@@ -65,13 +77,15 @@
     }
 
     .logo-box {
-      width: 53px;
-      height: 53px;
+      width: 52px;
+      height: 52px;
       border-radius: 13px;
       overflow: hidden;
-      background: var(--navy);
+      background: linear-gradient(135deg, #1e3c72, #6a11cb);
+      border: 1px solid rgba(255,255,255,.15);
       display: grid;
       place-items: center;
+      box-shadow: 0 0 22px rgba(106,17,203,.22);
     }
 
     .logo {
@@ -84,242 +98,226 @@
       font-size: 21px;
       font-weight: 900;
       line-height: 1.2;
-      color: var(--navy);
+      letter-spacing: -.5px;
     }
 
     .brand-title span {
-      color: var(--accent-dark);
+      color: var(--accent);
     }
 
     .brand-subtitle {
-      color: var(--muted);
+      color: #aab3ce;
       font-size: 9px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       margin-top: 5px;
     }
 
     /* NAVIGATION */
+
     .nav {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 23px;
     }
 
     .nav a {
-      color: #515b6b;
-      font-size: 13px;
-      font-weight: 700;
+      position: relative;
+      color: #b8bfd3;
+      font-size: 12px;
+      font-weight: 800;
       white-space: nowrap;
-      padding: 27px 0 24px;
-      border-bottom: 3px solid transparent;
-      transition: 0.2s;
+      padding: 29px 0 26px;
+      transition: color .25s;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 17px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #a16aff);
+      border-radius: 5px;
+      transition: width .25s;
     }
 
     .nav a:hover,
     .nav a.active {
-      color: var(--navy);
-      border-bottom-color: var(--accent);
+      color: #fff;
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    .nav .stats-link {
+      color: var(--accent);
     }
 
     /* HOME HERO */
+
     .main {
-      padding: 48px 0 70px;
+      padding: 44px 0 55px;
     }
 
     .hero {
       position: relative;
+      isolation: isolate;
       overflow: hidden;
-      background: linear-gradient(
-        120deg,
-        var(--navy),
-        var(--navy-light)
-      );
-      color: var(--white);
-      border-radius: 16px;
-      padding: 44px 36px;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+      padding: 58px 48px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.13);
+      background:
+        radial-gradient(circle at 85% 15%, rgba(106,17,203,.58), transparent 33%),
+        radial-gradient(circle at 10% 100%, rgba(38,198,197,.15), transparent 35%),
+        linear-gradient(125deg, #10152d 0%, #19264b 45%, #29154c 100%);
+      box-shadow:
+        0 25px 75px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 330px;
+      height: 330px;
+      right: -85px;
+      top: -105px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow:
+        0 0 0 28px rgba(255,255,255,.025),
+        0 0 0 58px rgba(255,255,255,.018);
     }
 
     .hero::after {
       content: "";
       position: absolute;
+      z-index: -1;
       width: 220px;
       height: 220px;
-      right: -65px;
-      top: -75px;
-      border: 35px solid rgba(38, 198, 197, 0.10);
+      right: 60px;
+      bottom: -155px;
       border-radius: 50%;
-      pointer-events: none;
+      background: rgba(67,231,227,.16);
+      filter: blur(45px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 690px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       color: var(--accent);
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
+      letter-spacing: 2.4px;
+      margin-bottom: 19px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
     }
 
     .hero h1 {
-      font-size: clamp(30px, 5vw, 48px);
+      font-size: clamp(38px, 7vw, 70px);
       font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      max-width: 650px;
+      line-height: 1.08;
+      letter-spacing: -2px;
     }
 
-    .hero h1 span {
-      color: var(--accent);
+    .hero h1 .gradient-text {
+      display: inline-block;
+      background: linear-gradient(90deg, #43e7e3, #8b8bff, #d3a5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-description {
-      color: #c6ced9;
+      color: #d0d5e7;
       font-size: 14px;
-      max-width: 540px;
-      margin-top: 16px;
-      line-height: 1.8;
+      max-width: 500px;
+      margin-top: 22px;
+      line-height: 1.9;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 12px;
+      align-items: center;
+      gap: 13px;
       flex-wrap: wrap;
-      margin-top: 26px;
+      margin-top: 30px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 11px 17px;
-      border-radius: 7px;
+      gap: 9px;
+      padding: 13px 19px;
+      border-radius: 9px;
       font-size: 12px;
       font-weight: 900;
-      transition: 0.2s;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
     }
 
     .button-primary {
-      background: var(--accent);
-      color: var(--navy);
-      border: 1px solid var(--accent);
+      color: #081323;
+      background: linear-gradient(100deg, #43e7e3, #8bf1df);
+      box-shadow: 0 8px 26px rgba(67,231,227,.20);
     }
 
     .button-primary:hover {
-      background: #65dddd;
+      box-shadow: 0 10px 32px rgba(67,231,227,.34);
     }
 
     .button-outline {
-      background: transparent;
-      color: var(--white);
-      border: 1px solid #657083;
+      color: #f5f6ff;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.20);
     }
 
     .button-outline:hover {
+      background: rgba(255,255,255,.10);
       border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* TOURNAMENT INFORMATION */
-    .section {
-      margin-top: 38px;
-    }
-
-    .section-heading {
-      color: var(--navy);
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .section-description {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 6px;
-    }
-
-    .title-line {
-      width: 48px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 5px;
-      margin-top: 14px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .info-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 5px 16px rgba(17, 24, 39, 0.035);
-    }
-
-    .info-label {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .info-value {
-      color: var(--navy);
-      font-size: 23px;
-      font-weight: 900;
-      margin-top: 6px;
-    }
-
-    .info-detail {
-      color: var(--accent-dark);
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 3px;
-    }
-
-    /* ABOUT */
-    .about {
-      margin-top: 28px;
-      padding: 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-
-    .about h2 {
-      color: var(--navy);
-      font-size: 19px;
-      font-weight: 900;
-    }
-
-    .about p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-      line-height: 1.9;
-    }
-
-    .about-highlight {
-      color: var(--accent-dark);
-      font-weight: 800;
     }
 
     /* FOOTER */
+
     .footer {
-      background: var(--navy);
-      color: #c6ced9;
-      padding: 21px 0;
+      margin-top: 10px;
+      background: rgba(9,11,22,.75);
+      border-top: 1px solid var(--border);
     }
 
     .footer-inner {
+      min-height: 75px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
+      color: #a9b1ca;
       font-size: 11px;
     }
 
@@ -327,21 +325,45 @@
       color: var(--accent);
     }
 
+    .footer-mark {
+      color: #8f7bff;
+      font-weight: 800;
+    }
+
     /* MOBILE */
-    @media (max-width: 700px) {
+
+    @media (max-width: 850px) {
+      .header-inner {
+        gap: 14px;
+      }
+
+      .nav {
+        gap: 15px;
+      }
+
+      .nav a {
+        font-size: 11px;
+      }
+
+      .brand-subtitle {
+        letter-spacing: .8px;
+      }
+    }
+
+    @media (max-width: 650px) {
       .container {
         width: calc(100% - 28px);
       }
 
       .header-inner {
         flex-wrap: wrap;
-        gap: 0;
         padding-top: 12px;
+        gap: 0;
       }
 
       .logo-box {
-        width: 46px;
-        height: 46px;
+        width: 45px;
+        height: 45px;
       }
 
       .brand-title {
@@ -350,13 +372,13 @@
 
       .brand-subtitle {
         font-size: 8px;
-        letter-spacing: 1px;
+        letter-spacing: .8px;
       }
 
       .nav {
         order: 2;
         width: 100%;
-        gap: 24px;
+        gap: 23px;
         overflow-x: auto;
         scrollbar-width: none;
         border-top: 1px solid var(--border);
@@ -368,69 +390,62 @@
       }
 
       .nav a {
-        font-size: 12px;
-        padding: 13px 0 10px;
+        padding: 13px 0 12px;
+        font-size: 11px;
+      }
+
+      .nav a::after {
+        bottom: 5px;
       }
 
       .main {
-        padding: 30px 0 50px;
+        padding: 25px 0 38px;
       }
 
       .hero {
-        padding: 30px 20px;
-        border-radius: 13px;
+        min-height: 430px;
+        padding: 34px 23px;
+        border-radius: 18px;
+      }
+
+      .hero::before {
+        width: 230px;
+        height: 230px;
+        right: -110px;
+        top: -70px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1.7px;
+      }
+
+      .hero h1 {
+        font-size: clamp(37px, 10vw, 55px);
+        letter-spacing: -1.4px;
       }
 
       .hero-description {
         font-size: 13px;
+        margin-top: 18px;
       }
 
       .hero-buttons {
-        gap: 9px;
+        gap: 10px;
+        margin-top: 24px;
       }
 
       .button {
-        padding: 10px 12px;
+        padding: 12px 13px;
         font-size: 11px;
       }
 
-      .section {
-        margin-top: 30px;
-      }
-
-      .section-heading {
-        font-size: 20px;
-      }
-
-      .info-grid {
-        gap: 10px;
-      }
-
-      .info-card {
-        padding: 13px 10px;
-      }
-
-      .info-label {
-        font-size: 9px;
-        letter-spacing: 0.5px;
-      }
-
-      .info-value {
-        font-size: 19px;
-      }
-
-      .info-detail {
-        font-size: 10px;
-      }
-
-      .about {
-        padding: 18px;
-      }
-
       .footer-inner {
+        padding: 17px 0;
+        min-height: auto;
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
+        gap: 5px;
       }
     }
 
@@ -440,19 +455,31 @@
       }
 
       .nav {
-        gap: 19px;
+        gap: 18px;
       }
 
       .hero {
-        padding: 25px 16px;
+        padding: 28px 17px;
       }
 
-      .info-grid {
-        grid-template-columns: 1fr;
+      .hero h1 {
+        font-size: 35px;
       }
 
-      .info-card {
-        padding: 16px;
+      .hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
       }
     }
   </style>
@@ -460,7 +487,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
 
@@ -470,7 +496,7 @@
             class="logo"
             src="file_00000000fafc7208bb91a6123810609b.png"
             alt="VCL Logo"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#26c6c5;font-size:19px&quot;>VCL</b>';"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<b style=&quot;color:#43e7e3;font-size:19px&quot;>VCL</b>';"
           >
         </div>
 
@@ -485,95 +511,49 @@
         <a href="fixtures.html">Fixtures</a>
         <a href="points.html">Points Table</a>
         <a href="squad.html">Teams</a>
+        <a href="stats.html" class="stats-link">STATS</a>
       </nav>
 
     </div>
   </header>
 
-  <!-- HOME PAGE -->
   <main class="container main">
 
     <section class="hero">
-      <div class="eyebrow">WELCOME TO VCL 2026</div>
+      <div class="hero-content">
 
-      <h1>
-        VATKHURA<br>
-        CRICKET <span>LEAGUE.</span>
-      </h1>
+        <div class="eyebrow">WELCOME TO VCL 2026</div>
 
-      <p class="hero-description">
-        Welcome to Vatkhura Cricket League Session 03.
-        Follow the tournament, check match fixtures, explore team
-        information and keep track of the points table—all in one place.
-      </p>
+        <h1>
+          VATKHURA<br>
+          CRICKET <span class="gradient-text">LEAGUE.</span>
+        </h1>
 
-      <div class="hero-buttons">
-        <a href="fixtures.html" class="button button-primary">
-          Tournament Schedule →
-        </a>
+        <p class="hero-description">
+          স্বাগতম Vatkhura Cricket League Session 03-এ।
+          ক্রিকেটের উত্তেজনা, প্রতিযোগিতা ও খেলোয়াড়দের পারফরম্যান্স
+          উপভোগ করুন VCL 2026-এর সঙ্গে।
+        </p>
 
-        <a href="squad.html" class="button button-outline">
-          Meet The Teams
-        </a>
-      </div>
-    </section>
+        <div class="hero-buttons">
+          <a href="fixtures.html" class="button button-primary">
+            View Fixtures <span>→</span>
+          </a>
 
-    <!-- KEY INFORMATION -->
-    <section class="section">
-      <div class="eyebrow">TOURNAMENT OVERVIEW</div>
-      <h2 class="section-heading">The League at a Glance</h2>
-
-      <p class="section-description">
-        Everything you need to know about VCL 2026.
-      </p>
-
-      <div class="title-line"></div>
-
-      <div class="info-grid">
-
-        <article class="info-card">
-          <div class="info-label">Tournament</div>
-          <div class="info-value">Session 03</div>
-          <div class="info-detail">VCL 2026</div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-label">Participating Teams</div>
-          <div class="info-value">06 Teams</div>
-          <div class="info-detail">Cricket Competition</div>
-        </article>
-
-        <article class="info-card">
-          <div class="info-label">Season</div>
-          <div class="info-value">2026</div>
-          <div class="info-detail">Vatkhura Cricket League</div>
-        </article>
+          <a href="stats.html" class="button button-outline">
+            Explore Stats <span>↗</span>
+          </a>
+        </div>
 
       </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about">
-      <h2>About VCL</h2>
-
-      <p>
-        <span class="about-highlight">Vatkhura Cricket League</span>
-        brings cricket lovers together through competition,
-        teamwork and sportsmanship. This website is the home of
-        VCL 2026, where you can follow the tournament schedule,
-        view team information and check the points table.
-      </p>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <span>
-        <strong>VCL 2026</strong> · Vatkhura Cricket League
-      </span>
-      <span>Made for the love of cricket.</span>
+      <span><strong>VCL 2026</strong> · Vatkhura Cricket League</span>
+      <span class="footer-mark">PLAY WITH PRIDE. PLAY WITH PASSION.</span>
     </div>
   </footer>
 
