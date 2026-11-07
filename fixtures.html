@@ -10,594 +10,380 @@
 
 <style>
 :root {
-  --blue: #1e3c72;
-  --blue-light: #2a5298;
-  --purple: #6a11cb;
-  --cyan: #168fcb;
-  --text: #18213b;
-  --muted: #69738b;
-  --border: #e8eaf2;
-  --white: #ffffff;
-  --light-bg: #f7f8fc;
+  --blue:#1e3c72;
+  --blue-light:#2a5298;
+  --purple:#6a11cb;
+  --cyan:#168fcb;
+  --text:#18213b;
+  --muted:#69738b;
+  --border:#e8eaf2;
+  --white:#ffffff;
+  --light-bg:#f7f8fc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+
+/* HEADER */
+.header{
+  width:100%;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:relative;
+  z-index:10;
+  box-shadow:0 3px 15px rgba(30,60,114,.035);
+}
+.brand-row{
+  max-width:1250px;
+  min-height:92px;
+  padding:15px 25px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.brand{display:flex;align-items:center;gap:15px}
+.brand-logo{width:65px;height:65px;object-fit:contain}
+.brand-text h2{
+  color:var(--blue);
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+.brand-text p{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:2.2px;
+  margin-top:5px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* NAVIGATION */
+.nav-menu{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  background:#fff;
+  border-top:1px solid #f0f1f6;
+}
+.nav-menu a{
+  position:relative;
+  min-width:0;
+  min-height:57px;
+  padding:15px 3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+  color:#65708a;
+  font-size:clamp(12px,2vw,16px);
+  font-weight:800;
+  transition:all .25s ease;
+}
+.nav-menu a:hover{color:var(--purple);background:#faf9ff}
+.nav-menu a.active{
+  color:var(--blue);
+  background:linear-gradient(180deg,#fff,#f6f7ff);
+}
+.nav-menu a.active::after{
+  content:"";
+  position:absolute;
+  left:18%;
+  right:18%;
+  bottom:0;
+  height:3px;
+  border-radius:5px 5px 0 0;
+  background:linear-gradient(90deg,var(--blue-light),var(--purple));
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* HEADER — MATCHES INDEX.HTML */
-
-.header {
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
-}
-
-.brand-row {
-  max-width: 1250px;
-  min-height: 92px;
-  padding: 15px 25px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.brand-logo {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-}
-
-.brand-text h2 {
-  color: var(--blue);
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-}
-
-.brand-text p {
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2.2px;
-  margin-top: 5px;
-}
-
-/* FULL-WIDTH NAVIGATION — MATCHES INDEX.HTML */
-
-.nav-menu {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  background: #ffffff;
-  border-top: 1px solid #f0f1f6;
-}
-
-.nav-menu a {
-  position: relative;
-  min-width: 0;
-  min-height: 57px;
-  padding: 15px 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  color: #65708a;
-  font-size: clamp(12px, 2vw, 16px);
-  font-weight: 800;
-  transition: all 0.25s ease;
-}
-
-.nav-menu a:hover {
-  color: var(--purple);
-  background: #faf9ff;
-}
-
-.nav-menu a.active {
-  color: var(--blue);
-  background: linear-gradient(180deg, #ffffff, #f6f7ff);
-}
-
-.nav-menu a.active::after {
-  content: "";
-  position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: 0;
-  height: 3px;
-  border-radius: 5px 5px 0 0;
-  background: linear-gradient(90deg, var(--blue-light), var(--purple));
-}
-
-/* FIXTURES MAIN CONTENT */
-
-main {
-  flex: 1;
-  width: 100%;
-  padding: 38px 20px 60px;
+/* MAIN */
+main{
+  flex:1;
+  width:100%;
+  padding:38px 20px 60px;
   background:
-    radial-gradient(
-      ellipse at 50% 0%,
-      rgba(106, 17, 203, 0.045),
-      transparent 48%
-    ),
-    #ffffff;
+    radial-gradient(ellipse at 50% 0%,rgba(106,17,203,.045),transparent 48%),
+    #fff;
 }
-
-.fixtures-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+.fixtures-container{
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
 }
-
-.page-title {
-  margin-bottom: 30px;
+.page-title{margin-bottom:30px}
+.page-title h1{
+  color:var(--blue);
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-.7px;
 }
-
-.page-title h1 {
-  color: var(--blue);
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: -0.7px;
-}
-
-.page-title p {
-  margin-top: 5px;
-  color: var(--muted);
-  font-size: 14px;
-}
+.page-title p{margin-top:5px;color:var(--muted);font-size:14px}
 
 /* DATE HEADINGS */
-
-.date-group {
-  margin-bottom: 32px;
+.date-group{margin-bottom:32px}
+.date-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
 }
-
-.date-heading {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+.date-heading h2{
+  color:var(--blue);
+  font-size:21px;
+  font-weight:900;
+  white-space:nowrap;
 }
-
-.date-heading h2 {
-  color: var(--blue);
-  font-size: 21px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.date-heading .line {
-  flex: 1;
-  height: 3px;
-  border-radius: 5px;
-  background: linear-gradient(90deg, var(--blue-light), var(--purple));
+.date-heading .line{
+  flex:1;
+  height:3px;
+  border-radius:5px;
+  background:linear-gradient(90deg,var(--blue-light),var(--purple));
 }
 
 /* MATCH CARDS */
+.match-card{
+  border:1px solid rgba(24,33,59,.12);
+  border-left:6px solid var(--blue-light);
+  border-radius:13px;
+  padding:20px 22px;
+  margin-bottom:12px;
+  box-shadow:0 3px 12px rgba(30,60,114,.045);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.match-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(30,60,114,.09);
+}
+.match-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.match-number{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:7px;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(30,60,114,.12);
+  color:var(--blue);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.6px;
+}
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  background:rgba(255,255,255,.85);
+  color:#53627b;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.6px;
+  white-space:nowrap;
+}
+.teams{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);
+  align-items:center;
+  gap:10px;
+}
+.team{
+  font-size:20px;
+  line-height:1.35;
+  font-weight:900;
+  color:var(--text);
+  overflow-wrap:anywhere;
+}
+.team:first-child{text-align:left}
+.team:last-child{text-align:right}
+.vs{
+  text-align:center;
+  color:var(--purple);
+  font-size:14px;
+  font-weight:900;
+  padding:8px 3px;
+  border-radius:8px;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(106,17,203,.13);
+}
+.match-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:9px 20px;
+  margin-top:18px;
+  padding-top:13px;
+  border-top:1px solid rgba(24,33,59,.14);
+  color:#46546e;
+  font-size:14px;
+  font-weight:700;
+}
+.info{display:flex;align-items:center;gap:7px}
+.info-icon{color:var(--purple);font-size:17px;font-weight:900}
 
-.match-card {
-  border: 1px solid rgba(24, 33, 59, 0.12);
-  border-left: 6px solid var(--blue-light);
-  border-radius: 13px;
-  padding: 20px 22px;
-  margin-bottom: 12px;
-  box-shadow: 0 3px 12px rgba(30, 60, 114, 0.045);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* DATE COLORS */
+.date-06{background:#d9e7ff;border-left-color:#2456a6}
+.date-06 .match-number{background:#2456a6;color:#fff;border-color:#2456a6}
+.date-06 .status{color:#194781}
+
+.date-13{background:#e5d7ff;border-left-color:#7138c8}
+.date-13 .match-number{background:#7138c8;color:#fff;border-color:#7138c8}
+.date-13 .status{color:#5725a1}
+
+.date-20{background:#d1f0df;border-left-color:#168052}
+.date-20 .match-number{background:#168052;color:#fff;border-color:#168052}
+.date-20 .status{color:#126440}
+
+.date-27{background:#ffe3bd;border-left-color:#c56a08}
+.date-27 .match-number{background:#c56a08;color:#fff;border-color:#c56a08}
+.date-27 .status{color:#874600}
+
+/* SEMI FINALS */
+.playoff .date-04{
+  background:linear-gradient(115deg,#ffedb3,#ffdda0);
+  border:2px solid #d29a16;
+  border-left:7px solid #a86f00;
+  box-shadow:0 4px 15px rgba(180,123,0,.09);
+}
+.playoff .date-04 .match-number{
+  background:linear-gradient(100deg,#a86f00,#e3a817);
+  color:#fff;
+  border:none;
+}
+.playoff .date-04 .status{
+  background:#fff5d6;
+  color:#875800;
+  border:1px solid #e8c76c;
+}
+.playoff .date-04 .vs{color:#9b6500;border-color:#e4c66e}
+
+/* FINAL */
+.date-11.final-card{
+  background:linear-gradient(120deg,#ffdfe4,#ffd7bd);
+  border:2px solid #d84752;
+  border-left:7px solid #b91f35;
+  box-shadow:0 5px 18px rgba(185,31,53,.14);
+}
+.date-11.final-card .match-number{
+  background:linear-gradient(100deg,#a9132a,#e04450);
+  color:#fff;
+  border:none;
+}
+.date-11.final-card .status{
+  background:#fff0d1;
+  color:#8a5700;
+  border:1px solid #e5bf62;
+}
+.date-11.final-card .vs{
+  background:#fff7e9;
+  color:#b91f35;
+  border-color:#efb6a9;
 }
 
-.match-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(30, 60, 114, 0.09);
+/* RESULT INFORMATION */
+.firebase-extra{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px 20px;
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px dashed rgba(24,33,59,.2);
+  color:#243b65;
+  font-size:13px;
+  font-weight:800;
+}
+.firebase-extra .info{overflow-wrap:anywhere}
+.match-card.completed .status{
+  background:#d5f5e3;
+  color:#08733d;
+}
+.match-card.live .status{
+  background:#ffe0e0;
+  color:#b51e2b;
 }
 
-.match-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+/* FOOTER */
+.footer{
+  width:100%;
+  padding:24px 16px;
+  text-align:center;
+  background:#fafbfe;
+  border-top:1px solid var(--border);
 }
-
-.match-number {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(30, 60, 114, 0.12);
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.6px;
+.footer p{
+  color:#8991a5;
+  font-size:11px;
+  line-height:1.9;
+  letter-spacing:.4px;
 }
+.footer strong{color:var(--blue)}
 
-.status {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #53627b;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.6px;
-  white-space: nowrap;
-}
-
-.teams {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
-  align-items: center;
-  gap: 10px;
-}
-
-.team {
-  font-size: 20px;
-  line-height: 1.35;
-  font-weight: 900;
-  color: var(--text);
-  overflow-wrap: anywhere;
-}
-
-.team:first-child {
-  text-align: left;
-}
-
-.team:last-child {
-  text-align: right;
-}
-
-.vs {
-  text-align: center;
-  color: var(--purple);
-  font-size: 14px;
-  font-weight: 900;
-  padding: 8px 3px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(106, 17, 203, 0.13);
-}
-
-.match-bottom {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 9px 20px;
-  margin-top: 18px;
-  padding-top: 13px;
-  border-top: 1px solid rgba(24, 33, 59, 0.14);
-  color: #46546e;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.info {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.info-icon {
-  color: var(--purple);
-  font-size: 17px;
-  font-weight: 900;
-}
-
-/* NOVEMBER 06 — BLUE */
-
-.date-06 {
-  background: #d9e7ff;
-  border-left-color: #2456a6;
-}
-
-.date-06 .match-number {
-  background: #2456a6;
-  color: #ffffff;
-  border-color: #2456a6;
-}
-
-.date-06 .status {
-  color: #194781;
-}
-
-/* NOVEMBER 13 — PURPLE */
-
-.date-13 {
-  background: #e5d7ff;
-  border-left-color: #7138c8;
-}
-
-.date-13 .match-number {
-  background: #7138c8;
-  color: #ffffff;
-  border-color: #7138c8;
-}
-
-.date-13 .status {
-  color: #5725a1;
-}
-
-/* NOVEMBER 20 — GREEN */
-
-.date-20 {
-  background: #d1f0df;
-  border-left-color: #168052;
-}
-
-.date-20 .match-number {
-  background: #168052;
-  color: #ffffff;
-  border-color: #168052;
-}
-
-.date-20 .status {
-  color: #126440;
-}
-
-/* NOVEMBER 27 — ORANGE */
-
-.date-27 {
-  background: #ffe3bd;
-  border-left-color: #c56a08;
-}
-
-.date-27 .match-number {
-  background: #c56a08;
-  color: #ffffff;
-  border-color: #c56a08;
-}
-
-.date-27 .status {
-  color: #874600;
-}
-
-/* SEMI FINALS — ROYAL GOLD */
-
-.playoff .date-04 {
-  background: linear-gradient(115deg, #ffedb3, #ffdda0);
-  border: 2px solid #d29a16;
-  border-left: 7px solid #a86f00;
-  box-shadow: 0 4px 15px rgba(180, 123, 0, 0.09);
-}
-
-.playoff .date-04 .match-number {
-  background: linear-gradient(100deg, #a86f00, #e3a817);
-  color: #ffffff;
-  border: none;
-}
-
-.playoff .date-04 .status {
-  background: #fff5d6;
-  color: #875800;
-  border: 1px solid #e8c76c;
-}
-
-.playoff .date-04 .vs {
-  color: #9b6500;
-  border-color: #e4c66e;
-}
-
-/* FINAL — PREMIUM RED AND GOLD */
-
-.date-11.final-card {
-  background: linear-gradient(120deg, #ffdfe4, #ffd7bd);
-  border: 2px solid #d84752;
-  border-left: 7px solid #b91f35;
-  box-shadow: 0 5px 18px rgba(185, 31, 53, 0.14);
-}
-
-.date-11.final-card .match-number {
-  background: linear-gradient(100deg, #a9132a, #e04450);
-  color: #ffffff;
-  border: none;
-}
-
-.date-11.final-card .status {
-  background: #fff0d1;
-  color: #8a5700;
-  border: 1px solid #e5bf62;
-}
-
-.date-11.final-card .vs {
-  background: #fff7e9;
-  color: #b91f35;
-  border-color: #efb6a9;
-}
-
-/* FOOTER — MATCHES INDEX.HTML */
-
-.footer {
-  width: 100%;
-  padding: 24px 16px;
-  text-align: center;
-  background: #fafbfe;
-  border-top: 1px solid var(--border);
-}
-
-.footer p {
-  color: #8991a5;
-  font-size: 11px;
-  line-height: 1.9;
-  letter-spacing: 0.4px;
-}
-
-.footer strong {
-  color: var(--blue);
+#firebase-message{
+  display:none;
+  max-width:1000px;
+  margin:0 auto 15px;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:12px;
+  color:#53627b;
+  background:#f0f4ff;
 }
 
 /* TABLET */
-
-@media (max-width: 700px) {
-  .brand-row {
-    min-height: 80px;
-    padding: 12px;
-  }
-
-  .brand-logo {
-    width: 55px;
-    height: 55px;
-  }
-
-  .brand-text h2 {
-    font-size: 21px;
-  }
-
-  .nav-menu a {
-    min-height: 52px;
-    font-size: 13px;
-  }
-
-  main {
-    padding: 30px 15px 45px;
-  }
-
-  .page-title h1 {
-    font-size: 30px;
-  }
-
-  .match-card {
-    padding: 17px 16px;
-  }
-
-  .team {
-    font-size: 18px;
-  }
+@media(max-width:700px){
+  .brand-row{min-height:80px;padding:12px}
+  .brand-logo{width:55px;height:55px}
+  .brand-text h2{font-size:21px}
+  .nav-menu a{min-height:52px;font-size:13px}
+  main{padding:30px 15px 45px}
+  .page-title h1{font-size:30px}
+  .match-card{padding:17px 16px}
+  .team{font-size:18px}
 }
 
 /* MOBILE */
-
-@media (max-width: 400px) {
-  .brand-logo {
-    width: 48px;
-    height: 48px;
+@media(max-width:400px){
+  .brand-logo{width:48px;height:48px}
+  .brand-text h2{font-size:18px}
+  .brand-text p{font-size:8px;letter-spacing:1.5px}
+  .brand{gap:10px}
+  .nav-menu a{
+    min-height:49px;
+    padding:12px 1px;
+    font-size:11px;
+    font-weight:800;
   }
-
-  .brand-text h2 {
-    font-size: 18px;
-  }
-
-  .brand-text p {
-    font-size: 8px;
-    letter-spacing: 1.5px;
-  }
-
-  .brand {
-    gap: 10px;
-  }
-
-  .nav-menu a {
-    min-height: 49px;
-    padding: 12px 1px;
-    font-size: 11px;
-    font-weight: 800;
-  }
-
-  .nav-menu a.active::after {
-    left: 12%;
-    right: 12%;
-  }
-
-  main {
-    padding: 25px 11px 40px;
-  }
-
-  .page-title {
-    margin-bottom: 24px;
-  }
-
-  .page-title h1 {
-    font-size: 27px;
-  }
-
-  .page-title p {
-    font-size: 12px;
-  }
-
-  .date-group {
-    margin-bottom: 26px;
-  }
-
-  .date-heading h2 {
-    font-size: 17px;
-  }
-
-  .match-card {
-    padding: 14px 11px;
-    margin-bottom: 10px;
-    border-radius: 11px;
-  }
-
-  .match-top {
-    margin-bottom: 15px;
-  }
-
-  .match-number {
-    font-size: 10px;
-    padding: 5px 7px;
-  }
-
-  .status {
-    font-size: 9px;
-    padding: 5px 7px;
-  }
-
-  .teams {
-    grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
-    gap: 5px;
-  }
-
-  .team {
-    font-size: 15px;
-  }
-
-  .vs {
-    font-size: 11px;
-    padding: 6px 2px;
-  }
-
-  .match-bottom {
-    margin-top: 14px;
-    padding-top: 11px;
-    font-size: 12px;
-    gap: 8px 13px;
-  }
+  .nav-menu a.active::after{left:12%;right:12%}
+  main{padding:25px 11px 40px}
+  .page-title{margin-bottom:24px}
+  .page-title h1{font-size:27px}
+  .page-title p{font-size:12px}
+  .date-group{margin-bottom:26px}
+  .date-heading h2{font-size:17px}
+  .match-card{padding:14px 11px;margin-bottom:10px;border-radius:11px}
+  .match-top{margin-bottom:15px}
+  .match-number{font-size:10px;padding:5px 7px}
+  .status{font-size:9px;padding:5px 7px}
+  .teams{grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:5px}
+  .team{font-size:15px}
+  .vs{font-size:11px;padding:6px 2px}
+  .match-bottom{margin-top:14px;padding-top:11px;font-size:12px;gap:8px 13px}
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    scroll-behavior:auto!important;
   }
 }
 </style>
@@ -636,6 +422,8 @@ main {
     <h1>Match Fixtures</h1>
     <p>VCL 2026 · Session 03</p>
   </div>
+
+  <div id="firebase-message"></div>
 
   <!-- 06 NOVEMBER -->
   <section class="date-group">
@@ -967,6 +755,169 @@ main {
     All Rights Reserved · VCL Session 03
   </p>
 </footer>
+
+<!-- FIREBASE REALTIME DATABASE CONNECTION -->
+<script type="module">
+import { initializeApp, getApps }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { getDatabase, ref, onValue }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
+  authDomain: "vcl-2026.firebaseapp.com",
+  databaseURL: "https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "vcl-2026",
+  storageBucket: "vcl-2026.firebasestorage.app",
+  messagingSenderId: "339291412613",
+  appId: "1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
+  measurementId: "G-RBXFNT2KG7"
+};
+
+const app = getApps().length
+  ? getApps()[0]
+  : initializeApp(firebaseConfig);
+
+const database = getDatabase(app);
+const message = document.getElementById("firebase-message");
+
+function showMessage(text, isError = false) {
+  message.style.display = "block";
+  message.textContent = text;
+  message.style.background = isError ? "#ffe8e8" : "#e8f7ed";
+  message.style.color = isError ? "#a52222" : "#176b38";
+}
+
+function getMatchNumber(card) {
+  const label = card.querySelector(".match-number");
+  if (!label) return null;
+
+  const match = label.textContent.match(/MATCH\s*0*(\d+)/i);
+  return match ? String(Number(match[1])).padStart(2, "0") : null;
+}
+
+function addInfo(parent, label, value) {
+  if (value === undefined || value === null || String(value).trim() === "") {
+    return;
+  }
+
+  const span = document.createElement("span");
+  span.className = "info";
+  span.textContent = label + ": " + value;
+  parent.appendChild(span);
+}
+
+function updateMatch(card, data) {
+  if (!data || typeof data !== "object") return;
+
+  const teams = card.querySelectorAll(".team");
+  const status = card.querySelector(".status");
+  const bottom = card.querySelector(".match-bottom");
+
+  // Update team names only when Firebase has values
+  if (teams[0] && data.teamA) {
+    teams[0].textContent = data.teamA;
+  }
+
+  if (teams[1] && data.teamB) {
+    teams[1].textContent = data.teamB;
+  }
+
+  // Update match status
+  if (status && data.status) {
+    status.textContent = data.status;
+
+    card.classList.remove("completed", "live");
+
+    const currentStatus = String(data.status).toLowerCase();
+
+    if (currentStatus === "completed") {
+      card.classList.add("completed");
+    } else if (
+      currentStatus === "live" ||
+      currentStatus === "ongoing"
+    ) {
+      card.classList.add("live");
+    }
+  }
+
+  // Keep original date and time if Firebase values are empty
+  if (bottom && data.time) {
+    const oldTime = bottom.querySelector(".firebase-time");
+
+    if (oldTime) oldTime.remove();
+
+    const time = document.createElement("span");
+    time.className = "info firebase-time";
+
+    const icon = document.createElement("span");
+    icon.className = "info-icon";
+    icon.textContent = "◷";
+
+    time.append(icon, document.createTextNode(" " + data.time));
+    bottom.prepend(time);
+  }
+
+  // Remove previously displayed Firebase result details
+  const oldExtra = card.querySelector(".firebase-extra");
+  if (oldExtra) oldExtra.remove();
+
+  // Add updated result, score and venue
+  const extra = document.createElement("div");
+  extra.className = "firebase-extra";
+
+  addInfo(extra, "Result", data.result);
+  addInfo(extra, "Score", data.score);
+  addInfo(extra, "Venue", data.stadium);
+
+  if (extra.children.length > 0) {
+    card.appendChild(extra);
+  }
+}
+
+// Listen for live Firebase changes
+onValue(
+  ref(database, "matches"),
+  (snapshot) => {
+    if (!snapshot.exists()) {
+      showMessage("Firebase connected. No saved matches found yet.");
+      return;
+    }
+
+    const matches = snapshot.val();
+    let updated = 0;
+
+    document.querySelectorAll(".match-card").forEach(card => {
+      const number = getMatchNumber(card);
+
+      // Ignore semi-finals and final
+      if (!number) return;
+
+      const match = matches[number] || matches[Number(number)];
+
+      if (match) {
+        updateMatch(card, match);
+        updated++;
+      }
+    });
+
+    showMessage(
+      "✓ Firebase connected successfully · " +
+      updated +
+      " matches updated"
+    );
+  },
+  (error) => {
+    console.error("Firebase error:", error);
+
+    showMessage(
+      "Firebase connection error: " + error.message,
+      true
+    );
+  }
+);
+</script>
 
 </body>
 </html>
