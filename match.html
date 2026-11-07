@@ -2,903 +2,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
-
-  <title>VCL 2026 | Match Fixtures</title>
-  <meta name="description" content="Official match fixtures for Vatkura Cricket League 2026, Session 03.">
-
-  <style>
-    :root {
-      --blue: #1e3c72;
-      --blue-light: #2a5298;
-      --purple: #6a11cb;
-      --cyan: #168fcb;
-      --text: #18213b;
-      --muted: #69738b;
-      --border: #e8eaf2;
-      --white: #ffffff;
-      --light-bg: #f7f8fc;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* HEADER - SAME AS HOME PAGE */
-
-    .header {
-      width: 100%;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
-    }
-
-    .brand-row {
-      max-width: 1250px;
-      min-height: 92px;
-      padding: 15px 25px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .brand-logo {
-      width: 65px;
-      height: 65px;
-      object-fit: contain;
-    }
-
-    .brand-text h2 {
-      color: var(--blue);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .brand-text h2 span {
-      color: var(--purple);
-    }
-
-    .brand-text p {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2.2px;
-      margin-top: 5px;
-    }
-
-    /* FULL-WIDTH NAVIGATION */
-
-    .nav-menu {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      background: #ffffff;
-      border-top: 1px solid #f0f1f6;
-    }
-
-    .nav-menu a {
-      position: relative;
-      min-width: 0;
-      min-height: 57px;
-      padding: 15px 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      white-space: nowrap;
-      color: #65708a;
-      font-size: clamp(12px, 2vw, 16px);
-      font-weight: 800;
-      transition: all 0.25s ease;
-    }
-
-    .nav-menu a:hover {
-      color: var(--purple);
-      background: #faf9ff;
-    }
-
-    .nav-menu a.active {
-      color: var(--blue);
-      background: linear-gradient(180deg, #ffffff, #f6f7ff);
-    }
-
-    .nav-menu a.active::after {
-      content: "";
-      position: absolute;
-      left: 18%;
-      right: 18%;
-      bottom: 0;
-      height: 3px;
-      border-radius: 5px 5px 0 0;
-      background: linear-gradient(90deg, var(--blue-light), var(--purple));
-    }
-
-    /* MAIN CONTENT */
-
-    main {
-      flex: 1;
-      width: 100%;
-      padding: 35px 16px 60px;
-      background:
-        radial-gradient(
-          ellipse at 50% 5%,
-          rgba(106, 17, 203, 0.04),
-          transparent 48%
-        ),
-        #f7f8fc;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1050px;
-      margin: 0 auto;
-    }
-
-    .page-intro {
-      margin-bottom: 28px;
-    }
-
-    .eyebrow {
-      color: var(--purple);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .page-title {
-      color: var(--blue);
-      font-size: clamp(30px, 5vw, 43px);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.2;
-    }
-
-    .page-description {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-      line-height: 1.8;
-    }
-
-    .title-line {
-      width: 55px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue-light), var(--purple));
-      border-radius: 5px;
-      margin-top: 18px;
-    }
-
-    /* MATCH CATEGORY */
-
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 30px 0 14px;
-      color: var(--blue);
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-    .section-heading::before {
-      content: "";
-      width: 5px;
-      height: 23px;
-      flex-shrink: 0;
-      border-radius: 5px;
-      background: linear-gradient(180deg, var(--blue-light), var(--purple));
-    }
-
-    .section-count {
-      margin-left: auto;
-      padding: 5px 10px;
-      border-radius: 20px;
-      background: #eef1fa;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    /* FIXTURE CARDS */
-
-    .fixtures-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .fixture {
-      position: relative;
-      overflow: hidden;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 17px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 4px 14px rgba(30, 60, 114, 0.035);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    }
-
-    .fixture:hover {
-      border-color: #c7c9f2;
-      transform: translateY(-2px);
-      box-shadow: 0 7px 20px rgba(30, 60, 114, 0.07);
-    }
-
-    .fixture-left {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .fixture-number {
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 12px;
-      flex-shrink: 0;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      font-size: 12px;
-      font-weight: 900;
-      box-shadow: 0 4px 10px rgba(106, 17, 203, 0.12);
-    }
-
-    .match-content {
-      min-width: 0;
-    }
-
-    .teams {
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.6;
-      overflow-wrap: anywhere;
-    }
-
-    .vs {
-      color: var(--purple);
-      font-size: 11px;
-      font-weight: 900;
-      padding: 0 3px;
-    }
-
-    .match-date {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px 12px;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .date-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .date-icon {
-      color: var(--purple);
-      font-weight: 900;
-    }
-
-    .status {
-      color: var(--blue);
-      background: #f0f4ff;
-      border: 1px solid #dce5ff;
-      padding: 6px 9px;
-      border-radius: 7px;
-      font-size: 9px;
-      font-weight: 900;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    /* PLAYOFF MATCHES */
-
-    .playoff .fixture-number {
-      background: linear-gradient(135deg, #a66a00, #e3b341);
-      color: #ffffff;
-    }
-
-    .playoff .status {
-      color: #8b5b00;
-      background: #fff7df;
-      border-color: #f4df9c;
-    }
-
-    .final-match {
-      border-color: #d8c4ff;
-      background: linear-gradient(110deg, #ffffff, #f7f1ff);
-    }
-
-    .final-match .fixture-number {
-      background: linear-gradient(135deg, #6a11cb, #a855f7);
-    }
-
-    .final-match .status {
-      color: #6a11cb;
-      background: #f2e9ff;
-      border-color: #dfc9ff;
-    }
-
-    /* FOOTER - SAME AS HOME PAGE */
-
-    .footer {
-      width: 100%;
-      padding: 24px 16px;
-      text-align: center;
-      background: #fafbfe;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer p {
-      color: #8991a5;
-      font-size: 11px;
-      line-height: 1.9;
-      letter-spacing: 0.4px;
-    }
-
-    .footer strong {
-      color: var(--blue);
-    }
-
-    /* TABLET */
-
-    @media (max-width: 700px) {
-      .brand-row {
-        min-height: 80px;
-        padding: 12px;
-      }
-
-      .brand-logo {
-        width: 55px;
-        height: 55px;
-      }
-
-      .brand-text h2 {
-        font-size: 21px;
-      }
-
-      .nav-menu a {
-        min-height: 52px;
-        font-size: 13px;
-      }
-
-      main {
-        padding: 28px 12px 45px;
-      }
-
-      .fixture {
-        padding: 14px 12px;
-        gap: 8px;
-      }
-
-      .fixture-left {
-        gap: 10px;
-      }
-
-      .fixture-number {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-        font-size: 11px;
-      }
-
-      .teams {
-        font-size: 12px;
-      }
-
-      .match-date {
-        font-size: 10px;
-      }
-
-      .status {
-        padding: 5px 7px;
-        font-size: 8px;
-      }
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 400px) {
-      .brand-logo {
-        width: 48px;
-        height: 48px;
-      }
-
-      .brand-text h2 {
-        font-size: 18px;
-      }
-
-      .brand-text p {
-        font-size: 8px;
-        letter-spacing: 1.5px;
-      }
-
-      .brand {
-        gap: 10px;
-      }
-
-      .nav-menu a {
-        min-height: 49px;
-        padding: 12px 1px;
-        font-size: 11px;
-        font-weight: 800;
-      }
-
-      .nav-menu a.active::after {
-        left: 12%;
-        right: 12%;
-      }
-
-      main {
-        padding: 24px 8px 35px;
-      }
-
-      .page-title {
-        font-size: 30px;
-      }
-
-      .page-description {
-        font-size: 12px;
-      }
-
-      .section-heading {
-        font-size: 15px;
-        margin-top: 25px;
-      }
-
-      .fixture {
-        padding: 12px 9px;
-        gap: 6px;
-        border-radius: 12px;
-      }
-
-      .fixture-left {
-        gap: 8px;
-      }
-
-      .fixture-number {
-        width: 31px;
-        height: 31px;
-        font-size: 10px;
-        border-radius: 8px;
-      }
-
-      .teams {
-        font-size: 10px;
-        line-height: 1.6;
-      }
-
-      .vs {
-        font-size: 9px;
-        padding: 0 1px;
-      }
-
-      .match-date {
-        font-size: 9px;
-        gap: 4px 8px;
-      }
-
-      .status {
-        font-size: 7px;
-        padding: 4px 5px;
-      }
-
-      .section-count {
-        font-size: 9px;
-        padding: 4px 7px;
-      }
-    }
-
-    @media (max-width: 340px) {
-      .status {
-        white-space: normal;
-        text-align: center;
-        max-width: 65px;
-      }
-
-      .fixture-left {
-        gap: 6px;
-      }
-
-      .teams {
-        font-size: 9px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Fixtures | VCL 2026</title>
+<meta name="description" content="Official VCL 2026 match fixtures.">
+
+<style>
+:root{
+--blue:#1e3c72;
+--blue-light:#2a5298;
+--purple:#6a11cb;
+--text:#18213b;
+--muted:#69738b;
+--border:#e8eaf2;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+background:#fff;
+display:flex;
+flex-direction:column;
+}
+a{text-decoration:none;color:inherit}
+
+.header{
+background:#fff;
+border-bottom:1px solid var(--border);
+box-shadow:0 3px 15px rgba(30,60,114,.035);
+}
+.brand-row{
+max-width:1250px;
+min-height:92px;
+padding:15px 25px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.brand{display:flex;align-items:center;gap:15px}
+.brand-logo{width:65px;height:65px;object-fit:contain}
+.brand-text h2{
+color:var(--blue);
+font-size:24px;
+font-weight:900;
+letter-spacing:1.5px;
+}
+.brand-text p{
+color:var(--muted);
+font-size:10px;
+letter-spacing:2.2px;
+margin-top:5px;
+}
+.nav-menu{
+display:grid;
+grid-template-columns:repeat(5,minmax(0,1fr));
+border-top:1px solid #f0f1f6;
+}
+.nav-menu a{
+min-width:0;
+min-height:57px;
+padding:15px 3px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+white-space:nowrap;
+color:#65708a;
+font-size:clamp(11px,2vw,16px);
+font-weight:800;
+}
+.nav-menu a.active{
+color:var(--blue);
+background:#f6f7ff;
+border-bottom:3px solid var(--purple);
+}
+
+main{
+flex:1;
+width:100%;
+padding:38px 20px 60px;
+background:
+radial-gradient(ellipse at 50% 0%,rgba(106,17,203,.045),transparent 48%),
+#fff;
+}
+.fixtures-container{width:100%;max-width:1000px;margin:auto}
+.page-title{margin-bottom:30px}
+.page-title h1{color:var(--blue);font-size:34px;font-weight:900}
+.page-title p{margin-top:5px;color:var(--muted);font-size:14px}
+
+.connection-message{
+padding:15px 18px;
+margin-bottom:28px;
+border-radius:12px;
+font-size:15px;
+line-height:1.5;
+background:#e7f7ee;
+color:#236b43;
+}
+.connection-message.error{background:#fff0f0;color:#a12626}
+
+.date-group{margin-bottom:32px}
+.date-heading{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:14px;
+}
+.date-heading h2{
+color:var(--blue);
+font-size:21px;
+font-weight:900;
+white-space:nowrap;
+}
+.date-heading .line{
+flex:1;
+height:4px;
+border-radius:5px;
+background:linear-gradient(90deg,var(--blue-light),var(--purple));
+}
+
+.match-card{
+border:1px solid rgba(24,33,59,.12);
+border-left:6px solid var(--blue-light);
+border-radius:15px;
+padding:20px 22px;
+margin-bottom:13px;
+box-shadow:0 3px 12px rgba(30,60,114,.045);
+transition:.2s;
+}
+.match-card:hover{
+transform:translateY(-2px);
+box-shadow:0 7px 18px rgba(30,60,114,.09);
+}
+.date-06{background:#d9e7ff;border-left-color:#2456a6}
+.date-13{background:#e5d7ff;border-left-color:#7138c8}
+.date-20{background:#d1f0df;border-left-color:#168052}
+.date-27{background:#ffe3bd;border-left-color:#c56a08}
+.date-06 .match-number{background:#2456a6}
+.date-13 .match-number{background:#7138c8}
+.date-20 .match-number{background:#168052}
+.date-27 .match-number{background:#c56a08}
+
+.match-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:18px;
+}
+.match-number{
+display:inline-block;
+padding:7px 11px;
+border-radius:8px;
+color:white;
+font-size:12px;
+font-weight:900;
+letter-spacing:.5px;
+}
+.status{
+display:inline-block;
+padding:7px 11px;
+border-radius:20px;
+background:rgba(255,255,255,.85);
+color:#53627b;
+font-size:10px;
+font-weight:900;
+letter-spacing:.5px;
+}
+.status.COMPLETED{background:#d1f5df;color:#167044}
+.status.LIVE{
+background:#ffe0e0;
+color:#bd2020;
+animation:pulse 1.2s infinite;
+}
+.status.PLAYOFF{background:#fff1c9;color:#875800}
+@keyframes pulse{50%{opacity:.55}}
+
+.teams{
+display:grid;
+grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);
+align-items:center;
+gap:10px;
+}
+.team{
+font-size:20px;
+line-height:1.4;
+font-weight:900;
+overflow-wrap:anywhere;
+}
+.team:first-child{text-align:left}
+.team:last-child{text-align:right}
+.vs{
+text-align:center;
+color:var(--purple);
+font-size:14px;
+font-weight:900;
+padding:9px 3px;
+border-radius:10px;
+background:rgba(255,255,255,.85);
+border:1px solid rgba(106,17,203,.13);
+}
+
+.match-bottom{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:10px 20px;
+margin-top:18px;
+padding-top:13px;
+border-top:1px solid rgba(24,33,59,.14);
+color:#46546e;
+font-size:14px;
+font-weight:700;
+}
+.info{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}
+.info-icon{color:var(--purple);font-size:17px}
+
+/* SCORECARD DESIGN */
+.scoreboard{
+margin-top:18px;
+padding:16px;
+border-radius:13px;
+background:rgba(255,255,255,.92);
+border:1px solid rgba(30,60,114,.13);
+}
+.scoreboard-title{
+font-size:12px;
+font-weight:900;
+letter-spacing:1px;
+color:var(--blue);
+margin-bottom:14px;
+}
+.score-columns{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+.score-side{min-width:0}
+.score-side:last-child{
+border-left:1px solid #e8eaf2;
+padding-left:15px;
+}
+.score-total{
+font-size:34px;
+line-height:1.2;
+font-weight:900;
+color:#111;
+overflow-wrap:anywhere;
+}
+.score-team{
+font-size:16px;
+font-weight:900;
+line-height:1.4;
+margin-top:12px;
+overflow-wrap:anywhere;
+}
+.score-overs{
+font-size:13px;
+color:#69738b;
+margin-top:7px;
+}
+.winner-box{
+margin-top:18px;
+padding-top:17px;
+border-top:1px solid #e8eaf2;
+text-align:center;
+color:#087039;
+font-weight:900;
+font-size:21px;
+line-height:1.5;
+overflow-wrap:anywhere;
+}
+.winner-box .trophy{font-size:27px}
+.winner-box small{
+display:block;
+font-size:17px;
+margin-top:8px;
+}
+.match-extra{
+margin-top:13px;
+padding-top:12px;
+border-top:1px dashed rgba(24,33,59,.18);
+line-height:1.7;
+font-size:14px;
+font-weight:700;
+overflow-wrap:anywhere;
+}
+.match-extra p{margin-bottom:5px}
+.match-extra p:last-child{margin-bottom:0}
+
+.playoff .match-card{
+background:linear-gradient(115deg,#ffedb3,#ffdda0);
+border:2px solid #d29a16;
+border-left:7px solid #a86f00;
+}
+.playoff .match-number{
+background:linear-gradient(100deg,#a86f00,#e3a817);
+}
+.final-card{
+background:linear-gradient(120deg,#ffdfe4,#ffd7bd);
+border:2px solid #d84752;
+border-left:7px solid #b91f35;
+}
+.final-card .match-number{
+background:linear-gradient(100deg,#a9132a,#e04450);
+}
+
+.empty-message{text-align:center;padding:30px 15px;color:var(--muted)}
+.footer{
+width:100%;
+padding:24px 16px;
+text-align:center;
+background:#fafbfe;
+border-top:1px solid var(--border);
+}
+.footer p{color:#8991a5;font-size:11px;line-height:1.9}
+.footer strong{color:var(--blue)}
+
+@media(max-width:700px){
+.brand-row{min-height:80px;padding:12px}
+.brand-logo{width:55px;height:55px}
+.brand-text h2{font-size:21px}
+.nav-menu a{min-height:52px;font-size:13px}
+main{padding:30px 15px 45px}
+.page-title h1{font-size:30px}
+.match-card{padding:17px 16px}
+.team{font-size:18px}
+}
+@media(max-width:400px){
+.brand-logo{width:48px;height:48px}
+.brand-text h2{font-size:18px}
+.brand-text p{font-size:8px;letter-spacing:1.5px}
+.brand{gap:10px}
+.nav-menu a{min-height:49px;padding:12px 1px;font-size:11px}
+main{padding:25px 11px 40px}
+.page-title h1{font-size:27px}
+.date-heading h2{font-size:17px}
+.match-card{padding:14px 11px;border-radius:11px}
+.match-number{font-size:10px;padding:6px 8px}
+.status{font-size:9px;padding:6px 8px}
+.teams{grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:5px}
+.team{font-size:15px}
+.vs{font-size:11px;padding:7px 2px}
+.match-bottom{font-size:12px;gap:8px 13px}
+.scoreboard{padding:12px}
+.score-columns{gap:9px}
+.score-side:last-child{padding-left:9px}
+.score-total{font-size:27px}
+.score-team{font-size:13px}
+.score-overs{font-size:11px}
+.winner-box{font-size:17px}
+.winner-box small{font-size:14px}
+.match-extra{font-size:13px}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER - SAME AS HOME PAGE -->
+<header class="header">
+<div class="brand-row">
+<a href="index.html" class="brand">
+<img src="file_00000000fafc7208bb91a6123810609b.png"
+alt="VCL Logo" class="brand-logo">
+<div class="brand-text">
+<h2>VCL 2026</h2>
+<p>VATKURA CRICKET LEAGUE</p>
+</div>
+</a>
+</div>
 
-  <header class="header">
-    <div class="brand-row">
-      <a href="index.html" class="brand">
-        <img
-          src="file_00000000fafc7208bb91a6123810609b.png"
-          alt="VCL Logo"
-          class="brand-logo"
-        >
+<nav class="nav-menu" aria-label="Main Navigation">
+<a href="index.html">Home</a>
+<a href="fixtures.html" class="active">Fixtures</a>
+<a href="points.html">Points Table</a>
+<a href="squad.html">Teams</a>
+<a href="stats.html">Stats</a>
+</nav>
+</header>
 
-        <div class="brand-text">
-          <h2>VCL <span>2026</span></h2>
-          <p>VATKURA CRICKET LEAGUE</p>
-        </div>
-      </a>
-    </div>
+<main>
+<div class="fixtures-container">
 
-    <nav class="nav-menu" aria-label="Main Navigation">
-      <a href="index.html">Home</a>
-      <a href="fixtures.html" class="active">Fixtures</a>
-      <a href="points.html">Points Table</a>
-      <a href="squad.html">Teams</a>
-      <a href="stats.html">Stats</a>
-    </nav>
-  </header>
+<div class="page-title">
+<h1>Match Fixtures</h1>
+<p>VCL 2026 · Session 03</p>
+</div>
 
-  <!-- FIXTURES CONTENT -->
+<div id="connectionMessage" class="connection-message">
+Connecting to Firebase...
+</div>
 
-  <main>
-    <div class="container">
+<div id="fixturesContainer"></div>
 
-      <section class="page-intro">
-        <div class="eyebrow">VCL 2026 · SESSION 03</div>
-        <h1 class="page-title">Match Fixtures</h1>
-        <p class="page-description">
-          Official schedule of the VCL 2026 tournament.
-        </p>
-        <div class="title-line"></div>
-      </section>
+</div>
+</main>
 
-      <!-- LEAGUE STAGE -->
+<footer class="footer">
+<p>
+© 2026 <strong>VATKURA CRICKET LEAGUE</strong>
+<br>
+All Rights Reserved · VCL Session 03
+<br>
+<a href="https://abdurrahim06271970-blip.github.io/my-website-/">
+Our Official Website
+</a>
+</p>
+</footer>
 
-      <h2 class="section-heading">
-        League Stage
-        <span class="section-count">15 MATCHES</span>
-      </h2>
+<script type="module">
 
-      <section class="fixtures-list">
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">01</div>
-            <div class="match-content">
-              <div class="teams">VATKURA KINGS <span class="vs">VS</span> HR KINGS VATKURA</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 10:00 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+import {getDatabase,ref,onValue}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">02</div>
-            <div class="match-content">
-              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA STARS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const firebaseConfig={
+apiKey:"AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
+authDomain:"vcl-2026.firebaseapp.com",
+databaseURL:"https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId:"vcl-2026",
+storageBucket:"vcl-2026.firebasestorage.app",
+messagingSenderId:"339291412613",
+appId:"1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
+measurementId:"G-RBXFNT2KG7"
+};
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">03</div>
-            <div class="match-content">
-              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> VATKURA STRIKERS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 06 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">04</div>
-            <div class="match-content">
-              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA STRIKERS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const defaultMatches=[
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">05</div>
-            <div class="match-content">
-              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> VATKURA STARS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+{id:"01",teamA:"VATKURA KINGS",teamB:"HR KINGS VATKURA",date:"06-11-26",time:"10:00 AM",status:"SCHEDULED",group:"06"},
+{id:"02",teamA:"VATKURA TIGERS",teamB:"VATKURA STARS",date:"06-11-26",time:"02:30 PM",status:"SCHEDULED",group:"06"},
+{id:"03",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STRIKERS",date:"06-11-26",time:"03:45 PM",status:"SCHEDULED",group:"06"},
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">06</div>
-            <div class="match-content">
-              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA FIRE EIGHT</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+{id:"04",teamA:"VATKURA TIGERS",teamB:"VATKURA STRIKERS",date:"13-11-26",time:"09:45 AM",status:"SCHEDULED",group:"13"},
+{id:"05",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STARS",date:"13-11-26",time:"11:00 AM",status:"SCHEDULED",group:"13"},
+{id:"06",teamA:"VATKURA KINGS",teamB:"VATKURA FIRE EIGHT",date:"13-11-26",time:"02:30 PM",status:"SCHEDULED",group:"13"},
+{id:"07",teamA:"VATKURA TIGERS",teamB:"HR KINGS VATKURA",date:"13-11-26",time:"03:45 PM",status:"SCHEDULED",group:"13"},
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">07</div>
-            <div class="match-content">
-              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> HR KINGS VATKURA</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 13 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+{id:"08",teamA:"VATKURA TIGERS",teamB:"VATKURA FIRE EIGHT",date:"20-11-26",time:"09:45 AM",status:"SCHEDULED",group:"20"},
+{id:"09",teamA:"VATKURA STRIKERS",teamB:"HR KINGS VATKURA",date:"20-11-26",time:"11:00 AM",status:"SCHEDULED",group:"20"},
+{id:"10",teamA:"VATKURA KINGS",teamB:"VATKURA STRIKERS",date:"20-11-26",time:"02:30 PM",status:"SCHEDULED",group:"20"},
+{id:"11",teamA:"VATKURA KINGS",teamB:"VATKURA STARS",date:"20-11-26",time:"03:45 PM",status:"SCHEDULED",group:"20"},
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">08</div>
-            <div class="match-content">
-              <div class="teams">VATKURA TIGERS <span class="vs">VS</span> VATKURA FIRE EIGHT</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+{id:"12",teamA:"HR KINGS VATKURA",teamB:"VATKURA STARS",date:"27-11-26",time:"09:45 AM",status:"SCHEDULED",group:"27"},
+{id:"13",teamA:"VATKURA KINGS",teamB:"VATKURA TIGERS",date:"27-11-26",time:"11:00 AM",status:"SCHEDULED",group:"27"},
+{id:"14",teamA:"VATKURA STRIKERS",teamB:"VATKURA STARS",date:"27-11-26",time:"02:30 PM",status:"SCHEDULED",group:"27"},
+{id:"15",teamA:"VATKURA FIRE EIGHT",teamB:"HR KINGS VATKURA",date:"27-11-26",time:"03:45 PM",status:"SCHEDULED",group:"27"},
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">09</div>
-            <div class="match-content">
-              <div class="teams">VATKURA STRIKERS <span class="vs">VS</span> HR KINGS VATKURA</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+{id:"16",teamA:"PT 1",teamB:"PT 3",date:"04-12-26",time:"10:00 AM",status:"PLAYOFF",group:"04",extra:true},
+{id:"17",teamA:"PT 2",teamB:"PT 4",date:"04-12-26",time:"03:00 PM",status:"PLAYOFF",group:"04",extra:true},
+{id:"18",teamA:"SF 1 WINNER",teamB:"SF 2 WINNER",date:"11-12-26",time:"03:00 PM",status:"PLAYOFF",group:"11",final:true}
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">10</div>
-            <div class="match-content">
-              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA STRIKERS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+];
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">11</div>
-            <div class="match-content">
-              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA STARS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 20 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const container=document.getElementById("fixturesContainer");
+const message=document.getElementById("connectionMessage");
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">12</div>
-            <div class="match-content">
-              <div class="teams">HR KINGS VATKURA <span class="vs">VS</span> VATKURA STARS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 09:45 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+function escapeHTML(value){
+return String(value??"").replace(/[&<>"']/g,char=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+})[char]);
+}
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">13</div>
-            <div class="match-content">
-              <div class="teams">VATKURA KINGS <span class="vs">VS</span> VATKURA TIGERS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 11:00 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+function getDateTitle(date){
+const parts=String(date).split("-");
+if(parts.length!==3)return date;
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">14</div>
-            <div class="match-content">
-              <div class="teams">VATKURA STRIKERS <span class="vs">VS</span> VATKURA STARS</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 02:30 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const day=parts[0];
+const month=Number(parts[1]);
+const year=parts[2];
 
-        <article class="fixture">
-          <div class="fixture-left">
-            <div class="fixture-number">15</div>
-            <div class="match-content">
-              <div class="teams">VATKURA FIRE EIGHT <span class="vs">VS</span> HR KINGS VATKURA</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 27 Nov 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:45 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SCHEDULED</span>
-        </article>
+const months=[
+"January","February","March","April","May","June",
+"July","August","September","October","November","December"
+];
 
-      </section>
+return `${day} ${months[month-1]||""} 20${year}`;
+}
 
-      <!-- SEMI FINALS -->
+function hasScore(m){
+const keys=[
+"teamARuns","teamAWickets","teamAOvers",
+"teamBRuns","teamBWickets","teamBOvers"
+];
 
-      <h2 class="section-heading">
-        Semi Finals
-        <span class="section-count">2 MATCHES</span>
-      </h2>
+return keys.every(key=>
+m[key]!==undefined &&
+m[key]!==null &&
+String(m[key]).trim()!==""
+);
+}
 
-      <section class="fixtures-list">
+function getWinnerText(m){
+const winner=String(m.winner||"").trim();
+const margin=String(m.resultMargin||"").trim();
 
-        <article class="fixture playoff">
-          <div class="fixture-left">
-            <div class="fixture-number">16</div>
-            <div class="match-content">
-              <div class="teams">PT1 <span class="vs">VS</span> PT3</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 04 Dec 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 10:00 AM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SEMI FINAL 1</span>
-        </article>
+if(!winner)return "";
 
-        <article class="fixture playoff">
-          <div class="fixture-left">
-            <div class="fixture-number">17</div>
-            <div class="match-content">
-              <div class="teams">PT2 <span class="vs">VS</span> PT4</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 04 Dec 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:00 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">SEMI FINAL 2</span>
-        </article>
+if(!margin)return winner+" WON";
 
-      </section>
+if(/^won\s+by/i.test(margin)){
+return winner+" "+margin;
+}
 
-      <!-- FINAL -->
+return winner+" WON BY "+margin;
+}
 
-      <h2 class="section-heading">
-        Final
-        <span class="section-count">1 MATCH</span>
-      </h2>
+function scoreHTML(m){
 
-      <section class="fixtures-list">
+if(!hasScore(m))return "";
 
-        <article class="fixture final-match">
-          <div class="fixture-left">
-            <div class="fixture-number">18</div>
-            <div class="match-content">
-              <div class="teams">SF1W <span class="vs">VS</span> SF2W</div>
-              <div class="match-date">
-                <span class="date-item"><span class="date-icon">📅</span> 11 Dec 2026</span>
-                <span class="date-item"><span class="date-icon">🕒</span> 03:00 PM</span>
-              </div>
-            </div>
-          </div>
-          <span class="status">FINAL</span>
-        </article>
+return `
+<div class="scoreboard">
 
-      </section>
+<div class="scoreboard-title">🏏 MATCH SCORE</div>
 
-    </div>
-  </main>
+<div class="score-columns">
 
-  <!-- FOOTER - SAME AS HOME PAGE -->
+<div class="score-side">
+<div class="score-total">
+${escapeHTML(m.teamARuns)}/${escapeHTML(m.teamAWickets)}
+</div>
+<div class="score-team">${escapeHTML(m.teamA)}</div>
+<div class="score-overs">${escapeHTML(m.teamAOvers)} Overs</div>
+</div>
 
-  <footer class="footer">
-    <p>
-      © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
-      <br>
-      All Rights Reserved · VCL Session 03
-    </p>
-  </footer>
+<div class="score-side">
+<div class="score-total">
+${escapeHTML(m.teamBRuns)}/${escapeHTML(m.teamBWickets)}
+</div>
+<div class="score-team">${escapeHTML(m.teamB)}</div>
+<div class="score-overs">${escapeHTML(m.teamBOvers)} Overs</div>
+</div>
 
+</div>
+
+${m.winner?`
+<div class="winner-box">
+<span class="trophy">🏆</span>
+${escapeHTML(getWinnerText(m))}
+</div>
+`:""}
+
+</div>
+`;
+}
+
+function renderMatches(firebaseData={}){
+
+const matches=defaultMatches.map(original=>{
+
+const saved=firebaseData[original.id]||{};
+
+return{
+...original,
+...saved,
+id:original.id,
+teamA:saved.teamA||original.teamA,
+teamB:saved.teamB||original.teamB,
+date:saved.date||original.date,
+time:saved.time||original.time,
+status:saved.status||original.status
+};
+
+});
+
+const groups={};
+
+matches.forEach(match=>{
+const date=match.date||"Date not set";
+if(!groups[date])groups[date]=[];
+groups[date].push(match);
+});
+
+let html="";
+
+Object.keys(groups).forEach(date=>{
+
+const firstMatch=groups[date][0];
+let groupClass="";
+
+if(firstMatch.id==="16"||firstMatch.id==="17"){
+groupClass="playoff";
+}
+
+html+=`
+<section class="date-group ${groupClass}">
+
+<div class="date-heading">
+<h2>${escapeHTML(getDateTitle(date))}${
+firstMatch.id==="16"?" · Semi Finals":
+firstMatch.id==="18"?" · Final":""
+}</h2>
+<div class="line"></div>
+</div>
+`;
+
+groups[date].forEach(match=>{
+
+const status=String(match.status||"SCHEDULED").toUpperCase();
+
+let cardClass="match-card date-"+String(match.group||"06");
+
+if(match.final)cardClass+=" final-card";
+
+const showScore=
+(status==="LIVE"||status==="COMPLETED")&&hasScore(match);
+
+html+=`
+<article class="${cardClass}">
+
+<div class="match-top">
+
+<span class="match-number">
+${
+match.id==="16"?"SEMI FINAL 01":
+match.id==="17"?"SEMI FINAL 02":
+match.id==="18"?"GRAND FINAL":
+"MATCH "+escapeHTML(match.id)
+}
+</span>
+
+<span class="status ${escapeHTML(status)}">
+${escapeHTML(status)}
+</span>
+
+</div>
+
+<div class="teams">
+
+<div class="team">${escapeHTML(match.teamA)}</div>
+
+<div class="vs">VS</div>
+
+<div class="team">${escapeHTML(match.teamB)}</div>
+
+</div>
+
+${showScore?scoreHTML(match):""}
+
+<div class="match-bottom">
+
+${match.time?`
+<span class="info">
+<span class="info-icon">◷</span>
+${escapeHTML(match.time)}
+</span>`:""}
+
+${match.stadium?`
+<span class="info">
+<span class="info-icon">📍</span>
+${escapeHTML(match.stadium)}
+</span>`:""}
+
+</div>
+
+${!showScore&&match.result?`
+<div class="match-extra">
+<p><strong>Result:</strong> ${escapeHTML(match.result)}</p>
+</div>`:""}
+
+${match.score?`
+<div class="match-extra">
+<p><strong>Details:</strong> ${escapeHTML(match.score)}</p>
+</div>`:""}
+
+${match.extra?`
+<div class="match-extra">
+<p>Position ${match.id==="16"?"1 vs Position 3":"2 vs Position 4"}</p>
+</div>`:""}
+
+</article>
+`;
+
+});
+
+html+="</section>";
+
+});
+
+container.innerHTML=html;
+
+}
+
+onValue(
+ref(db,"matches"),
+
+snapshot=>{
+
+const data=snapshot.val()||{};
+
+renderMatches(data);
+
+const count=Object.keys(data).length;
+
+message.className="connection-message";
+message.textContent=
+"✓ Firebase connected successfully · "+
+count+" matches updated";
+
+},
+
+error=>{
+
+console.error("Firebase error:",error);
+
+message.className="connection-message error";
+message.textContent=
+"Firebase connection failed. Please check database permissions.";
+
+renderMatches();
+
+}
+);
+
+</script>
 </body>
 </html>
