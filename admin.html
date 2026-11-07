@@ -1,165 +1,400 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Panel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#142b59">
+<title>VCL 2026 | Admin Panel</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      background: #f2f2f2;
-      text-align: center;
-      margin: 0;
-    }
-
-    h1 {
-      color: green;
-      margin-top: 20px;
-    }
-
-    .box {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      width: 90%;
-      border-radius: 10px;
-    }
-
-    input, textarea {
-      width: 95%;
-      margin: 5px 0;
-      padding: 8px;
-    }
-
-    button {
-      padding: 10px;
-      background: green;
-      color: white;
-      border: none;
-      margin: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .match {
-      background: #fff;
-      margin: 10px auto;
-      padding: 10px;
-      width: 90%;
-      border-radius: 8px;
-      text-align: left;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .btn-danger {
-      background: red;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6fb;color:#18213b;font-family:Arial,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:22px 14px 50px}
+.top{background:linear-gradient(120deg,#142b59,#2454a6,#6a11cb);color:white;padding:22px;border-radius:18px;margin-bottom:18px}
+.top h1{margin:0 0 6px;font-size:25px}
+.top p{margin:0;color:#e4eaff;font-size:13px}
+.panel{background:white;border:1px solid #e5e9f2;border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 3px 14px #172b4d0a}
+.panel h2{margin:0 0 16px;font-size:19px;color:#142b59}
+label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d8deea;border-radius:9px;font:inherit;background:white;color:#18213b}
+textarea{min-height:80px;resize:vertical}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
+.btn{border:0;border-radius:9px;padding:11px 15px;margin:8px 6px 0 0;background:#2454a6;color:white;font-weight:bold;cursor:pointer}
+.secondary{background:#eaf0fc;color:#142b59}
+.danger{background:#c62828}
+.hidden{display:none!important}
+.note{font-size:13px;color:#68738b;line-height:1.6}
+.status{padding:10px 12px;border-radius:9px;background:#eef3ff;color:#142b59;font-size:13px;margin:10px 0;overflow-wrap:anywhere}
+.error{background:#fff0f0;color:#a31818}
+.ok{background:#eaf8ef;color:#176b32}
+.match{border:1px solid #e5e9f2;border-radius:12px;padding:14px;margin:10px 0}
+.match strong{color:#142b59}
+.match small{display:block;color:#68738b;margin-top:5px;line-height:1.6}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tag{font-size:11px;background:#eef3ff;color:#2454a6;padding:5px 8px;border-radius:20px;font-weight:bold}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:16px}.top h1{font-size:22px}}
+</style>
 </head>
 
 <body>
+<main class="wrap">
 
-<h1>⚙️ Admin Panel</h1>
+<header class="top">
+<h1>🏏 VCL 2026 Admin Panel</h1>
+<p>Vatkura Cricket League · Match Management</p>
+</header>
 
-<div class="box">
-  <input id="id" placeholder="Match ID (1,2,3...)">
-  <input id="teams" placeholder="Teams">
-  <input id="date" placeholder="Date">
-  <input id="stadium" placeholder="Stadium">
-  <input id="time" placeholder="Time">
-  <textarea id="score" placeholder="Score"></textarea>
-  <input id="result" placeholder="Result">
+<div id="message" class="status">Connecting to Firebase...</div>
 
-  <button onclick="saveData()">💾 Save / Update</button>
-  <button onclick="clearForm()">🧹 Clear</button>
+<section id="loginPanel" class="panel hidden">
+<h2>🔐 Admin Login</h2>
+<p class="note">Login using your Firebase Admin email and password.</p>
+
+<form id="loginForm">
+<label>Admin Email</label>
+<input id="email" type="email" required autocomplete="username">
+
+<label>Password</label>
+<input id="password" type="password" required autocomplete="current-password">
+
+<button class="btn" type="submit">Login</button>
+</form>
+</section>
+
+<section id="adminPanel" class="hidden">
+
+<div class="panel">
+<div class="row">
+<h2>🏏 Match Management</h2>
+<button id="logoutBtn" class="btn secondary" type="button">Logout</button>
 </div>
 
-<h2 style="color:green;">📋 Saved Matches</h2>
-<div id="list"></div>
+<p class="note">Add, edit and delete VCL 2026 matches.</p>
 
-<script>
-let data = JSON.parse(localStorage.getItem("matches")) || {};
+<form id="matchForm">
 
-// SAVE / UPDATE
-function saveData(){
-  let id = document.getElementById("id").value;
+<div class="grid">
+<div>
+<label>Match Number *</label>
+<input id="matchId" placeholder="01" required>
+</div>
 
-  if(!id){
-    alert("Match ID must be required!");
-    return;
-  }
+<div>
+<label>Match Status</label>
+<select id="status">
+<option value="SCHEDULED">SCHEDULED</option>
+<option value="LIVE">LIVE</option>
+<option value="COMPLETED">COMPLETED</option>
+<option value="PLAYOFF">PLAYOFF</option>
+</select>
+</div>
 
-  data[id] = {
-    teams: document.getElementById("teams").value,
-    date: document.getElementById("date").value,
-    stadium: document.getElementById("stadium").value,
-    time: document.getElementById("time").value,
-    score: document.getElementById("score").value,
-    result: document.getElementById("result").value
-  };
+<div>
+<label>Team A</label>
+<input id="teamA" placeholder="VATKURA KINGS">
+</div>
 
-  localStorage.setItem("matches", JSON.stringify(data));
+<div>
+<label>Team B</label>
+<input id="teamB" placeholder="HR KINGS VATKURA">
+</div>
 
-  alert("Saved!");
-  clearForm();
-  renderList();
+<div>
+<label>Date</label>
+<input id="date" placeholder="06-11-26">
+</div>
+
+<div>
+<label>Time</label>
+<input id="time" placeholder="10:00 AM">
+</div>
+
+<div>
+<label>Venue</label>
+<input id="stadium" placeholder="Ground name">
+</div>
+
+<div>
+<label>Match Result</label>
+<input id="result" placeholder="Winner / Result">
+</div>
+</div>
+
+<label>Score / Match Details</label>
+<textarea id="score" placeholder="Enter match score and details"></textarea>
+
+<button id="saveBtn" class="btn" type="submit">💾 Save Match</button>
+<button id="clearBtn" class="btn secondary" type="button">Clear Form</button>
+
+</form>
+</div>
+
+<div class="panel">
+<div class="row">
+<h2>📋 Saved Matches</h2>
+<span id="count" class="tag">0 matches</span>
+</div>
+<div id="matchesList" class="note">Loading matches...</div>
+</div>
+
+</section>
+</main>
+
+<script type="module">
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+signInWithEmailAndPassword,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getDatabase,
+ref,
+set,
+remove,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
+authDomain: "vcl-2026.firebaseapp.com",
+databaseURL: "https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "vcl-2026",
+storageBucket: "vcl-2026.firebasestorage.app",
+messagingSenderId: "339291412613",
+appId: "1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
+measurementId: "G-RBXFNT2KG7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+const $ = id => document.getElementById(id);
+
+let matchCache = {};
+let unsubscribeMatches = null;
+
+function showMessage(text,type=""){
+const el=$("message");
+el.textContent=text;
+el.className="status "+type;
 }
 
-// CLEAR FORM
 function clearForm(){
-  document.getElementById("id").value = "";
-  document.getElementById("teams").value = "";
-  document.getElementById("date").value = "";
-  document.getElementById("stadium").value = "";
-  document.getElementById("time").value = "";
-  document.getElementById("score").value = "";
-  document.getElementById("result").value = "";
+$("matchForm").reset();
+$("matchId").disabled=false;
+$("saveBtn").textContent="💾 Save Match";
 }
 
-// DELETE
-function deleteMatch(id){
-  delete data[id];
-  localStorage.setItem("matches", JSON.stringify(data));
-  renderList();
+function renderMatches(data){
+
+matchCache=data||{};
+
+const list=$("matchesList");
+list.replaceChildren();
+
+const ids=Object.keys(matchCache).sort(
+(a,b)=>a.localeCompare(b,undefined,{numeric:true})
+);
+
+$("count").textContent=ids.length+" matches";
+
+if(!ids.length){
+list.textContent="No matches saved yet.";
+return;
 }
 
-// EDIT
+for(const id of ids){
+
+const m=matchCache[id]||{};
+
+const card=document.createElement("article");
+card.className="match";
+
+const title=document.createElement("strong");
+title.textContent=`MATCH ${id}: ${m.teamA||"Team A"} VS ${m.teamB||"Team B"}`;
+
+const details=document.createElement("small");
+
+details.textContent=
+`${m.date||"Date not set"} · ${m.time||"Time not set"} · ${m.status||"SCHEDULED"} ${m.stadium?"· "+m.stadium:""} ${m.result?"· "+m.result:""} ${m.score?"· "+m.score:""}`;
+
+const edit=document.createElement("button");
+edit.className="btn secondary";
+edit.type="button";
+edit.textContent="Edit";
+
+edit.addEventListener("click",()=>editMatch(id));
+
+const del=document.createElement("button");
+del.className="btn danger";
+del.type="button";
+del.textContent="Delete";
+
+del.addEventListener("click",()=>deleteMatch(id));
+
+card.append(title,details,edit,del);
+list.append(card);
+}
+}
+
 function editMatch(id){
-  let m = data[id];
 
-  document.getElementById("id").value = id;
-  document.getElementById("teams").value = m.teams;
-  document.getElementById("date").value = m.date;
-  document.getElementById("stadium").value = m.stadium;
-  document.getElementById("time").value = m.time;
-  document.getElementById("score").value = m.score;
-  document.getElementById("result").value = m.result;
+const m=matchCache[id];
+
+$("matchId").value=id;
+$("matchId").disabled=true;
+
+for(const k of [
+"teamA","teamB","date","time",
+"stadium","result","score","status"
+]){
+$(k).value=m[k]||"";
 }
 
-// RENDER LIST
-function renderList(){
-  let list = document.getElementById("list");
-  list.innerHTML = "";
+$("saveBtn").textContent="Update Match";
 
-  for(let id in data){
-    list.innerHTML += `
-      <div class="match">
-        <b>ID:</b> ${id} <br>
-        <b>${data[id].teams}</b><br>
-        📅 ${data[id].date} | 🕒 ${data[id].time}<br>
-        🏟️ ${data[id].stadium}<br>
-        🏆 ${data[id].result}<br><br>
-
-        <button onclick="editMatch(${id})">✏️ Edit</button>
-        <button class="btn-danger" onclick="deleteMatch(${id})">🗑️ Delete</button>
-      </div>
-    `;
-  }
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-renderList();
+async function deleteMatch(id){
+
+if(!confirm("Delete Match "+id+"?"))return;
+
+try{
+
+await remove(ref(db,"matches/"+id));
+
+showMessage("Match deleted successfully.","ok");
+
+}catch(e){
+
+showMessage("Delete failed: "+e.message,"error");
+
+}
+}
+
+$("loginForm").addEventListener("submit",async e=>{
+
+e.preventDefault();
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+$("email").value.trim(),
+$("password").value
+);
+
+showMessage("Login successful.","ok");
+
+}catch(err){
+
+showMessage("Login failed: "+err.message,"error");
+
+}
+
+});
+
+$("logoutBtn").addEventListener("click",async()=>{
+
+try{
+await signOut(auth);
+}catch(e){
+showMessage(e.message,"error");
+}
+
+});
+
+$("clearBtn").addEventListener("click",clearForm);
+
+$("matchForm").addEventListener("submit",async e=>{
+
+e.preventDefault();
+
+const id=$("matchId").value.trim();
+
+if(!id){
+showMessage("Enter Match Number.","error");
+return;
+}
+
+const data={
+
+teamA:$("teamA").value.trim(),
+teamB:$("teamB").value.trim(),
+date:$("date").value.trim(),
+time:$("time").value.trim(),
+stadium:$("stadium").value.trim(),
+result:$("result").value.trim(),
+score:$("score").value.trim(),
+status:$("status").value,
+updatedAt:new Date().toISOString()
+
+};
+
+try{
+
+await set(ref(db,"matches/"+id),data);
+
+showMessage("Match saved to Firebase successfully!","ok");
+
+clearForm();
+
+}catch(err){
+
+showMessage(
+"Save failed: "+err.message+
+". Check Firebase Database Rules.",
+"error"
+);
+
+}
+
+});
+
+onAuthStateChanged(auth,user=>{
+
+if(user){
+
+$("loginPanel").classList.add("hidden");
+$("adminPanel").classList.remove("hidden");
+
+showMessage("Logged in as "+user.email,"ok");
+
+if(unsubscribeMatches)unsubscribeMatches();
+
+unsubscribeMatches=onValue(
+ref(db,"matches"),
+snapshot=>renderMatches(snapshot.val()),
+error=>showMessage("Database error: "+error.message,"error")
+);
+
+}else{
+
+if(unsubscribeMatches){
+unsubscribeMatches();
+unsubscribeMatches=null;
+}
+
+$("adminPanel").classList.add("hidden");
+$("loginPanel").classList.remove("hidden");
+
+showMessage("Please login with your Admin account.");
+
+}
+
+});
+
 </script>
-
 </body>
 </html>
