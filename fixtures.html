@@ -13,15 +13,13 @@
   --blue:#1e3c72;
   --blue-light:#2a5298;
   --purple:#6a11cb;
-  --cyan:#168fcb;
   --text:#18213b;
   --muted:#69738b;
   --border:#e8eaf2;
-  --white:#ffffff;
-  --light-bg:#f7f8fc;
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+
 body{
   min-height:100vh;
   font-family:Arial,Helvetica,sans-serif;
@@ -30,17 +28,15 @@ body{
   display:flex;
   flex-direction:column;
 }
-a{color:inherit;text-decoration:none}
 
-/* HEADER */
+a{text-decoration:none;color:inherit}
+
 .header{
-  width:100%;
   background:#fff;
   border-bottom:1px solid var(--border);
-  position:relative;
-  z-index:10;
   box-shadow:0 3px 15px rgba(30,60,114,.035);
 }
+
 .brand-row{
   max-width:1250px;
   min-height:92px;
@@ -50,14 +46,26 @@ a{color:inherit;text-decoration:none}
   align-items:center;
   justify-content:center;
 }
-.brand{display:flex;align-items:center;gap:15px}
-.brand-logo{width:65px;height:65px;object-fit:contain}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.brand-logo{
+  width:65px;
+  height:65px;
+  object-fit:contain;
+}
+
 .brand-text h2{
   color:var(--blue);
   font-size:24px;
   font-weight:900;
   letter-spacing:1.5px;
 }
+
 .brand-text p{
   color:var(--muted);
   font-size:10px;
@@ -65,16 +73,13 @@ a{color:inherit;text-decoration:none}
   margin-top:5px;
 }
 
-/* NAVIGATION */
 .nav-menu{
-  width:100%;
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
-  background:#fff;
   border-top:1px solid #f0f1f6;
 }
+
 .nav-menu a{
-  position:relative;
   min-width:0;
   min-height:57px;
   padding:15px 3px;
@@ -84,27 +89,16 @@ a{color:inherit;text-decoration:none}
   text-align:center;
   white-space:nowrap;
   color:#65708a;
-  font-size:clamp(12px,2vw,16px);
+  font-size:clamp(11px,2vw,16px);
   font-weight:800;
-  transition:all .25s ease;
-}
-.nav-menu a:hover{color:var(--purple);background:#faf9ff}
-.nav-menu a.active{
-  color:var(--blue);
-  background:linear-gradient(180deg,#fff,#f6f7ff);
-}
-.nav-menu a.active::after{
-  content:"";
-  position:absolute;
-  left:18%;
-  right:18%;
-  bottom:0;
-  height:3px;
-  border-radius:5px 5px 0 0;
-  background:linear-gradient(90deg,var(--blue-light),var(--purple));
 }
 
-/* MAIN */
+.nav-menu a.active{
+  color:var(--blue);
+  background:#f6f7ff;
+  border-bottom:3px solid var(--purple);
+}
+
 main{
   flex:1;
   width:100%;
@@ -113,55 +107,90 @@ main{
     radial-gradient(ellipse at 50% 0%,rgba(106,17,203,.045),transparent 48%),
     #fff;
 }
+
 .fixtures-container{
   width:100%;
   max-width:1000px;
-  margin:0 auto;
+  margin:auto;
 }
+
 .page-title{margin-bottom:30px}
+
 .page-title h1{
   color:var(--blue);
   font-size:34px;
   font-weight:900;
-  letter-spacing:-.7px;
 }
-.page-title p{margin-top:5px;color:var(--muted);font-size:14px}
 
-/* DATE HEADINGS */
+.page-title p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.connection-message{
+  padding:15px 18px;
+  margin-bottom:28px;
+  border-radius:12px;
+  font-size:15px;
+  line-height:1.5;
+  background:#e7f7ee;
+  color:#236b43;
+}
+
+.connection-message.error{
+  background:#fff0f0;
+  color:#a12626;
+}
+
 .date-group{margin-bottom:32px}
+
 .date-heading{
   display:flex;
   align-items:center;
   gap:12px;
   margin-bottom:14px;
 }
+
 .date-heading h2{
   color:var(--blue);
   font-size:21px;
   font-weight:900;
   white-space:nowrap;
 }
+
 .date-heading .line{
   flex:1;
-  height:3px;
+  height:4px;
   border-radius:5px;
   background:linear-gradient(90deg,var(--blue-light),var(--purple));
 }
 
-/* MATCH CARDS */
 .match-card{
   border:1px solid rgba(24,33,59,.12);
   border-left:6px solid var(--blue-light);
-  border-radius:13px;
+  border-radius:15px;
   padding:20px 22px;
-  margin-bottom:12px;
+  margin-bottom:13px;
   box-shadow:0 3px 12px rgba(30,60,114,.045);
-  transition:transform .2s ease,box-shadow .2s ease;
+  transition:.2s;
 }
+
 .match-card:hover{
   transform:translateY(-2px);
   box-shadow:0 7px 18px rgba(30,60,114,.09);
 }
+
+.date-06{background:#d9e7ff;border-left-color:#2456a6}
+.date-13{background:#e5d7ff;border-left-color:#7138c8}
+.date-20{background:#d1f0df;border-left-color:#168052}
+.date-27{background:#ffe3bd;border-left-color:#c56a08}
+
+.date-06 .match-number{background:#2456a6}
+.date-13 .match-number{background:#7138c8}
+.date-20 .match-number{background:#168052}
+.date-27 .match-number{background:#c56a08}
+
 .match-top{
   display:flex;
   justify-content:space-between;
@@ -169,58 +198,81 @@ main{
   gap:10px;
   margin-bottom:18px;
 }
+
 .match-number{
   display:inline-block;
-  padding:6px 10px;
-  border-radius:7px;
-  background:rgba(255,255,255,.88);
-  border:1px solid rgba(30,60,114,.12);
-  color:var(--blue);
+  padding:7px 11px;
+  border-radius:8px;
+  color:white;
   font-size:12px;
   font-weight:900;
-  letter-spacing:.6px;
+  letter-spacing:.5px;
 }
+
 .status{
   display:inline-block;
-  padding:6px 10px;
+  padding:7px 11px;
   border-radius:20px;
   background:rgba(255,255,255,.85);
   color:#53627b;
   font-size:10px;
   font-weight:900;
-  letter-spacing:.6px;
-  white-space:nowrap;
+  letter-spacing:.5px;
 }
+
+.status.COMPLETED{
+  background:#d1f5df;
+  color:#167044;
+}
+
+.status.LIVE{
+  background:#ffe0e0;
+  color:#bd2020;
+  animation:pulse 1.2s infinite;
+}
+
+.status.PLAYOFF{
+  background:#fff1c9;
+  color:#875800;
+}
+
+@keyframes pulse{
+  50%{opacity:.55}
+}
+
 .teams{
   display:grid;
   grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);
   align-items:center;
   gap:10px;
 }
+
 .team{
   font-size:20px;
-  line-height:1.35;
+  line-height:1.4;
   font-weight:900;
-  color:var(--text);
   overflow-wrap:anywhere;
 }
+
 .team:first-child{text-align:left}
 .team:last-child{text-align:right}
+
 .vs{
   text-align:center;
   color:var(--purple);
   font-size:14px;
   font-weight:900;
-  padding:8px 3px;
-  border-radius:8px;
+  padding:9px 3px;
+  border-radius:10px;
   background:rgba(255,255,255,.85);
   border:1px solid rgba(106,17,203,.13);
 }
+
 .match-bottom{
   display:flex;
   flex-wrap:wrap;
   align-items:center;
-  gap:9px 20px;
+  gap:10px 20px;
   margin-top:18px;
   padding-top:13px;
   border-top:1px solid rgba(24,33,59,.14);
@@ -228,91 +280,58 @@ main{
   font-size:14px;
   font-weight:700;
 }
-.info{display:flex;align-items:center;gap:7px}
-.info-icon{color:var(--purple);font-size:17px;font-weight:900}
 
-/* DATE COLORS */
-.date-06{background:#d9e7ff;border-left-color:#2456a6}
-.date-06 .match-number{background:#2456a6;color:#fff;border-color:#2456a6}
-.date-06 .status{color:#194781}
+.info{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  overflow-wrap:anywhere;
+}
 
-.date-13{background:#e5d7ff;border-left-color:#7138c8}
-.date-13 .match-number{background:#7138c8;color:#fff;border-color:#7138c8}
-.date-13 .status{color:#5725a1}
+.info-icon{
+  color:var(--purple);
+  font-size:17px;
+}
 
-.date-20{background:#d1f0df;border-left-color:#168052}
-.date-20 .match-number{background:#168052;color:#fff;border-color:#168052}
-.date-20 .status{color:#126440}
+.match-extra{
+  margin-top:13px;
+  padding-top:12px;
+  border-top:1px dashed rgba(24,33,59,.18);
+  line-height:1.7;
+  font-size:15px;
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
 
-.date-27{background:#ffe3bd;border-left-color:#c56a08}
-.date-27 .match-number{background:#c56a08;color:#fff;border-color:#c56a08}
-.date-27 .status{color:#874600}
+.match-extra p{margin-bottom:8px}
+.match-extra p:last-child{margin-bottom:0}
 
-/* SEMI FINALS */
-.playoff .date-04{
+.playoff .match-card{
   background:linear-gradient(115deg,#ffedb3,#ffdda0);
   border:2px solid #d29a16;
   border-left:7px solid #a86f00;
-  box-shadow:0 4px 15px rgba(180,123,0,.09);
 }
-.playoff .date-04 .match-number{
-  background:linear-gradient(100deg,#a86f00,#e3a817);
-  color:#fff;
-  border:none;
-}
-.playoff .date-04 .status{
-  background:#fff5d6;
-  color:#875800;
-  border:1px solid #e8c76c;
-}
-.playoff .date-04 .vs{color:#9b6500;border-color:#e4c66e}
 
-/* FINAL */
-.date-11.final-card{
+.playoff .match-number{
+  background:linear-gradient(100deg,#a86f00,#e3a817);
+}
+
+.final-card{
   background:linear-gradient(120deg,#ffdfe4,#ffd7bd);
   border:2px solid #d84752;
   border-left:7px solid #b91f35;
-  box-shadow:0 5px 18px rgba(185,31,53,.14);
 }
-.date-11.final-card .match-number{
+
+.final-card .match-number{
   background:linear-gradient(100deg,#a9132a,#e04450);
-  color:#fff;
-  border:none;
-}
-.date-11.final-card .status{
-  background:#fff0d1;
-  color:#8a5700;
-  border:1px solid #e5bf62;
-}
-.date-11.final-card .vs{
-  background:#fff7e9;
-  color:#b91f35;
-  border-color:#efb6a9;
 }
 
-/* RESULT INFORMATION */
-.firebase-extra{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px 20px;
-  margin-top:12px;
-  padding-top:10px;
-  border-top:1px dashed rgba(24,33,59,.2);
-  color:#243b65;
-  font-size:13px;
-  font-weight:800;
-}
-.firebase-extra .info{overflow-wrap:anywhere}
-.match-card.completed .status{
-  background:#d5f5e3;
-  color:#08733d;
-}
-.match-card.live .status{
-  background:#ffe0e0;
-  color:#b51e2b;
+.empty-message{
+  text-align:center;
+  padding:30px 15px;
+  color:var(--muted);
 }
 
-/* FOOTER */
 .footer{
   width:100%;
   padding:24px 16px;
@@ -320,26 +339,15 @@ main{
   background:#fafbfe;
   border-top:1px solid var(--border);
 }
+
 .footer p{
   color:#8991a5;
   font-size:11px;
   line-height:1.9;
-  letter-spacing:.4px;
 }
+
 .footer strong{color:var(--blue)}
 
-#firebase-message{
-  display:none;
-  max-width:1000px;
-  margin:0 auto 15px;
-  padding:10px 14px;
-  border-radius:8px;
-  font-size:12px;
-  color:#53627b;
-  background:#f0f4ff;
-}
-
-/* TABLET */
 @media(max-width:700px){
   .brand-row{min-height:80px;padding:12px}
   .brand-logo{width:55px;height:55px}
@@ -351,40 +359,23 @@ main{
   .team{font-size:18px}
 }
 
-/* MOBILE */
 @media(max-width:400px){
   .brand-logo{width:48px;height:48px}
   .brand-text h2{font-size:18px}
   .brand-text p{font-size:8px;letter-spacing:1.5px}
   .brand{gap:10px}
-  .nav-menu a{
-    min-height:49px;
-    padding:12px 1px;
-    font-size:11px;
-    font-weight:800;
-  }
-  .nav-menu a.active::after{left:12%;right:12%}
+  .nav-menu a{min-height:49px;padding:12px 1px;font-size:11px}
   main{padding:25px 11px 40px}
-  .page-title{margin-bottom:24px}
   .page-title h1{font-size:27px}
-  .page-title p{font-size:12px}
-  .date-group{margin-bottom:26px}
   .date-heading h2{font-size:17px}
-  .match-card{padding:14px 11px;margin-bottom:10px;border-radius:11px}
-  .match-top{margin-bottom:15px}
-  .match-number{font-size:10px;padding:5px 7px}
-  .status{font-size:9px;padding:5px 7px}
+  .match-card{padding:14px 11px;border-radius:11px}
+  .match-number{font-size:10px;padding:6px 8px}
+  .status{font-size:9px;padding:6px 8px}
   .teams{grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:5px}
   .team{font-size:15px}
-  .vs{font-size:11px;padding:6px 2px}
-  .match-bottom{margin-top:14px;padding-top:11px;font-size:12px;gap:8px 13px}
-}
-
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    scroll-behavior:auto!important;
-  }
+  .vs{font-size:11px;padding:7px 2px}
+  .match-bottom{font-size:12px;gap:8px 13px}
+  .match-extra{font-size:13px}
 }
 </style>
 </head>
@@ -394,11 +385,8 @@ main{
 <header class="header">
   <div class="brand-row">
     <a href="index.html" class="brand">
-      <img
-        src="file_00000000fafc7208bb91a6123810609b.png"
-        alt="VCL Logo"
-        class="brand-logo"
-      >
+      <img src="file_00000000fafc7208bb91a6123810609b.png"
+           alt="VCL Logo" class="brand-logo">
       <div class="brand-text">
         <h2>VCL 2026</h2>
         <p>VATKURA CRICKET LEAGUE</p>
@@ -423,327 +411,11 @@ main{
     <p>VCL 2026 · Session 03</p>
   </div>
 
-  <div id="firebase-message"></div>
+  <div id="connectionMessage" class="connection-message">
+    Connecting to Firebase...
+  </div>
 
-  <!-- 06 NOVEMBER -->
-  <section class="date-group">
-    <div class="date-heading">
-      <h2>06 November 2026</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-06">
-      <div class="match-top">
-        <span class="match-number">MATCH 01</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA KINGS</div>
-        <div class="vs">VS</div>
-        <div class="team">HR KINGS VATKURA</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 10:00 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-06">
-      <div class="match-top">
-        <span class="match-number">MATCH 02</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA TIGERS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STARS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 02:30 PM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-06">
-      <div class="match-top">
-        <span class="match-number">MATCH 03</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA FIRE EIGHT</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STRIKERS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:45 PM</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- 13 NOVEMBER -->
-  <section class="date-group">
-    <div class="date-heading">
-      <h2>13 November 2026</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-13">
-      <div class="match-top">
-        <span class="match-number">MATCH 04</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA TIGERS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STRIKERS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 09:45 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-13">
-      <div class="match-top">
-        <span class="match-number">MATCH 05</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA FIRE EIGHT</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STARS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 11:00 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-13">
-      <div class="match-top">
-        <span class="match-number">MATCH 06</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA KINGS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA FIRE EIGHT</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 02:30 PM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-13">
-      <div class="match-top">
-        <span class="match-number">MATCH 07</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA TIGERS</div>
-        <div class="vs">VS</div>
-        <div class="team">HR KINGS VATKURA</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:45 PM</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- 20 NOVEMBER -->
-  <section class="date-group">
-    <div class="date-heading">
-      <h2>20 November 2026</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-20">
-      <div class="match-top">
-        <span class="match-number">MATCH 08</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA TIGERS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA FIRE EIGHT</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 09:45 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-20">
-      <div class="match-top">
-        <span class="match-number">MATCH 09</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA STRIKERS</div>
-        <div class="vs">VS</div>
-        <div class="team">HR KINGS VATKURA</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 11:00 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-20">
-      <div class="match-top">
-        <span class="match-number">MATCH 10</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA KINGS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STRIKERS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 02:30 PM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-20">
-      <div class="match-top">
-        <span class="match-number">MATCH 11</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA KINGS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STARS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:45 PM</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- 27 NOVEMBER -->
-  <section class="date-group">
-    <div class="date-heading">
-      <h2>27 November 2026</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-27">
-      <div class="match-top">
-        <span class="match-number">MATCH 12</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">HR KINGS VATKURA</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STARS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 09:45 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-27">
-      <div class="match-top">
-        <span class="match-number">MATCH 13</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA KINGS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA TIGERS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 11:00 AM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-27">
-      <div class="match-top">
-        <span class="match-number">MATCH 14</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA STRIKERS</div>
-        <div class="vs">VS</div>
-        <div class="team">VATKURA STARS</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 02:30 PM</span>
-      </div>
-    </article>
-
-    <article class="match-card date-27">
-      <div class="match-top">
-        <span class="match-number">MATCH 15</span>
-        <span class="status">SCHEDULED</span>
-      </div>
-      <div class="teams">
-        <div class="team">VATKURA FIRE EIGHT</div>
-        <div class="vs">VS</div>
-        <div class="team">HR KINGS VATKURA</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:45 PM</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- SEMI FINALS -->
-  <section class="date-group playoff">
-    <div class="date-heading">
-      <h2>04 December 2026 · Semi Finals</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-04">
-      <div class="match-top">
-        <span class="match-number">SEMI FINAL 01</span>
-        <span class="status">PLAYOFF</span>
-      </div>
-      <div class="teams">
-        <div class="team">PT 1</div>
-        <div class="vs">VS</div>
-        <div class="team">PT 3</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 10:00 AM</span>
-        <span class="info">Position 1 vs Position 3</span>
-      </div>
-    </article>
-
-    <article class="match-card date-04">
-      <div class="match-top">
-        <span class="match-number">SEMI FINAL 02</span>
-        <span class="status">PLAYOFF</span>
-      </div>
-      <div class="teams">
-        <div class="team">PT 2</div>
-        <div class="vs">VS</div>
-        <div class="team">PT 4</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:00 PM</span>
-        <span class="info">Position 2 vs Position 4</span>
-      </div>
-    </article>
-  </section>
-
-  <!-- FINAL -->
-  <section class="date-group">
-    <div class="date-heading">
-      <h2>11 December 2026 · Final</h2>
-      <div class="line"></div>
-    </div>
-
-    <article class="match-card date-11 final-card">
-      <div class="match-top">
-        <span class="match-number">GRAND FINAL</span>
-        <span class="status">CHAMPIONSHIP</span>
-      </div>
-      <div class="teams">
-        <div class="team">SF 1 WINNER</div>
-        <div class="vs">VS</div>
-        <div class="team">SF 2 WINNER</div>
-      </div>
-      <div class="match-bottom">
-        <span class="info"><span class="info-icon">◷</span> 03:00 PM</span>
-      </div>
-    </article>
-  </section>
+  <div id="fixturesContainer"></div>
 
 </div>
 </main>
@@ -753,15 +425,23 @@ main{
     © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
     <br>
     All Rights Reserved · VCL Session 03
+    <br>
+    <a href="https://abdurrahim06271970-blip.github.io/my-website-/">
+      Our Official Website
+    </a>
   </p>
 </footer>
 
-<!-- FIREBASE REALTIME DATABASE CONNECTION -->
 <script type="module">
-import { initializeApp, getApps }
+
+import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { getDatabase, ref, onValue }
+import {
+  getDatabase,
+  ref,
+  onValue
+}
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
@@ -775,148 +455,266 @@ const firebaseConfig = {
   measurementId: "G-RBXFNT2KG7"
 };
 
-const app = getApps().length
-  ? getApps()[0]
-  : initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-const database = getDatabase(app);
-const message = document.getElementById("firebase-message");
+/* ORIGINAL FIXTURES */
 
-function showMessage(text, isError = false) {
-  message.style.display = "block";
-  message.textContent = text;
-  message.style.background = isError ? "#ffe8e8" : "#e8f7ed";
-  message.style.color = isError ? "#a52222" : "#176b38";
+const defaultMatches = [
+
+{ id:"01",teamA:"VATKURA KINGS",teamB:"HR KINGS VATKURA",date:"06-11-26",time:"10:00 AM",status:"SCHEDULED",group:"06" },
+{ id:"02",teamA:"VATKURA TIGERS",teamB:"VATKURA STARS",date:"06-11-26",time:"02:30 PM",status:"SCHEDULED",group:"06" },
+{ id:"03",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STRIKERS",date:"06-11-26",time:"03:45 PM",status:"SCHEDULED",group:"06" },
+
+{ id:"04",teamA:"VATKURA TIGERS",teamB:"VATKURA STRIKERS",date:"13-11-26",time:"09:45 AM",status:"SCHEDULED",group:"13" },
+{ id:"05",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STARS",date:"13-11-26",time:"11:00 AM",status:"SCHEDULED",group:"13" },
+{ id:"06",teamA:"VATKURA KINGS",teamB:"VATKURA FIRE EIGHT",date:"13-11-26",time:"02:30 PM",status:"SCHEDULED",group:"13" },
+{ id:"07",teamA:"VATKURA TIGERS",teamB:"HR KINGS VATKURA",date:"13-11-26",time:"03:45 PM",status:"SCHEDULED",group:"13" },
+
+{ id:"08",teamA:"VATKURA TIGERS",teamB:"VATKURA FIRE EIGHT",date:"20-11-26",time:"09:45 AM",status:"SCHEDULED",group:"20" },
+{ id:"09",teamA:"VATKURA STRIKERS",teamB:"HR KINGS VATKURA",date:"20-11-26",time:"11:00 AM",status:"SCHEDULED",group:"20" },
+{ id:"10",teamA:"VATKURA KINGS",teamB:"VATKURA STRIKERS",date:"20-11-26",time:"02:30 PM",status:"SCHEDULED",group:"20" },
+{ id:"11",teamA:"VATKURA KINGS",teamB:"VATKURA STARS",date:"20-11-26",time:"03:45 PM",status:"SCHEDULED",group:"20" },
+
+{ id:"12",teamA:"HR KINGS VATKURA",teamB:"VATKURA STARS",date:"27-11-26",time:"09:45 AM",status:"SCHEDULED",group:"27" },
+{ id:"13",teamA:"VATKURA KINGS",teamB:"VATKURA TIGERS",date:"27-11-26",time:"11:00 AM",status:"SCHEDULED",group:"27" },
+{ id:"14",teamA:"VATKURA STRIKERS",teamB:"VATKURA STARS",date:"27-11-26",time:"02:30 PM",status:"SCHEDULED",group:"27" },
+{ id:"15",teamA:"VATKURA FIRE EIGHT",teamB:"HR KINGS VATKURA",date:"27-11-26",time:"03:45 PM",status:"SCHEDULED",group:"27" },
+
+{ id:"16",teamA:"PT 1",teamB:"PT 3",date:"04-12-26",time:"10:00 AM",status:"PLAYOFF",group:"04",extra:true },
+{ id:"17",teamA:"PT 2",teamB:"PT 4",date:"04-12-26",time:"03:00 PM",status:"PLAYOFF",group:"04",extra:true },
+
+{ id:"18",teamA:"SF 1 WINNER",teamB:"SF 2 WINNER",date:"11-12-26",time:"03:00 PM",status:"PLAYOFF",group:"11",final:true }
+
+];
+
+const container = document.getElementById("fixturesContainer");
+const message = document.getElementById("connectionMessage");
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[char]);
 }
 
-function getMatchNumber(card) {
-  const label = card.querySelector(".match-number");
-  if (!label) return null;
+function getDateTitle(date) {
+  const parts = String(date).split("-");
+  if(parts.length !== 3) return date;
 
-  const match = label.textContent.match(/MATCH\s*0*(\d+)/i);
-  return match ? String(Number(match[1])).padStart(2, "0") : null;
+  const day = parts[0];
+  const month = Number(parts[1]);
+  const year = parts[2];
+
+  const months = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  return `${day} ${months[month-1] || ""} 20${year}`;
 }
 
-function addInfo(parent, label, value) {
-  if (value === undefined || value === null || String(value).trim() === "") {
-    return;
-  }
+function renderMatches(firebaseData = {}) {
 
-  const span = document.createElement("span");
-  span.className = "info";
-  span.textContent = label + ": " + value;
-  parent.appendChild(span);
-}
+  const matches = defaultMatches.map(original => {
 
-function updateMatch(card, data) {
-  if (!data || typeof data !== "object") return;
+    const saved = firebaseData[original.id] || {};
 
-  const teams = card.querySelectorAll(".team");
-  const status = card.querySelector(".status");
-  const bottom = card.querySelector(".match-bottom");
+    return {
+      ...original,
+      ...saved,
 
-  // Update team names only when Firebase has values
-  if (teams[0] && data.teamA) {
-    teams[0].textContent = data.teamA;
-  }
+      id: original.id,
 
-  if (teams[1] && data.teamB) {
-    teams[1].textContent = data.teamB;
-  }
+      teamA: saved.teamA || original.teamA,
+      teamB: saved.teamB || original.teamB,
 
-  // Update match status
-  if (status && data.status) {
-    status.textContent = data.status;
+      date: saved.date || original.date,
+      time: saved.time || original.time,
 
-    card.classList.remove("completed", "live");
+      status: saved.status || original.status
+    };
+  });
 
-    const currentStatus = String(data.status).toLowerCase();
+  const groups = {};
 
-    if (currentStatus === "completed") {
-      card.classList.add("completed");
-    } else if (
-      currentStatus === "live" ||
-      currentStatus === "ongoing"
-    ) {
-      card.classList.add("live");
-    }
-  }
+  matches.forEach(match => {
+    const date = match.date || "Date not set";
 
-  // Keep original date and time if Firebase values are empty
-  if (bottom && data.time) {
-    const oldTime = bottom.querySelector(".firebase-time");
+    if(!groups[date]) groups[date] = [];
 
-    if (oldTime) oldTime.remove();
+    groups[date].push(match);
+  });
 
-    const time = document.createElement("span");
-    time.className = "info firebase-time";
+  let html = "";
 
-    const icon = document.createElement("span");
-    icon.className = "info-icon";
-    icon.textContent = "◷";
+  Object.keys(groups).forEach(date => {
 
-    time.append(icon, document.createTextNode(" " + data.time));
-    bottom.prepend(time);
-  }
+    const firstMatch = groups[date][0];
 
-  // Remove previously displayed Firebase result details
-  const oldExtra = card.querySelector(".firebase-extra");
-  if (oldExtra) oldExtra.remove();
+    let groupClass = "";
 
-  // Add updated result, score and venue
-  const extra = document.createElement("div");
-  extra.className = "firebase-extra";
-
-  addInfo(extra, "Result", data.result);
-  addInfo(extra, "Score", data.score);
-  addInfo(extra, "Venue", data.stadium);
-
-  if (extra.children.length > 0) {
-    card.appendChild(extra);
-  }
-}
-
-// Listen for live Firebase changes
-onValue(
-  ref(database, "matches"),
-  (snapshot) => {
-    if (!snapshot.exists()) {
-      showMessage("Firebase connected. No saved matches found yet.");
-      return;
+    if(firstMatch.id === "16" || firstMatch.id === "17") {
+      groupClass = "playoff";
     }
 
-    const matches = snapshot.val();
-    let updated = 0;
+    html += `
+      <section class="date-group ${groupClass}">
 
-    document.querySelectorAll(".match-card").forEach(card => {
-      const number = getMatchNumber(card);
+        <div class="date-heading">
+          <h2>${escapeHTML(getDateTitle(date))}${
+            firstMatch.id === "16" ? " · Semi Finals" :
+            firstMatch.id === "18" ? " · Final" : ""
+          }</h2>
+          <div class="line"></div>
+        </div>
+    `;
 
-      // Ignore semi-finals and final
-      if (!number) return;
+    groups[date].forEach(match => {
 
-      const match = matches[number] || matches[Number(number)];
+      const status = String(match.status || "SCHEDULED").toUpperCase();
 
-      if (match) {
-        updateMatch(card, match);
-        updated++;
-      }
+      let cardClass = "match-card date-" + match.group;
+
+      if(match.final) cardClass += " final-card";
+
+      let statusLabel = status;
+
+      if(status === "PLAYOFF") statusLabel = "PLAYOFF";
+
+      html += `
+        <article class="${cardClass}">
+
+          <div class="match-top">
+
+            <span class="match-number">
+              ${
+                match.id === "16" ? "SEMI FINAL 01" :
+                match.id === "17" ? "SEMI FINAL 02" :
+                match.id === "18" ? "GRAND FINAL" :
+                "MATCH " + match.id
+              }
+            </span>
+
+            <span class="status ${escapeHTML(status)}">
+              ${escapeHTML(statusLabel)}
+            </span>
+
+          </div>
+
+          <div class="teams">
+
+            <div class="team">
+              ${escapeHTML(match.teamA)}
+            </div>
+
+            <div class="vs">VS</div>
+
+            <div class="team">
+              ${escapeHTML(match.teamB)}
+            </div>
+
+          </div>
+
+          <div class="match-bottom">
+
+            ${
+              match.time
+              ? `<span class="info">
+                   <span class="info-icon">◷</span>
+                   ${escapeHTML(match.time)}
+                 </span>`
+              : ""
+            }
+
+          </div>
+
+          ${
+            (match.result || match.score || match.stadium)
+            ? `
+              <div class="match-extra">
+
+                ${
+                  match.result
+                  ? `<p><strong>Result:</strong> ${escapeHTML(match.result)}</p>`
+                  : ""
+                }
+
+                ${
+                  match.score
+                  ? `<p><strong>Score:</strong> ${escapeHTML(match.score)}</p>`
+                  : ""
+                }
+
+                ${
+                  match.stadium
+                  ? `<p><strong>Venue:</strong> ${escapeHTML(match.stadium)}</p>`
+                  : ""
+                }
+
+              </div>
+            `
+            : ""
+          }
+
+          ${
+            match.extra
+            ? `<div class="match-extra">
+                 <p>Position ${match.id === "16" ? "1 vs Position 3" : "2 vs Position 4"}</p>
+               </div>`
+            : ""
+          }
+
+        </article>
+      `;
+
     });
 
-    showMessage(
+    html += `</section>`;
+
+  });
+
+  container.innerHTML = html;
+}
+
+/* LIVE FIREBASE DATABASE LISTENER */
+
+onValue(
+  ref(db, "matches"),
+
+  (snapshot) => {
+
+    const data = snapshot.val() || {};
+
+    renderMatches(data);
+
+    const count = Object.keys(data).length;
+
+    message.className = "connection-message";
+
+    message.innerHTML =
       "✓ Firebase connected successfully · " +
-      updated +
-      " matches updated"
-    );
+      count + " matches updated";
+
   },
+
   (error) => {
+
     console.error("Firebase error:", error);
 
-    showMessage(
-      "Firebase connection error: " + error.message,
-      true
-    );
+    message.className = "connection-message error";
+
+    message.innerHTML =
+      "Firebase connection failed. Please check database permissions.";
+
+    renderMatches();
+
   }
 );
+
 </script>
 
 </body>
