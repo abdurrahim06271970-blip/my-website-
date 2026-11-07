@@ -18,30 +18,125 @@
 --border:#e8eaf2;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;display:flex;flex-direction:column}
+body{
+min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+background:#fff;
+display:flex;
+flex-direction:column;
+}
 a{text-decoration:none;color:inherit}
-.header{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 3px 15px rgba(30,60,114,.035)}
-.brand-row{max-width:1250px;min-height:92px;padding:15px 25px;margin:auto;display:flex;align-items:center;justify-content:center}
+
+.header{
+background:#fff;
+border-bottom:1px solid var(--border);
+box-shadow:0 3px 15px rgba(30,60,114,.035);
+}
+.brand-row{
+max-width:1250px;
+min-height:92px;
+padding:15px 25px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+}
 .brand{display:flex;align-items:center;gap:15px}
 .brand-logo{width:65px;height:65px;object-fit:contain}
-.brand-text h2{color:var(--blue);font-size:24px;font-weight:900;letter-spacing:1.5px}
-.brand-text p{color:var(--muted);font-size:10px;letter-spacing:2.2px;margin-top:5px}
-.nav-menu{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #f0f1f6}
-.nav-menu a{min-width:0;min-height:57px;padding:15px 3px;display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;color:#65708a;font-size:clamp(11px,2vw,16px);font-weight:800}
-.nav-menu a.active{color:var(--blue);background:#f6f7ff;border-bottom:3px solid var(--purple)}
-main{flex:1;width:100%;padding:38px 20px 60px;background:radial-gradient(ellipse at 50% 0%,rgba(106,17,203,.045),transparent 48%),#fff}
+.brand-text h2{
+color:var(--blue);
+font-size:24px;
+font-weight:900;
+letter-spacing:1.5px;
+}
+.brand-text p{
+color:var(--muted);
+font-size:10px;
+letter-spacing:2.2px;
+margin-top:5px;
+}
+.nav-menu{
+display:grid;
+grid-template-columns:repeat(5,minmax(0,1fr));
+border-top:1px solid #f0f1f6;
+}
+.nav-menu a{
+min-width:0;
+min-height:57px;
+padding:15px 3px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+white-space:nowrap;
+color:#65708a;
+font-size:clamp(11px,2vw,16px);
+font-weight:800;
+}
+.nav-menu a.active{
+color:var(--blue);
+background:#f6f7ff;
+border-bottom:3px solid var(--purple);
+}
+
+main{
+flex:1;
+width:100%;
+padding:38px 20px 60px;
+background:
+radial-gradient(ellipse at 50% 0%,rgba(106,17,203,.045),transparent 48%),
+#fff;
+}
 .fixtures-container{width:100%;max-width:1000px;margin:auto}
 .page-title{margin-bottom:30px}
 .page-title h1{color:var(--blue);font-size:34px;font-weight:900}
 .page-title p{margin-top:5px;color:var(--muted);font-size:14px}
-.connection-message{padding:15px 18px;margin-bottom:28px;border-radius:12px;font-size:15px;line-height:1.5;background:#e7f7ee;color:#236b43}
+
+.connection-message{
+padding:15px 18px;
+margin-bottom:28px;
+border-radius:12px;
+font-size:15px;
+line-height:1.5;
+background:#e7f7ee;
+color:#236b43;
+}
 .connection-message.error{background:#fff0f0;color:#a12626}
+
 .date-group{margin-bottom:32px}
-.date-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.date-heading h2{color:var(--blue);font-size:21px;font-weight:900;white-space:nowrap}
-.date-heading .line{flex:1;height:4px;border-radius:5px;background:linear-gradient(90deg,var(--blue-light),var(--purple))}
-.match-card{border:1px solid rgba(24,33,59,.12);border-left:6px solid var(--blue-light);border-radius:15px;padding:20px 22px;margin-bottom:13px;box-shadow:0 3px 12px rgba(30,60,114,.045);transition:.2s}
-.match-card:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(30,60,114,.09)}
+.date-heading{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:14px;
+}
+.date-heading h2{
+color:var(--blue);
+font-size:21px;
+font-weight:900;
+white-space:nowrap;
+}
+.date-heading .line{
+flex:1;
+height:4px;
+border-radius:5px;
+background:linear-gradient(90deg,var(--blue-light),var(--purple));
+}
+
+.match-card{
+border:1px solid rgba(24,33,59,.12);
+border-left:6px solid var(--blue-light);
+border-radius:15px;
+padding:20px 22px;
+margin-bottom:13px;
+box-shadow:0 3px 12px rgba(30,60,114,.045);
+transition:.2s;
+}
+.match-card:hover{
+transform:translateY(-2px);
+box-shadow:0 7px 18px rgba(30,60,114,.09);
+}
 .date-06{background:#d9e7ff;border-left-color:#2456a6}
 .date-13{background:#e5d7ff;border-left-color:#7138c8}
 .date-20{background:#d1f0df;border-left-color:#168052}
@@ -50,73 +145,183 @@ main{flex:1;width:100%;padding:38px 20px 60px;background:radial-gradient(ellipse
 .date-13 .match-number{background:#7138c8}
 .date-20 .match-number{background:#168052}
 .date-27 .match-number{background:#c56a08}
-.match-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}
-.match-number{display:inline-block;padding:7px 11px;border-radius:8px;color:white;font-size:12px;font-weight:900;letter-spacing:.5px}
-.status{display:inline-block;padding:7px 11px;border-radius:20px;background:rgba(255,255,255,.85);color:#53627b;font-size:10px;font-weight:900;letter-spacing:.5px}
+
+.match-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:18px;
+}
+.match-number{
+display:inline-block;
+padding:7px 11px;
+border-radius:8px;
+color:white;
+font-size:12px;
+font-weight:900;
+letter-spacing:.5px;
+}
+.status{
+display:inline-block;
+padding:7px 11px;
+border-radius:20px;
+background:rgba(255,255,255,.85);
+color:#53627b;
+font-size:10px;
+font-weight:900;
+letter-spacing:.5px;
+}
 .status.COMPLETED{background:#d1f5df;color:#167044}
-.status.LIVE{background:#ffe0e0;color:#bd2020;animation:pulse 1.2s infinite}
+.status.LIVE{
+background:#ffe0e0;
+color:#bd2020;
+animation:pulse 1.2s infinite;
+}
 .status.PLAYOFF{background:#fff1c9;color:#875800}
 @keyframes pulse{50%{opacity:.55}}
-.teams{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);align-items:center;gap:10px}
-.team{font-size:20px;line-height:1.4;font-weight:900;overflow-wrap:anywhere}
+
+.teams{
+display:grid;
+grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);
+align-items:center;
+gap:10px;
+}
+.team{
+font-size:20px;
+line-height:1.4;
+font-weight:900;
+overflow-wrap:anywhere;
+}
 .team:first-child{text-align:left}
 .team:last-child{text-align:right}
-.vs{text-align:center;color:var(--purple);font-size:14px;font-weight:900;padding:9px 3px;border-radius:10px;background:rgba(255,255,255,.85);border:1px solid rgba(106,17,203,.13)}
-.match-bottom{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin-top:18px;padding-top:13px;border-top:1px solid rgba(24,33,59,.14);color:#46546e;font-size:14px;font-weight:700}
+.vs{
+text-align:center;
+color:var(--purple);
+font-size:14px;
+font-weight:900;
+padding:9px 3px;
+border-radius:10px;
+background:rgba(255,255,255,.85);
+border:1px solid rgba(106,17,203,.13);
+}
+
+.match-bottom{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:10px 20px;
+margin-top:18px;
+padding-top:13px;
+border-top:1px solid rgba(24,33,59,.14);
+color:#46546e;
+font-size:14px;
+font-weight:700;
+}
 .info{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}
 .info-icon{color:var(--purple);font-size:17px}
-.match-extra{margin-top:13px;padding-top:12px;border-top:1px dashed rgba(24,33,59,.18);line-height:1.7;font-size:15px;font-weight:700;overflow-wrap:anywhere}
-.match-extra p{margin-bottom:8px}
-.match-extra p:last-child{margin-bottom:0}
-.playoff .match-card{background:linear-gradient(115deg,#ffedb3,#ffdda0);border:2px solid #d29a16;border-left:7px solid #a86f00}
-.playoff .match-number{background:linear-gradient(100deg,#a86f00,#e3a817)}
-.final-card{background:linear-gradient(120deg,#ffdfe4,#ffd7bd);border:2px solid #d84752;border-left:7px solid #b91f35}
-.final-card .match-number{background:linear-gradient(100deg,#a9132a,#e04450)}
-.empty-message{text-align:center;padding:30px 15px;color:var(--muted)}
-.footer{width:100%;padding:24px 16px;text-align:center;background:#fafbfe;border-top:1px solid var(--border)}
-.footer p{color:#8991a5;font-size:11px;line-height:1.9}
-.footer strong{color:var(--blue)}
 
-/* SIMPLE CRICKET SCORECARD */
+/* SCORECARD DESIGN */
 .scoreboard{
 margin-top:18px;
-padding:15px;
-border-radius:12px;
-background:rgba(255,255,255,.88);
-border:1px solid rgba(30,60,114,.12);
+padding:16px;
+border-radius:13px;
+background:rgba(255,255,255,.92);
+border:1px solid rgba(30,60,114,.13);
 }
 .scoreboard-title{
 font-size:12px;
 font-weight:900;
-color:var(--blue);
 letter-spacing:1px;
-margin-bottom:12px;
+color:var(--blue);
+margin-bottom:14px;
 }
-.score-row{
+.score-columns{
 display:grid;
-grid-template-columns:minmax(0,1fr) auto;
-align-items:center;
-gap:10px;
-padding:11px 0;
-border-bottom:1px solid #e8eaf2;
+grid-template-columns:1fr 1fr;
+gap:15px;
 }
-.score-row:last-of-type{border-bottom:0}
-.score-team{font-size:14px;font-weight:900;overflow-wrap:anywhere}
-.score-numbers{text-align:right;white-space:nowrap}
-.score-total{font-size:23px;font-weight:900;color:#142b59}
-.score-overs{font-size:11px;color:#69738b;margin-top:3px}
-.winner-box{
-margin-top:12px;
-padding:12px;
-border-radius:9px;
-background:#e7f7ee;
-color:#176b43;
-font-size:13px;
+.score-side{min-width:0}
+.score-side:last-child{
+border-left:1px solid #e8eaf2;
+padding-left:15px;
+}
+.score-total{
+font-size:34px;
+line-height:1.2;
 font-weight:900;
-line-height:1.6;
-text-align:center;
+color:#111;
+overflow-wrap:anywhere;
 }
-.winner-box small{display:block;font-size:11px;font-weight:700}
+.score-team{
+font-size:16px;
+font-weight:900;
+line-height:1.4;
+margin-top:12px;
+overflow-wrap:anywhere;
+}
+.score-overs{
+font-size:13px;
+color:#69738b;
+margin-top:7px;
+}
+.winner-box{
+margin-top:18px;
+padding-top:17px;
+border-top:1px solid #e8eaf2;
+text-align:center;
+color:#087039;
+font-weight:900;
+font-size:21px;
+line-height:1.5;
+overflow-wrap:anywhere;
+}
+.winner-box .trophy{font-size:27px}
+.winner-box small{
+display:block;
+font-size:17px;
+margin-top:8px;
+}
+.match-extra{
+margin-top:13px;
+padding-top:12px;
+border-top:1px dashed rgba(24,33,59,.18);
+line-height:1.7;
+font-size:14px;
+font-weight:700;
+overflow-wrap:anywhere;
+}
+.match-extra p{margin-bottom:5px}
+.match-extra p:last-child{margin-bottom:0}
+
+.playoff .match-card{
+background:linear-gradient(115deg,#ffedb3,#ffdda0);
+border:2px solid #d29a16;
+border-left:7px solid #a86f00;
+}
+.playoff .match-number{
+background:linear-gradient(100deg,#a86f00,#e3a817);
+}
+.final-card{
+background:linear-gradient(120deg,#ffdfe4,#ffd7bd);
+border:2px solid #d84752;
+border-left:7px solid #b91f35;
+}
+.final-card .match-number{
+background:linear-gradient(100deg,#a9132a,#e04450);
+}
+
+.empty-message{text-align:center;padding:30px 15px;color:var(--muted)}
+.footer{
+width:100%;
+padding:24px 16px;
+text-align:center;
+background:#fafbfe;
+border-top:1px solid var(--border);
+}
+.footer p{color:#8991a5;font-size:11px;line-height:1.9}
+.footer strong{color:var(--blue)}
+
 @media(max-width:700px){
 .brand-row{min-height:80px;padding:12px}
 .brand-logo{width:55px;height:55px}
@@ -143,19 +348,26 @@ main{padding:25px 11px 40px}
 .team{font-size:15px}
 .vs{font-size:11px;padding:7px 2px}
 .match-bottom{font-size:12px;gap:8px 13px}
+.scoreboard{padding:12px}
+.score-columns{gap:9px}
+.score-side:last-child{padding-left:9px}
+.score-total{font-size:27px}
+.score-team{font-size:13px}
+.score-overs{font-size:11px}
+.winner-box{font-size:17px}
+.winner-box small{font-size:14px}
 .match-extra{font-size:13px}
-.scoreboard{padding:11px}
-.score-team{font-size:12px}
-.score-total{font-size:20px}
 }
 </style>
 </head>
 
 <body>
+
 <header class="header">
 <div class="brand-row">
 <a href="index.html" class="brand">
-<img src="file_00000000fafc7208bb91a6123810609b.png" alt="VCL Logo" class="brand-logo">
+<img src="file_00000000fafc7208bb91a6123810609b.png"
+alt="VCL Logo" class="brand-logo">
 <div class="brand-text">
 <h2>VCL 2026</h2>
 <p>VATKURA CRICKET LEAGUE</p>
@@ -174,6 +386,7 @@ main{padding:25px 11px 40px}
 
 <main>
 <div class="fixtures-container">
+
 <div class="page-title">
 <h1>Match Fixtures</h1>
 <p>VCL 2026 · Session 03</p>
@@ -184,6 +397,7 @@ Connecting to Firebase...
 </div>
 
 <div id="fixturesContainer"></div>
+
 </div>
 </main>
 
@@ -193,11 +407,14 @@ Connecting to Firebase...
 <br>
 All Rights Reserved · VCL Session 03
 <br>
-<a href="https://abdurrahim06271970-blip.github.io/my-website-/">Our Official Website</a>
+<a href="https://abdurrahim06271970-blip.github.io/my-website-/">
+Our Official Website
+</a>
 </p>
 </footer>
 
 <script type="module">
+
 import {initializeApp}
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -219,6 +436,7 @@ const app=initializeApp(firebaseConfig);
 const db=getDatabase(app);
 
 const defaultMatches=[
+
 {id:"01",teamA:"VATKURA KINGS",teamB:"HR KINGS VATKURA",date:"06-11-26",time:"10:00 AM",status:"SCHEDULED",group:"06"},
 {id:"02",teamA:"VATKURA TIGERS",teamB:"VATKURA STARS",date:"06-11-26",time:"02:30 PM",status:"SCHEDULED",group:"06"},
 {id:"03",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STRIKERS",date:"06-11-26",time:"03:45 PM",status:"SCHEDULED",group:"06"},
@@ -241,6 +459,7 @@ const defaultMatches=[
 {id:"16",teamA:"PT 1",teamB:"PT 3",date:"04-12-26",time:"10:00 AM",status:"PLAYOFF",group:"04",extra:true},
 {id:"17",teamA:"PT 2",teamB:"PT 4",date:"04-12-26",time:"03:00 PM",status:"PLAYOFF",group:"04",extra:true},
 {id:"18",teamA:"SF 1 WINNER",teamB:"SF 2 WINNER",date:"11-12-26",time:"03:00 PM",status:"PLAYOFF",group:"11",final:true}
+
 ];
 
 const container=document.getElementById("fixturesContainer");
@@ -248,63 +467,104 @@ const message=document.getElementById("connectionMessage");
 
 function escapeHTML(value){
 return String(value??"").replace(/[&<>"']/g,char=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 })[char]);
 }
 
 function getDateTitle(date){
 const parts=String(date).split("-");
 if(parts.length!==3)return date;
+
 const day=parts[0];
 const month=Number(parts[1]);
 const year=parts[2];
-const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+const months=[
+"January","February","March","April","May","June",
+"July","August","September","October","November","December"
+];
+
 return `${day} ${months[month-1]||""} 20${year}`;
 }
 
 function hasScore(m){
-return m.teamARuns!=="" && m.teamARuns!=null &&
-m.teamAWickets!=="" && m.teamAWickets!=null &&
-m.teamAOvers!=="" && m.teamAOvers!=null &&
-m.teamBRuns!=="" && m.teamBRuns!=null &&
-m.teamBWickets!=="" && m.teamBWickets!=null &&
-m.teamBOvers!=="" && m.teamBOvers!=null;
+const keys=[
+"teamARuns","teamAWickets","teamAOvers",
+"teamBRuns","teamBWickets","teamBOvers"
+];
+
+return keys.every(key=>
+m[key]!==undefined &&
+m[key]!==null &&
+String(m[key]).trim()!==""
+);
+}
+
+function getWinnerText(m){
+const winner=String(m.winner||"").trim();
+const margin=String(m.resultMargin||"").trim();
+
+if(!winner)return "";
+
+if(!margin)return winner+" WON";
+
+if(/^won\s+by/i.test(margin)){
+return winner+" "+margin;
+}
+
+return winner+" WON BY "+margin;
 }
 
 function scoreHTML(m){
+
 if(!hasScore(m))return "";
 
 return `
 <div class="scoreboard">
+
 <div class="scoreboard-title">🏏 MATCH SCORE</div>
 
-<div class="score-row">
+<div class="score-columns">
+
+<div class="score-side">
+<div class="score-total">
+${escapeHTML(m.teamARuns)}/${escapeHTML(m.teamAWickets)}
+</div>
 <div class="score-team">${escapeHTML(m.teamA)}</div>
-<div class="score-numbers">
-<div class="score-total">${escapeHTML(m.teamARuns)}/${escapeHTML(m.teamAWickets)}</div>
 <div class="score-overs">${escapeHTML(m.teamAOvers)} Overs</div>
 </div>
-</div>
 
-<div class="score-row">
+<div class="score-side">
+<div class="score-total">
+${escapeHTML(m.teamBRuns)}/${escapeHTML(m.teamBWickets)}
+</div>
 <div class="score-team">${escapeHTML(m.teamB)}</div>
-<div class="score-numbers">
-<div class="score-total">${escapeHTML(m.teamBRuns)}/${escapeHTML(m.teamBWickets)}</div>
 <div class="score-overs">${escapeHTML(m.teamBOvers)} Overs</div>
 </div>
+
 </div>
 
 ${m.winner?`
 <div class="winner-box">
-🏆 ${escapeHTML(m.winner)}
-${m.resultMargin?`<small>${escapeHTML(m.resultMargin)}</small>`:""}
-</div>`:""}
-</div>`;
+<span class="trophy">🏆</span>
+${escapeHTML(getWinnerText(m))}
+</div>
+`:""}
+
+</div>
+`;
 }
 
 function renderMatches(firebaseData={}){
+
 const matches=defaultMatches.map(original=>{
+
 const saved=firebaseData[original.id]||{};
+
 return{
 ...original,
 ...saved,
@@ -315,6 +575,7 @@ date:saved.date||original.date,
 time:saved.time||original.time,
 status:saved.status||original.status
 };
+
 });
 
 const groups={};
@@ -328,63 +589,86 @@ groups[date].push(match);
 let html="";
 
 Object.keys(groups).forEach(date=>{
+
 const firstMatch=groups[date][0];
 let groupClass="";
 
-if(firstMatch.id==="16"||firstMatch.id==="17")groupClass="playoff";
+if(firstMatch.id==="16"||firstMatch.id==="17"){
+groupClass="playoff";
+}
 
 html+=`
 <section class="date-group ${groupClass}">
+
 <div class="date-heading">
 <h2>${escapeHTML(getDateTitle(date))}${
 firstMatch.id==="16"?" · Semi Finals":
 firstMatch.id==="18"?" · Final":""
 }</h2>
 <div class="line"></div>
-</div>`;
+</div>
+`;
 
 groups[date].forEach(match=>{
+
 const status=String(match.status||"SCHEDULED").toUpperCase();
 
-let cardClass="match-card date-"+escapeHTML(match.group||"06");
+let cardClass="match-card date-"+String(match.group||"06");
+
 if(match.final)cardClass+=" final-card";
 
-let statusLabel=status;
+const showScore=
+(status==="LIVE"||status==="COMPLETED")&&hasScore(match);
 
 html+=`
 <article class="${cardClass}">
+
 <div class="match-top">
-<span class="match-number">${
+
+<span class="match-number">
+${
 match.id==="16"?"SEMI FINAL 01":
 match.id==="17"?"SEMI FINAL 02":
 match.id==="18"?"GRAND FINAL":
 "MATCH "+escapeHTML(match.id)
-}</span>
-<span class="status ${escapeHTML(status)}">${escapeHTML(statusLabel)}</span>
+}
+</span>
+
+<span class="status ${escapeHTML(status)}">
+${escapeHTML(status)}
+</span>
+
 </div>
 
 <div class="teams">
+
 <div class="team">${escapeHTML(match.teamA)}</div>
+
 <div class="vs">VS</div>
+
 <div class="team">${escapeHTML(match.teamB)}</div>
+
 </div>
 
-${(status==="LIVE"||status==="COMPLETED")?scoreHTML(match):""}
+${showScore?scoreHTML(match):""}
 
 <div class="match-bottom">
+
 ${match.time?`
 <span class="info">
 <span class="info-icon">◷</span>
 ${escapeHTML(match.time)}
 </span>`:""}
+
 ${match.stadium?`
 <span class="info">
 <span class="info-icon">📍</span>
 ${escapeHTML(match.stadium)}
 </span>`:""}
+
 </div>
 
-${match.result?`
+${!showScore&&match.result?`
 <div class="match-extra">
 <p><strong>Result:</strong> ${escapeHTML(match.result)}</p>
 </div>`:""}
@@ -399,32 +683,50 @@ ${match.extra?`
 <p>Position ${match.id==="16"?"1 vs Position 3":"2 vs Position 4"}</p>
 </div>`:""}
 
-</article>`;
+</article>
+`;
+
 });
 
 html+="</section>";
+
 });
 
 container.innerHTML=html;
+
 }
 
 onValue(
 ref(db,"matches"),
+
 snapshot=>{
+
 const data=snapshot.val()||{};
+
 renderMatches(data);
 
 const count=Object.keys(data).length;
+
 message.className="connection-message";
-message.textContent="✓ Firebase connected successfully · "+count+" matches updated";
+message.textContent=
+"✓ Firebase connected successfully · "+
+count+" matches updated";
+
 },
+
 error=>{
+
 console.error("Firebase error:",error);
+
 message.className="connection-message error";
-message.textContent="Firebase connection failed. Please check database permissions.";
+message.textContent=
+"Firebase connection failed. Please check database permissions.";
+
 renderMatches();
+
 }
 );
+
 </script>
 </body>
 </html>
