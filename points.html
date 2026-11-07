@@ -612,77 +612,10 @@
             </tr>
           </thead>
 
-          <tbody>
-            <tr class="hrkings">
-              <td><span class="rank">1</span></td>
-              <td class="team-cell">
-                <span class="team-name">HR KINGS VATKURA</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
-            </tr>
-
-            <tr class="kings">
-              <td><span class="rank">2</span></td>
-              <td class="team-cell">
-                <span class="team-name">VATKURA KINGS</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
-            </tr>
-
-            <tr class="tigers">
-              <td><span class="rank">3</span></td>
-              <td class="team-cell">
-                <span class="team-name">VATKURA TIGERS</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
-            </tr>
-
-            <tr class="stars">
-              <td><span class="rank">4</span></td>
-              <td class="team-cell">
-                <span class="team-name">VATKURA STARS</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
-            </tr>
-
-            <tr class="fire">
-              <td><span class="rank">5</span></td>
-              <td class="team-cell">
-                <span class="team-name">VATKURA FIRE EIGHT</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
-            </tr>
-
-            <tr class="strikers">
-              <td><span class="rank">6</span></td>
-              <td class="team-cell">
-                <span class="team-name">VATKURA STRIKERS</span>
-              </td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td class="points">0</td>
-              <td class="nrr">—</td>
+          <!-- Firebase will automatically fill this table -->
+          <tbody id="pointsBody">
+            <tr>
+              <td colspan="7">Loading...</td>
             </tr>
           </tbody>
         </table>
@@ -748,6 +681,242 @@
       </a>
     </p>
   </footer>
+
+  <!-- POINTS TABLE FIREBASE SYSTEM -->
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getDatabase,
+      ref,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
+      authDomain: "vcl-2026.firebaseapp.com",
+      databaseURL: "https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "vcl-2026",
+      storageBucket: "vcl-2026.firebasestorage.app",
+      messagingSenderId: "339291412613",
+      appId: "1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
+      measurementId: "G-RBXFNT2KG7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const teams = [
+      { name: "VATKURA KINGS", className: "kings" },
+      { name: "VATKURA TIGERS", className: "tigers" },
+      { name: "VATKURA FIRE EIGHT", className: "fire" },
+      { name: "VATKURA STRIKERS", className: "strikers" },
+      { name: "HR KINGS VATKURA", className: "hrkings" },
+      { name: "VATKURA STARS", className: "stars" }
+    ];
+
+    const pointsBody = document.getElementById("pointsBody");
+
+    // Convert cricket overs notation into balls.
+    // Example: 6.5 overs = 41 balls.
+    function getBalls(overs) {
+      if (overs === undefined || overs === null || overs === "") {
+        return null;
+      }
+
+      const value = String(overs).trim();
+      const parts = value.split(".");
+
+      if (parts.length > 2) return null;
+
+      const completedOvers = Number(parts[0]);
+      const extraBalls = parts.length === 2 ? Number(parts[1]) : 0;
+
+      if (
+        !Number.isInteger(completedOvers) ||
+        !Number.isInteger(extraBalls) ||
+        completedOvers < 0 ||
+        completedOvers > 8 ||
+        extraBalls < 0 ||
+        extraBalls > 5 ||
+        (completedOvers === 8 && extraBalls > 0)
+      ) {
+        return null;
+      }
+
+      return completedOvers * 6 + extraBalls;
+    }
+
+    // If a team is all out (7 wickets),
+    // count the full 8 overs for NRR.
+    function getInningsBalls(overs, wickets) {
+      const actualBalls = getBalls(overs);
+
+      if (actualBalls === null) return null;
+
+      if (Number(wickets) >= 7) {
+        return 48;
+      }
+
+      return actualBalls;
+    }
+
+    function calculateStandings(matchData) {
+      const standings = {};
+
+      teams.forEach(team => {
+        standings[team.name] = {
+          ...team,
+          matches: 0,
+          wins: 0,
+          losses: 0,
+          points: 0,
+          runsFor: 0,
+          runsAgainst: 0,
+          ballsFor: 0,
+          ballsAgainst: 0
+        };
+      });
+
+      Object.values(matchData || {}).forEach(match => {
+        if (!match || match.status !== "COMPLETED") return;
+
+        const teamA = String(match.teamA || "").trim().toUpperCase();
+        const teamB = String(match.teamB || "").trim().toUpperCase();
+
+        if (!standings[teamA] || !standings[teamB]) return;
+        if (teamA === teamB) return;
+
+        const runsA = Number(match.teamARuns);
+        const wicketsA = Number(match.teamAWickets);
+        const runsB = Number(match.teamBRuns);
+        const wicketsB = Number(match.teamBWickets);
+
+        const ballsA = getInningsBalls(match.teamAOvers, wicketsA);
+        const ballsB = getInningsBalls(match.teamBOvers, wicketsB);
+
+        if (
+          !Number.isFinite(runsA) ||
+          !Number.isFinite(runsB) ||
+          !Number.isFinite(wicketsA) ||
+          !Number.isFinite(wicketsB) ||
+          ballsA === null ||
+          ballsB === null ||
+          ballsA <= 0 ||
+          ballsB <= 0
+        ) {
+          return;
+        }
+
+        const a = standings[teamA];
+        const b = standings[teamB];
+
+        a.matches++;
+        b.matches++;
+
+        a.runsFor += runsA;
+        a.runsAgainst += runsB;
+        a.ballsFor += ballsA;
+        a.ballsAgainst += ballsB;
+
+        b.runsFor += runsB;
+        b.runsAgainst += runsA;
+        b.ballsFor += ballsB;
+        b.ballsAgainst += ballsA;
+
+        let winner = String(match.winner || "").trim().toUpperCase();
+
+        if (winner !== teamA && winner !== teamB) {
+          if (runsA > runsB) {
+            winner = teamA;
+          } else if (runsB > runsA) {
+            winner = teamB;
+          } else {
+            winner = "";
+          }
+        }
+
+        if (winner === teamA) {
+          a.wins++;
+          a.points += 2;
+          b.losses++;
+        } else if (winner === teamB) {
+          b.wins++;
+          b.points += 2;
+          a.losses++;
+        }
+      });
+
+      const result = Object.values(standings).map(team => {
+        const runRateFor = team.ballsFor > 0
+          ? (team.runsFor * 6) / team.ballsFor
+          : 0;
+
+        const runRateAgainst = team.ballsAgainst > 0
+          ? (team.runsAgainst * 6) / team.ballsAgainst
+          : 0;
+
+        return {
+          ...team,
+          nrr: runRateFor - runRateAgainst
+        };
+      });
+
+      // Sort by points first, then NRR.
+      result.sort((a, b) => {
+        if (b.points !== a.points) {
+          return b.points - a.points;
+        }
+
+        return b.nrr - a.nrr;
+      });
+
+      return result;
+    }
+
+    function renderPointsTable(matchData) {
+      const standings = calculateStandings(matchData);
+
+      pointsBody.innerHTML = standings.map((team, index) => {
+        const nrrText = team.matches === 0
+          ? "—"
+          : (team.nrr > 0 ? "+" : "") + team.nrr.toFixed(3);
+
+        return `
+          <tr class="${team.className}">
+            <td><span class="rank">${index + 1}</span></td>
+            <td class="team-cell">
+              <span class="team-name">${team.name}</span>
+            </td>
+            <td>${team.matches}</td>
+            <td>${team.wins}</td>
+            <td>${team.losses}</td>
+            <td class="points">${team.points}</td>
+            <td class="nrr">${nrrText}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Listen for completed matches in Firebase.
+    // The table updates automatically when match results change.
+    onValue(
+      ref(db, "matches"),
+      snapshot => {
+        renderPointsTable(snapshot.val() || {});
+      },
+      error => {
+        console.error("Points table Firebase error:", error);
+
+        pointsBody.innerHTML = `
+          <tr>
+            <td colspan="7">Unable to load points table.</td>
+          </tr>
+        `;
+      }
+    );
+  </script>
 
 </body>
 </html>
