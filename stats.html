@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +49,7 @@ button {
   font-family: inherit;
 }
 
-/* HEADER — SAME AS INDEX.HTML */
+/* HEADER */
 
 .header {
   width: 100%;
@@ -97,7 +96,7 @@ button {
   margin-top: 5px;
 }
 
-/* NAVIGATION — SAME AS INDEX.HTML */
+/* NAVIGATION */
 
 .nav-menu {
   width: 100%;
@@ -313,16 +312,43 @@ main {
   align-items: center;
   gap: 13px;
   padding: 18px 22px;
-  border-bottom: 1px solid #edf0f6;
-  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(24, 33, 59, 0.12);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* TEAM COLORS - SAME AS POINTS TABLE */
+
+.player-row.hrkings {
+  background: linear-gradient(90deg, #e6bd45, #f7df91);
+}
+
+.player-row.kings {
+  background: linear-gradient(90deg, #f08080, #ffb3b3);
+}
+
+.player-row.tigers {
+  background: linear-gradient(90deg, #f59b38, #ffca85);
+}
+
+.player-row.stars {
+  background: linear-gradient(90deg, #62c982, #a8e6b9);
+}
+
+.player-row.fire {
+  background: linear-gradient(90deg, #e87575, #f5aaaa);
+}
+
+.player-row.strikers {
+  background: linear-gradient(90deg, #69aef0, #a9d3ff);
+}
+
+.player-row:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
 }
 
 .player-row:last-child {
   border-bottom: none;
-}
-
-.player-row:hover {
-  background: #f8faff;
 }
 
 .player-rank {
@@ -332,8 +358,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #edf2ff;
-  color: #28559b;
+  background: rgba(255, 255, 255, 0.75);
+  color: #18213b;
   font-size: 16px;
   font-weight: 900;
 }
@@ -361,9 +387,9 @@ main {
 
 .player-team {
   margin-top: 6px;
-  color: var(--muted);
+  color: #26344d;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .player-stat {
@@ -373,19 +399,19 @@ main {
 
 .stat-value {
   display: block;
-  color: var(--blue);
+  color: #18213b;
   font-size: 23px;
   font-weight: 1000;
 }
 
 .wickets-panel .stat-value {
-  color: var(--purple);
+  color: #18213b;
 }
 
 .stat-label {
   display: block;
   margin-top: 4px;
-  color: var(--muted);
+  color: #26344d;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.8px;
@@ -416,7 +442,7 @@ main {
   line-height: 1.8;
 }
 
-/* FOOTER — SAME AS INDEX.HTML */
+/* FOOTER */
 
 .footer {
   width: 100%;
@@ -658,7 +684,7 @@ main {
       >
         <span class="tab-icon">🏏</span>
         <span class="tab-title">MOST RUNS</span>
-        <span class="tab-subtitle">TOP 3 BATTERS</span>
+        <span class="tab-subtitle">TOP 5 BATTERS</span>
       </button>
 
       <button
@@ -671,7 +697,7 @@ main {
       >
         <span class="tab-icon">🎯</span>
         <span class="tab-title">MOST WICKETS</span>
-        <span class="tab-subtitle">TOP 3 BOWLERS</span>
+        <span class="tab-subtitle">TOP 5 BOWLERS</span>
       </button>
 
     </section>
@@ -685,49 +711,11 @@ main {
       aria-labelledby="runsTab"
     >
       <div class="panel-heading">
-        <h2>🏏 TOP 3 RUN SCORERS</h2>
+        <h2>🏏 TOP 5 RUN SCORERS</h2>
         <p>Leading batters of the tournament</p>
       </div>
 
-      <div id="runsList">
-
-        <div class="player-row rank-one">
-          <div class="player-rank">1</div>
-          <div class="player-info">
-            <div class="player-name">Siam (s)</div>
-            <div class="player-team">HR KINGS VATKURA</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">68</span>
-            <span class="stat-label">RUNS</span>
-          </div>
-        </div>
-
-        <div class="player-row rank-two">
-          <div class="player-rank">2</div>
-          <div class="player-info">
-            <div class="player-name">Sohan</div>
-            <div class="player-team">VATKURA KINGS</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">48</span>
-            <span class="stat-label">RUNS</span>
-          </div>
-        </div>
-
-        <div class="player-row rank-three">
-          <div class="player-rank">3</div>
-          <div class="player-info">
-            <div class="player-name">Shuvo (s)</div>
-            <div class="player-team">VATKURA TIGERS</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">16</span>
-            <span class="stat-label">RUNS</span>
-          </div>
-        </div>
-
-      </div>
+      <div id="runsList"></div>
     </section>
 
     <!-- MOST WICKETS -->
@@ -740,49 +728,11 @@ main {
       hidden
     >
       <div class="panel-heading wickets-heading">
-        <h2>🎯 TOP 3 WICKET TAKERS</h2>
+        <h2>🎯 TOP 5 WICKET TAKERS</h2>
         <p>Leading bowlers of the tournament</p>
       </div>
 
-      <div id="wicketsList">
-
-        <div class="player-row rank-one">
-          <div class="player-rank">1</div>
-          <div class="player-info">
-            <div class="player-name">Rahat</div>
-            <div class="player-team">VATKURA STARS</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">5</span>
-            <span class="stat-label">WICKETS</span>
-          </div>
-        </div>
-
-        <div class="player-row rank-two">
-          <div class="player-rank">2</div>
-          <div class="player-info">
-            <div class="player-name">Johirul</div>
-            <div class="player-team">VATKURA KINGS</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">5</span>
-            <span class="stat-label">WICKETS</span>
-          </div>
-        </div>
-
-        <div class="player-row rank-three">
-          <div class="player-rank">3</div>
-          <div class="player-info">
-            <div class="player-name">Shuvo (b)</div>
-            <div class="player-team">VATKURA FIRE EIGHT</div>
-          </div>
-          <div class="player-stat">
-            <span class="stat-value">4</span>
-            <span class="stat-label">WICKETS</span>
-          </div>
-        </div>
-
-      </div>
+      <div id="wicketsList"></div>
     </section>
 
   </div>
@@ -794,7 +744,7 @@ main {
     <br>
     All Rights Reserved · VCL Session 03
     <br>
-    <a href="https://abdurrahim06271970-blip.github.io/my-website/">
+    <a href="https://abdurrahim06271970-blip.github.io/my-website-/">
       Official Website
     </a>
   </p>
@@ -806,7 +756,147 @@ const wicketsTab = document.getElementById("wicketsTab");
 const runsPanel = document.getElementById("runsPanel");
 const wicketsPanel = document.getElementById("wicketsPanel");
 
+const runsList = document.getElementById("runsList");
+const wicketsList = document.getElementById("wicketsList");
+
+/* PLAYER DATA */
+
+const batters = [
+  {
+    name: "Siam (s)",
+    team: "HR KINGS VATKURA",
+    value: 68,
+    teamClass: "hrkings"
+  },
+  {
+    name: "Sohan",
+    team: "VATKURA KINGS",
+    value: 48,
+    teamClass: "kings"
+  },
+  {
+    name: "Shuvo (s)",
+    team: "VATKURA TIGERS",
+    value: 16,
+    teamClass: "tigers"
+  },
+  {
+    name: "Siam",
+    team: "VATKURA STARS",
+    value: 15,
+    teamClass: "stars"
+  },
+  {
+    name: "Majedul",
+    team: "VATKURA FIRE EIGHT",
+    value: 13,
+    teamClass: "fire"
+  }
+];
+
+const bowlers = [
+  {
+    name: "Rahat",
+    team: "VATKURA STARS",
+    value: 5,
+    teamClass: "stars"
+  },
+  {
+    name: "Johirul",
+    team: "VATKURA KINGS",
+    value: 5,
+    teamClass: "kings"
+  },
+  {
+    name: "Shuvo (b)",
+    team: "VATKURA FIRE EIGHT",
+    value: 4,
+    teamClass: "fire"
+  },
+  {
+    name: "Hridoy",
+    team: "HR KINGS VATKURA",
+    value: 2,
+    teamClass: "hrkings"
+  },
+  {
+    name: "Anik",
+    team: "VATKURA FIRE EIGHT",
+    value: 2,
+    teamClass: "fire"
+  }
+];
+
+/* SAFE HTML */
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+/* CREATE PLAYER ROWS */
+
+function renderPlayers(players, type) {
+
+  return players.map((player, index) => {
+
+    const rankClass =
+      index === 1 ? "rank-two" :
+      index === 2 ? "rank-three" : "";
+
+    const label = type === "runs" ? "RUNS" : "WICKETS";
+
+    return `
+      <div class="player-row ${escapeHTML(player.teamClass)} ${rankClass}">
+
+        <div class="player-rank">
+          ${index + 1}
+        </div>
+
+        <div class="player-info">
+
+          <div class="player-name">
+            ${escapeHTML(player.name)}
+          </div>
+
+          <div class="player-team">
+            ${escapeHTML(player.team)}
+          </div>
+
+        </div>
+
+        <div class="player-stat">
+
+          <span class="stat-value">
+            ${escapeHTML(player.value)}
+          </span>
+
+          <span class="stat-label">
+            ${label}
+          </span>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+/* DISPLAY TOP 5 */
+
+runsList.innerHTML = renderPlayers(batters, "runs");
+wicketsList.innerHTML = renderPlayers(bowlers, "wickets");
+
+/* TAB SWITCHING */
+
 function showStats(type) {
+
   const showRuns = type === "runs";
 
   runsPanel.hidden = !showRuns;
