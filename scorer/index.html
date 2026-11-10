@@ -1,1 +1,366 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101d3a">
+<title>VCL 2026 Scoring App</title>
+<style>
+:root{--bg:#eef2f8;--navy:#101d3a;--blue:#2455a4;--green:#0b9665;--red:#d83c4c;--gold:#f3b83f;--white:#fff;--muted:#718096}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,"Noto Sans Bengali",sans-serif;color:#17233d}
+header{background:linear-gradient(120deg,#101d3a,#2455a4,#48318d);color:white;padding:25px 18px 22px;border-radius:0 0 25px 25px}
+header h1{font-size:23px;margin:0 0 8px}
+header p{margin:0;color:#dbe7ff;font-size:13px}
+main{max-width:760px;margin:auto;padding:15px}
+.card{background:white;border-radius:17px;padding:17px;margin:13px 0;box-shadow:0 5px 20px #14264c0d}
+h2{font-size:19px;margin:0 0 15px;color:var(--navy)}
+h3{font-size:15px;margin:12px 0}
+label{display:block;font-size:14px;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:11px;font-size:16px;background:white;color:#17233d}
+textarea{min-height:100px;resize:vertical}
+button{border:0;border-radius:11px;padding:13px 15px;font-weight:bold;font-size:14px;cursor:pointer}
+.primary{background:var(--blue);color:white}
+.success{background:var(--green);color:white}
+.danger{background:var(--red);color:white}
+.light{background:#e9effa;color:#1c3f7b}
+.dark{background:var(--navy);color:white}
+button:disabled{opacity:.4}
+.row{display:flex;gap:9px;flex-wrap:wrap}
+.row>*{flex:1;min-width:100px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.grid button{min-height:57px;font-size:19px}
+.hidden{display:none!important}
+.scorebox{background:linear-gradient(135deg,#101d3a,#2455a4);color:white;border-radius:17px;padding:20px;text-align:center}
+.score{font-size:43px;font-weight:800;margin:8px 0}
+.overs{font-size:15px;color:#dbe7ff}
+.teamline{display:flex;justify-content:space-between;gap:10px;font-weight:bold}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px}
+.stat{background:#ffffff18;border-radius:10px;padding:10px 4px}
+.stat b{display:block;font-size:20px}
+.stat small{font-size:11px;color:#dbe7ff}
+.tabs{display:flex;gap:7px;overflow:auto;padding:5px 0}
+.tabs button{white-space:nowrap;background:#e3eaf7;color:#27416e}
+.tabs button.active{background:var(--navy);color:white}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 6px;border-bottom:1px solid #e5eaf2;text-align:left}
+th{color:#52627b;background:#f6f8fc}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#e8effb;color:#234c91;font-size:12px}
+.ball{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:#e8effb;margin:3px;font-size:12px;font-weight:bold}
+.ball.boundary{background:#d8f7e9;color:#08764d}
+.ball.wicket{background:#ffe0e3;color:#b51d32}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.playerrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #edf0f5}
+footer{text-align:center;padding:20px;color:#8290a6;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>🏏 VATKURA CRICKET LEAGUE 2026</h1>
+<p>VCL SCORING APP · OFFLINE SCORING</p>
+</header>
+<main>
+
+<section id="setup" class="card">
+<h2>🏆 নতুন ম্যাচ তৈরি করুন</h2>
+<label>ম্যাচ নম্বর</label>
+<input id="matchNo" value="01">
+<label>প্রতি ইনিংসে ওভার</label>
+<input id="maxOvers" type="number" min="1" max="50" value="8">
+<label>Team A</label>
+<select id="teamA"></select>
+<label>Team B</label>
+<select id="teamB"></select>
+<label>টস জিতেছে</label>
+<select id="toss"></select>
+<label>টসের সিদ্ধান্ত</label>
+<select id="decision">
+<option value="bat">প্রথমে ব্যাট করবে</option>
+<option value="bowl">প্রথমে ফিল্ডিং করবে</option>
+</select>
+<label>Team A খেলোয়াড়দের নাম (প্রতি লাইনে একজন)</label>
+<textarea id="playersA" placeholder="প্রতি লাইনে একজন খেলোয়াড়ের নাম"></textarea>
+<label>Team B খেলোয়াড়দের নাম (প্রতি লাইনে একজন)</label>
+<textarea id="playersB" placeholder="প্রতি লাইনে একজন খেলোয়াড়ের নাম"></textarea>
+<button class="primary" style="width:100%;margin-top:15px" onclick="startMatch()">ম্যাচ শুরু করুন →</button>
+<p class="note">খেলোয়াড়দের নাম প্রতি লাইনে লিখবে। ম্যাচের তথ্য এই ডিভাইসেই সংরক্ষিত থাকবে।</p>
+</section>
+
+<section id="live" class="hidden">
+<div class="scorebox">
+<div class="teamline"><span id="batTeam">ব্যাটিং দল</span><span id="matchLabel">Match 01</span></div>
+<div class="score" id="totalScore">0/0</div>
+<div class="overs" id="overText">0.0 Overs</div>
+<div class="statgrid">
+<div class="stat"><b id="runRate">0.00</b><small>Run Rate</small></div>
+<div class="stat"><b id="target">—</b><small>Target</small></div>
+<div class="stat"><b id="need">—</b><small>Need Runs</small></div>
+<div class="stat"><b id="needRate">—</b><small>Required RR</small></div>
+</div>
+</div>
+
+<div class="card">
+<div class="teamline"><span id="strikerName">ব্যাটার ১</span><span id="strikerScore">0 (0)</span></div>
+<div class="teamline" style="margin-top:12px"><span id="nonName">ব্যাটার ২</span><span id="nonScore">0 (0)</span></div>
+<div class="playerrow"><span>বোলার</span><b id="bowlerName">—</b></div>
+<div class="playerrow"><span>এই ওভারের রান</span><b id="thisOver">0</b></div>
+</div>
+
+<div class="card">
+<h2>⚡ রান যোগ করুন</h2>
+<div class="grid">
+<button class="light" onclick="scoreRun(0)">0</button>
+<button class="light" onclick="scoreRun(1)">1</button>
+<button class="light" onclick="scoreRun(2)">2</button>
+<button class="light" onclick="scoreRun(3)">3</button>
+<button class="light" onclick="scoreRun(4)">4</button>
+<button class="light" onclick="scoreRun(6)">6</button>
+</div>
+<h3>অতিরিক্ত রান</h3>
+<div class="row">
+<button class="light" onclick="extra('WD')">Wide</button>
+<button class="light" onclick="extra('NB')">No Ball</button>
+<button class="light" onclick="extra('B')">Bye</button>
+<button class="light" onclick="extra('LB')">Leg Bye</button>
+</div>
+<h3>উইকেট</h3>
+<button class="danger" style="width:100%" onclick="wicket()">কোনো ব্যাটার আউট</button>
+<div class="row" style="margin-top:10px">
+<button class="light" onclick="changeBowler()">বোলার পরিবর্তন</button>
+<button class="light" onclick="retireBatter()">ব্যাটার Retire</button>
+</div>
+<div class="row" style="margin-top:10px">
+<button class="light" onclick="undoBall()">↶ Undo Last Ball</button>
+<button class="light" onclick="endInnings()">ইনিংস শেষ</button>
+</div>
+</div>
+
+<div class="card">
+<div class="tabs">
+<button class="active" onclick="showTab('scorecard',this)">Scorecard</button>
+<button onclick="showTab('overs',this)">ওভার</button>
+<button onclick="showTab('history',this)">ম্যাচ তথ্য</button>
+</div>
+<div id="scorecard"></div>
+<div id="overs" class="hidden"></div>
+<div id="history" class="hidden"></div>
+</div>
+<div class="card">
+<button class="success" style="width:100%" onclick="finishMatch()">ম্যাচ সম্পন্ন করুন</button>
+<button class="light" style="width:100%;margin-top:9px" onclick="backToSetup()">নতুন ম্যাচ / Setup</button>
+</div>
+</section>
+
+<section id="result" class="card hidden">
+<h2>🏆 ম্যাচের ফলাফল</h2>
+<div id="resultText"></div>
+<button class="primary" style="width:100%;margin-top:12px" onclick="newMatch()">নতুন ম্যাচ শুরু করুন</button>
+</section>
+
+<section class="card">
+<h2>📊 সংরক্ষিত ম্যাচ</h2>
+<div id="savedMatches">এখনো কোনো ম্যাচ সংরক্ষিত নেই।</div>
+</section>
+
+</main>
+<footer>VATKURA CRICKET LEAGUE 2026 · Offline Scoring</footer>
+
+<script>
+const teams=["VATKURA KINGS","VATKURA TIGERS","VATKURA FIRE EIGHT","VATKURA STRIKERS","HR KINGS VATKURA","VATKURA STARS"];
+const defaultPlayers={
+"VATKURA TIGERS":"HARUN -C\nSHUVO\nABIR\nSUNNY\nSAZZID\nSIAM\nSIFAT\nNAZMUL",
+"VATKURA FIRE EIGHT":"YOUSUF -C\nSHUVO\nANIK\nHASAN\nMAJEDUL\nRABBI\nEFTI\nNUHASH",
+"VATKURA STRIKERS":"SHAPON\nASHIK\nTASBIH\nAHSAN\nNABIL\nNAEEM\nLEON\nYAMIN",
+"VATKURA STARS":"SIAM -C\nRAHAT\nMUNNA\nJOY\nRATUL\nJIHAD\nALIF\nBISHAL"
+};
+let match=null;
+let undoStack=[];
+
+const $=id=>document.getElementById(id);
+teams.forEach(t=>{
+$("teamA").add(new Option(t,t));
+$("teamB").add(new Option(t,t));
+$("toss").add(new Option(t,t));
+});
+$("teamB").selectedIndex=4;
+$("toss").value=teams[0];
+$("playersA").value="PLAYER 1\nPLAYER 2\nPLAYER 3\nPLAYER 4\nPLAYER 5\nPLAYER 6\nPLAYER 7\nPLAYER 8";
+$("playersB").value="PLAYER 1\nPLAYER 2\nPLAYER 3\nPLAYER 4\nPLAYER 5\nPLAYER 6\nPLAYER 7\nPLAYER 8";
+$("teamA").onchange=()=>{$("playersA").value=defaultPlayers[$("teamA").value]||$("playersA").value};
+$("teamB").onchange=()=>{$("playersB").value=defaultPlayers[$("teamB").value]||$("playersB").value};
+
+function players(text){
+return text.split("\n").map(x=>x.trim()).filter(Boolean).map(name=>({name,r:0,b:0,f:0,s:0,out:false,dismissal:"",bowler:""}));
+}
+function startMatch(){
+let a=$("teamA").value,b=$("teamB").value;
+if(a===b)return alert("দুটি আলাদা দল নির্বাচন করো।");
+let pa=players($("playersA").value),pb=players($("playersB").value);
+if(pa.length<2||pb.length<2)return alert("প্রতিটি দলে কমপক্ষে ২ জন খেলোয়াড় লাগবে।");
+let first=$("toss").value===(a)?a:b;
+if($("decision").value==="bowl")first=first===a?b:a;
+let second=first===a?b:a;
+match={
+no:$("matchNo").value,overs:+$("maxOvers").value,
+teams:[a,b],squads:{[a]:pa,[b]:pb},
+innings:[],current:0,first,second,finished:false
+};
+createInnings(first);
+save();
+showLive();
+}
+function createInnings(team){
+let bowl=team===match.first?match.second:match.first;
+let inn={team,opponent:bowl,runs:0,wickets:0,balls:0,batters:match.squads[team].map(p=>({...p})),bowlers:{},striker:0,non:1,bowler:"",events:[],done:false};
+match.innings.push(inn);
+match.current=match.innings.length-1;
+}
+function inn(){return match.innings[match.current]}
+function currentBowler(){
+let i=inn();if(!i.bowler){let name=prompt("প্রথম বোলারের নাম লিখুন");if(!name)return null;i.bowler=name;i.bowlers[name]={r:0,b:0,w:0};}
+return i.bowler;
+}
+function snap(){undoStack.push(JSON.stringify(match));if(undoStack.length>30)undoStack.shift()}
+function save(){localStorage.setItem("vcl_match",JSON.stringify(match));localStorage.setItem("vcl_undo",JSON.stringify(undoStack));renderSaved()}
+function restore(){try{let m=localStorage.getItem("vcl_match");if(m){match=JSON.parse(m);undoStack=JSON.parse(localStorage.getItem("vcl_undo")||"[]");showLive()}}catch(e){}}
+function record(label,legal,teamRuns,batterRuns=0,extraType="",extraRuns=0,dismissed=null){
+let i=inn(),bow=currentBowler();if(!bow)return;
+snap();
+let bat=i.batters[i.striker],bowl=i.bowlers[bow];
+i.runs+=teamRuns;
+if(legal){i.balls++;bat.b++;}
+bat.r+=batterRuns;if(batterRuns===4)bat.f++;if(batterRuns===6)bat.s++;
+if(extraType==="WD"||extraType==="NB"){}else if(extraType==="B"||extraType==="LB"){}
+if(extraType==="WD"||extraType==="NB")bowl.r+=teamRuns;
+else if(extraType==="B"||extraType==="LB"){}
+else bowl.r+=teamRuns;
+if(legal)bowl.b++;
+if(teamRuns%2===1)[i.striker,i.non]=[i.non,i.striker];
+if(dismissed){
+let p=i.batters[dismissed.index];p.out=true;p.dismissal=dismissed.type;p.bowler=bow;
+i.wickets++;
+if(["Bowled","Caught","LBW","Stumped","Hit Wicket","Caught & Bowled"].includes(dismissed.type))bowl.w++;
+if(dismissed.type==="Caught")p.dismissal+=" ("+dismissed.fielder+")";
+if(dismissed.index===i.striker)i.striker=null;else i.non=null;
+}
+i.events.push({label,teamRuns,legal});
+if(legal&&i.balls%6===0){[i.striker,i.non]=[i.non,i.striker];i.bowler="";}
+if(i.wickets>=7||i.balls>=match.overs*6||match.innings.length===2&&i.runs>=match.innings[0].runs+1){i.done=true;}
+save();render();
+if(i.done)alert("ইনিংস শেষ হয়েছে।");
+}
+function scoreRun(r){record(String(r),true,r,r)}
+function extra(type){
+let v=Number(prompt(type==="WD"?"Wide-এর অতিরিক্ত রান?":type==="NB"?"No Ball-এ ব্যাটে কত রান?":type+" কত রান?","0"));
+if(!Number.isFinite(v)||v<0)return;
+if(type==="WD")record("WD+"+v,false,1+v,0,type,v);
+if(type==="NB")record("NB+"+v,false,1+v,v,type,v);
+if(type==="B"||type==="LB")record(type+" "+v,true,v,0,type,v);
+}
+function wicket(){
+let i=inn();if(i.striker===null&&i.non===null)return alert("নতুন ব্যাটার নির্বাচন করা হয়নি।");
+let who=prompt("কাকে আউট করবেন? 1 = Striker, 2 = Non-striker","1");
+let index=who==="2"?i.non:i.striker;if(index===null||index===undefined)return;
+let types=["Bowled","Caught","LBW","Run Out","Stumped","Hit Wicket","Caught & Bowled"];
+let type=prompt("আউটের ধরন লিখুন:\n"+types.join(", "), "Bowled");
+if(!type)return;
+let found=types.find(x=>x.toLowerCase()===type.toLowerCase());if(!found)return alert("আউটের ধরন সঠিক নয়।");
+let fielder="";
+if(found==="Caught")fielder=prompt("ক্যাচ ধরেছেন কে?","")||"অজানা";
+record("W",true,0,0,"",0,{index,type:found,fielder});
+let i2=inn();
+if(!i2.done)replaceBatter(index);
+}
+function replaceBatter(oldIndex){
+let i=inn(),used=[i.striker,i.non].filter(x=>x!==null);
+let available=i.batters.map((p,n)=>({p,n})).filter(x=>!x.p.out&&!used.includes(x.n));
+if(!available.length){i.done=true;save();render();return;}
+let names=available.map((x,n)=>(n+1)+". "+x.p.name).join("\n");
+let choice=Number(prompt("নতুন ব্যাটার নির্বাচন করুন:\n"+names,"1"))-1;
+if(!available[choice])return;
+if(i.striker===null)i.striker=available[choice].n;else i.non=available[choice].n;
+save();render();
+}
+function changeBowler(){let name=prompt("নতুন বোলারের নাম লিখুন");if(!name)return;snap();inn().bowler=name;inn().bowlers[name]??={r:0,b:0,w:0};save();render()}
+function retireBatter(){
+let i=inn(),which=prompt("কাকে Retire করবেন? 1=Striker, 2=Non-striker","1");
+let index=which==="2"?i.non:i.striker;if(index===null)return;
+let reason=prompt("Retired Hurt নাকি Retired Out?","Retired Hurt");if(!reason)return;
+reason=reason.toLowerCase().includes("out")?"Retired Out":"Retired Hurt";
+snap();let p=i.batters[index];p.out=reason==="Retired Out";p.dismissal=reason;
+if(reason==="Retired Out")i.wickets++;
+if(index===i.striker)i.striker=null;else i.non=null;
+save();render();replaceBatter(index);
+}
+function endInnings(){
+let i=inn();if(!confirm("এই ইনিংস শেষ করবেন?"))return;
+snap();i.done=true;
+if(match.innings.length===1){createInnings(match.second);save();showLive();}
+else{save();finishMatch()}
+}
+function undoBall(){
+if(!undoStack.length)return alert("Undo করার মতো বল নেই।");
+match=JSON.parse(undoStack.pop());save();render();
+}
+function render(){
+if(!match)return;
+let i=inn(),bat=i.batters,over=Math.floor(i.balls/6)+"."+(i.balls%6);
+$("batTeam").textContent=i.team;$("matchLabel").textContent="Match "+match.no;
+$("totalScore").textContent=i.runs+"/"+i.wickets;
+$("overText").textContent=over+" / "+match.overs+" Overs";
+$("runRate").textContent=i.balls?(i.runs/(i.balls/6)).toFixed(2):"0.00";
+let s=match.innings.length===2?match.innings[0].runs+1:"—";
+$("target").textContent=s;
+$("need").textContent=match.innings.length===2?Math.max(0,s-i.runs):"—";
+$("needRate").textContent=match.innings.length===2&&i.balls<match.overs*6?((s-i.runs)/((match.overs*6-i.balls)/6)).toFixed(2):"—";
+let striker=bat[i.striker],non=bat[i.non];
+$("strikerName").textContent=striker?striker.name+" *":"—";
+$("strikerScore").textContent=striker?striker.r+" ("+striker.b+")":"—";
+$("nonName").textContent=non?non.name:"—";
+$("nonScore").textContent=non?non.r+" ("+non.b+")":"—";
+$("bowlerName").textContent=i.bowler||"বোলার নির্বাচন হয়নি";
+$("thisOver").textContent=i.events.slice(-6).reduce((a,e)=>a+e.teamRuns,0);
+$("scorecard").innerHTML="<h3>ব্যাটিং স্কোরকার্ড</h3><table><tr><th>ব্যাটার</th><th>R</th><th>B</th><th>4</th><th>6</th><th>Status</th></tr>"+bat.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.r}</td><td>${p.b}</td><td>${p.f}</td><td>${p.s}</td><td>${p.out?esc(p.dismissal):"Not Out"}</td></tr>`).join("")+"</table><h3>বোলিং</h3><table><tr><th>বোলার</th><th>O</th><th>R</th><th>W</th></tr>"+Object.entries(i.bowlers).map(([n,b])=>`<tr><td>${esc(n)}</td><td>${Math.floor(b.b/6)}.${b.b%6}</td><td>${b.r}</td><td>${b.w}</td></tr>`).join("")+"</table>";
+$("overs").innerHTML="<h3>বল বাই বল</h3>"+i.events.map(e=>`<span class="ball ${e.label==="W"?"wicket":e.teamRuns>=4?"boundary":""}">${esc(e.label)}</span>`).join("");
+$("history").innerHTML="<p>ম্যাচ: "+match.no+"</p><p>"+match.first+" বনাম "+match.second+"</p><p>ইনিংস: "+(match.current+1)+"</p><p>মোট বল: "+i.balls+"</p>";
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function showTab(id,btn){
+["scorecard","overs","history"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+}
+function showLive(){
+$("setup").classList.add("hidden");$("result").classList.add("hidden");$("live").classList.remove("hidden");render();
+}
+function backToSetup(){
+if(!confirm("Setup-এ ফিরবেন? চলমান ম্যাচ সংরক্ষিত থাকবে।"))return;
+$("live").classList.add("hidden");$("setup").classList.remove("hidden");
+}
+function finishMatch(){
+if(!match)return;
+if(match.innings.length<2)return alert("দুইটি ইনিংস শেষ করুন।");
+let a=match.innings[0],b=match.innings[1],result;
+if(a.runs>b.runs)result=a.team+" won by "+(a.runs-b.runs)+" runs";
+else if(b.runs>a.runs)result=b.team+" won by "+(7-b.wickets)+" wickets";
+else result="Match Tied";
+match.finished=true;match.result=result;
+let all=JSON.parse(localStorage.getItem("vcl_history")||"[]");
+all.push({no:match.no,teams:match.teams,result,scores:match.innings.map(x=>x.runs+"/"+x.wickets)});
+localStorage.setItem("vcl_history",JSON.stringify(all));
+save();
+$("live").classList.add("hidden");$("result").classList.remove("hidden");
+$("resultText").innerHTML="<h3>"+esc(result)+"</h3><p>"+a.team+": "+a.runs+"/"+a.wickets+"</p><p>"+b.team+": "+b.runs+"/"+b.wickets+"</p>";
+}
+function newMatch(){
+match=null;undoStack=[];localStorage.removeItem("vcl_match");localStorage.removeItem("vcl_undo");
+$("result").classList.add("hidden");$("setup").classList.remove("hidden");renderSaved();
+}
+function renderSaved(){
+let all=JSON.parse(localStorage.getItem("vcl_history")||"[]");
+$("savedMatches").innerHTML=all.length?all.slice().reverse().map(x=>`<div class="playerrow"><span>Match ${esc(x.no)}<br><small>${esc(x.teams.join(" vs "))}</small></span><b>${esc(x.result)}</b></div>`).join(""):"এখনো কোনো ম্যাচ সম্পন্ন হয়নি।";
+}
+restore();renderSaved();
+</script>
+</body>
+</html>
