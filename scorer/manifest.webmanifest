@@ -1,0 +1,11 @@
+{
+  "name": "VCL 2026 Offline Scorer",
+  "short_name": "VCL Scorer",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef2f9",
+  "theme_color": "#142b59",
+  "description": "Vatkura Cricket League 2026 offline scoring app",
+  "icons": []
+}
