@@ -1,883 +1,942 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
-
-  <title>VCL 2026 | Points Table</title>
-  <meta name="description" content="Official VCL 2026 Points Table - Vatkura Cricket League.">
-
-  <style>
-    :root {
-      --blue: #1e3c72;
-      --blue-light: #2a5298;
-      --purple: #6a11cb;
-      --text: #18213b;
-      --muted: #69738b;
-      --border: #e8eaf2;
-      --white: #ffffff;
-      --light-bg: #f7f8fc;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* HEADER */
-
-    .header {
-      width: 100%;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      z-index: 10;
-      box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
-    }
-
-    .brand-row {
-      max-width: 1250px;
-      min-height: 92px;
-      padding: 15px 25px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .brand-logo {
-      width: 65px;
-      height: 65px;
-      object-fit: contain;
-    }
-
-    .brand-text h2 {
-      color: var(--blue);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-    }
-
-    .brand-text p {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2.2px;
-      margin-top: 5px;
-    }
-
-    /* NAVIGATION */
-
-    .nav-menu {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      background: #ffffff;
-      border-top: 1px solid #f0f1f6;
-    }
-
-    .nav-menu a {
-      position: relative;
-      min-width: 0;
-      min-height: 57px;
-      padding: 15px 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      white-space: nowrap;
-      color: #65708a;
-      font-size: clamp(12px, 2vw, 16px);
-      font-weight: 800;
-      transition: all 0.25s ease;
-    }
-
-    .nav-menu a:hover {
-      color: var(--purple);
-      background: #faf9ff;
-    }
-
-    .nav-menu a.active {
-      color: var(--blue);
-      background: linear-gradient(180deg, #ffffff, #f6f7ff);
-    }
-
-    .nav-menu a.active::after {
-      content: "";
-      position: absolute;
-      left: 18%;
-      right: 18%;
-      bottom: 0;
-      height: 3px;
-      border-radius: 5px 5px 0 0;
-      background: linear-gradient(90deg, var(--blue-light), var(--purple));
-    }
-
-    /* MAIN CONTENT */
-
-    main {
-      flex: 1;
-      width: 100%;
-      padding: 22px 16px 45px;
-      background:
-        radial-gradient(
-          ellipse at 50% 5%,
-          rgba(106, 17, 203, 0.035),
-          transparent 48%
-        ),
-        #f7f8fc;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* POINTS TABLE */
-
-    .table-card {
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 5px 22px rgba(25, 43, 77, 0.06);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      text-align: center;
-    }
-
-    thead th {
-      background: #182b4d;
-      color: #ffffff;
-      padding: 16px 8px;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-      border-right: 1px solid rgba(255,255,255,0.12);
-    }
-
-    thead th:last-child { border-right: none; }
-
-    tbody td {
-      padding: 17px 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #18213b;
-      border-bottom: 2px solid #ffffff;
-      border-right: 1px solid rgba(255,255,255,0.65);
-      white-space: nowrap;
-      transition: filter 0.2s ease;
-    }
-
-    tbody td:last-child { border-right: none; }
-
-    tbody tr:last-child td { border-bottom: none; }
-
-    tbody tr:hover td { filter: brightness(0.95); }
-
-    .rank {
-      display: inline-flex;
-      width: 27px;
-      height: 27px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      color: #18213b;
-      border: 1px solid rgba(23,32,51,0.1);
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .team-cell {
-      text-align: left;
-      min-width: 190px;
-    }
-
-    .team-name {
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.2px;
-      color: #18213b;
-    }
-
-    .points {
-      font-size: 14px;
-      font-weight: 900;
-    }
-
-    .nrr {
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    /* HR KINGS VATKURA - CHOCOLATE BROWN #92400E */
-
-    tbody tr.hrkings td {
-      background: linear-gradient(90deg, #C58A5B, #E7C6A8);
-    }
-
-    tbody tr.hrkings {
-      outline: 1px solid #92400E;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA KINGS - ROYAL PURPLE #7C3AED */
-
-    tbody tr.kings td {
-      background: linear-gradient(90deg, #A78BFA, #DDD6FE);
-    }
-
-    tbody tr.kings {
-      outline: 1px solid #7C3AED;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA TIGERS - ORANGE */
-
-    tbody tr.tigers td {
-      background: linear-gradient(90deg, #F59B38, #FFCA85);
-    }
-
-    tbody tr.tigers {
-      outline: 1px solid #ED861E;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA STARS - GREEN */
-
-    tbody tr.stars td {
-      background: linear-gradient(90deg, #62C982, #A8E6B9);
-    }
-
-    tbody tr.stars {
-      outline: 1px solid #239447;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA FIRE EIGHT - RED */
-
-    tbody tr.fire td {
-      background: linear-gradient(90deg, #E87575, #F5AAAA);
-    }
-
-    tbody tr.fire {
-      outline: 1px solid #B91C1C;
-      outline-offset: -1px;
-    }
-
-    /* VATKURA STRIKERS - BLUE */
-
-    tbody tr.strikers td {
-      background: linear-gradient(90deg, #69AEF0, #A9D3FF);
-    }
-
-    tbody tr.strikers {
-      outline: 1px solid #2474D2;
-      outline-offset: -1px;
-    }
-
-    /* TEAM COLOR LEGEND */
-
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px 18px;
-      padding: 18px 12px;
-      background: #ffffff;
-      border-top: 1px solid #e5e9f2;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #536078;
-    }
-
-    .legend-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 4px;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    .legend-hrkings { background: #92400E; }
-    .legend-kings { background: #7C3AED; }
-    .legend-orange { background: #ED861E; }
-    .legend-green { background: #239447; }
-    .legend-fire { background: #B91C1C; }
-    .legend-blue { background: #2474D2; }
-
-    /* RULES */
-
-    .rules-box {
-      background: linear-gradient(135deg, #f0f5ff, #f6efff);
-      border: 1px solid #e4def7;
-      border-left: 4px solid var(--purple);
-      padding: 15px 17px;
-      border-radius: 12px;
-      margin-top: 20px;
-      font-size: 13px;
-      line-height: 1.9;
-      color: #34415e;
-    }
-
-    .rules-box strong { color: #5424a8; }
-
-    /* FOOTER */
-
-    .footer {
-      width: 100%;
-      padding: 24px 16px;
-      text-align: center;
-      background: #fafbfe;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer p {
-      color: #8991a5;
-      font-size: 11px;
-      line-height: 1.9;
-      letter-spacing: 0.4px;
-    }
-
-    .footer strong { color: var(--blue); }
-
-    .footer a {
-      color: var(--purple);
-      font-weight: 700;
-    }
-
-    /* TABLET */
-
-    @media (max-width: 700px) {
-      .brand-row {
-        min-height: 80px;
-        padding: 12px;
-      }
-
-      .brand-logo {
-        width: 55px;
-        height: 55px;
-      }
-
-      .brand-text h2 { font-size: 21px; }
-
-      .nav-menu a {
-        min-height: 52px;
-        font-size: 13px;
-      }
-
-      main { padding: 18px 12px 40px; }
-
-      .team-cell { min-width: 145px; }
-
-      thead th {
-        padding: 14px 6px;
-        font-size: 10px;
-      }
-
-      tbody td {
-        padding: 15px 5px;
-        font-size: 11px;
-      }
-
-      .team-name { font-size: 11px; }
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 400px) {
-      .brand-logo {
-        width: 48px;
-        height: 48px;
-      }
-
-      .brand-text h2 { font-size: 18px; }
-
-      .brand-text p {
-        font-size: 8px;
-        letter-spacing: 1.5px;
-      }
-
-      .brand { gap: 10px; }
-
-      .nav-menu a {
-        min-height: 49px;
-        padding: 12px 1px;
-        font-size: 11px;
-        font-weight: 800;
-      }
-
-      .nav-menu a.active::after {
-        left: 12%;
-        right: 12%;
-      }
-
-      main { padding: 12px 7px 32px; }
-
-      .table-card { border-radius: 14px; }
-
-      thead th {
-        padding: 12px 3px;
-        font-size: 9px;
-      }
-
-      tbody td {
-        padding: 14px 3px;
-        font-size: 10px;
-      }
-
-      .team-cell { min-width: 125px; }
-
-      .team-name {
-        font-size: 10px;
-        white-space: normal;
-        line-height: 1.4;
-      }
-
-      .rank {
-        width: 23px;
-        height: 23px;
-        font-size: 10px;
-      }
-
-      .points { font-size: 11px; }
-      .nrr { font-size: 9px; }
-
-      .legend {
-        gap: 10px 12px;
-        padding: 15px 7px;
-      }
-
-      .legend-item { font-size: 10px; }
-
-      .rules-box {
-        font-size: 11px;
-        padding: 12px;
-      }
-    }
-
-    @media (max-width: 340px) {
-      .team-cell { min-width: 112px; }
-
-      thead th {
-        font-size: 8px;
-        padding: 10px 2px;
-      }
-
-      tbody td {
-        font-size: 9px;
-        padding: 12px 2px;
-      }
-
-      .team-name { font-size: 9px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+
+<title>VCL 2026 | Points Table</title>
+<meta name="description" content="Official VCL 2026 Points Table - Vatkura Cricket League.">
+
+<style>
+:root {
+  --blue: #1e3c72;
+  --blue-light: #2a5298;
+  --purple: #6a11cb;
+  --text: #18213b;
+  --muted: #69738b;
+  --border: #e8eaf2;
+  --white: #ffffff;
+  --light-bg: #f7f8fc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* HEADER */
+
+.header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 15px rgba(30, 60, 114, 0.035);
+}
+
+.brand-row {
+  max-width: 1250px;
+  min-height: 92px;
+  padding: 15px 25px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-logo {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.brand-text h2 {
+  color: var(--blue);
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.brand-text p {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2.2px;
+  margin-top: 5px;
+}
+
+/* NAVIGATION */
+
+.nav-menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: #ffffff;
+  border-top: 1px solid #f0f1f6;
+}
+
+.nav-menu a {
+  position: relative;
+  min-width: 0;
+  min-height: 57px;
+  padding: 15px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  color: #65708a;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 800;
+  transition: all 0.25s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--purple);
+  background: #faf9ff;
+}
+
+.nav-menu a.active {
+  color: var(--blue);
+  background: linear-gradient(180deg, #ffffff, #f6f7ff);
+}
+
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 3px;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(90deg, var(--blue-light), var(--purple));
+}
+
+/* MAIN CONTENT */
+
+main {
+  flex: 1;
+  width: 100%;
+  padding: 22px 16px 45px;
+  background:
+    radial-gradient(
+      ellipse at 50% 5%,
+      rgba(106, 17, 203, 0.035),
+      transparent 48%
+    ),
+    #f7f8fc;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* POINTS TABLE */
+
+.table-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px rgba(25, 43, 77, 0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: center;
+}
+
+thead th {
+  background: linear-gradient(135deg, #142542, #243e68, #182b4d);
+  color: #ffffff;
+  padding: 16px 8px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 1px rgba(255,255,255,0.12);
+}
+
+thead th:last-child { border-right: none; }
+
+tbody td {
+  padding: 17px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #18213b;
+  border-bottom: 3px solid #ffffff;
+  border-right: 1px solid rgba(255,255,255,0.55);
+  white-space: nowrap;
+  transition: filter 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.42),
+    inset 0 -2px 3px rgba(30,40,60,0.07);
+}
+
+tbody td:last-child { border-right: none; }
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody tr:hover td {
+  filter: brightness(1.09) saturate(1.12);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.65),
+    inset 0 -3px 5px rgba(30,40,60,0.09);
+}
+
+.rank {
+  display: inline-flex;
+  width: 27px;
+  height: 27px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #e9edf5);
+  color: #18213b;
+  border: 1px solid rgba(23,32,51,0.12);
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow:
+    0 2px 5px rgba(0,0,0,0.13),
+    inset 0 1px 2px rgba(255,255,255,0.95);
+}
+
+.team-cell {
+  text-align: left;
+  min-width: 190px;
+}
+
+.team-name {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  color: #18213b;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+}
+
+.points {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.nrr {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* PREMIUM TEAM COLORS */
+
+/* HR KINGS VATKURA - CHOCOLATE BROWN */
+
+tbody tr.hrkings td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.34) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.13) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #88400F 0%, #B66B35 35%, #D49A68 68%, #E9C5A1 100%);
+}
+
+tbody tr.hrkings {
+  outline: 1px solid #92400E;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(146,64,14,0.24);
+}
+
+/* VATKURA KINGS - ROYAL PURPLE */
+
+tbody tr.kings td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.35) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.14) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #5520B5 0%, #793DE0 35%, #A78BFA 68%, #DDD6FE 100%);
+}
+
+tbody tr.kings {
+  outline: 1px solid #7C3AED;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(124,58,237,0.25);
+}
+
+/* VATKURA TIGERS - ORANGE GOLD */
+
+tbody tr.tigers td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.34) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.14) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #B94D08 0%, #E87913 35%, #F9A94B 68%, #FFDAA0 100%);
+}
+
+tbody tr.tigers {
+  outline: 1px solid #ED861E;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(237,134,30,0.25);
+}
+
+/* VATKURA STARS - EMERALD GREEN */
+
+tbody tr.stars td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.34) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.14) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #08632C 0%, #159447 35%, #59C47C 68%, #B9F0C9 100%);
+}
+
+tbody tr.stars {
+  outline: 1px solid #239447;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(35,148,71,0.25);
+}
+
+/* VATKURA FIRE EIGHT - RUBY RED */
+
+tbody tr.fire td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.34) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.14) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #8F101B 0%, #C92331 35%, #EB777F 68%, #F8C0C4 100%);
+}
+
+tbody tr.fire {
+  outline: 1px solid #B91C1C;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(185,28,28,0.25);
+}
+
+/* VATKURA STRIKERS - ELECTRIC BLUE */
+
+tbody tr.strikers td {
+  background:
+    linear-gradient(
+      115deg,
+      rgba(255,255,255,0.35) 0%,
+      transparent 35%,
+      rgba(255,255,255,0.14) 58%,
+      transparent 78%
+    ),
+    linear-gradient(110deg, #104A9C 0%, #2474D2 35%, #69AEF0 68%, #C1E2FF 100%);
+}
+
+tbody tr.strikers {
+  outline: 1px solid #2474D2;
+  outline-offset: -1px;
+  box-shadow: 0 3px 13px rgba(36,116,210,0.25);
+}
+
+/* TEAM COLOR LEGEND */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 18px;
+  padding: 18px 12px;
+  background: #ffffff;
+  border-top: 1px solid #e5e9f2;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #536078;
+}
+
+.legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 4px;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow:
+    0 2px 5px rgba(0,0,0,0.18),
+    inset 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.legend-hrkings { background: linear-gradient(135deg, #88400F, #E9C5A1); }
+.legend-kings { background: linear-gradient(135deg, #5520B5, #DDD6FE); }
+.legend-orange { background: linear-gradient(135deg, #B94D08, #FFDAA0); }
+.legend-green { background: linear-gradient(135deg, #08632C, #B9F0C9); }
+.legend-fire { background: linear-gradient(135deg, #8F101B, #F8C0C4); }
+.legend-blue { background: linear-gradient(135deg, #104A9C, #C1E2FF); }
+
+/* RULES */
+
+.rules-box {
+  background: linear-gradient(135deg, #f0f5ff, #f6efff);
+  border: 1px solid #e4def7;
+  border-left: 4px solid var(--purple);
+  padding: 15px 17px;
+  border-radius: 12px;
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #34415e;
+  box-shadow: 0 4px 15px rgba(106,17,203,0.05);
+}
+
+.rules-box strong { color: #5424a8; }
+
+/* FOOTER */
+
+.footer {
+  width: 100%;
+  padding: 24px 16px;
+  text-align: center;
+  background: #fafbfe;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  color: #8991a5;
+  font-size: 11px;
+  line-height: 1.9;
+  letter-spacing: 0.4px;
+}
+
+.footer strong { color: var(--blue); }
+
+.footer a {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+/* TABLET */
+
+@media (max-width: 700px) {
+  .brand-row {
+    min-height: 80px;
+    padding: 12px;
+  }
+
+  .brand-logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .brand-text h2 { font-size: 21px; }
+
+  .nav-menu a {
+    min-height: 52px;
+    font-size: 13px;
+  }
+
+  main { padding: 18px 12px 40px; }
+
+  .team-cell { min-width: 145px; }
+
+  thead th {
+    padding: 14px 6px;
+    font-size: 10px;
+  }
+
+  tbody td {
+    padding: 15px 5px;
+    font-size: 11px;
+  }
+
+  .team-name { font-size: 11px; }
+}
+
+/* MOBILE */
+
+@media (max-width: 400px) {
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h2 { font-size: 18px; }
+
+  .brand-text p {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .brand { gap: 10px; }
+
+  .nav-menu a {
+    min-height: 49px;
+    padding: 12px 1px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .nav-menu a.active::after {
+    left: 12%;
+    right: 12%;
+  }
+
+  main { padding: 12px 7px 32px; }
+
+  .table-card { border-radius: 14px; }
+
+  thead th {
+    padding: 12px 3px;
+    font-size: 9px;
+  }
+
+  tbody td {
+    padding: 14px 3px;
+    font-size: 10px;
+  }
+
+  .team-cell { min-width: 125px; }
+
+  .team-name {
+    font-size: 10px;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .rank {
+    width: 23px;
+    height: 23px;
+    font-size: 10px;
+  }
+
+  .points { font-size: 11px; }
+  .nrr { font-size: 9px; }
+
+  .legend {
+    gap: 10px 12px;
+    padding: 15px 7px;
+  }
+
+  .legend-item { font-size: 10px; }
+
+  .rules-box {
+    font-size: 11px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .team-cell { min-width: 112px; }
+
+  thead th {
+    font-size: 8px;
+    padding: 10px 2px;
+  }
+
+  tbody td {
+    font-size: 9px;
+    padding: 12px 2px;
+  }
+
+  .team-name { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
+<header class="header">
+  <div class="brand-row">
+    <a href="index.html" class="brand">
+      <img
+        src="file_00000000fafc7208bb91a6123810609b.png"
+        alt="VCL Logo"
+        class="brand-logo"
+      >
 
-  <header class="header">
-    <div class="brand-row">
-      <a href="index.html" class="brand">
-        <img
-          src="file_00000000fafc7208bb91a6123810609b.png"
-          alt="VCL Logo"
-          class="brand-logo"
-        >
-
-        <div class="brand-text">
-          <h2>VCL 2026</h2>
-          <p>VATKURA CRICKET LEAGUE</p>
-        </div>
-      </a>
-    </div>
-
-    <nav class="nav-menu" aria-label="Main Navigation">
-      <a href="index.html">Home</a>
-      <a href="fixtures.html">Fixtures</a>
-      <a href="points.html" class="active">Points Table</a>
-      <a href="squad.html">Teams</a>
-      <a href="stats.html">Stats</a>
-    </nav>
-  </header>
-
-  <!-- POINTS TABLE -->
-
-  <main>
-    <div class="container">
-
-      <section class="table-card">
-        <table>
-          <thead>
-            <tr>
-              <th>POS</th>
-              <th style="text-align:left;">TEAM</th>
-              <th>M</th>
-              <th>W</th>
-              <th>L</th>
-              <th>PTS</th>
-              <th>NRR</th>
-            </tr>
-          </thead>
-
-          <tbody id="pointsBody">
-            <tr>
-              <td colspan="7">Loading...</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- TEAM COLOR LEGEND -->
-
-        <div class="legend">
-
-          <div class="legend-item">
-            <span class="legend-dot legend-hrkings"></span>
-            HR Kings
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-dot legend-kings"></span>
-            Vatkura Kings
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-dot legend-orange"></span>
-            Tigers
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-dot legend-green"></span>
-            Stars
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-dot legend-fire"></span>
-            Fire Eight
-          </div>
-
-          <div class="legend-item">
-            <span class="legend-dot legend-blue"></span>
-            Strikers
-          </div>
-
-        </div>
-      </section>
-
-      <!-- RULES -->
-
-      <div class="rules-box">
-        <strong>QUALIFICATION:</strong>
-        Top 4 teams advance to the Semifinals.
-        <br>
-        <strong>POINTS:</strong>
-        Win = 2 | Loss = 0
+      <div class="brand-text">
+        <h2>VCL 2026</h2>
+        <p>VATKURA CRICKET LEAGUE</p>
       </div>
+    </a>
+  </div>
 
-    </div>
-  </main>
+  <nav class="nav-menu" aria-label="Main Navigation">
+    <a href="index.html">Home</a>
+    <a href="fixtures.html">Fixtures</a>
+    <a href="points.html" class="active">Points Table</a>
+    <a href="squad.html">Teams</a>
+    <a href="stats.html">Stats</a>
+  </nav>
+</header>
 
-  <!-- FOOTER -->
+<main>
+  <div class="container">
 
-  <footer class="footer">
-    <p>
-      © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
-      <br>
-      All Rights Reserved · VCL Session 03
-      <br>
-      <a href="https://abdurrahim06271970-blip.github.io/my-website/">
-        Official Website
-      </a>
-    </p>
-  </footer>
-
-  <!-- FIREBASE POINTS TABLE SYSTEM -->
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-    import {
-      getDatabase,
-      ref,
-      onValue
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
-      authDomain: "vcl-2026.firebaseapp.com",
-      databaseURL: "https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "vcl-2026",
-      storageBucket: "vcl-2026.firebasestorage.app",
-      messagingSenderId: "339291412613",
-      appId: "1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
-      measurementId: "G-RBXFNT2KG7"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    const teams = [
-      { name: "VATKURA KINGS", className: "kings" },
-      { name: "VATKURA TIGERS", className: "tigers" },
-      { name: "VATKURA FIRE EIGHT", className: "fire" },
-      { name: "VATKURA STRIKERS", className: "strikers" },
-      { name: "HR KINGS VATKURA", className: "hrkings" },
-      { name: "VATKURA STARS", className: "stars" }
-    ];
-
-    const pointsBody = document.getElementById("pointsBody");
-
-    // Convert cricket overs into actual balls.
-    // Example: 6.5 overs = 41 balls.
-    // Example: 2.3 overs = 15 balls.
-
-    function getBalls(overs) {
-      if (overs === undefined || overs === null || overs === "") {
-        return null;
-      }
-
-      const value = String(overs).trim();
-      const parts = value.split(".");
-
-      if (parts.length > 2) return null;
-
-      const completedOvers = Number(parts[0]);
-      const extraBalls = parts.length === 2 ? Number(parts[1]) : 0;
-
-      if (
-        !Number.isInteger(completedOvers) ||
-        !Number.isInteger(extraBalls) ||
-        completedOvers < 0 ||
-        completedOvers > 8 ||
-        extraBalls < 0 ||
-        extraBalls > 5 ||
-        (completedOvers === 8 && extraBalls > 0)
-      ) {
-        return null;
-      }
-
-      return completedOvers * 6 + extraBalls;
-    }
-
-    // If a team is all out (7 wickets),
-    // count the full 8 overs for NRR.
-
-    function getInningsBalls(overs, wickets) {
-      const actualBalls = getBalls(overs);
-
-      if (actualBalls === null) return null;
-
-      if (Number(wickets) >= 7) {
-        return 48;
-      }
-
-      return actualBalls;
-    }
-
-    function calculateStandings(matchData) {
-      const standings = {};
-
-      teams.forEach(team => {
-        standings[team.name] = {
-          ...team,
-          matches: 0,
-          wins: 0,
-          losses: 0,
-          points: 0,
-          runsFor: 0,
-          runsAgainst: 0,
-          ballsFor: 0,
-          ballsAgainst: 0
-        };
-      });
-
-      Object.values(matchData || {}).forEach(match => {
-        if (!match || match.status !== "COMPLETED") return;
-
-        const teamA = String(match.teamA || "").trim().toUpperCase();
-        const teamB = String(match.teamB || "").trim().toUpperCase();
-
-        if (!standings[teamA] || !standings[teamB]) return;
-        if (teamA === teamB) return;
-
-        const runsA = Number(match.teamARuns);
-        const wicketsA = Number(match.teamAWickets);
-        const runsB = Number(match.teamBRuns);
-        const wicketsB = Number(match.teamBWickets);
-
-        const ballsA = getInningsBalls(match.teamAOvers, wicketsA);
-        const ballsB = getInningsBalls(match.teamBOvers, wicketsB);
-
-        if (
-          !Number.isFinite(runsA) ||
-          !Number.isFinite(runsB) ||
-          !Number.isFinite(wicketsA) ||
-          !Number.isFinite(wicketsB) ||
-          ballsA === null ||
-          ballsB === null ||
-          ballsA <= 0 ||
-          ballsB <= 0
-        ) {
-          return;
-        }
-
-        const a = standings[teamA];
-        const b = standings[teamB];
-
-        a.matches++;
-        b.matches++;
-
-        a.runsFor += runsA;
-        a.runsAgainst += runsB;
-        a.ballsFor += ballsA;
-        a.ballsAgainst += ballsB;
-
-        b.runsFor += runsB;
-        b.runsAgainst += runsA;
-        b.ballsFor += ballsB;
-        b.ballsAgainst += ballsA;
-
-        let winner = String(match.winner || "").trim().toUpperCase();
-
-        if (winner !== teamA && winner !== teamB) {
-          if (runsA > runsB) {
-            winner = teamA;
-          } else if (runsB > runsA) {
-            winner = teamB;
-          } else {
-            winner = "";
-          }
-        }
-
-        if (winner === teamA) {
-          a.wins++;
-          a.points += 2;
-          b.losses++;
-        } else if (winner === teamB) {
-          b.wins++;
-          b.points += 2;
-          a.losses++;
-        }
-      });
-
-      const result = Object.values(standings).map(team => {
-        const runRateFor = team.ballsFor > 0
-          ? (team.runsFor * 6) / team.ballsFor
-          : 0;
-
-        const runRateAgainst = team.ballsAgainst > 0
-          ? (team.runsAgainst * 6) / team.ballsAgainst
-          : 0;
-
-        return {
-          ...team,
-          nrr: runRateFor - runRateAgainst
-        };
-      });
-
-      // Sort by points first, then NRR.
-
-      result.sort((a, b) => {
-        if (b.points !== a.points) {
-          return b.points - a.points;
-        }
-
-        return b.nrr - a.nrr;
-      });
-
-      return result;
-    }
-
-    function renderPointsTable(matchData) {
-      const standings = calculateStandings(matchData);
-
-      pointsBody.innerHTML = standings.map((team, index) => {
-        const nrrText = team.matches === 0
-          ? "—"
-          : (team.nrr > 0 ? "+" : "") + team.nrr.toFixed(3);
-
-        return `
-          <tr class="${team.className}">
-            <td><span class="rank">${index + 1}</span></td>
-            <td class="team-cell">
-              <span class="team-name">${team.name}</span>
-            </td>
-            <td>${team.matches}</td>
-            <td>${team.wins}</td>
-            <td>${team.losses}</td>
-            <td class="points">${team.points}</td>
-            <td class="nrr">${nrrText}</td>
-          </tr>
-        `;
-      }).join("");
-    }
-
-    // Automatically update the table from Firebase.
-
-    onValue(
-      ref(db, "matches"),
-      snapshot => {
-        renderPointsTable(snapshot.val() || {});
-      },
-      error => {
-        console.error("Points table Firebase error:", error);
-
-        pointsBody.innerHTML = `
+    <section class="table-card">
+      <table>
+        <thead>
           <tr>
-            <td colspan="7">Unable to load points table.</td>
+            <th>POS</th>
+            <th style="text-align:left;">TEAM</th>
+            <th>M</th>
+            <th>W</th>
+            <th>L</th>
+            <th>PTS</th>
+            <th>NRR</th>
           </tr>
-        `;
+        </thead>
+
+        <tbody id="pointsBody">
+          <tr>
+            <td colspan="7">Loading...</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="legend">
+
+        <div class="legend-item">
+          <span class="legend-dot legend-hrkings"></span>
+          HR Kings
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-kings"></span>
+          Vatkura Kings
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-orange"></span>
+          Tigers
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-green"></span>
+          Stars
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-fire"></span>
+          Fire Eight
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot legend-blue"></span>
+          Strikers
+        </div>
+
+      </div>
+    </section>
+
+    <div class="rules-box">
+      <strong>QUALIFICATION:</strong>
+      Top 4 teams advance to the Semifinals.
+      <br>
+      <strong>POINTS:</strong>
+      Win = 2 | Loss = 0
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>
+    © 2026 <strong>VATKURA CRICKET LEAGUE</strong>
+    <br>
+    All Rights Reserved · VCL Session 03
+    <br>
+    <a href="https://abdurrahim06271970-blip.github.io/my-website/">
+      Official Website
+    </a>
+  </p>
+</footer>
+
+<!-- FIREBASE POINTS TABLE SYSTEM -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC2EG2Nm_04HbUjafTtL3IKq3GG9feb5RM",
+  authDomain: "vcl-2026.firebaseapp.com",
+  databaseURL: "https://vcl-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "vcl-2026",
+  storageBucket: "vcl-2026.firebasestorage.app",
+  messagingSenderId: "339291412613",
+  appId: "1:339291412613:web:f9d0c0a8517c2a5bb8b1ec",
+  measurementId: "G-RBXFNT2KG7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const teams = [
+  { name: "VATKURA KINGS", className: "kings" },
+  { name: "VATKURA TIGERS", className: "tigers" },
+  { name: "VATKURA FIRE EIGHT", className: "fire" },
+  { name: "VATKURA STRIKERS", className: "strikers" },
+  { name: "HR KINGS VATKURA", className: "hrkings" },
+  { name: "VATKURA STARS", className: "stars" }
+];
+
+const pointsBody = document.getElementById("pointsBody");
+
+/* Convert cricket overs into actual balls. */
+
+function getBalls(overs) {
+  if (overs === undefined || overs === null || overs === "") {
+    return null;
+  }
+
+  const value = String(overs).trim();
+  const parts = value.split(".");
+
+  if (parts.length > 2) return null;
+
+  const completedOvers = Number(parts[0]);
+  const extraBalls = parts.length === 2 ? Number(parts[1]) : 0;
+
+  if (
+    !Number.isInteger(completedOvers) ||
+    !Number.isInteger(extraBalls) ||
+    completedOvers < 0 ||
+    completedOvers > 8 ||
+    extraBalls < 0 ||
+    extraBalls > 5 ||
+    (completedOvers === 8 && extraBalls > 0)
+  ) {
+    return null;
+  }
+
+  return completedOvers * 6 + extraBalls;
+}
+
+/* All out at 7 wickets = full 8 overs for NRR. */
+
+function getInningsBalls(overs, wickets) {
+  const actualBalls = getBalls(overs);
+
+  if (actualBalls === null) return null;
+
+  if (Number(wickets) >= 7) {
+    return 48;
+  }
+
+  return actualBalls;
+}
+
+function calculateStandings(matchData) {
+  const standings = {};
+
+  teams.forEach(team => {
+    standings[team.name] = {
+      ...team,
+      matches: 0,
+      wins: 0,
+      losses: 0,
+      points: 0,
+      runsFor: 0,
+      runsAgainst: 0,
+      ballsFor: 0,
+      ballsAgainst: 0
+    };
+  });
+
+  Object.values(matchData || {}).forEach(match => {
+    if (!match || match.status !== "COMPLETED") return;
+
+    const teamA = String(match.teamA || "").trim().toUpperCase();
+    const teamB = String(match.teamB || "").trim().toUpperCase();
+
+    if (!standings[teamA] || !standings[teamB]) return;
+    if (teamA === teamB) return;
+
+    const runsA = Number(match.teamARuns);
+    const wicketsA = Number(match.teamAWickets);
+    const runsB = Number(match.teamBRuns);
+    const wicketsB = Number(match.teamBWickets);
+
+    const ballsA = getInningsBalls(match.teamAOvers, wicketsA);
+    const ballsB = getInningsBalls(match.teamBOvers, wicketsB);
+
+    if (
+      !Number.isFinite(runsA) ||
+      !Number.isFinite(runsB) ||
+      !Number.isFinite(wicketsA) ||
+      !Number.isFinite(wicketsB) ||
+      ballsA === null ||
+      ballsB === null ||
+      ballsA <= 0 ||
+      ballsB <= 0
+    ) {
+      return;
+    }
+
+    const a = standings[teamA];
+    const b = standings[teamB];
+
+    a.matches++;
+    b.matches++;
+
+    a.runsFor += runsA;
+    a.runsAgainst += runsB;
+    a.ballsFor += ballsA;
+    a.ballsAgainst += ballsB;
+
+    b.runsFor += runsB;
+    b.runsAgainst += runsA;
+    b.ballsFor += ballsB;
+    b.ballsAgainst += ballsA;
+
+    let winner = String(match.winner || "").trim().toUpperCase();
+
+    if (winner !== teamA && winner !== teamB) {
+      if (runsA > runsB) {
+        winner = teamA;
+      } else if (runsB > runsA) {
+        winner = teamB;
+      } else {
+        winner = "";
       }
-    );
-  </script>
+    }
+
+    if (winner === teamA) {
+      a.wins++;
+      a.points += 2;
+      b.losses++;
+    } else if (winner === teamB) {
+      b.wins++;
+      b.points += 2;
+      a.losses++;
+    }
+  });
+
+  const result = Object.values(standings).map(team => {
+    const runRateFor = team.ballsFor > 0
+      ? (team.runsFor * 6) / team.ballsFor
+      : 0;
+
+    const runRateAgainst = team.ballsAgainst > 0
+      ? (team.runsAgainst * 6) / team.ballsAgainst
+      : 0;
+
+    return {
+      ...team,
+      nrr: runRateFor - runRateAgainst
+    };
+  });
+
+  result.sort((a, b) => {
+    if (b.points !== a.points) {
+      return b.points - a.points;
+    }
+
+    return b.nrr - a.nrr;
+  });
+
+  return result;
+}
+
+function renderPointsTable(matchData) {
+  const standings = calculateStandings(matchData);
+
+  pointsBody.innerHTML = standings.map((team, index) => {
+    const nrrText = team.matches === 0
+      ? "—"
+      : (team.nrr > 0 ? "+" : "") + team.nrr.toFixed(3);
+
+    return `
+      <tr class="${team.className}">
+        <td><span class="rank">${index + 1}</span></td>
+        <td class="team-cell">
+          <span class="team-name">${team.name}</span>
+        </td>
+        <td>${team.matches}</td>
+        <td>${team.wins}</td>
+        <td>${team.losses}</td>
+        <td class="points">${team.points}</td>
+        <td class="nrr">${nrrText}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+/* Automatically update from Firebase. */
+
+onValue(
+  ref(db, "matches"),
+  snapshot => {
+    renderPointsTable(snapshot.val() || {});
+  },
+  error => {
+    console.error("Points table Firebase error:", error);
+
+    pointsBody.innerHTML = `
+      <tr>
+        <td colspan="7">Unable to load points table.</td>
+      </tr>
+    `;
+  }
+);
+</script>
 
 </body>
 </html>
