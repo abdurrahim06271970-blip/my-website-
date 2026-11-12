@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +26,7 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -45,7 +42,7 @@
       text-decoration: none;
     }
 
-    /* HEADER - SAME AS HOME PAGE */
+    /* HEADER */
 
     .header {
       width: 100%;
@@ -92,7 +89,7 @@
       margin-top: 5px;
     }
 
-    /* NAVIGATION - SAME AS HOME PAGE */
+    /* NAVIGATION */
 
     .nav-menu {
       width: 100%;
@@ -160,7 +157,7 @@
       margin: 0 auto;
     }
 
-    /* POINTS TABLE CARD */
+    /* POINTS TABLE */
 
     .table-card {
       width: 100%;
@@ -188,9 +185,7 @@
       border-right: 1px solid rgba(255,255,255,0.12);
     }
 
-    thead th:last-child {
-      border-right: none;
-    }
+    thead th:last-child { border-right: none; }
 
     tbody td {
       padding: 17px 8px;
@@ -203,17 +198,11 @@
       transition: filter 0.2s ease;
     }
 
-    tbody td:last-child {
-      border-right: none;
-    }
+    tbody td:last-child { border-right: none; }
 
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
+    tbody tr:last-child td { border-bottom: none; }
 
-    tbody tr:hover td {
-      filter: brightness(0.95);
-    }
+    tbody tr:hover td { filter: brightness(0.95); }
 
     .rank {
       display: inline-flex;
@@ -252,43 +241,43 @@
       font-weight: 800;
     }
 
-    /* FULL ROW COLORS - HR KINGS VATKURA */
+    /* HR KINGS VATKURA - CHOCOLATE BROWN #92400E */
 
     tbody tr.hrkings td {
-      background: linear-gradient(90deg, #e6bd45, #f7df91);
+      background: linear-gradient(90deg, #C58A5B, #E7C6A8);
     }
 
     tbody tr.hrkings {
-      outline: 1px solid #e2b52f;
+      outline: 1px solid #92400E;
       outline-offset: -1px;
     }
 
-    /* VATKURA KINGS */
+    /* VATKURA KINGS - ROYAL PURPLE #7C3AED */
 
     tbody tr.kings td {
-      background: linear-gradient(90deg, #f08080, #ffb3b3);
+      background: linear-gradient(90deg, #A78BFA, #DDD6FE);
     }
 
     tbody tr.kings {
-      outline: 1px solid #dc4545;
+      outline: 1px solid #7C3AED;
       outline-offset: -1px;
     }
 
-    /* VATKURA TIGERS */
+    /* VATKURA TIGERS - ORANGE */
 
     tbody tr.tigers td {
-      background: linear-gradient(90deg, #f59b38, #ffca85);
+      background: linear-gradient(90deg, #F59B38, #FFCA85);
     }
 
     tbody tr.tigers {
-      outline: 1px solid #ed861e;
+      outline: 1px solid #ED861E;
       outline-offset: -1px;
     }
 
-    /* VATKURA STARS */
+    /* VATKURA STARS - GREEN */
 
     tbody tr.stars td {
-      background: linear-gradient(90deg, #62c982, #a8e6b9);
+      background: linear-gradient(90deg, #62C982, #A8E6B9);
     }
 
     tbody tr.stars {
@@ -296,25 +285,25 @@
       outline-offset: -1px;
     }
 
-    /* VATKURA FIRE EIGHT */
+    /* VATKURA FIRE EIGHT - RED */
 
     tbody tr.fire td {
-      background: linear-gradient(90deg, #e87575, #f5aaaa);
+      background: linear-gradient(90deg, #E87575, #F5AAAA);
     }
 
     tbody tr.fire {
-      outline: 1px solid #b91c1c;
+      outline: 1px solid #B91C1C;
       outline-offset: -1px;
     }
 
-    /* VATKURA STRIKERS */
+    /* VATKURA STRIKERS - BLUE */
 
     tbody tr.strikers td {
-      background: linear-gradient(90deg, #69aef0, #a9d3ff);
+      background: linear-gradient(90deg, #69AEF0, #A9D3FF);
     }
 
     tbody tr.strikers {
-      outline: 1px solid #2474d2;
+      outline: 1px solid #2474D2;
       outline-offset: -1px;
     }
 
@@ -347,14 +336,14 @@
       flex-shrink: 0;
     }
 
-    .legend-gold { background: #e2b52f; }
-    .legend-red { background: #dc4545; }
-    .legend-orange { background: #ed861e; }
+    .legend-hrkings { background: #92400E; }
+    .legend-kings { background: #7C3AED; }
+    .legend-orange { background: #ED861E; }
     .legend-green { background: #239447; }
-    .legend-fire { background: #b91c1c; }
-    .legend-blue { background: #2474d2; }
+    .legend-fire { background: #B91C1C; }
+    .legend-blue { background: #2474D2; }
 
-    /* ENGLISH RULES BELOW THE POINTS TABLE */
+    /* RULES */
 
     .rules-box {
       background: linear-gradient(135deg, #f0f5ff, #f6efff);
@@ -368,11 +357,9 @@
       color: #34415e;
     }
 
-    .rules-box strong {
-      color: #5424a8;
-    }
+    .rules-box strong { color: #5424a8; }
 
-    /* FOOTER - SAME AS HOME PAGE */
+    /* FOOTER */
 
     .footer {
       width: 100%;
@@ -389,16 +376,14 @@
       letter-spacing: 0.4px;
     }
 
-    .footer strong {
-      color: var(--blue);
-    }
+    .footer strong { color: var(--blue); }
 
     .footer a {
       color: var(--purple);
       font-weight: 700;
     }
 
-    /* TABLET - SAME HEADER RESPONSIVE RULES AS HOME */
+    /* TABLET */
 
     @media (max-width: 700px) {
       .brand-row {
@@ -411,22 +396,16 @@
         height: 55px;
       }
 
-      .brand-text h2 {
-        font-size: 21px;
-      }
+      .brand-text h2 { font-size: 21px; }
 
       .nav-menu a {
         min-height: 52px;
         font-size: 13px;
       }
 
-      main {
-        padding: 18px 12px 40px;
-      }
+      main { padding: 18px 12px 40px; }
 
-      .team-cell {
-        min-width: 145px;
-      }
+      .team-cell { min-width: 145px; }
 
       thead th {
         padding: 14px 6px;
@@ -438,12 +417,10 @@
         font-size: 11px;
       }
 
-      .team-name {
-        font-size: 11px;
-      }
+      .team-name { font-size: 11px; }
     }
 
-    /* MOBILE - SAME HEADER RESPONSIVE RULES AS HOME */
+    /* MOBILE */
 
     @media (max-width: 400px) {
       .brand-logo {
@@ -451,18 +428,14 @@
         height: 48px;
       }
 
-      .brand-text h2 {
-        font-size: 18px;
-      }
+      .brand-text h2 { font-size: 18px; }
 
       .brand-text p {
         font-size: 8px;
         letter-spacing: 1.5px;
       }
 
-      .brand {
-        gap: 10px;
-      }
+      .brand { gap: 10px; }
 
       .nav-menu a {
         min-height: 49px;
@@ -476,13 +449,9 @@
         right: 12%;
       }
 
-      main {
-        padding: 12px 7px 32px;
-      }
+      main { padding: 12px 7px 32px; }
 
-      .table-card {
-        border-radius: 14px;
-      }
+      .table-card { border-radius: 14px; }
 
       thead th {
         padding: 12px 3px;
@@ -494,9 +463,7 @@
         font-size: 10px;
       }
 
-      .team-cell {
-        min-width: 125px;
-      }
+      .team-cell { min-width: 125px; }
 
       .team-name {
         font-size: 10px;
@@ -510,22 +477,15 @@
         font-size: 10px;
       }
 
-      .points {
-        font-size: 11px;
-      }
-
-      .nrr {
-        font-size: 9px;
-      }
+      .points { font-size: 11px; }
+      .nrr { font-size: 9px; }
 
       .legend {
         gap: 10px 12px;
         padding: 15px 7px;
       }
 
-      .legend-item {
-        font-size: 10px;
-      }
+      .legend-item { font-size: 10px; }
 
       .rules-box {
         font-size: 11px;
@@ -534,9 +494,7 @@
     }
 
     @media (max-width: 340px) {
-      .team-cell {
-        min-width: 112px;
-      }
+      .team-cell { min-width: 112px; }
 
       thead th {
         font-size: 8px;
@@ -548,9 +506,7 @@
         padding: 12px 2px;
       }
 
-      .team-name {
-        font-size: 9px;
-      }
+      .team-name { font-size: 9px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -566,7 +522,7 @@
 
 <body>
 
-  <!-- SAME HEADER AS HOME PAGE -->
+  <!-- HEADER -->
 
   <header class="header">
     <div class="brand-row">
@@ -593,7 +549,7 @@
     </nav>
   </header>
 
-  <!-- POINTS TABLE - NO EXTRA TITLE OR STANDINGS BOX -->
+  <!-- POINTS TABLE -->
 
   <main>
     <div class="container">
@@ -622,13 +578,14 @@
         <!-- TEAM COLOR LEGEND -->
 
         <div class="legend">
+
           <div class="legend-item">
-            <span class="legend-dot legend-gold"></span>
+            <span class="legend-dot legend-hrkings"></span>
             HR Kings
           </div>
 
           <div class="legend-item">
-            <span class="legend-dot legend-red"></span>
+            <span class="legend-dot legend-kings"></span>
             Vatkura Kings
           </div>
 
@@ -651,10 +608,11 @@
             <span class="legend-dot legend-blue"></span>
             Strikers
           </div>
+
         </div>
       </section>
 
-      <!-- RULES BELOW THE TABLE -->
+      <!-- RULES -->
 
       <div class="rules-box">
         <strong>QUALIFICATION:</strong>
@@ -667,7 +625,7 @@
     </div>
   </main>
 
-  <!-- FOOTER - SAME AS HOME PAGE -->
+  <!-- FOOTER -->
 
   <footer class="footer">
     <p>
@@ -681,7 +639,7 @@
     </p>
   </footer>
 
-  <!-- POINTS TABLE FIREBASE SYSTEM -->
+  <!-- FIREBASE POINTS TABLE SYSTEM -->
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -717,8 +675,10 @@
 
     const pointsBody = document.getElementById("pointsBody");
 
-    // Convert cricket overs notation into balls.
+    // Convert cricket overs into actual balls.
     // Example: 6.5 overs = 41 balls.
+    // Example: 2.3 overs = 15 balls.
+
     function getBalls(overs) {
       if (overs === undefined || overs === null || overs === "") {
         return null;
@@ -749,6 +709,7 @@
 
     // If a team is all out (7 wickets),
     // count the full 8 overs for NRR.
+
     function getInningsBalls(overs, wickets) {
       const actualBalls = getBalls(overs);
 
@@ -863,6 +824,7 @@
       });
 
       // Sort by points first, then NRR.
+
       result.sort((a, b) => {
         if (b.points !== a.points) {
           return b.points - a.points;
@@ -898,8 +860,8 @@
       }).join("");
     }
 
-    // Listen for completed matches in Firebase.
-    // The table updates automatically when match results change.
+    // Automatically update the table from Firebase.
+
     onValue(
       ref(db, "matches"),
       snapshot => {
