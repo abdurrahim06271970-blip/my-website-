@@ -177,14 +177,13 @@ table {
 }
 
 thead th {
-  background: linear-gradient(135deg, #142542, #243e68, #182b4d);
+  background: #182b4d;
   color: #ffffff;
   padding: 16px 8px;
   font-size: 12px;
   font-weight: 800;
   white-space: nowrap;
   border-right: 1px solid rgba(255,255,255,0.12);
-  box-shadow: inset 0 1px rgba(255,255,255,0.12);
 }
 
 thead th:last-child { border-right: none; }
@@ -194,25 +193,17 @@ tbody td {
   font-size: 13px;
   font-weight: 700;
   color: #18213b;
-  border-bottom: 3px solid #ffffff;
-  border-right: 1px solid rgba(255,255,255,0.55);
+  border-bottom: 2px solid #ffffff;
+  border-right: 1px solid rgba(255,255,255,0.65);
   white-space: nowrap;
-  transition: filter 0.25s ease, box-shadow 0.25s ease;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.42),
-    inset 0 -2px 3px rgba(30,40,60,0.07);
+  transition: filter 0.2s ease;
 }
 
 tbody td:last-child { border-right: none; }
 
 tbody tr:last-child td { border-bottom: none; }
 
-tbody tr:hover td {
-  filter: brightness(1.09) saturate(1.12);
-  box-shadow:
-    inset 0 2px 0 rgba(255,255,255,0.65),
-    inset 0 -3px 5px rgba(30,40,60,0.09);
-}
+tbody tr:hover td { filter: brightness(1.04); }
 
 .rank {
   display: inline-flex;
@@ -221,14 +212,11 @@ tbody tr:hover td {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(145deg, #ffffff, #e9edf5);
+  background: rgba(255,255,255,0.92);
   color: #18213b;
-  border: 1px solid rgba(23,32,51,0.12);
+  border: 1px solid rgba(23,32,51,0.1);
   font-size: 11px;
   font-weight: 900;
-  box-shadow:
-    0 2px 5px rgba(0,0,0,0.13),
-    inset 0 1px 2px rgba(255,255,255,0.95);
 }
 
 .team-cell {
@@ -242,7 +230,6 @@ tbody tr:hover td {
   font-weight: 900;
   letter-spacing: 0.2px;
   color: #18213b;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
 }
 
 .points {
@@ -255,126 +242,120 @@ tbody tr:hover td {
   font-weight: 800;
 }
 
-/* PREMIUM TEAM COLORS */
+/* PREMIUM GLOSSY SHINE - NO TEAM SHADOW */
 
 /* HR KINGS VATKURA - CHOCOLATE BROWN */
 
 tbody tr.hrkings td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.34) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.13) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #88400F 0%, #B66B35 35%, #D49A68 68%, #E9C5A1 100%);
+  background: linear-gradient(
+    115deg,
+    #92400E 0%,
+    #B9652B 22%,
+    #F3D0A9 38%,
+    #C17A43 53%,
+    #E8B98E 72%,
+    #92400E 100%
+  );
 }
 
 tbody tr.hrkings {
   outline: 1px solid #92400E;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(146,64,14,0.24);
 }
 
 /* VATKURA KINGS - ROYAL PURPLE */
 
 tbody tr.kings td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.35) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.14) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #5520B5 0%, #793DE0 35%, #A78BFA 68%, #DDD6FE 100%);
+  background: linear-gradient(
+    115deg,
+    #5B21B6 0%,
+    #7C3AED 22%,
+    #E4D5FF 38%,
+    #9B6AF2 53%,
+    #D8C5FF 72%,
+    #5B21B6 100%
+  );
 }
 
 tbody tr.kings {
   outline: 1px solid #7C3AED;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(124,58,237,0.25);
 }
 
-/* VATKURA TIGERS - ORANGE GOLD */
+/* VATKURA TIGERS - ORANGE */
 
 tbody tr.tigers td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.34) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.14) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #B94D08 0%, #E87913 35%, #F9A94B 68%, #FFDAA0 100%);
+  background: linear-gradient(
+    115deg,
+    #C45A08 0%,
+    #ED861E 22%,
+    #FFE1AE 38%,
+    #F5A13D 53%,
+    #FFD09A 72%,
+    #C45A08 100%
+  );
 }
 
 tbody tr.tigers {
   outline: 1px solid #ED861E;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(237,134,30,0.25);
 }
 
 /* VATKURA STARS - EMERALD GREEN */
 
 tbody tr.stars td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.34) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.14) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #08632C 0%, #159447 35%, #59C47C 68%, #B9F0C9 100%);
+  background: linear-gradient(
+    115deg,
+    #087333 0%,
+    #239447 22%,
+    #D0F5D9 38%,
+    #55BD75 53%,
+    #B5EDC4 72%,
+    #087333 100%
+  );
 }
 
 tbody tr.stars {
   outline: 1px solid #239447;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(35,148,71,0.25);
 }
 
 /* VATKURA FIRE EIGHT - RUBY RED */
 
 tbody tr.fire td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.34) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.14) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #8F101B 0%, #C92331 35%, #EB777F 68%, #F8C0C4 100%);
+  background: linear-gradient(
+    115deg,
+    #991B1B 0%,
+    #C92B36 22%,
+    #FFD1D3 38%,
+    #E87575 53%,
+    #FFC0C4 72%,
+    #991B1B 100%
+  );
 }
 
 tbody tr.fire {
   outline: 1px solid #B91C1C;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(185,28,28,0.25);
 }
 
 /* VATKURA STRIKERS - ELECTRIC BLUE */
 
 tbody tr.strikers td {
-  background:
-    linear-gradient(
-      115deg,
-      rgba(255,255,255,0.35) 0%,
-      transparent 35%,
-      rgba(255,255,255,0.14) 58%,
-      transparent 78%
-    ),
-    linear-gradient(110deg, #104A9C 0%, #2474D2 35%, #69AEF0 68%, #C1E2FF 100%);
+  background: linear-gradient(
+    115deg,
+    #1554A5 0%,
+    #2474D2 22%,
+    #D5ECFF 38%,
+    #69AEF0 53%,
+    #B9DDFF 72%,
+    #1554A5 100%
+  );
 }
 
 tbody tr.strikers {
   outline: 1px solid #2474D2;
   outline-offset: -1px;
-  box-shadow: 0 3px 13px rgba(36,116,210,0.25);
 }
 
 /* TEAM COLOR LEGEND */
@@ -404,17 +385,31 @@ tbody tr.strikers {
   border-radius: 4px;
   display: inline-block;
   flex-shrink: 0;
-  box-shadow:
-    0 2px 5px rgba(0,0,0,0.18),
-    inset 0 1px 2px rgba(255,255,255,0.5);
 }
 
-.legend-hrkings { background: linear-gradient(135deg, #88400F, #E9C5A1); }
-.legend-kings { background: linear-gradient(135deg, #5520B5, #DDD6FE); }
-.legend-orange { background: linear-gradient(135deg, #B94D08, #FFDAA0); }
-.legend-green { background: linear-gradient(135deg, #08632C, #B9F0C9); }
-.legend-fire { background: linear-gradient(135deg, #8F101B, #F8C0C4); }
-.legend-blue { background: linear-gradient(135deg, #104A9C, #C1E2FF); }
+.legend-hrkings {
+  background: linear-gradient(135deg, #92400E, #F3D0A9, #92400E);
+}
+
+.legend-kings {
+  background: linear-gradient(135deg, #5B21B6, #E4D5FF, #5B21B6);
+}
+
+.legend-orange {
+  background: linear-gradient(135deg, #C45A08, #FFE1AE, #C45A08);
+}
+
+.legend-green {
+  background: linear-gradient(135deg, #087333, #D0F5D9, #087333);
+}
+
+.legend-fire {
+  background: linear-gradient(135deg, #991B1B, #FFD1D3, #991B1B);
+}
+
+.legend-blue {
+  background: linear-gradient(135deg, #1554A5, #D5ECFF, #1554A5);
+}
 
 /* RULES */
 
@@ -428,7 +423,6 @@ tbody tr.strikers {
   font-size: 13px;
   line-height: 1.9;
   color: #34415e;
-  box-shadow: 0 4px 15px rgba(106,17,203,0.05);
 }
 
 .rules-box strong { color: #5424a8; }
