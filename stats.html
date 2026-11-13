@@ -28,9 +28,7 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   min-height: 100vh;
@@ -46,9 +44,7 @@ a {
   text-decoration: none;
 }
 
-button {
-  font-family: inherit;
-}
+button { font-family: inherit; }
 
 /* HEADER */
 
@@ -226,9 +222,7 @@ main {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.stats-tab:hover {
-  transform: translateY(-3px);
-}
+.stats-tab:hover { transform: translateY(-3px); }
 
 .stats-tab:focus-visible {
   outline: 3px solid #8ca8ff;
@@ -280,9 +274,7 @@ main {
   box-shadow: 0 5px 22px rgba(25, 43, 77, 0.06);
 }
 
-.stats-panel[hidden] {
-  display: none !important;
-}
+.stats-panel[hidden] { display: none !important; }
 
 .panel-heading {
   padding: 21px 22px;
@@ -317,7 +309,7 @@ main {
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-/* TEAM COLORS - MATCHING POINTS TABLE */
+/* TEAM COLORS */
 
 .player-row.hrkings {
   background: linear-gradient(90deg, #92400E, #C58A5B);
@@ -348,9 +340,7 @@ main {
   transform: translateY(-1px);
 }
 
-.player-row:last-child {
-  border-bottom: none;
-}
+.player-row:last-child { border-bottom: none; }
 
 .player-rank {
   width: 43px;
@@ -375,9 +365,7 @@ main {
   color: #536078;
 }
 
-.player-info {
-  min-width: 0;
-}
+.player-info { min-width: 0; }
 
 .player-name {
   font-size: 15px;
@@ -405,9 +393,7 @@ main {
   font-weight: 1000;
 }
 
-.wickets-panel .stat-value {
-  color: #18213b;
-}
+.wickets-panel .stat-value { color: #18213b; }
 
 .stat-label {
   display: block;
@@ -460,9 +446,7 @@ main {
   letter-spacing: 0.4px;
 }
 
-.footer strong {
-  color: var(--blue);
-}
+.footer strong { color: var(--blue); }
 
 .footer a {
   color: var(--purple);
@@ -482,31 +466,23 @@ main {
     height: 55px;
   }
 
-  .brand-text h2 {
-    font-size: 21px;
-  }
+  .brand-text h2 { font-size: 21px; }
 
   .nav-menu a {
     min-height: 52px;
     font-size: 13px;
   }
 
-  main {
-    padding: 28px 13px 42px;
-  }
+  main { padding: 28px 13px 42px; }
 
-  .stats-tabs {
-    gap: 11px;
-  }
+  .stats-tabs { gap: 11px; }
 
   .stats-tab {
     min-height: 115px;
     padding: 17px 14px;
   }
 
-  .panel-heading {
-    padding: 18px;
-  }
+  .panel-heading { padding: 18px; }
 
   .player-row {
     padding: 15px 16px;
@@ -522,18 +498,14 @@ main {
     height: 48px;
   }
 
-  .brand-text h2 {
-    font-size: 18px;
-  }
+  .brand-text h2 { font-size: 18px; }
 
   .brand-text p {
     font-size: 8px;
     letter-spacing: 1.5px;
   }
 
-  .brand {
-    gap: 10px;
-  }
+  .brand { gap: 10px; }
 
   .nav-menu a {
     min-height: 49px;
@@ -547,21 +519,13 @@ main {
     right: 12%;
   }
 
-  main {
-    padding: 24px 10px 35px;
-  }
+  main { padding: 24px 10px 35px; }
 
-  .page-heading {
-    margin-bottom: 23px;
-  }
+  .page-heading { margin-bottom: 23px; }
 
-  .page-heading p {
-    font-size: 12px;
-  }
+  .page-heading p { font-size: 12px; }
 
-  .stats-tabs {
-    gap: 10px;
-  }
+  .stats-tabs { gap: 10px; }
 
   .stats-tab {
     min-height: 105px;
@@ -574,22 +538,16 @@ main {
     margin-bottom: 7px;
   }
 
-  .tab-title {
-    font-size: 15px;
-  }
+  .tab-title { font-size: 15px; }
 
   .tab-subtitle {
     font-size: 9px;
     letter-spacing: 0.6px;
   }
 
-  .panel-heading {
-    padding: 16px 14px;
-  }
+  .panel-heading { padding: 16px 14px; }
 
-  .panel-heading h2 {
-    font-size: 17px;
-  }
+  .panel-heading h2 { font-size: 17px; }
 
   .player-row {
     grid-template-columns: 42px minmax(0, 1fr) auto;
@@ -604,25 +562,14 @@ main {
     font-size: 13px;
   }
 
-  .player-name {
-    font-size: 13px;
-  }
+  .player-name { font-size: 13px; }
+  .player-team { font-size: 10px; }
 
-  .player-team {
-    font-size: 10px;
-  }
+  .player-stat { min-width: 55px; }
 
-  .player-stat {
-    min-width: 55px;
-  }
+  .stat-value { font-size: 20px; }
 
-  .stat-value {
-    font-size: 20px;
-  }
-
-  .stat-label {
-    font-size: 9px;
-  }
+  .stat-label { font-size: 9px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -670,8 +617,6 @@ main {
       <p>Top Performers · Vatkura Cricket League · Session 03</p>
       <div class="heading-line"></div>
     </section>
-
-    <!-- TWO OPTIONS -->
 
     <section class="stats-tabs" role="tablist" aria-label="Player statistics">
 
