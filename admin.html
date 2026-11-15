@@ -34,7 +34,33 @@ textarea{min-height:80px;resize:vertical}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .tag{font-size:11px;background:#eef3ff;color:#2454a6;padding:5px 8px;border-radius:20px;font-weight:bold}
 .section-title{margin-top:22px;padding-top:15px;border-top:1px solid #e5e9f2;color:#2454a6;font-size:16px;font-weight:bold}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.panel{padding:16px}.top h1{font-size:22px}}
+
+#status option[value="FORFEIT"]{
+  color:#c62828;
+  font-weight:bold;
+}
+
+.forfeit-note{
+  background:#fff3f0;
+  border:1px solid #ffd5cc;
+  color:#a52b1d;
+  border-radius:9px;
+  padding:11px;
+  font-size:12px;
+  line-height:1.6;
+  margin-top:9px;
+}
+
+.forfeit-tag{
+  background:#fff0ed;
+  color:#c62828;
+}
+
+@media(max-width:560px){
+.grid{grid-template-columns:1fr}
+.panel{padding:16px}
+.top h1{font-size:22px}
+}
 </style>
 </head>
 
@@ -76,6 +102,7 @@ textarea{min-height:80px;resize:vertical}
 <form id="matchForm">
 
 <div class="grid">
+
 <div>
 <label>Match Number *</label>
 <input id="matchId" placeholder="01" required>
@@ -88,7 +115,12 @@ textarea{min-height:80px;resize:vertical}
 <option value="LIVE">LIVE</option>
 <option value="COMPLETED">COMPLETED</option>
 <option value="PLAYOFF">PLAYOFF</option>
+<option value="FORFEIT">FORFEIT</option>
 </select>
+
+<div class="forfeit-note">
+⚠️ FORFEIT: Use this status when a team does not participate in a scheduled match.
+</div>
 </div>
 
 <div>
@@ -264,6 +296,11 @@ const details=document.createElement("small");
 details.textContent=
 `${m.date||"Date not set"} · ${m.time||"Time not set"} · ${m.status||"SCHEDULED"} ${m.stadium?"· "+m.stadium:""} ${m.result?"· "+m.result:""}`;
 
+if(m.status==="FORFEIT"){
+details.style.color="#c62828";
+details.style.fontWeight="bold";
+}
+
 const edit=document.createElement("button");
 edit.className="btn secondary";
 edit.type="button";
@@ -351,7 +388,13 @@ await set(ref(db,"matches/"+id),{
 ...data
 });
 
-showMessage("Match saved to Firebase successfully!","ok");
+showMessage(
+data.status==="FORFEIT"
+?"Match saved with FORFEIT status successfully!"
+:"Match saved to Firebase successfully!",
+"ok"
+);
+
 clearForm();
 
 }catch(err){
