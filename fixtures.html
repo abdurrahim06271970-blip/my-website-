@@ -528,39 +528,71 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* ORIGINAL FIXTURES */
+/* UPDATED VCL 2026 FIXTURES */
+
+/*
+  IMPORTANT:
+  First 7 matches are protected.
+  Their Firebase data will be preserved exactly.
+  No Firebase write, update or delete operation is used here.
+*/
 
 const defaultMatches = [
 
 {id:"01",teamA:"VATKURA KINGS",teamB:"HR KINGS VATKURA",date:"06-11-26",time:"10:00 AM",status:"SCHEDULED",group:"06"},
+
 {id:"02",teamA:"VATKURA TIGERS",teamB:"VATKURA STARS",date:"06-11-26",time:"02:30 PM",status:"SCHEDULED",group:"06"},
+
 {id:"03",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STRIKERS",date:"06-11-26",time:"03:45 PM",status:"SCHEDULED",group:"06"},
 
 {id:"04",teamA:"VATKURA TIGERS",teamB:"VATKURA STRIKERS",date:"13-11-26",time:"09:45 AM",status:"SCHEDULED",group:"13"},
+
 {id:"05",teamA:"VATKURA FIRE EIGHT",teamB:"VATKURA STARS",date:"13-11-26",time:"11:00 AM",status:"SCHEDULED",group:"13"},
+
 {id:"06",teamA:"VATKURA KINGS",teamB:"VATKURA FIRE EIGHT",date:"13-11-26",time:"02:30 PM",status:"SCHEDULED",group:"13"},
+
 {id:"07",teamA:"VATKURA TIGERS",teamB:"HR KINGS VATKURA",date:"13-11-26",time:"03:45 PM",status:"SCHEDULED",group:"13"},
 
-{id:"08",teamA:"VATKURA TIGERS",teamB:"VATKURA FIRE EIGHT",date:"20-11-26",time:"09:45 AM",status:"SCHEDULED",group:"20"},
-{id:"09",teamA:"VATKURA STRIKERS",teamB:"HR KINGS VATKURA",date:"20-11-26",time:"11:00 AM",status:"SCHEDULED",group:"20"},
-{id:"10",teamA:"VATKURA KINGS",teamB:"VATKURA STRIKERS",date:"20-11-26",time:"02:30 PM",status:"SCHEDULED",group:"20"},
-{id:"11",teamA:"VATKURA KINGS",teamB:"VATKURA STARS",date:"20-11-26",time:"03:45 PM",status:"SCHEDULED",group:"20"},
+/* 27 NOVEMBER */
 
-{id:"12",teamA:"HR KINGS VATKURA",teamB:"VATKURA STARS",date:"27-11-26",time:"09:45 AM",status:"SCHEDULED",group:"27"},
-{id:"13",teamA:"VATKURA KINGS",teamB:"VATKURA TIGERS",date:"27-11-26",time:"11:00 AM",status:"SCHEDULED",group:"27"},
-{id:"14",teamA:"VATKURA STRIKERS",teamB:"VATKURA STARS",date:"27-11-26",time:"02:30 PM",status:"SCHEDULED",group:"27"},
-{id:"15",teamA:"VATKURA FIRE EIGHT",teamB:"HR KINGS VATKURA",date:"27-11-26",time:"03:45 PM",status:"SCHEDULED",group:"27"},
+{id:"08",teamA:"VATKURA TIGERS",teamB:"VATKURA FIRE EIGHT",date:"27-11-26",time:"09:45 AM",status:"SCHEDULED",group:"27"},
 
-{id:"16",teamA:"PT1",teamB:"PT2",date:"04-12-26",time:"09:45 AM",status:"PLAYOFF",group:"04",playoffName:"SEMI FINAL 1"},
-{id:"17",teamA:"PT3",teamB:"PT4",date:"04-12-26",time:"11:00 AM",status:"PLAYOFF",group:"04",playoffName:"ELIMINATOR"},
-{id:"18",teamA:"SF1L",teamB:"ELW",date:"04-12-26",time:"03:00 PM",status:"PLAYOFF",group:"04",playoffName:"SEMI FINAL 2"},
+{id:"09",teamA:"VATKURA STRIKERS",teamB:"HR KINGS VATKURA",date:"27-11-26",time:"11:00 AM",status:"SCHEDULED",group:"27"},
 
-{id:"19",teamA:"SF1W",teamB:"SF2W",date:"11-12-26",time:"03:00 PM",status:"PLAYOFF",group:"11",final:true,playoffName:"FINAL"}
+{id:"10",teamA:"VATKURA KINGS",teamB:"VATKURA STRIKERS",date:"27-11-26",time:"02:30 PM",status:"SCHEDULED",group:"27"},
+
+{id:"11",teamA:"VATKURA KINGS",teamB:"VATKURA STARS",date:"27-11-26",time:"03:45 PM",status:"SCHEDULED",group:"27"},
+
+/* 04 DECEMBER */
+
+{id:"12",teamA:"HR KINGS VATKURA",teamB:"VATKURA STARS",date:"04-12-26",time:"09:45 AM",status:"SCHEDULED",group:"04"},
+
+{id:"13",teamA:"VATKURA FIRE EIGHT",teamB:"HR KINGS VATKURA",date:"04-12-26",time:"11:00 AM",status:"SCHEDULED",group:"04"},
+
+{id:"14",teamA:"VATKURA STRIKERS",teamB:"VATKURA STARS",date:"04-12-26",time:"02:30 PM",status:"SCHEDULED",group:"04"},
+
+{id:"15",teamA:"VATKURA KINGS",teamB:"VATKURA TIGERS",date:"04-12-26",time:"03:45 PM",status:"SCHEDULED",group:"04"},
+
+/* PLAYOFFS - 11 DECEMBER */
+
+{id:"16",teamA:"PT1",teamB:"PT2",date:"11-12-26",time:"09:45 AM",status:"PLAYOFF",group:"11",playoffName:"SEMI FINAL 1"},
+
+{id:"17",teamA:"PT3",teamB:"PT4",date:"11-12-26",time:"11:00 AM",status:"PLAYOFF",group:"11",playoffName:"ELIMINATOR"},
+
+{id:"18",teamA:"SF1L",teamB:"ELW",date:"11-12-26",time:"03:00 PM",status:"PLAYOFF",group:"11",playoffName:"SEMI FINAL 2"},
+
+/* GRAND FINAL - 18 DECEMBER */
+
+{id:"19",teamA:"SF1W",teamB:"SF2W",date:"18-12-26",time:"03:00 PM",status:"PLAYOFF",group:"18",final:true,playoffName:"FINAL"}
 
 ];
 
 const container = document.getElementById("fixturesContainer");
 const message = document.getElementById("connectionMessage");
+
+const protectedIds = new Set([
+  "01","02","03","04","05","06","07"
+]);
 
 function escapeHTML(value){
   return String(value ?? "").replace(/[&<>"']/g,char=>({
@@ -573,7 +605,9 @@ function escapeHTML(value){
 }
 
 function getDateTitle(date){
+
   const parts=String(date).split("-");
+
   if(parts.length!==3)return date;
 
   const day=parts[0];
@@ -594,65 +628,104 @@ function hasValue(value){
          String(value).trim() !== "";
 }
 
-function renderMatches(firebaseData={}){
+/*
+  SAFE MATCH MERGING
 
-  const matches=defaultMatches.map(original=>{
+  Match 01-07:
+  Firebase saved information has priority.
+  No old results or scores are overwritten.
+
+  Match 08-19:
+  New fixture schedule has priority.
+  Existing score/result information is retained.
+*/
+
+function mergeMatches(firebaseData={}){
+
+  return defaultMatches.map(original=>{
 
     const saved=firebaseData[original.id]||{};
 
-    return{
-      ...original,
+    if(protectedIds.has(original.id)){
+
+      return {
+        ...original,
+        ...saved,
+        id:original.id
+      };
+
+    }
+
+    const merged={
       ...saved,
-      id:original.id,
-      teamA:saved.teamA||original.teamA,
-      teamB:saved.teamB||original.teamB,
-      date:saved.date||original.date,
-      time:saved.time||original.time,
-      status:saved.status||original.status
+      ...original,
+      id:original.id
     };
+
+    if(String(saved.status||"").toUpperCase()==="COMPLETED"){
+      merged.status=saved.status;
+    }else{
+      merged.status=original.status;
+    }
+
+    return merged;
+
   });
+
+}
+
+function renderMatches(firebaseData={}){
+
+  const matches=mergeMatches(firebaseData);
 
   const groups={};
 
   matches.forEach(match=>{
+
     const date=match.date||"Date not set";
 
     if(!groups[date])groups[date]=[];
 
     groups[date].push(match);
+
   });
 
   let html="";
 
   Object.keys(groups).forEach(date=>{
 
-    const firstMatch=groups[date][0];
+    const dateMatches=groups[date];
 
-    let groupClass="";
+    const isPlayoff=dateMatches.some(m=>
+      ["16","17","18","19"].includes(m.id)
+    );
 
-    if(firstMatch.id==="16"||firstMatch.id==="17"||firstMatch.id==="18"){
-      groupClass="playoff";
-    }
+    const isFinal=dateMatches.some(m=>m.id==="19");
 
     html+=`
-      <section class="date-group ${groupClass}">
+      <section class="date-group ${isPlayoff?"playoff":""}">
 
         <div class="date-heading">
-          <h2>${escapeHTML(getDateTitle(date))}${
-            firstMatch.id==="16"?" · Playoffs":
-            firstMatch.id==="19"?" · Final":""
-          }</h2>
+
+          <h2>
+            ${escapeHTML(getDateTitle(date))}
+            ${isFinal?" · Final":isPlayoff?" · Playoffs":""}
+          </h2>
+
           <div class="line"></div>
+
         </div>
     `;
 
-    groups[date].forEach(match=>{
+    dateMatches.forEach(match=>{
 
       const status=String(match.status||"SCHEDULED").toUpperCase();
 
-      let cardClass="match-card date-"+match.group;
+      let cardClass="match-card date-"+escapeHTML(match.group||"");
 
-      if(match.final)cardClass+=" final-card";
+      if(match.final||match.id==="19"){
+        cardClass+=" final-card";
+      }
 
       const hasScore=
         hasValue(match.teamARuns)&&
@@ -663,9 +736,11 @@ function renderMatches(firebaseData={}){
       const showScore=status==="COMPLETED"&&hasScore;
 
       const winner=hasValue(match.winner)?match.winner:"";
+
       const margin=hasValue(match.resultMargin)?match.resultMargin:"";
 
       html+=`
+
         <article class="${cardClass}">
 
           <div class="match-top">
@@ -674,7 +749,7 @@ function renderMatches(firebaseData={}){
               ${
                 match.playoffName
                 ? escapeHTML(match.playoffName)
-                : "MATCH "+match.id
+                : "MATCH "+escapeHTML(match.id)
               }
             </span>
 
@@ -699,6 +774,7 @@ function renderMatches(firebaseData={}){
           </div>
 
           <div class="match-bottom">
+
             ${
               match.time
               ? `<span class="info">
@@ -707,11 +783,13 @@ function renderMatches(firebaseData={}){
                  </span>`
               : ""
             }
+
           </div>
 
           ${
             showScore
             ? `
+
               <div class="scorecard">
 
                 <div class="score-grid">
@@ -727,9 +805,11 @@ function renderMatches(firebaseData={}){
                     </div>
 
                     <div class="score-overs">
-                      ${hasValue(match.teamAOvers)
+                      ${
+                        hasValue(match.teamAOvers)
                         ? escapeHTML(match.teamAOvers)+" Overs"
-                        : ""}
+                        : ""
+                      }
                     </div>
 
                   </div>
@@ -745,9 +825,11 @@ function renderMatches(firebaseData={}){
                     </div>
 
                     <div class="score-overs">
-                      ${hasValue(match.teamBOvers)
+                      ${
+                        hasValue(match.teamBOvers)
                         ? escapeHTML(match.teamBOvers)+" Overs"
-                        : ""}
+                        : ""
+                      }
                     </div>
 
                   </div>
@@ -757,6 +839,7 @@ function renderMatches(firebaseData={}){
                 ${
                   winner
                   ? `
+
                     <div class="winner-box">
 
                       <div class="winner-name">
@@ -772,11 +855,13 @@ function renderMatches(firebaseData={}){
                       }
 
                     </div>
+
                   `
                   : ""
                 }
 
               </div>
+
             `
             : ""
           }
@@ -784,6 +869,7 @@ function renderMatches(firebaseData={}){
           ${
             !showScore&&(match.result||match.score||match.stadium)
             ? `
+
               <div class="match-extra">
 
                 ${
@@ -805,11 +891,13 @@ function renderMatches(firebaseData={}){
                 }
 
               </div>
+
             `
             : ""
           }
 
         </article>
+
       `;
 
     });
@@ -819,6 +907,7 @@ function renderMatches(firebaseData={}){
   });
 
   container.innerHTML=html;
+
 }
 
 /* FIREBASE LIVE DATABASE LISTENER */
@@ -851,7 +940,7 @@ onValue(
     message.textContent=
       "Firebase connection failed. Please check database permissions.";
 
-    renderMatches();
+    renderMatches({});
 
   }
 );
